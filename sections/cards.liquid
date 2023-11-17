@@ -8,11 +8,7 @@
     <!-- 25 Percent Off Card -->
     <a href="/collections/all?discount=SAVE25" class="card-link">
       <div class="card">
-        <img
-          src="{{ '25_percent.jpg' | asset_url }}"
-          alt="25% Off"
-          loading="lazy"
-        >
+        {{ 'product-1' | placeholder_svg_tag: 'image' }}
         <h3>25% Off</h3>
         <p>Use code: SAVE25</p>
         <a href="/collections/all?discount=SAVE25" class="btn">Shop Now</a>
@@ -22,11 +18,7 @@
     <!-- Membership Discount Card -->
     <a href="/account/login" class="card-link">
       <div class="card">
-        <img
-          src="{{ '25_percent.jpg' | asset_url }}"
-          alt="Membership Discount"
-          loading="lazy"
-        >
+        {{ 'product-2' | placeholder_svg_tag: 'image' }}
         <h3>Membership Discount</h3>
         <p>Exclusive savings for members</p>
         <a href="/account/login" class="btn">Login to Access</a>
@@ -36,11 +28,7 @@
     <!-- Direct Shopping Link Card -->
     <a href="/collections/all" class="card-link">
       <div class="card">
-        <img
-          src="{{ '25_percent.jpg' | asset_url }}"
-          alt="Shop Directly"
-          loading="lazy"
-        >
+        {{ 'product-3' | placeholder_svg_tag: 'image' }}
         <h3>Shop Directly</h3>
         <p>Explore our latest products</p>
         <a href="/collections/all" class="btn">View Products</a>
@@ -48,3 +36,84 @@
     </a>
   </div>
 </div>
+
+
+{% schema %}
+{
+  "name": "Discount Cards Section",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Section Name",
+      "id": "section_name",
+      "default": "discount-cards"
+    },
+    {
+      "type": "select",
+      "label": "Card 1 Discount Type",
+      "id": "card1_discount_type",
+      "default": "25_percent",
+      "options": [
+        {
+          "value": "25_percent",
+          "label": "25% Off"
+        },
+        {
+          "value": "membership",
+          "label": "Membership Discount"
+        },
+        {
+          "value": "direct",
+          "label": "Direct Shopping Link"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "Card 2 Discount Type",
+      "id": "card2_discount_type",
+      "default": "membership",
+      "options": [
+        {
+          "value": "25_percent",
+          "label": "25% Off"
+        },
+        {
+          "value": "membership",
+          "label": "Membership Discount"
+        },
+        {
+          "value": "direct",
+          "label": "Direct Shopping Link"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "Card 3 Discount Type",
+      "id": "card3_discount_type",
+      "default": "direct",
+      "options": [
+        {
+          "value": "25_percent",
+          "label": "25% Off"
+        },
+        {
+          "value": "membership",
+          "label": "Membership Discount"
+        },
+        {
+          "value": "direct",
+          "label": "Direct Shopping Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Custom",
+      "name": "Discount Cards Section"
+    }
+  ]
+}
+{% endschema %}
