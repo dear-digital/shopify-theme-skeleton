@@ -1,0 +1,50 @@
+{%- assign section_name = "discount-cards" -%}
+{{ 'cards.css' | asset_url | stylesheet_tag }}
+
+<div class="section-container">
+  <h2 class="section-title">OFFERS</h2> 
+
+  <div class="{{ section_name }}">
+    <!-- 25 Percent Off Card -->
+    <a href="/collections/all?discount=SAVE25" class="card-link">
+      <div class="card">
+        <img
+          src="{{ '25_percent.jpg' | asset_url }}"
+          alt="25% Off"
+          loading="lazy"
+        >
+        <h3>25% Off</h3>
+        <p>Use code: SAVE25</p>
+        <a href="/collections/all?discount=SAVE25" class="btn">Shop Now</a>
+      </div>
+    </a>
+
+    <!-- Membership Discount Card -->
+    <a href="/account/login" class="card-link">
+      <div class="card">
+        <img
+          src="{{ '25_percent.jpg' | asset_url }}"
+          alt="Membership Discount"
+          loading="lazy"
+        >
+        <h3>Membership Discount</h3>
+        <p>Exclusive savings for members</p>
+        <a href="/account/login" class="btn">Login to Access</a>
+      </div>
+    </a>
+
+    <!-- Direct Shopping Link Card -->
+    <a href="/collections/all" class="card-link">
+      <div class="card">
+        <img
+          src="{{ '25_percent.jpg' | asset_url }}"
+          alt="Shop Directly"
+          loading="lazy"
+        >
+        <h3>Shop Directly</h3>
+        <p>Explore our latest products</p>
+        <a href="/collections/all" class="btn">View Products</a>
+      </div>
+    </a>
+  </div>
+</div>

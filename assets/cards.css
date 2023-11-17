@@ -1,0 +1,77 @@
+.discount-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  .section-container {
+    text-align: center;
+    background-color: #f2f2f2; 
+    padding: 20px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+    color: #333; 
+    margin-bottom: 20px;
+  }
+  
+  .discount-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .card-link {
+    text-decoration: none;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background-color: white; 
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card h3 {
+    margin-top: 10px;
+    color: rgb(96, 96, 255);
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 10px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background: rgb(96, 96, 255);
+    background: linear-gradient(0deg, rgb(156, 11, 156) 0%, rgb(156, 11, 156) 100%);
+  }
+  
+  .btn:hover {
+    background-color: #45a049;
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+      -4px -4px 6px 0 rgba(116, 125, 136, .5),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+      inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+    text-decoration: none;
+  }
+  
