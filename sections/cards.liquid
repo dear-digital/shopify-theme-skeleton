@@ -1,42 +1,27 @@
-{%- assign section_name = "discount-cards" -%}
+{%- assign section_name = section.settings.section_name -%}
 {{ 'cards.css' | asset_url | stylesheet_tag }}
 
 <div class="section-container">
-  <h2 class="section-title">OFFERS</h2> 
+  <h2 class="section-title">{{ section.settings.section_title }}</h2> 
 
   <div class="{{ section_name }}">
-    <!-- 25 Percent Off Card -->
-    <a href="/collections/all?discount=SAVE25" class="card-link">
-      <div class="card">
-        {{ 'product-1' | placeholder_svg_tag: 'image' }}
-        <h3>25% Off</h3>
-        <p>Use code: SAVE25</p>
-        <a href="/collections/all?discount=SAVE25" class="btn">Shop Now</a>
-      </div>
-    </a>
+    {% for i in (1..3) %}
+      {%- assign card_title = section.settings["card#{i}_title"] -%}
+      {%- assign card_detail = section.settings["card#{i}_detail"] -%}
+      {%- assign card_image = section.settings["card#{i}_image"] -%}
+      {%- assign card_button_link = section.settings["card#{i}_button_link"] -%}
 
-    <!-- Membership Discount Card -->
-    <a href="/account/login" class="card-link">
-      <div class="card">
-        {{ 'product-2' | placeholder_svg_tag: 'image' }}
-        <h3>Membership Discount</h3>
-        <p>Exclusive savings for members</p>
-        <a href="/account/login" class="btn">Login to Access</a>
-      </div>
-    </a>
-
-    <!-- Direct Shopping Link Card -->
-    <a href="/collections/all" class="card-link">
-      <div class="card">
-        {{ 'product-3' | placeholder_svg_tag: 'image' }}
-        <h3>Shop Directly</h3>
-        <p>Explore our latest products</p>
-        <a href="/collections/all" class="btn">View Products</a>
-      </div>
-    </a>
+      <a href="{{ card_button_link }}" class="card-link">
+        <div class="card">
+          <img src="{{ card_image | default: 'https://example.com/placeholder-image.jpg' }}" alt="{{ card_title }}" loading="lazy">
+          <h3>{{ card_title }}</h3>
+          <p>{{ card_detail }}</p>
+          <a href="{{ card_button_link }}" class="btn">Shop Now</a>
+        </div>
+      </a>
+    {% endfor %}
   </div>
 </div>
-
 
 {% schema %}
 {
@@ -49,64 +34,82 @@
       "default": "discount-cards"
     },
     {
-      "type": "select",
-      "label": "Card 1 Discount Type",
-      "id": "card1_discount_type",
-      "default": "25_percent",
-      "options": [
-        {
-          "value": "25_percent",
-          "label": "25% Off"
-        },
-        {
-          "value": "membership",
-          "label": "Membership Discount"
-        },
-        {
-          "value": "direct",
-          "label": "Direct Shopping Link"
-        }
-      ]
+      "type": "text",
+      "label": "Section Title",
+      "id": "section_title",
+      "default": "OFFERS"
     },
     {
-      "type": "select",
-      "label": "Card 2 Discount Type",
-      "id": "card2_discount_type",
-      "default": "membership",
-      "options": [
-        {
-          "value": "25_percent",
-          "label": "25% Off"
-        },
-        {
-          "value": "membership",
-          "label": "Membership Discount"
-        },
-        {
-          "value": "direct",
-          "label": "Direct Shopping Link"
-        }
-      ]
+      "type": "text",
+      "label": "Card 1 Title",
+      "id": "card1_title",
+      "default": "25% Off"
     },
     {
-      "type": "select",
-      "label": "Card 3 Discount Type",
-      "id": "card3_discount_type",
-      "default": "direct",
-      "options": [
-        {
-          "value": "25_percent",
-          "label": "25% Off"
-        },
-        {
-          "value": "membership",
-          "label": "Membership Discount"
-        },
-        {
-          "value": "direct",
-          "label": "Direct Shopping Link"
-        }
-      ]
+      "type": "text",
+      "label": "Card 1 Detail",
+      "id": "card1_detail",
+      "default": "Use code: SAVE25"
+    },
+    {
+      "type": "text",
+      "label": "Card 1 Image",
+      "id": "card1_image",
+      "default": "https://example.com/card1_image.jpg"
+    },
+    {
+      "type": "text",
+      "label": "Card 1 Button Link",
+      "id": "card1_button_link",
+      "default": "/collections/all?discount=SAVE25"
+    },
+    {
+      "type": "text",
+      "label": "Card 2 Title",
+      "id": "card2_title",
+      "default": "Membership Discount"
+    },
+    {
+      "type": "text",
+      "label": "Card 2 Detail",
+      "id": "card2_detail",
+      "default": "Exclusive savings for members"
+    },
+    {
+      "type": "text",
+      "label": "Card 2 Image",
+      "id": "card2_image",
+      "default": "https://example.com/card2_image.jpg"
+    },
+    {
+      "type": "text",
+      "label": "Card 2 Button Link",
+      "id": "card2_button_link",
+      "default": "/account/login"
+    },
+    {
+      "type": "text",
+      "label": "Card 3 Title",
+      "id": "card3_title",
+      "default": "Shop Directly"
+    },
+    {
+      "type": "text",
+      "label": "Card 3 Detail",
+      "id": "card3_detail",
+      "default": "Explore our latest products"
+    },
+    {
+      "type": "text",
+      "label": "Card 3 Image",
+      "id": "card3_image",
+      "default": "https://example.com/card3_image.jpg"
+    },
+    {
+      "type": "text",
+      "label": "Card 3 Button Link",
+      "id": "card3_button_link",
+      "default": "/collections/all"
     }
   ],
   "presets": [
@@ -116,4 +119,5 @@
     }
   ]
 }
+
 {% endschema %}
