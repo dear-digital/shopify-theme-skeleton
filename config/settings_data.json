@@ -1,49 +1,49 @@
 {
-    "current": {
-      "sections": {
-        "announcement-bar": {
-          "type": "announcement-bar",
-          "blocks": {
-            "c994d3bf-8f9f-46aa-8c84-0d0ad7f9b18f": {
-              "type": "text",
-              "settings": {
-                "text": "Announcement 1",
-                "link": "shopify:\/\/pages\/contact"
-              }
-            },
-            "cf0fc679-ddb9-496e-89cd-b9465b90af8d": {
-              "type": "text",
-              "settings": {
-                "text": "Announcement 2",
-                "link": ""
-              }
-            },
-            "e66f3a6f-340f-48e1-bd97-084214a79b47": {
-              "type": "text",
-              "settings": {
-                "text": "Announcement 3",
-                "link": ""
-              }
+  "current": {
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "blocks": {
+          "c994d3bf-8f9f-46aa-8c84-0d0ad7f9b18f": {
+            "type": "text",
+            "settings": {
+              "text": "Announcement 1",
+              "link": "shopify:\/\/pages\/contact"
             }
           },
-          "block_order": [
-            "c994d3bf-8f9f-46aa-8c84-0d0ad7f9b18f",
-            "cf0fc679-ddb9-496e-89cd-b9465b90af8d",
-            "e66f3a6f-340f-48e1-bd97-084214a79b47"
-          ],
-          "settings": {
-            "animation_duration": 4
+          "cf0fc679-ddb9-496e-89cd-b9465b90af8d": {
+            "type": "text",
+            "settings": {
+              "text": "Announcement 2",
+              "link": ""
+            }
+          },
+          "e66f3a6f-340f-48e1-bd97-084214a79b47": {
+            "type": "text",
+            "settings": {
+              "text": "Announcement 3",
+              "link": ""
+            }
           }
         },
-        "header": {
-          "type": "header",
-          "settings": {
-            "asdas": ""
-          }
+        "block_order": [
+          "c994d3bf-8f9f-46aa-8c84-0d0ad7f9b18f",
+          "cf0fc679-ddb9-496e-89cd-b9465b90af8d",
+          "e66f3a6f-340f-48e1-bd97-084214a79b47"
+        ],
+        "settings": {
+          "animation_duration": 4
         }
       },
-      "content_for_index": [
-  
-      ]
-    }
+      "header": {
+        "type": "header",
+        "settings": {
+          "asdas": ""
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
   }
+}

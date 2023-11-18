@@ -1,11 +1,23 @@
 {
-    "sections": {
-        "e691a74f-e680-4d8a-aeee-e8d83bd89db4": {
-            "type": "image-banner",
-            "settings": {}
-        }
+  "sections": {
+    "e691a74f-e680-4d8a-aeee-e8d83bd89db4": {
+      "type": "image-banner",
+      "settings": {
+        "badge_position": "left"
+      }
     },
-    "order": [
-        "e691a74f-e680-4d8a-aeee-e8d83bd89db4"
-    ]
+    "c0234284-1d5e-424a-8c6e-447e87876c9e": {
+      "type": "cards",
+      "settings": {
+        "section_name": "discount-cards",
+        "card1_discount_type": "membership",
+        "card2_discount_type": "membership",
+        "card3_discount_type": "direct"
+      }
+    }
+  },
+  "order": [
+    "e691a74f-e680-4d8a-aeee-e8d83bd89db4",
+    "c0234284-1d5e-424a-8c6e-447e87876c9e"
+  ]
 }
