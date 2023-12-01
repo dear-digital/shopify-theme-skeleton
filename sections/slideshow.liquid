@@ -1,0 +1,88 @@
+{% assign text_color = section.settings.text_color %}
+{{ 'slideshow.css' | asset_url | stylesheet_tag }}
+
+<div id="sliderContainer" class="slider-container" style="color:{{ text_color }};">
+  {% for block in section.blocks %}
+    <div class="hero-slide" style="background-image:url({{ block.settings.slide_bg | img_url: 'original' }});">
+      <div class="page-width hero-slide-content">
+        <h1>{{ block.settings.main_title }}</h1>
+        <p style="color:{{ text_color }};">{{ block.settings.sub_title }}</p>
+        <a class="btn" style="color:{{ text_color }};border-color:{{ text_color }};" href="{{ block.settings.slide_url}}">{{ block.settings.slide_url_text }}</a>
+      </div>
+    </div>
+  {% endfor %}
+
+  <div id="sliderControls" class="slider-controls">
+    <span id="slideCurrent"></span> / <span id="slideTotal"></span>
+    <span id="prev" class="slider-button prev">
+      <svg class="slider__svg-button prev" viewBox="0 0 100 100"><path style="fill:{{text_color}};" d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path></svg>
+    </span>
+    <span id="next" class="slider-button next">
+      <svg class="slider__svg-button next" viewBox="0 0 100 100"><path style="fill:{{text_color}};" d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg>
+    </span>
+  </div>
+</div>
+
+<script src="{{ 'slideshow.js' | asset_url }}" defer="defer"></script>
+
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "settings": [
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Choose text color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide_bg",
+          "label": "Slide Background"
+        },
+        {
+          "type": "text",
+          "id": "main_title",
+          "label": "Slide Title",
+          "default": "Title"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Slide Subtitle",
+          "default": "Subtitle"
+        },
+        {
+          "type": "url",
+          "id": "slide_url",
+          "label": "Slide URL"
+        },
+        {
+          "type": "text",
+          "id": "slide_url_text",
+          "label": "Slide Button Text",
+          "default": "Shop"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "category": "Slider",
+      "blocks": [
+        {
+          "type": "select"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
