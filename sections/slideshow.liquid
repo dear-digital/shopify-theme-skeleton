@@ -1,7 +1,7 @@
 {{ 'slideshow.css' | asset_url | stylesheet_tag }}
-
-<div id="sliderContainer" class="slider-container" >
-  {% for block in section.blocks %}
+<slideshow-component>
+  <div id="sliderContainer" class="slider-container" >
+    {% for block in section.blocks %}
       {% assign settings = block.settings %}
       <div class="hero-slide" style="background-image:url({{ settings.slide_bg | img_url: 'original' }});">
         <div class="page-width hero-slide-content centered-box">
@@ -13,17 +13,18 @@
         </div>
       </div>
     {% endfor %}
-
-  <div id="sliderControls" class="slider-controls">
-    <span id="slideCurrent"></span> / <span id="slideTotal"></span>
-    <span id="prev" class="slider-button prev">
-      {% render 'icon-left-arrow' %}
-    </span>
-    <span id="next" class="slider-button next">
-      {% render 'icon-right-arrow' %}
-    </span>
+    
+    <div id="sliderControls" class="slider-controls">
+      <span id="slideCurrent"></span> / <span id="slideTotal"></span>
+      <span id="prev" class="slider-button prev">
+        {% render 'icon-left-arrow' %}
+      </span>
+      <span id="next" class="slider-button next">
+        {% render 'icon-right-arrow' %}
+      </span>
+    </div>
   </div>
-</div>
+</slideshow-component>
 
 <script src="{{ 'slideshow.js' | asset_url }}" defer="defer"></script>
 
