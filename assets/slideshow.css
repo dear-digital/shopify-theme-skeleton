@@ -19,14 +19,20 @@
     width: 20%;
     max-width: 400px;
     margin: auto;
-}
-
-
-@media (max-width: 1024px) {
-    .centered-box {
+    @media (max-width: 1024px) {
         width: 80%;
     }
 }
+.centered-box h2 {
+    font-size: 2.5em; 
+    font-weight: 400;
+}
+.centered-box p {
+    font-size: 1.5em; 
+    font-weight: 300;
+}
+
+
 
 .slider-container {
     position: relative;
