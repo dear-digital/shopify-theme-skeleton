@@ -4,11 +4,28 @@
     margin-top: 10px;
     text-decoration: none;
     cursor: pointer;
+    color: #fff;
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
     background: rgb(96, 96, 255);
-    background: linear-gradient(0deg, #FF670E 0%, #FF670E 100%);
+    background: linear-gradient(0deg, #000 0%, #000 100%);
+}
+
+.centered-box {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    width: 20%;
+    max-width: 400px;
+    margin: auto;
+}
+
+
+@media (max-width: 1024px) {
+    .centered-box {
+        width: 80%;
+    }
 }
 
 .slider-container {
@@ -45,10 +62,11 @@
 
 .hero-slide-content {
     position: absolute;
-    top: 60%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
+    text-align: center;
 
     @media (max-width: 1024px) {
         left: 50%;

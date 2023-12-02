@@ -1,12 +1,12 @@
 {{ 'slideshow.css' | asset_url | stylesheet_tag }}
 
-<div id="sliderContainer" class="slider-container">
+<div id="sliderContainer" class="slider-container" >
   {% for block in section.blocks %}
     <div class="hero-slide" style="background-image:url({{ block.settings.slide_bg | img_url: 'original' }});">
-      <div class="page-width hero-slide-content">
+      <div class="page-width hero-slide-content centered-box">
         <h2>{{ block.settings.main_title }}</h2>
         <p>{{ block.settings.sub_title }}</p>
-        <button
+        <a
           class="btn"
           href="{{ block.settings.slide_url}}"
         >
@@ -43,6 +43,20 @@
 {% schema %}
 {
   "name": "Slideshow",
+  "tag": "section",
+  "class": "section",
+  "settings":[
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 3,
+      "max": 9,
+      "step": 1,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 4
+    }
+  ],
   "blocks": [
     {
       "type": "select",
