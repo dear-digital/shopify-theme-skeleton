@@ -2,19 +2,17 @@
 
 <div id="sliderContainer" class="slider-container" >
   {% for block in section.blocks %}
-    <div class="hero-slide" style="background-image:url({{ block.settings.slide_bg | img_url: 'original' }});">
-      <div class="page-width hero-slide-content centered-box">
-        <h2>{{ block.settings.main_title }}</h2>
-        <p>{{ block.settings.sub_title }}</p>
-        <a
-          class="btn"
-          href="{{ block.settings.slide_url}}"
-        >
-          {{- block.settings.slide_url_text -}}
-        </a>
+      {% assign settings = block.settings %}
+      <div class="hero-slide" style="background-image:url({{ settings.slide_bg | img_url: 'original' }});">
+        <div class="page-width hero-slide-content centered-box">
+          <h2>{{ settings.main_title }}</h2>
+          <p>{{ settings.sub_title }}</p>
+          <a class="slideshow_button" href="{{ settings.slide_url }}">
+            {{ settings.slide_url_text }}
+          </a>
+        </div>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
 
   <div id="sliderControls" class="slider-controls">
     <span id="slideCurrent"></span> / <span id="slideTotal"></span>
@@ -27,18 +25,7 @@
   </div>
 </div>
 
-{%- if request.design_mode -%}
-  <script src="{{ 'slideshow.js' | asset_url }}" defer="defer"></script>
-{% endif %}
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    document.addEventListener('shopify:section:load', function (event) {
-      if (event.detail.sectionId === '{{ section.id }}') {
-      }
-    });
-  });
-</script>
+<script src="{{ 'slideshow.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
