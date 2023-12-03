@@ -1,4 +1,4 @@
-{{ 'footer.css' | asset_url | stylesheet_tag }}
+{{ 'dev__footer.css' | asset_url | stylesheet_tag }}
 
 <footer class="footer">
   {% for block in section.blocks %}
@@ -70,7 +70,7 @@
   ],
   "presets": [
     {
-      "name": "Default Footer",
+      "name": "Footer",
       "category": "Footer"
     }
   ]

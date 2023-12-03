@@ -1,76 +1,70 @@
 <!-- modal.liquid -->
 
 {%- style -%}
-  
-  .icon-cross{
-    width:20px;
+  .icon-cross {
+    width: 20px;
   }
-  
-  @media screen and (max-width: 768px) {
 
-    .icon-cross{
-      width:18px;
+  @media screen and (max-width: 768px) {
+    .icon-cross {
+      width: 18px;
     }
   }
-
 {%- endstyle -%}
 
 <div class="modal-dark-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 overflow-auto"></div>
 
 <div class="modal-container fixed top-0 left-0 w-full h-full">
-    <div class="modal relative mx-auto {{ section.settings.style_modal }}">
-        <button id="closeModal" class="close absolute right-[20px] cursor-pointer"> {% render 'icon-cross' %} </button>
-        <h2 class="{{ section.settings.style_modal_header }}">{{ section.settings.modal_header }}</h2>
-        <p class="{{ section.settings.style_modal_content }}"> {{ section.settings.modal_content }} </p>
-        <button id="acknowledgeButton" class="{{ section.settings.style_modal_button }}">{{ section.settings.modal_button }}</button>
-    </div>
+  <div class="modal relative mx-auto {{ section.settings.style_modal }}">
+    <button id="closeModal" class="close absolute right-[20px] cursor-pointer">{% render 'icon-cross' %}</button>
+    <h2 class="{{ section.settings.style_modal_header }}">{{ section.settings.modal_header }}</h2>
+    <p class="{{ section.settings.style_modal_content }}">{{ section.settings.modal_content }}</p>
+    <button id="acknowledgeButton" class="{{ section.settings.style_modal_button }}">
+      {{ section.settings.modal_button }}
+    </button>
+  </div>
 </div>
 
-
 <script>
-  
-const toggleModal = (show) => {
-  const overlay = document.querySelector(".modal-dark-overlay");
-  const modalContainer = document.querySelector(".modal-container");
-  const modal = document.querySelector(".modal");
+  const toggleModal = (show) => {
+    const overlay = document.querySelector('.modal-dark-overlay');
+    const modalContainer = document.querySelector('.modal-container');
+    const modal = document.querySelector('.modal');
 
-  if (show) {
-    overlay.style.display = "block";
-    modalContainer.style.display = "block";
-  } else {
-    overlay.style.display = "none";
-    modalContainer.style.display = "none";
-    modal.style.display = "none";
-  } 
-};
+    if (show) {
+      overlay.style.display = 'block';
+      modalContainer.style.display = 'block';
+    } else {
+      overlay.style.display = 'none';
+      modalContainer.style.display = 'none';
+      modal.style.display = 'none';
+    }
+  };
 
-document.addEventListener('DOMContentLoaded', function () {
-  toggleModal(true); // Show modal on page load
-});
+  document.addEventListener('DOMContentLoaded', function () {
+    toggleModal(true); // Show modal on page load
+  });
 
-// Close Modal
-document.querySelector("#closeModal").onclick = function(){
-  toggleModal(false);
-};
-
-document.querySelector("#acknowledgeButton").onclick = function(){
-  toggleModal(false);
-};
-
-// Close Modal when clicked outside the modal
-window.onclick = function(e){
-  if(e.target === document.querySelector('.modal-container')){
+  // Close Modal
+  document.querySelector('#closeModal').onclick = function () {
     toggleModal(false);
-  }
-};
+  };
 
+  document.querySelector('#acknowledgeButton').onclick = function () {
+    toggleModal(false);
+  };
 
+  // Close Modal when clicked outside the modal
+  window.onclick = function (e) {
+    if (e.target === document.querySelector('.modal-container')) {
+      toggleModal(false);
+    }
+  };
 </script>
-
 
 {% schema %}
 {
-  "name": "Modal",
+  "name": "Modal Window Overlay",
   "class": "modal",
   "settings": [
     {
@@ -122,7 +116,7 @@ window.onclick = function(e){
   ],
   "presets": [
     {
-      "name": "Modal",
+      "name": "Modal Window Overlay",
       "category": "Custom"
     }
   ]

@@ -5,7 +5,6 @@
       role="region"
       aria-label="{{ 'sections.header.announcement' | t }}"
       data-duration="{{ section.settings.animation_duration | times: 1000 }}"
-      
     >
       {% for block in section.blocks %}
         {%- if block.settings.text != blank -%}
@@ -28,7 +27,7 @@
 
 {% schema %}
 {
-  "name": "announcement-bar",
+  "name": "Announcement Bar",
   "class": "shopify-announcement",
   "settings": [
     {
@@ -63,7 +62,7 @@
   ],
   "presets": [
     {
-      "name": "announcement-bar"
+      "name": "Announcement Bar"
     }
   ]
 }

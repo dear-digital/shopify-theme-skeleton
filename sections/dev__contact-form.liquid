@@ -1,0 +1,135 @@
+<div class="contact {{ section.settings.contact }}">
+      <h1 class="contact__style--title {{ section.settings.contact__style--title }} ">{{ section.settings.contact_title }}
+      </h1>
+      
+      <div class="contact__style--form {{ section.settings.contact__style--form }}">
+        {%- form 'contact', id: 'ContactForm', class: 'contact-form__form flex flex-col items-center' -%}
+            {% comment %} First Row {% endcomment %}
+            <div class="contact__1st-row {{ section.settings.contact__1st-row }}">
+              <div class="contact__style--name-field w-1/2">
+                <input
+                  class="contact__style--input {{ section.settings.contact__style--input }}"
+                  autocomplete="name"
+                  type="text"
+                  id="ContactForm-name"
+                  value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                  placeholder="Name"
+                >
+              </div>
+              <div class="contact__email-field w-1/2">
+                <input
+                  autocomplete="email"
+                  type="email"
+                  id="ContactForm-email"
+                  class="contact__style--input {{ section.settings.contact__style--input }}"
+                  name="contact[email]"
+                  spellcheck="false"
+                  autocapitalize="off"
+                  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                  aria-required="true"
+                  placeholder="Email"
+                >
+              </div>
+            </div>
+            {% comment %} Second Row {% endcomment %}
+            <div class="contact__phone-field w-full mt-4">
+              <input
+                type="tel"
+                id="ContactForm-phone"
+                class="contact__style--input {{ section.settings.contact__style--input }}"
+                autocomplete="tel"
+                pattern="[0-9\-]*"
+                value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                placeholder="Phone Number"
+              >
+            </div>
+            {% comment %} Third Row {% endcomment %}
+            <div class="contact__message-field w-full mt-4">
+              <textarea
+                rows="5"
+                id="ContactForm-body"
+                class="contact__style--textarea {{ section.settings.contact__style--textarea }}"
+                placeholder="Comment"
+              >
+                {{- form.body -}}
+              </textarea>
+            </div>
+            <div class="contact__submit-button {{ section.settings.contact__submit-button }}">
+              {{ section.settings.send_button_text }}
+            </div>
+        {%- endform -%}
+      </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Contact Title",
+      "id": "contact_title",
+      "default": "Contact Us"
+    },
+    {
+      "type": "text",
+      "label": "Send Button Text",
+      "id": "send_button_text",
+      "default": "Send Message"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "text",
+      "id": "contact",
+      "label": "Style Contact Section",
+      "default": "w-full bg-gray-100 py-10 text-center mx-auto"
+    },
+    {
+      "type": "text",
+      "id": "contact__style--title",
+      "label": "Style Contact Header",
+      "default": "text-2xl md:text-3xl text-gray-800 font-semibold"
+    },
+    {
+      "type": "text",
+      "id": "contact__style--form",
+      "label": "Style Contact Form",
+      "default": "mt-5 md:mt-7 w-full mx-auto px-6 md:w-3/5"
+    },
+    {
+      "type": "text",
+      "id": "contact__1st-row",
+      "label": "Style Contact 1st Row",
+      "default": "flex justify-between gap-2 w-full"
+    },
+    {
+      "type": "text",
+      "id": "contact__style--input",
+      "label": "Style Contact Input",
+      "default": "w-full px-2 py-1 text-sm md:text-base"
+    },
+    {
+      "type": "text",
+      "id": "contact__style--textarea",
+      "label": "Style Contact Textarea",
+      "default": "w-full px-2 py-1 text-sm md:text-base"
+    },
+    {
+      "type": "text",
+      "id": "contact__submit-button",
+      "label": "Style Submit Button",
+      "default": "bg-purple-900 text-white py-1 md:py-2 px-4 rounded mt-4 cursor-pointer w-full text-sm md:text-base hover:bg-purple-800"
+    }
+  ],
+  "presets": [
+    {
+      "category": "custom",
+      "name": "Contact Page"
+    }
+  ]
+}
+{% endschema %}

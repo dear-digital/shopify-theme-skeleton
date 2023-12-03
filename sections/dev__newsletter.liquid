@@ -1,4 +1,4 @@
-{{ 'newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'dev__newsletter.css' | asset_url | stylesheet_tag }}
 
 <section class="newsletter-section">
   <div class="container">
@@ -7,7 +7,7 @@
         <h1 class="newsletter-content__title">{{ section.settings.newsletter_title }}</h1>
         <p class="newsletter-content__subtitle">{{ section.settings.newsletter_subtitle }}</p>
       </div>
-      
+
       <div class="newsletter-form">
         {% form 'customer', class: 'newsletter-form__form' %}
           <div class="field">
@@ -21,7 +21,7 @@
               autocorrect="off"
               autocapitalize="off"
               autocomplete="email"
-              placeholder= {{ section.settings.newsletter_email_placeholder }}
+              placeholder="{{ section.settings.newsletter_email_placeholder }}"
               required
             >
             <button
@@ -35,15 +35,14 @@
           </div>
         {% endform %}
       </div>
-      
+
       <div class="newsletter-condition">
-        <br/>
+        <br>
         <h6 class="newsletter-content__condition">{{ section.settings.newsletter_condition }}</h6>
       </div>
     </div>
   </div>
 </section>
-
 
 {% schema %}
 {

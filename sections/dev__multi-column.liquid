@@ -1,15 +1,13 @@
 <!-- dev__multi-column.liquid -->
 
 {%- style -%}
-
   .multi-column__item {
-
-    & .multi-column__item-img img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover; 
+    & .multi-column__item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-}
+  }
 {%- endstyle -%}
 
 <div class="multi-column {{ section.settings.multi-column }}">
@@ -21,26 +19,29 @@
     {% for block in section.blocks %}
       <div class="multi-column__item {{ section.settings.multi-column__item }}">
         {% if block.settings.image %}
-        <div class="multi-column__item-img {{ section.settings.multi-column__item-img }}">
-           {{ block.settings.image | image_url : width: 200 | image_tag }}
-        </div>
+          <div class="multi-column__item-img {{ section.settings.multi-column__item-img }}">
+            {{ block.settings.image | image_url: width: 200 | image_tag }}
+          </div>
         {% endif %}
 
         <h3 class="multi-column__item-title {{ section.settings.multi-column__item-title }}">
           {{ block.settings.column_title }}
         </h3>
-        <p class="multi-column__item-content {{ section.settings.multi-column__item-content }}">  
+        <p class="multi-column__item-content {{ section.settings.multi-column__item-content }}">
           {{ block.settings.column_content }}
         </p>
 
         {% if block.settings.link_label != blank and block.settings.linkUrl != blank %}
-              <a href="{{ block.settings.linkUrl }}" class="multi-column__item-link {{ section.settings.multi-column__item-link }}"> 
-                  {{ block.settings.link_label }}
-              </a>
+          <a
+            href="{{ block.settings.linkUrl }}"
+            class="multi-column__item-link {{ section.settings.multi-column__item-link }}"
+          >
+            {{ block.settings.link_label }}
+          </a>
         {% endif %}
       </div>
 
-     {% assign column_counter = column_counter | plus: 1 %}
+      {% assign column_counter = column_counter | plus: 1 %}
       {% if column_counter == 3 %}
         {% assign column_counter = 0 %}
         </div>
@@ -52,7 +53,7 @@
 
 {% schema %}
 {
-  "name": "Multi-Column",
+  "name": "Multi-Column Display",
   "class": "multi-column",
   "settings": [
     {
@@ -151,7 +152,7 @@
   ],
   "presets": [
     {
-      "name": "Multi-Column",
+      "name": "Multi-Column Content Display",
       "category": "Custom"
     }
   ]

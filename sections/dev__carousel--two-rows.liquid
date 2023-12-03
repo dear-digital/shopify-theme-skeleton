@@ -1,4 +1,4 @@
-{{ 'carousel--two-rows.css' | asset_url | stylesheet_tag }}
+{{ 'dev__carousel--two-rows.css' | asset_url | stylesheet_tag }}
 <!-- Carousel Container -->
 <div class="carousel">
   <!-- Carousel Text -->
@@ -22,7 +22,7 @@
             src="{{ block.settings.image | image_url: width: 800, height: 800 }}"
             alt="{{ block.settings.image.alt | escape }}"
             loading="eager"
-            width="800"  
+            width="800"
             height="800"
           >
         </div>
@@ -40,7 +40,7 @@
             src="{{ block.settings.image | image_url: width: 800, height: 800 }}"
             alt="{{ block.settings.image.alt | escape }}"
             loading="eager"
-            width="800"  
+            width="800"
             height="800"
           >
         </div>

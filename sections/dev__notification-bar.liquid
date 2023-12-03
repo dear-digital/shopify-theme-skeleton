@@ -1,20 +1,18 @@
 {%- style -%}
-
-    .blinking_circle {
-      animation: blink 1s infinite;
-    }
+  .blinking_circle {
+    animation: blink 1s infinite;
+  }
 
   @keyframes blink {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 0;
     }
     50% {
       opacity: 1;
     }
   }
-
 {%- endstyle -%}
-
 
 <div class="flex items-center justify-center {{ section.settings.notification }}">
   {% if section.settings.notification_text != blank %}
@@ -23,7 +21,7 @@
       <p class="{{ section.settings.notification__style_text }}">
         {{ section.settings.notification_text }}
       </p>
-      
+
       {% if section.settings.sub_notification_text != blank %}
         <p class="{{ section.settings.notification__style_sub_text }}">
           {{ section.settings.sub_notification_text }}
@@ -40,10 +38,9 @@
   {% endif %}
 </div>
 
-
 {% schema %}
 {
-  "name": "Notification Bar",
+  "name": "Notification Bar Alert",
   "settings": [
     {
       "type": "text",
@@ -111,7 +108,7 @@
   ],
   "presets": [
     {
-      "name": "Notification-bar"
+      "name": "Notification Bar Alert"
     }
   ]
 }
