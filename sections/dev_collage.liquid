@@ -13,18 +13,20 @@
     <div class="collage {{ section.settings.collage }} {% if section.settings.mobile_layout == 'collage' %} collage--mobile{% endif %}">
       {% for block in section.blocks %}
         <div class="items-container">
+          {%- assign image_url_width = section.settings.image_url_width -%}
+          {%- assign image_tag_width = section.settings.image_tag_width -%}
           <div class="collage__item {{ section.settings.collage__item }} collage__item--{{ block.type }} collage__item--{{ section.settings.desktop_layout }}">
             {% case block.type %}
               {% when 'image' %}
                 <div class="collage-card {{ section.settings.collage-card }}">
                   <div class="media media--transparent ratio">
-                    {{ block.settings.image | image_url: width: 800 | image_tag: width: 500 }}
+                    {{ block.settings.image | image_url: width: image_url_width | image_tag: width: image_tag_width }}
                   </div>
                 </div>
                 {% when 'product' %}
                 <div class="product-card {{ section.settings.product-card }}">
                   {% if block.settings.second_image %}
-                    {{ block.settings.product | image_url: width: 800 | image_tag: width: 500 }}
+                    {{ block.settings.product | image_url: width: image_url_width | image_tag: width: image_tag_width }}
                   {% else %}
                     <div class="product">
                       <p class="product__title {{ section.settings.product__title }}">{{ block.settings.product.title }}</p>
@@ -40,8 +42,6 @@
                 <div class="collection-card {{ section.settings.collection-card }}">
                   <div class="collection">
                     {% if block.settings.collection %}
-                      {%- assign image_url_width = section.settings.image_url_width -%}
-                      {%- assign image_tag_width = section.settings.image_tag_width -%}
                       {{ block.settings.collection | image_url: width: image_url_width | image_tag: width: image_tag_width }}
                     {% endif %}
                     <h3 class="collection__title">{{ block.settings.collection.title }}</h3>
@@ -55,8 +55,6 @@
                 {% when 'video' %}
                 <div class="video-card {{ section.settings.video-card }}">
                   <div class="media media--transparent ratio">
-                    {%- assign image_url_width = section.settings.image_url_width -%}
-                    {%- assign image_tag_width = section.settings.image_tag_width -%}
                     {{ block.settings.cover_image | image_url: width: image_url_width | image_tag: width: image_tag_width }}
                   </div>
                   <a href="{{ block.settings.video_url }}" class="collage-card__link"></a>
@@ -152,7 +150,7 @@
       "default": "flex-col w-[85%] max-w-screen-xl mx-auto p-2  grid grid-row-3 gap-4"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "collage-wrapper-title",
       "label": "Title Style Section",
       "default": "text-4xl px-4 py-4 md:flex-basis-full"
