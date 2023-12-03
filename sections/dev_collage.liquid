@@ -2,58 +2,67 @@
 {% assign section_classes = 'section-' | append: section_id | append: '-padding' %}
 
 <div class="color-{{ section.settings.color_scheme }} gradient isolate">
-  <div class="page-width {{ section_classes }}">
-    {% if section.settings.heading != blank %}
-      <h2 class="collage-wrapper-title inline-richtext {{ section.settings.heading_size }}">
+  {% if section.settings.heading != blank %}
+    <div class="collage-wrapper-title {{ section.settings.collage-wrapper-title }}">
+      <div class="inline-richtext">
         {{ section.settings.heading }}
-      </h2>
-    {% endif %}
-    <div class="collage{% if section.settings.mobile_layout == 'collage' %} collage--mobile{% endif %}">
+      </div>
+    </div>
+  {% endif %}
+  <div class="page-width {{ section.settings.page-width }}">
+    <div class="collage {{ section.settings.collage }} {% if section.settings.mobile_layout == 'collage' %} collage--mobile{% endif %}">
       {% for block in section.blocks %}
-        <div class="collage__item collage__item--{{ block.type }} collage__item--{{ section.settings.desktop_layout }}">
-          {% case block.type %}
-            {% when 'image' %}
-              <div class="collage-card">
-                <div class="media media--transparent ratio">
-                  {{ block.settings.image | image_url: width: 800 | image_tag: width: 500 }}
-                </div>
-              </div>
-            {% when 'product' %}
-              <div class="collage-card product-card">
-                {% if block.settings.second_image %}
-                  {{ block.settings.product | image_url: width: 800 | image_tag: width: 500 }}
-                {% else %}
-
-                  <div class="product">
-                    <h3 class="product__title">{{ block.settings.product.title }}</h3>
-                    <p class="product__description">{{ block.settings.product.description }}</p>
-                    <p class="product__price">Price: {{ block.settings.product.price | money }}</p>
-                    <p class="product__sku">SKU: {{ block.settings.product.sku }}</p>
-                    <!-- Add more product details as needed -->
-                    <a href="{{ block.settings.product.url }}" class="btn btn-primary">Shop Now</a>
+        <div class="items-container">
+          <div class="collage__item {{ section.settings.collage__item }} collage__item--{{ block.type }} collage__item--{{ section.settings.desktop_layout }}">
+            {% case block.type %}
+              {% when 'image' %}
+                <div class="collage-card {{ section.settings.collage-card }}">
+                  <div class="media media--transparent ratio">
+                    {{ block.settings.image | image_url: width: 800 | image_tag: width: 500 }}
                   </div>
-                {% endif %}
-              </div>
-            {% when 'collection' %}
-              <div class="collage-card collection-card">
-                <div class="collection">
-                  {% if block.settings.collection %}
-                  {{ block.settings.collection | image_url: width: 800 | image_tag: width: 500 }}
+                </div>
+                {% when 'product' %}
+                <div class="product-card {{ section.settings.product-card }}">
+                  {% if block.settings.second_image %}
+                    {{ block.settings.product | image_url: width: 800 | image_tag: width: 500 }}
+                  {% else %}
+                    <div class="product">
+                      <p class="product__title {{ section.settings.product__title }}">{{ block.settings.product.title }}</p>
+                      <p class="product__description {{ section.settings.product__description }}">{{ block.settings.product.description }}</p>
+                      <p class="product__price {{ section.settings.product__price }}">Price: {{ block.settings.product.price | money }}</p>
+                      <p class="product__sku {{ section.settings.product__sku }}">SKU: {{ block.settings.product.sku }}</p>
+                      <!-- Add more product details as needed -->
+                      <a href="{{ block.settings.product.url }}" class="product__button {{ section.settings.product__button }}">Shop Now</a>
+                    </div>
                   {% endif %}
-                  <h3 class="collection__title">{{ block.settings.collection.title }}</h3>
-                  <p class="collection__description">{{ block.settings.collection.description }}</p>
-                  <!-- Display collection items or details as needed -->
-                  <a href="{{ block.settings.collection.url }}" class="btn btn-secondary">{{ block.settings.collection_text | default: block.settings.collection.title }}</a>
                 </div>
-              </div>
-            {% when 'video' %}
-              <div class="collage-card video-card">
-                <div class="media media--transparent ratio">
-                  {{ block.settings.cover_image | image_url: width: 800 | image_tag: width: 500 }}
+                {% when 'collection' %}
+                <div class="collection-card {{ section.settings.collection-card }}">
+                  <div class="collection">
+                    {% if block.settings.collection %}
+                      {%- assign image_url_width = section.settings.image_url_width -%}
+                      {%- assign image_tag_width = section.settings.image_tag_width -%}
+                      {{ block.settings.collection | image_url: width: image_url_width | image_tag: width: image_tag_width }}
+                    {% endif %}
+                    <h3 class="collection__title">{{ block.settings.collection.title }}</h3>
+                    <p class="collection__description text-base">{{ block.settings.collection.description }}</p>
+                    <!-- Display collection items or details as needed -->
+                    <a href="{{ block.settings.collection.url }}" class="collection__button {{ section.settings.collection__button }}">
+                      {{- block.settings.collection_text | default: block.settings.collection.title -}}
+                    </a>
+                  </div>
                 </div>
-                <a href="{{ block.settings.video_url }}" class="collage-card__link"></a>
-              </div>
-          {% endcase %}
+                {% when 'video' %}
+                <div class="video-card {{ section.settings.video-card }}">
+                  <div class="media media--transparent ratio">
+                    {%- assign image_url_width = section.settings.image_url_width -%}
+                    {%- assign image_tag_width = section.settings.image_tag_width -%}
+                    {{ block.settings.cover_image | image_url: width: image_url_width | image_tag: width: image_tag_width }}
+                  </div>
+                  <a href="{{ block.settings.video_url }}" class="collage-card__link"></a>
+                </div>
+            {% endcase %}
+          </div>
         </div>
       {% endfor %}
     </div>
@@ -71,26 +80,6 @@
       "id": "heading",
       "default": "Multimedia Collage",
       "label": "Heading"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h1",
-          "label": "H1"
-        },
-        {
-          "value": "h0",
-          "label": "H0"
-        }
-      ],
-      "default": "h1",
-      "label": "Heading Size"
     },
     {
       "type": "select",
@@ -141,30 +130,104 @@
       "label": "Card Styles"
     },
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "scheme-1"
+      "type": "text",
+      "id": "image_url_width",
+      "label": "Image URL width",
+      "default": "800"
     },
     {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 36
+      "type": "text",
+      "id": "image_tag_width",
+      "label": "Image Tag width",
+      "default": "500"
     },
     {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 36
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "page-width",
+      "label": "Style Section",
+      "default": "flex-col w-[85%] max-w-screen-xl mx-auto p-2  grid grid-row-3 gap-4"
+    },
+    {
+      "type": "text",
+      "id": "collage-wrapper-title",
+      "label": "Title Style Section",
+      "default": "text-4xl px-4 py-4 md:flex-basis-full"
+    },
+    {
+      "type": "textarea",
+      "id": "collage",
+      "label": "Collage Style Section",
+      "default": "flex flex-row flex-wrap justify-between"
+    },
+    {
+      "type": "text",
+      "id": "collage__item",
+      "label": "Collage Item Style Section",
+      "default": "flex-row box-border mb-20 w-full"
+    },
+    {
+      "type": "text",
+      "id": "collage-card",
+      "label": "Collage Card Style Section",
+      "default": "bg-white border border-gray-300 rounded-lg w-[30vh] overflow-hidden shadow-md"
+    },
+    {
+      "type": "text",
+      "id": "product-card",
+      "label": "Product Card Style Section",
+      "default": "bg-white border border-gray-300 rounded-lg w-[30vh] overflow-hidden shadow-md p-4"
+    },
+    {
+      "type": "text",
+      "id": "product__title",
+      "label": "Product Title Style Section",
+      "default": "text-xl"
+    },
+    {
+      "type": "text",
+      "id": "product__description",
+      "label": "Product Description Style Section",
+      "default": "text-gray-600 mb-2"
+    },
+    {
+      "type": "text",
+      "id": "product__price",
+      "label": "Product Price Style Section",
+      "default": "text-red-500 mb-2"
+    },
+    {
+      "type": "text",
+      "id": "product__sku",
+      "label": "Product Sku Style Section",
+      "default": "text-gray-500 mb-2"
+    },
+    {
+      "type": "text",
+      "id": "product__button",
+      "label": "Product Button Style Section",
+      "default": "inline-block px-4 py-2 text-base text-center no-underline rounded-md transition duration-300 ease-in-out bg-blue-500 text-white"
+    },
+    {
+      "type": "text",
+      "id": "collection-card",
+      "label": "Collection Card Style Section",
+      "default": "bg-white border border-gray-300 rounded-lg w-[30vh] overflow-hidden shadow-md p-4"
+    },
+    {
+      "type": "text",
+      "id": "collection__button",
+      "label": "Collection Button Style Section",
+      "default": "inline-block px-4 py-2 text-base text-center no-underline rounded-md transition duration-300 ease-in-out bg-green-600 text-white"
+    },
+    {
+      "type": "text",
+      "id": "Video-card",
+      "label": "Video Card Style Section",
+      "default": "bg-white border border-gray-300 rounded-lg w-[30vh] overflow-hidden shadow-md p-4"
     }
   ],
   "blocks": [
@@ -225,10 +288,7 @@
         {
           "type": "video_url",
           "id": "video_url",
-          "accept": [
-            "youtube",
-            "vimeo"
-          ],
+          "accept": ["youtube", "vimeo"],
           "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
           "label": "Video URL",
           "info": "Enter the video URL"
