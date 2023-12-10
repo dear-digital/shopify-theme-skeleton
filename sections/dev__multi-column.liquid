@@ -1,0 +1,160 @@
+area<!-- dev__multi-column.liquid -->
+
+{%- style -%}
+  .multi-column__item {
+    & .multi-column__item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+{%- endstyle -%}
+
+<div class="multi-column {{ section.settings.multi-column }}">
+  <h2 class="{{ section.settings.multi-column__section-title }}">
+    {{ section.settings.section_title }}
+  </h2>
+
+  <div class="multi-column__container {{ section.settings.multi-column__container }}">
+    {% for block in section.blocks %}
+      <div class="multi-column__item {{ section.settings.multi-column__item }}">
+        {% if block.settings.image %}
+          <div class="multi-column__item-img {{ section.settings.multi-column__item-img }}">
+            {{ block.settings.image | image_url: width: 200 | image_tag }}
+          </div>
+        {% endif %}
+
+        <h3 class="multi-column__item-title {{ section.settings.multi-column__item-title }}">
+          {{ block.settings.column_title }}
+        </h3>
+        <p class="multi-column__item-content {{ section.settings.multi-column__item-content }}">
+          {{ block.settings.column_content }}
+        </p>
+
+        {% if block.settings.link_label != blank and block.settings.linkUrl != blank %}
+          <a
+            href="{{ block.settings.linkUrl }}"
+            class="multi-column__item-link {{ section.settings.multi-column__item-link }}"
+          >
+            {{ block.settings.link_label }}
+          </a>
+        {% endif %}
+      </div>
+
+      {% assign column_counter = column_counter | plus: 1 %}
+      {% if column_counter == 3 %}
+        {% assign column_counter = 0 %}
+        </div>
+        <div class="multi-column__container {{ section.settings.multi-column__container }}">
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Multi-Column Display",
+  "class": "multi-column",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Section Title",
+      "id": "section_title",
+      "default": "Multi-Column Section"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "multi-column",
+      "label": "Style Section",
+      "default": "w-[90%] mt-5 md:mt-10 mx-auto"
+    },
+    {
+      "type": "textarea",
+      "id": "multi-column__section-title",
+      "label": "Style Section Header",
+      "default": "md:pb-4 text-2xl md:text-3xl font-semibold"
+    },
+    {
+      "type": "textarea",
+      "id": "multi-column__container",
+      "label": "Style Multi-Column Container",
+      "default": "mt-7 md:mt-5 flex flex-col gap-5 md:gap-10 md:flex-row"
+    },
+    {
+      "type": "textarea",
+      "id": "multi-column__item",
+      "label": "Style Multi-Column Item",
+      "default": "w-full md:w-[30%] px-2.5 py-2.5 md:px-3.5 md:py-3.5 rounded-[15px] md:rounded-[20px] bg-[#ebe7e7]"
+    },
+    {
+      "type": "textarea",
+      "id": "multi-column__item-img",
+      "label": "Style Column Item Image",
+      "default": "w-full h-[150px] md:h-[200px] overflow-hidden rounded-[10px]"
+    },
+    {
+      "type": "textarea",
+      "id": "multi-column__item-title",
+      "label": "Style Column Title",
+      "default": "text-lg md:text-xl mt-2.5 font-medium break-normal"
+    },
+    {
+      "type": "textarea",
+      "id": "multi-column__item-content",
+      "label": "Style Column Content",
+      "default": "text-sm md:text-base font-light break-normal"
+    },
+    {
+      "type": "textarea",
+      "id": "multi-column__item-link",
+      "label": "Style Column Link",
+      "default": "text-sm md:text-base font-normal cursor-pointer text-blue-900 hover:text-blue-600 hover:underline"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "column_title",
+          "label": "Column Title",
+          "default": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "column_content",
+          "label": "Column Content",
+          "default": "Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link Label"
+        },
+        {
+          "type": "url",
+          "label": "Link URL",
+          "id": "linkUrl"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi-Column Content Display",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,176 @@
+<div class="collapsible-content {{ section.settings.main_container }}">
+  <div class="collapsible-content__main-container {{ section.settings.main_content_container }}">
+    <h2 class="collapsible-content__main-heading {{ section.settings.collapsible_main_heading }}">
+      {{ section.settings.main_heading }}
+    </h2>
+    <p class="collapsible-content__sub-heading {{ section.settings.collapsible_sub_heading }}">
+      {{ section.settings.sub_heading }}
+    </p>
+  </div>
+  <div class="collapsible-content__grid {{ section.settings.collapsible_grid }}">
+    {% for block in section.blocks %}
+      <div class="collapsible-content__block-container {{ block.settings.collapsible_block_container }}">
+        <details class="collapsible-content__details {{ block.settings.collapsible_details }}">
+          <summary class="collapsible-content__summary {{ block.settings.collapsible_summary }}">
+            <span class="collapsible-content__title {{ block.settings.collapsible_title }}">
+              {{- block.settings.title -}}
+            </span>
+            <span class="collapsible-content__icon {{ block.settings.collapsible_icon }}">
+              {% render 'icon-collapsible' %}
+            </span>
+          </summary>
+          <p class="collapsible-content__content {{ block.settings.collapsible_content }}">
+            {{ block.settings.content }}
+          </p>
+        </details>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  extend: {
+    keyframes: {
+      fadeIn: {
+        "0%": { opacity: 0 },
+        "100%": { opacity: 100 },
+      },
+    },
+    animation: {
+      fadeIn: "fadeIn 0.2s ease-in-out forwards",
+    },
+  },
+</script>
+
+{% schema %}
+{
+  "name": "Collapsible Content",
+  "class": "collapsible-content",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Main Heading",
+      "id": "main_heading",
+      "default": "Collapsible Content"
+    },
+    {
+      "type": "text",
+      "label": "Sub Heading",
+      "id": "sub_heading",
+      "default": "Sub Heading"
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes (If Needed)",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "label": "Main Container",
+      "id": "main_container",
+      "default": "max-w-screen-xl mx-auto px-5 bg-white"
+    },
+    {
+      "type": "textarea",
+      "label": "Main Content Container",
+      "id": "main_content_container",
+      "default": "flex flex-col items-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Collapsible Main Heading",
+      "id": "collapsible_main_heading",
+      "default": "font-bold text-2xl md:text-5xl mt-5 tracking-tight"
+    },
+    {
+      "type": "textarea",
+      "label": "Collapsible Sub Heading",
+      "id": "collapsible_sub_heading",
+      "default": "text-neutral-500 text-lg md:text-xl mt-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Collapsible Grid",
+      "id": "collapsible_grid",
+      "default": "grid divide-y divide-neutral-200 max-w-xl mx-auto mt-8"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Title",
+          "id": "title",
+          "default": "What is a SAAS platform?"
+        },
+        {
+          "type": "inline_richtext",
+          "label": "Content",
+          "id": "content",
+          "default": "SAAS platform is a cloud-based software service that allows users to access and use a variety of tools and functionality."
+        },
+        {
+          "type": "header",
+          "content": "Apply Tailwind CSS Classes (If Needed)",
+          "info": "Note: Insert classes with space between them."
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Block Container",
+          "id": "collapsible_block_container",
+          "default": "py-5"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Details",
+          "id": "collapsible_details",
+          "default": "group"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Summary",
+          "id": "collapsible_summary",
+          "default": "flex justify-between items-center font-medium cursor-pointer list-none"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Title",
+          "id": "collapsible_title"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Icon",
+          "id": "collapsible_icon",
+          "default": "transition group-open:rotate-180"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Content",
+          "id": "collapsible_content",
+          "default": "text-neutral-600 mt-3 group-open:animate-fadeIn"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collapsible Content",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "block"
+        },
+        {
+          "type": "block"
+        },
+        {
+          "type": "block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

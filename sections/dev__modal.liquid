@@ -1,0 +1,124 @@
+<!-- modal.liquid -->
+
+{%- style -%}
+  .icon-cross {
+    width: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .icon-cross {
+      width: 18px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="modal-dark-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 overflow-auto"></div>
+
+<div class="modal-container fixed top-0 left-0 w-full h-full">
+  <div class="modal relative mx-auto {{ section.settings.style_modal }}">
+    <button id="closeModal" class="close absolute right-[20px] cursor-pointer">{% render 'icon-cross' %}</button>
+    <h2 class="{{ section.settings.style_modal_header }}">{{ section.settings.modal_header }}</h2>
+    <p class="{{ section.settings.style_modal_content }}">{{ section.settings.modal_content }}</p>
+    <button id="acknowledgeButton" class="{{ section.settings.style_modal_button }}">
+      {{ section.settings.modal_button }}
+    </button>
+  </div>
+</div>
+
+<script>
+  const toggleModal = (show) => {
+    const overlay = document.querySelector('.modal-dark-overlay');
+    const modalContainer = document.querySelector('.modal-container');
+    const modal = document.querySelector('.modal');
+
+    if (show) {
+      overlay.style.display = 'block';
+      modalContainer.style.display = 'block';
+    } else {
+      overlay.style.display = 'none';
+      modalContainer.style.display = 'none';
+      modal.style.display = 'none';
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    toggleModal(true); // Show modal on page load
+  });
+
+  // Close Modal
+  document.querySelector('#closeModal').onclick = function () {
+    toggleModal(false);
+  };
+
+  document.querySelector('#acknowledgeButton').onclick = function () {
+    toggleModal(false);
+  };
+
+  // Close Modal when clicked outside the modal
+  window.onclick = function (e) {
+    if (e.target === document.querySelector('.modal-container')) {
+      toggleModal(false);
+    }
+  };
+</script>
+
+{% schema %}
+{
+  "name": "Modal Window Overlay",
+  "class": "modal",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Modal Heading",
+      "id": "modal_header",
+      "default": "Welcome to Our Store!"
+    },
+    {
+      "type": "textarea",
+      "label": "Modal Content",
+      "id": "modal_content",
+      "default": "We're delighted to have you here. Enjoy your shopping experience and feel free to explore our wide range of products."
+    },
+    {
+      "type": "text",
+      "label": "Modal Button",
+      "id": "modal_button",
+      "default": "Okay"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "label": "Style Modal",
+      "id": "style_modal",
+      "default": "w-[80%] md:w-[40%] bg-white px-[20px] pt-[18px] pb-[12px] md:px-[40px] md:py-[20px] rounded-[10px] shadow-lg top-[25%]"
+    },
+    {
+      "type": "textarea",
+      "label": "Style Modal Heading",
+      "id": "style_modal_header",
+      "default": "text-sm md:text-xl font-semibold mb-2 md:mb-4 break-normal"
+    },
+    {
+      "type": "textarea",
+      "label": "Style Modal Content",
+      "id": "style_modal_content",
+      "default": "mb-2 md:mb-6 text-xs md:text-base break-normal"
+    },
+    {
+      "type": "textarea",
+      "id": "style_modal_button",
+      "label": "Style Modal Button",
+      "default": "bg-purple-900 text-white px-2 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-base hover:bg-purple-600 hover:text-slate-200"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Modal Window Overlay",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

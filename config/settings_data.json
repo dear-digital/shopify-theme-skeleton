@@ -22,7 +22,7 @@
     "show_cart_note": false,
     "cart_drawer_collection": "",
     "tailwind_config": "",
-    "tailwind_css": "",
+    "tailwind_css": "@layer utilities {.pause { animation-play-state: paused;}}",
     "logo_width": 90,
     "type_header_font": "assistant_n4",
     "heading_scale": 100,

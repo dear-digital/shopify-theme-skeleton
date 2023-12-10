@@ -1,0 +1,239 @@
+<div class="card__main {{ section.settings.card__main }}">
+  <div class="card__main__div {{ section.settings.card__main__div }} ">
+    <h2 class="card__main__title {{ section.settings.card__main__title }} ">{{ section.settings.section_title }}</h2>
+    <p class="card__main__subtitle {{ section.settings.card__main__subtitle }} ">
+      {{ section.settings.section_subtitle }}
+    </p>
+  </div>
+  <div class="card__block_div {{ section.settings.card__main__block_div }}">
+    {% for block in section.blocks %}
+      <div class="card__block_maindiv {{ block.settings.card__block_maindiv }} ">
+        {% if block.settings.card_link != blank and block.settings.card_image != blank %}
+          <a href="{{ block.settings.card_link }}" class="card__link {{ block.settings.card_link_style }}">
+            {%- assign image_width = section.settings.image_width -%}
+            {%- assign image_height = section.settings.image_height -%}
+            {%- assign card_image_styles = section.settings.card_image_styles -%}
+            {{-
+              block.settings.card_image
+              | image_url: width: image_width, height: image_height
+              | image_tag: class: card_image_styles
+            -}}
+          </a>
+        {% endif %}
+        <div class="{{ block.settings.card__block_style }}">
+          <h3 class="{{ block.settings.card__block_title_style }}">
+            {{ block.settings.card__block_title }}
+          </h3>
+          <span class="{{ block.settings.card__block_subtitle_style }}">{{ block.settings.card__block_subtitle }}</span>
+          <p class="{{ block.settings.card__block_description_style }}">
+            {{ block.settings.card__block_description }}
+          </p>
+          <ul class=" {{ block.settings.card__block_ul }}">
+            <li>
+              {% if block.settings.card__block_facebook != blank %}
+                <a href="{{ block.settings.card__block_facebook }}" class="{{ block.settings.card__block_ul_links }}">
+                  {% render 'icon-facebook' %}
+                </a>
+              {% endif %}
+            </li>
+
+            <li>
+              {% if block.settings.card__block_twitter != blank %}
+                <a href="{{ block.settings.card__block_twitter }}" class="{{ block.settings.card__block_ul_links }}">
+                  {% render 'icon-twitter' %}
+                </a>
+              {% endif %}
+            </li>
+            <li>
+              {% if block.settings.card__block_github != blank %}
+                <a href="{{ block.settings.card__block_github }}" class="{{ block.settings.card__block_ul_links }}">
+                  {% render 'icon-github' %}
+                </a>
+              {% endif %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cards - Team Display",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Our Team"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Have a look at our team!!"
+    },
+    {
+      "type": "number",
+      "id": "image_width",
+      "label": "Image Width",
+      "default": 400
+    },
+    {
+      "type": "number",
+      "id": "image_height",
+      "label": "Image Height",
+      "default": 200
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Section Styles",
+      "id": "card__main",
+      "default": "bg-gray-900 py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Section Div Styles",
+      "id": "card__main__div",
+      "default": "mx-auto max-w-screen-sm text-center mb-8 lg:mb-16"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Title Styles",
+      "id": "card__main__title",
+      "default": "mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Subtitle Styles",
+      "id": "card__main__subtitle",
+      "default": "font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Block Div Styles",
+      "id": "card__block_div",
+      "default": "grid gap-8 mb-6 lg:mb-16 md:grid-cols-2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card_block",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Card Image",
+          "id": "card_image",
+          "info": "Select an image for the card"
+        },
+        {
+          "type": "text",
+          "label": "Card Link",
+          "id": "card_link",
+          "default": "/collections/all?discount=SAVE25"
+        },
+        {
+          "type": "text",
+          "label": "Card Title",
+          "id": "card__block_title",
+          "default": "John Micheal"
+        },
+        {
+          "type": "text",
+          "label": "Card Subtitle",
+          "id": "card__block_subtitle",
+          "default": "Web Developer and Designer"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Description ",
+          "id": "card__block_description",
+          "default": "Bonnie drives the technical strategy of the flowbite platform and brand."
+        },
+        {
+          "type": "text",
+          "label": "Facebook Link",
+          "id": "card__block_facebook",
+          "default": "Enter Facebook link"
+        },
+        {
+          "type": "text",
+          "label": "Twitter Link",
+          "id": "card__block_twitter",
+          "default": "Enter Twitter link"
+        },
+        {
+          "type": "text",
+          "label": "Github Link",
+          "id": "card__block_github",
+          "default": "Enter github link"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind Styling Classes"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Styling",
+          "id": "card__block_maindiv",
+          "default": "items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 m-6 "
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Text Div Styling",
+          "id": "card__block_style",
+          "default": "p-5"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Link Styling",
+          "id": "card_link_style",
+          "default": "items-center"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Title Styling",
+          "id": "card__block_title_style",
+          "default": "text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Subtitle Styling",
+          "id": "card__block_subtitle_style",
+          "default": "text-gray-500 dark:text-gray-400"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Description Styling",
+          "id": "card__block_description_style",
+          "default": "mt-3 mb-4 font-light text-gray-500 dark:text-gray-400"
+        },
+        {
+          "type": "textarea",
+          "label": "Card List Styling",
+          "id": "card__block_ul",
+          "default": "flex space-x-4 sm:mt-0"
+        },
+        {
+          "type": "textarea",
+          "label": "Card List Links Styling",
+          "id": "card__block_ul_links",
+          "default": " text-gray-500 hover:text-gray-900 dark:hover:text-white "
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Team Cards",
+      "name": "Cards - Team Display"
+    }
+  ]
+}
+{% endschema %}

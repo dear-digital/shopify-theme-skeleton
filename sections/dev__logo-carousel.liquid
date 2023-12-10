@@ -1,0 +1,117 @@
+<style> 
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+</style>
+
+<div class="logos {{ section.settings.style--logos }} {{ section.settings.style--logos__before-properties }} {{ section.settings.style--logos__after-properties }}">
+
+
+  {% for block in section.blocks %}
+    {% if block.settings.logo != blank %}
+      <div class="logos__slide {{ section.settings.style--logos__slide }}">
+          {%- assign logos__image_classes = "logos__image " | append: section.settings.logos__image -%}
+            {{
+              block.settings.logo
+        
+              | image_url: width: 100
+              | image_tag:
+                alt: section.settings.logo_alt,
+                class: logos__image_classes
+            }}
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  {% for block in section.blocks %}
+    {% if block.settings.logo != blank %}
+      <div class="logos__slide {{ section.settings.style--logos__slide }}">
+          {%- assign logos__image_classes = "logos__image " | append: section.settings.logos__image -%}
+            {{
+              block.settings.logo
+        
+              | image_url: width: 100
+              | image_tag:
+                alt: section.settings.logo_alt,
+                class: logos__image_classes
+            }}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Logo Carousel",
+  "class": "shopify-brand-carousel",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "label": "Style Logo Image",
+      "id": "logos__image",
+      "default": "h-[40px] w-auto mx-[20px] my-[0] md:mx-[40px] md:my-[0] md:h-[60px] w-auto"
+    },
+    {
+      "type": "textarea",
+      "id": "style--logos",
+      "label": "Style Logo Container",
+      "default": "py-[10px] bg-white overflow-hidden whitespace-nowrap relative group"
+    },
+    {
+      "type": "textarea",
+      "id": "style--logos__before-properties",
+      "label": "Style Logo's Before Properties",
+      "default": "before:absolute before:top-0 before:w-[200px] md:before:w-[250px] before:h-full before:content-[''] before:z-10 before:left-0 before:bg-gradient-to-l from-transparent to-white"
+    },
+    {
+      "type": "textarea",
+      "id": "style--logos__after-properties",
+      "label": "Style Logo's After Properties",
+      "default": "after:absolute after:top-0 after:w-[200px] md:after:w-[250px] after:h-full after:content-[''] after:z-10  after:right-0 after:bg-gradient-to-r from-transparent to-white"
+    },
+    {
+      "type": "textarea",
+      "id": "style--logos__slide",
+      "label": "Style Logo Slide",
+      "default": "inline-block md:mx-3 animate-[slide_5s_linear_infinite] group-hover:pause group-hover:cursor-pointer"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo",
+          "info": "Select the logo image"
+        },
+        {
+          "type": "text",
+          "id": "logo_alt",
+          "label": "Alt Text",
+          "placeholder": "Alt text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo Carousel"
+    }
+  ]
+}
+{% endschema %}

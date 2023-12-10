@@ -1,0 +1,118 @@
+<div class="{{ section.settings.timeline__main_section }}">
+  <div class="{{ section.settings.timeline__section }}">
+    {% for block in section.blocks %}
+      <ol class="timeline__main_ol_list_style {{ block.settings.timeline__main_ol_list_style }}">
+        <li class="timeline__main_list_style {{ block.settings.timeline__main_list_style }}">
+          <div
+            class="timeline__main_line_style {{ block.settings.timeline__main_line_style }}"
+          ></div>
+          <time class="timeline__main_time_style {{ block.settings.timeline__main_time_style }}">
+            {{- block.settings.timeline__main_time -}}
+          </time>
+          <h3 class="timeline__main_title_style {{ block.settings.timeline__main_title_style }}">
+            {{ block.settings.timeline__main_title }}
+          </h3>
+          <p class="timeline__main_subtitle_style {{ block.settings.timeline__main_subtitle_style }}">
+            {{ block.settings.timeline__main_subtitle }}
+          </p>
+        </li>
+      </ol>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Timeline Display",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "timeline__main_section",
+      "label": "Main Section Styling",
+      "default": "bg-blue-100 p-5"
+    },
+    {
+      "type": "textarea",
+      "id": "timeline__section",
+      "label": "Section Styling",
+      "default": "relative border-s border-gray-200 dark:border-gray-700"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_block",
+      "name": "Timeline",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "timeline__main_time",
+          "label": "Time",
+          "default": "August 2023"
+        },
+        {
+          "type": "textarea",
+          "id": "timeline__main_title",
+          "label": "Title",
+          "default": "Application UI code in Tailwind CSS"
+        },
+        {
+          "type": "textarea",
+          "id": "timeline__main_subtitle",
+          "label": "Sub title",
+          "default": "Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages."
+        },
+        {
+          "type": "header",
+          "content": "Tailwind Styling Classes"
+        },
+        {
+          "type": "textarea",
+          "id": "timeline__main_ol_list_style",
+          "label": "Ordered List Styling",
+          "default": "p-1"
+        },
+        {
+          "type": "textarea",
+          "id": "timeline__main_list_style",
+          "label": "List Styling",
+          "default": "mb-10 ms-4"
+        },
+        {
+          "type": "textarea",
+          "id": "timeline__main_line_style",
+          "label": "Line Styling",
+          "default": "absolute w-3  h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-gray-900 bg-gray-700"
+        },
+        {
+          "type": "textarea",
+          "id": "timeline__main_time_style",
+          "label": "Time Styling",
+          "default": "mb-1 text-sm font-normal leading-none text-gray-600"
+        },
+        {
+          "type": "textarea",
+          "id": "timeline__main_title_style",
+          "label": "Title Styling",
+          "default": "text-lg font-semibold text-gray-900"
+        },
+        {
+          "type": "textarea",
+          "id": "timeline__main_subtitle_style",
+          "label": "Subtitle Styling",
+          "default": "mb-4 text-base font-normal text-gray-600"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Timeline",
+      "name": "Timeline Display"
+    }
+  ]
+}
+{% endschema %}
