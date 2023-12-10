@@ -10,7 +10,7 @@
     {% for article in blog.articles limit: section.settings.post_limit %}
       <article class="blog-post {{ section.settings.color_scheme }}">
         {% if section.settings.show_image and article.image %}
-          {{ article.image | img_url: 'master' | image_tag: article.title }}
+          {{ article.image | image_url: 'master' | image_tag: article.title }}
         {% endif %}
 
         <{{ section.settings.article_heading_size }}>{{ article.title }}</{{ section.settings.article_heading_size }}>
