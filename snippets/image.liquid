@@ -1,0 +1,25 @@
+<img
+     {% if disable_lazyload %}
+             sizes="auto"
+             src="{{ image_object | image_url: '768x' }}"
+             srcset="{{ image_object | image_url: '320x' }} 320w,
+                     {{ image_object | image_url: '640x' }} 640w,
+                     {{ image_object | image_url: '768x' }} 768w,
+                     {{ image_object | image_url: '1024x' }} 1024w,
+                     {{ image_object | image_url: '1280x' }} 1280w"       
+     {% else %}
+             src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+             data-sizes="auto"
+             data-src="{{ image_object | image_url: '768x' }}"
+             data-srcset="{{ image_object | image_url: '320x' }} 320w,
+                     {{ image_object | image_url: '640x' }} 640w,
+                     {{ image_object | image_url: '768x' }} 768w,
+                     {{ image_object | image_url: '1024x' }} 1024w,
+                     {{ image_object | image_url: '1280x' }} 1280w"    
+     {% endif %}
+     alt="{{ alt }}"
+     loading="lazy"
+     width="1280"
+     height="1280"
+     class="{% unless disable_lazyload %}lazyload{% endunless %} {{ class }}"
+/>

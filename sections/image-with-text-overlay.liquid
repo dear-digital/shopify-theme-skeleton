@@ -1,0 +1,288 @@
+<div>
+
+     {%- if section.settings.hero_layout == 'fixed_width' -%}
+         <div class="container mx-auto px-2 sm:px-4 xl:px-0">
+     {%- endif -%}
+     <div 
+         class="{{ section.settings.section_height }} overflow-hidden relative lazyload lazypreload image-with-text-overlay"
+         id="image-width-text-overlay-{{ section.id }}"
+         loading="lazy"
+         width="1000"
+         height="1000"
+     >
+         {%- if section.settings.image -%}
+             {% capture class %}absolute inset-0 h-full w-full {{ section.settings.image_fit }} {{ section.settings.image_alignment }}{% endcapture %}
+             {% render 'image', image_object: section.settings.image, alt: section.settings.image.alt, class: class, disable_lazyload: section.settings.disable_lazyload %}
+         {%- endif -%}
+         <div class="absolute inset-0 bg-{{ settings.color_image_overlay_background }} opacity-{{ settings.color_image_overlay_opacity }} z-0"></div>
+         {%- if section.settings.image == blank -%}
+             <div class="absolute inset-0">
+                 {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+             </div>
+         {%- endif -%}
+         <div class="relative z-20 container mx-auto px-2 sm:px-4 xl:px-0">
+             <div class="text-center">
+                 {%- if section.settings.title != blank -%}
+                     <h2 
+                         class="font-extrabold tracking-tight {{ section.settings.title_size }} text-{{ settings.color_image_overlay_text }}"
+                     >
+                         {{ section.settings.title | escape }}
+                     </h2>
+                 {%- endif -%}
+                 
+                 {%- if section.settings.text != blank -%}
+                     <div
+                         class="{{ section.settings.text_size }} text-{{ settings.color_image_overlay_text }} mt-3 md:mt-5"
+                     >
+                         {{ section.settings.text }}
+                     </div>
+                 {%- endif -%}
+ 
+                 {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+                     <div class="rounded-md shadow inline-block">
+                         <a 
+                             href="{{ section.settings.button_link }}"
+                             class="inline-flex items-center mt-3 md:mt-5 justify-center py-2 px-8 border border-gray-300 border-transparent text-base leading-6 font-medium rounded-md text-button-primary-text bg-button-primary hover:bg-button-primary-hover focus:outline-none focus:bg-button-primary-hover focus:shadow-outline-primary active:bg-button-primary-hover transition ease-in-out duration-150"
+                         >
+                             {{- section.settings.button_label | escape -}}
+                         </a>
+                     </div>
+                 {%- endif -%}
+             </div>
+         </div>
+     </div>
+     {%- if section.settings.hero_layout == 'fixed_width' -%}
+         </div>
+     {%- endif -%}
+ </div>
+ 
+ {% schema %}
+ {
+      "name": "Image with text overlay",
+      "settings": [{
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+           },
+           {
+                "type": "checkbox",
+                "id": "disable_lazyload",
+                "label": {
+                     "en": "Disable Lazyload"
+                },
+                "default": false
+           },
+           {
+                "type": "select",
+                "id": "image_alignment",
+                "label": "Image alignment",
+                "default": "object-center",
+                "options": [
+                     {
+                          "value": "object-center",
+                          "label": "Center"
+                     },
+                     {
+                          "value": "object-bottom",
+                          "label": "Bottom"
+                     },
+                     {
+                          "value": "object-left",
+                          "label": "Left"
+                     },
+                     {
+                          "value": "object-left-bottom",
+                          "label": "Left Bottom"
+                     },
+                     {
+                          "value": "object-left-top",
+                          "label": "Left Top"
+                     },
+                     {
+                          "value": "object-right",
+                          "label": "Right"
+                     },
+                     {
+                          "value": "object-right-bottom",
+                          "label": "Right Bottom"
+                     },
+                     {
+                          "value": "object-right-top",
+                          "label": "Right Top"
+                     },
+                     {
+                          "value": "object-top",
+                          "label": "Top"
+                     }
+                ]
+           },
+           {
+                "type": "select",
+                "id": "image_fit",
+                "label": "Image Fit",
+ 
+                "default": "object-cover",
+                "options": [{
+                          "value": "object-contain",
+                          "label": {
+                               "en": "Contain"
+                          }
+                     },
+                     {
+                          "value": "object-cover",
+                          "label": {
+                               "en": "Cover"
+                          }
+                     },
+                     {
+                          "value": "object-fill",
+                          "label": {
+                               "en": "Fill"
+                          }
+                     },
+ 
+                     {
+                          "value": "object-none",
+                          "label": {
+                               "en": "None"
+                          }
+                     }
+                ]
+           },
+           {
+                "type": "select",
+                "id": "hero_layout",
+                "label": "Layout",
+                "default": "full_width",
+                "options": [{
+                          "label": "Full width",
+                          "value": "full_width"
+                     },
+                     {
+                          "label": "Fixed width",
+                          "value": "fixed_width"
+                     }
+                ]
+           },
+           {
+                "type": "select",
+                "id": "section_height",
+                "label": "Section height",
+                "default": "py-10 sm:py-16",
+                "options": [{
+                          "label": "Extra Small",
+                          "value": "py-4 sm:py-8"
+                     },
+                     {
+                          "label": "Small",
+                          "value": "py-8 sm:py-12"
+                     },
+                     {
+                          "label": "Medium",
+                          "value": "py-10 sm:py-16"
+                     },
+                     {
+                          "label": "Large",
+                          "value": "py-14 sm:py-20"
+                     },
+                     {
+                          "label": "Extra Large",
+                          "value": "py-16 sm:py-24"
+                     },
+                     {
+                          "label": "Extra Extra Large",
+                          "value": "py-24 sm:py-48"
+                     }
+                ]
+           },
+           {
+                "type": "select",
+                "id": "title_size",
+                "label": "Header text size",
+                "default": "text-3xl leading-8 sm:text-4xl sm:leading-none",
+                "options": [
+                     {
+                          "label": "Small",
+                          "value": "text-xl leading-6 md:text-2xl"
+ 
+                     },
+                     {
+                          "label": "Medium",
+                          "value": "text-2xl leading-8 sm:text-3xl sm:leading-none"
+ 
+                     },
+                     {
+                          "label": "Large",
+                          "value": "text-3xl leading-8 sm:text-4xl sm:leading-none"
+ 
+                     },
+                     {
+                          "label": "Extra Large",
+                          "value": "text-4xl leading-10 sm:text-5xl sm:leading-none"
+                     },
+                     {
+                          "label": "Extra Extra Large",
+                          "value": "text-4xl leading-10 sm:text-6xl sm:leading-none"
+                     }
+                ]
+           },
+           {
+                "type": "select",
+                "id": "text_size",
+                "label": "Text size",
+                "default": "text-base sm:text-lg",
+                "options": [
+                     {
+                          "label": "Small",
+                          "value": "text-sm sm:text-base"
+ 
+                     },
+                     {
+                          "label": "Medium",
+                          "value": "text-base sm:text-lg"
+ 
+                     },
+                     {
+                          "label": "Large",
+                          "value": "text-lg sm:text-xl"
+ 
+                     },
+                     {
+                          "label": "Extra Large",
+                          "value": "text-xl sm:text-2xl"
+                     },
+                     {
+                          "label": "Extra Extra Large",
+                          "value": "text-xl sm:text-3xl"
+                     }
+                ]
+           },
+           {
+                "type": "text",
+                "id": "title",
+                "label": "Heading",
+                "default": "Image with text overlay"
+           },
+           {
+                "type": "richtext",
+                "id": "text",
+                "label": "Text",
+                "default": "<p>TODO: (This text has to be changed) Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>"
+           },
+           {
+                "type": "text",
+                "id": "button_label",
+                "label": "Button label"
+           },
+           {
+                "type": "url",
+                "id": "button_link",
+                "label": "Button link"
+           }
+      ],
+      "presets": [{
+           "name": "Image with text overlay",
+           "category": "Image"
+      }]
+ }
+ {% endschema %}
