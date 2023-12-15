@@ -1,32 +1,27 @@
-<style> 
+<style>
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
 
-@keyframes slide {
-  from {
-    transform: translateX(0);
+    to {
+      transform: translateX(-100%);
+    }
   }
-
-  to {
-    transform: translateX(-100%);
-  }
-}
-
 </style>
 
 <div class="logos {{ section.settings.style--logos }} {{ section.settings.style--logos__before-properties }} {{ section.settings.style--logos__after-properties }}">
-
-
+  {% assign image_url_width = section.settings.image_url_width %}
+  {% assign image_url_height = section.settings.image_url_height %}
   {% for block in section.blocks %}
     {% if block.settings.logo != blank %}
       <div class="logos__slide {{ section.settings.style--logos__slide }}">
-          {%- assign logos__image_classes = "logos__image " | append: section.settings.logos__image -%}
-            {{
-              block.settings.logo
-        
-              | image_url: width: 100
-              | image_tag:
-                alt: section.settings.logo_alt,
-                class: logos__image_classes
-            }}
+        {%- assign logos__image_classes = 'logos__image ' | append: section.settings.logos__image -%}
+        {{
+          block.settings.logo
+          | image_url: width: image_url_width, height: image_url_height
+          | image_tag: alt: section.settings.logo_alt, class: logos__image_classes
+        }}
       </div>
     {% endif %}
   {% endfor %}
@@ -34,15 +29,12 @@
   {% for block in section.blocks %}
     {% if block.settings.logo != blank %}
       <div class="logos__slide {{ section.settings.style--logos__slide }}">
-          {%- assign logos__image_classes = "logos__image " | append: section.settings.logos__image -%}
-            {{
-              block.settings.logo
-        
-              | image_url: width: 100
-              | image_tag:
-                alt: section.settings.logo_alt,
-                class: logos__image_classes
-            }}
+        {%- assign logos__image_classes = 'logos__image ' | append: section.settings.logos__image -%}
+        {{
+          block.settings.logo
+          | image_url: width: image_url_width, height: image_url_height
+          | image_tag: alt: section.settings.logo_alt, class: logos__image_classes
+        }}
       </div>
     {% endif %}
   {% endfor %}
@@ -53,6 +45,18 @@
   "name": "Logo Carousel",
   "class": "shopify-brand-carousel",
   "settings": [
+    {
+      "type": "text",
+      "label": "Image URL Width",
+      "id": "image_url_width",
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "label": "Image URL Height",
+      "id": "image_url_height",
+      "default": "400"
+    },
     {
       "type": "header",
       "content": "Tailwind Styling Classes"

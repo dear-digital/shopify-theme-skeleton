@@ -15,12 +15,15 @@ area<!-- dev__multi-column.liquid -->
     {{ section.settings.section_title }}
   </h2>
 
+  {% assign image_url_width = section.settings.image_url_width %}
+  {% assign image_url_height = section.settings.image_url_height %}
+
   <div class="multi-column__container {{ section.settings.multi-column__container }}">
     {% for block in section.blocks %}
       <div class="multi-column__item {{ section.settings.multi-column__item }}">
         {% if block.settings.image %}
           <div class="multi-column__item-img {{ section.settings.multi-column__item-img }}">
-            {{ block.settings.image | image_url: width: 200 | image_tag }}
+            {{ block.settings.image | image_url: width: image_url_width, height: image_url_height | image_tag }}
           </div>
         {% endif %}
 
@@ -61,6 +64,18 @@ area<!-- dev__multi-column.liquid -->
       "label": "Section Title",
       "id": "section_title",
       "default": "Multi-Column Section"
+    },
+    {
+      "type": "text",
+      "label": "Image URL Width",
+      "id": "image_url_width",
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "label": "Image URL Height",
+      "id": "image_url_height",
+      "default": "400"
     },
     {
       "type": "header",

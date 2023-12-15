@@ -7,11 +7,12 @@
   </h1>
 
   <div class="blog-posts columns-{{ section.settings.columns_desktop }} {{ section.settings.blog-posts }}">
+    {% assign image_url_width = section.settings.image_url_width %}
     {% for article in blog.articles limit: section.settings.post_limit %}
       <article class="blog-post {{ section.settings.color_scheme }} {{ section.settings.blog_post_styles }}">
         {% if section.settings.show_image and article.image %}
           {% assign blog-post__image_classes = section.settings.blog-post__image %}
-          {{ article.image | image_url: width: 2000 | image_tag: class: blog-post__image_classes }}
+          {{ article.image | image_url: width: image_url_width | image_tag: class: blog-post__image_classes }}
         {% endif %}
 
         <h1 class="blog-post__title {{ section.settings.article_title_styles }}">
@@ -49,6 +50,12 @@
 {
   "name": "Featured Blogs",
   "settings": [
+    {
+      "type": "text",
+      "label": "Image URL Width",
+      "id": "image_url_width",
+      "default": "2000"
+    },
     {
       "type": "header",
       "content": "Apply Tailwind CSS Classes",
