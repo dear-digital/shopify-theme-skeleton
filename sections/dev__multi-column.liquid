@@ -1,14 +1,4 @@
-area<!-- dev__multi-column.liquid -->
-
-{%- style -%}
-  .multi-column__item {
-    & .multi-column__item-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-{%- endstyle -%}
+<!-- dev__multi-column.liquid -->
 
 <div class="multi-column {{ section.settings.multi-column }}">
   <h2 class="{{ section.settings.multi-column__section-title }}">
@@ -22,8 +12,10 @@ area<!-- dev__multi-column.liquid -->
     {% for block in section.blocks %}
       <div class="multi-column__item {{ section.settings.multi-column__item }}">
         {% if block.settings.image %}
+          {%- assign image_alt = block.settings.image_alt_text -%}
+          {%- assign image_styles = section.settings.multi-column__style--item-img -%}
           <div class="multi-column__item-img {{ section.settings.multi-column__item-img }}">
-            {{ block.settings.image | image_url: width: image_url_width, height: image_url_height | image_tag }}
+            {{ block.settings.image | image_url: width: image_url_width, height: image_url_height | image_tag: alt: image_alt, class: image_styles }}
           </div>
         {% endif %}
 
@@ -43,13 +35,6 @@ area<!-- dev__multi-column.liquid -->
           </a>
         {% endif %}
       </div>
-
-      {% assign column_counter = column_counter | plus: 1 %}
-      {% if column_counter == 3 %}
-        {% assign column_counter = 0 %}
-        </div>
-        <div class="multi-column__container {{ section.settings.multi-column__container }}">
-      {% endif %}
     {% endfor %}
   </div>
 </div>
@@ -97,7 +82,7 @@ area<!-- dev__multi-column.liquid -->
       "type": "textarea",
       "id": "multi-column__container",
       "label": "Style Multi-Column Container",
-      "default": "mt-7 md:mt-5 flex flex-col gap-5 md:gap-10 md:flex-row"
+      "default": "mt-7 md:mt-4 flex flex-wrap gap-4 "
     },
     {
       "type": "textarea",
@@ -108,8 +93,14 @@ area<!-- dev__multi-column.liquid -->
     {
       "type": "textarea",
       "id": "multi-column__item-img",
-      "label": "Style Column Item Image",
+      "label": "Style Column Item Image Container",
       "default": "w-full h-[150px] md:h-[200px] overflow-hidden rounded-[10px]"
+    },
+    {
+      "type": "textarea",
+      "label": "Style Column Item Image",
+      "id": "multi-column__style--item-img",
+      "default": "w-full h-full object-cover"
     },
     {
       "type": "textarea",
@@ -151,6 +142,11 @@ area<!-- dev__multi-column.liquid -->
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt_text",
+          "label": "Image Alt Text"
         },
         {
           "type": "text",

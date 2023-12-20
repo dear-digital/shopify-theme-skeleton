@@ -4,23 +4,18 @@
       {{ section.settings.heading }}
     </div>
 
-    <a
-      href="{{ section.settings.linkUrl }}"
-      class="featured-collection__view-all-link-section {{ section.settings.featured-collection__view-all-link-section }}"
-    >
+    <a href="{{ section.settings.linkUrl }}" class="featured-collection__view-all-link-section {{ section.settings.featured-collection__view-all-link-section }}">
       {{ section.settings.all_product_heading }}
     </a>
 
     <div class="featured-collection__tabsCSS {{ section.settings.featured-collection__tabsCSS }}">
       {% assign tags = section.settings.tags | split: ',' %}
       {% for tag in tags %}
-        {% assign formattedTag = tag | replace: '_', ' ' | capitalize %}
         <a
           href="#"
           class="featured-collection__tab-link {{ section.settings.featured-collection__tab-link }}"
-          data-category="{{ formattedTag | handle }}"
-        >
-          {{- formattedTag -}}
+          data-category="{{ tag | replace: '_', ' ' | capitalize | handle }}">
+          {{- tag | replace: '_', ' ' | capitalize -}}
         </a>
       {% endfor %}
     </div>
@@ -31,14 +26,13 @@
       <div
         class="featured-collection__product-card {{ block.settings.featured-collection__product-card }}"
         {{ block.shopify_attributes }}
-        data-category="{{ block.settings.category | handle }}"
-      >
+        data-category="{{ block.settings.category | handle }}">
         <div class="featured-collection__card-img {{ block.settings.featured-collection__card-img }}">
           {%- assign image_url_width = section.settings.image_url_width -%}
           {%- assign image_tag_width = section.settings.image_tag_width -%}
           <div class="featured-collection__card-img_tag {{ block.settings.featured-collection__card-img_tag }}">
             {% if block.settings.image != blank %}
-              {{ block.settings.image | image_url: width: image_url_width | image_tag: width: image_tag_width }}
+              {{ block.settings.image | image_url: width: image_url_width | image_tag: width: image_tag_width, loading: "lazy" }}
             {% else %}
               {{ 'image' | placeholder_svg_tag }}
             {% endif %}
@@ -72,245 +66,244 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
+{% if section.blocks.size > 1 %}
+  <script async>
+      document.addEventListener('DOMContentLoaded', function () {
     const tabs = document.querySelectorAll('.featured-collection__tab-link');
-    console.log('Tabs found:', tabs.length);
-
+    const productCards = document.querySelectorAll('.featured-collection__product-card');
+    
     tabs.forEach((tab) => {
       tab.addEventListener('click', function (e) {
         e.preventDefault();
-        console.log('Tab clicked:', this.innerText);
-
+    
         tabs.forEach((t) => t.classList.remove('active'));
         this.classList.add('active');
-
+    
         const category = this.getAttribute('data-category');
-        console.log('Filtering category:', category);
         filterProducts(category);
       });
     });
-
+    
     function filterProducts(category) {
-      const allProductCards = document.querySelectorAll('.featured-collection__product-card');
-      allProductCards.forEach((card) => {
+      productCards.forEach((card) => {
         const isActive = category === 'all';
         card.style.display = isActive || category === card.dataset.category ? 'inline-block' : 'none';
       });
     }
-
+    
     filterProducts('all');
-  });
-</script>
+      });
+  </script>
+{% endif %}
 
 {% schema %}
-{
-  "name": "Featured Collection",
-  "settings": [
-    {
-      "type": "text",
-      "label": "Heading",
-      "id": "heading",
-      "default": "OUR PRODUCTS"
-    },
-    {
-      "type": "text",
-      "label": "View All Product Heading",
-      "id": "all_product_heading",
-      "default": "View all products ➜"
-    },
-    {
-      "type": "url",
-      "label": "Link URL",
-      "id": "linkUrl"
-    },
-    {
-      "type": "text",
-      "label": "Tags (Comma Separated)",
-      "id": "tags",
-      "default": "all,multivitamin,wellness_beauty,single_support,kids"
-    },
-    {
-      "type": "text",
-      "id": "product_currency",
-      "label": "Product Currency",
-      "default": "$"
-    },
-    {
-      "type": "header",
-      "content": "Styling"
-    },
-    {
-      "type": "textarea",
-      "id": "featured-collection",
-      "label": "Collection Style",
-      "default": "w-90 mx-auto p-20 md:my-5 max-md:p-5"
-    },
-    {
-      "type": "textarea",
-      "id": "featured-collection__feature-headers",
-      "label": "Heading Style",
-      "default": "mb-4 text-4xl font-bold max-md:text-3xl"
-    },
-    {
-      "type": "textarea",
-      "id": "featured-collection__centered-content",
-      "label": "Collections Content Style",
-      "default": "mx-auto mb-10 text-center"
-    },
-    {
-      "type": "textarea",
-      "id": "featured-collection__view-all-link-section",
-      "label": "View All Products Style",
-      "default": "text-purple-700 font-semibold"
-    },
-    {
-      "type": "textarea",
-      "id": "featured-collection__tabsCSS",
-      "label": "Category Tab Style",
-      "default": "flex flex-wrap justify-center items-center my-4 py-0 list-none md:m-6 max-md:mx-auto max-md:p-0 max-md:w-full"
-    },
-    {
-      "type": "textarea",
-      "id": "featured-collection__tab-link",
-      "label": "Single Category Tab Style",
-      "default": "inline-block px-4 py-2 m-1 border border-gray-300 rounded bg-gray-100 text-sm text-center text-gray-700 transition duration-300 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 max-md:text-xs max-md:flex-grow max-md:overflow-hidden max-md:whitespace-nowrap max-md:overflow-ellipsis mdmax-:px-2 max-md:py-1"
-    },
-    {
-      "type": "textarea",
-      "id": "featured-collection__product-container",
-      "label": "Product Container Style",
-      "default": "flex overflow-x-auto flex-nowrap justify-start items-stretch mx-auto my-0 pb-[30px] [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-track]:bg-gray-300 [&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb:hover]:bg-gray-900"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "product",
-      "name": "Product",
-      "settings": [
-        {
-          "type": "text",
-          "id": "category",
-          "label": "Category"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description"
-        },
-        {
-          "type": "text",
-          "id": "price",
-          "label": "Price"
-        },
-        {
-          "type": "text",
-          "id": "strikeThroughPrice",
-          "label": "Original Price"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "deal_heading",
-          "label": "Deal Heading",
-          "default": "DEAL"
-        },
-        {
-          "type": "text",
-          "id": "deal",
-          "label": "Deal"
-        },
-        {
-          "type": "text",
-          "id": "image_url_width",
-          "label": "Image URL width",
-          "default": "300"
-        },
-        {
-          "type": "text",
-          "id": "image_tag_width",
-          "label": "Image Tag width",
-          "default": "300"
-        },
-        {
-          "type": "header",
-          "content": "Stying"
-        },
-        {
-          "type": "textarea",
-          "id": "featured-collection__product-card",
-          "label": "Product Card Style",
-          "default": "flex-none w-60 min-w-200 mx-10 shadow-lg rounded-md bg-white text-left relative overflow-hidden"
-        },
-        {
-          "type": "textarea",
-          "id": "featured-collection__card-img",
-          "label": "Card Image Style",
-          "default": "w-240 min-w-200 rounded-lg overflow-hidden relative"
-        },
-        {
-          "type": "textarea",
-          "id": "featured-collection__card-img_tag",
-          "label": "Card Image Tag Style",
-          "default": "hover:scale-105 cursor-pointer"
-        },
-        {
-          "type": "textarea",
-          "id": "featured-collection__deal-tag",
-          "label": "Deal Tag Style",
-          "default": "absolute top-2 left-2 bg-yellow-500 text-xs px-2 py-1 rounded font-bold text-gray-700"
-        },
-        {
-          "type": "textarea",
-          "id": "featured-collection__category",
-          "label": "Category Css Style",
-          "default": "my-3 px-3 py-2 border border-gray-300 rounded-full inline-block uppercase text-xs font-semibold"
-        },
-        {
-          "type": "text",
-          "id": "featured-collection__title",
-          "label": "Title Style",
-          "default": "ml-3 text-2xl text-gray-700"
-        },
-        {
-          "type": "text",
-          "id": "featured-collection__description",
-          "label": "Description Style",
-          "default": "px-3 pb-5 text-base text-gray-600"
-        },
-        {
-          "type": "text",
-          "id": "featured-collection__price",
-          "label": "Price Style",
-          "default": "ml-3 font-bold text-black"
-        },
-        {
-          "type": "text",
-          "id": "featured-collection__s-tag",
-          "label": "Strike Tag Style"
-        },
-        {
-          "type": "text",
-          "id": "featured-collection__strikePrice",
-          "label": "Strike Price Style",
-          "default": "font-normal text-gray-600"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Featured Collection Showcase"
-    }
-  ]
-}
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "text",
+        "label": "Heading",
+        "id": "heading",
+        "default": "OUR PRODUCTS"
+      },
+      {
+        "type": "text",
+        "label": "View All Product Heading",
+        "id": "all_product_heading",
+        "default": "View all products ➜"
+      },
+      {
+        "type": "url",
+        "label": "Link URL",
+        "id": "linkUrl"
+      },
+      {
+        "type": "text",
+        "label": "Tags (Comma Separated)",
+        "id": "tags",
+        "default": "all,multivitamin,wellness_beauty,single_support,kids"
+      },
+      {
+        "type": "text",
+        "id": "product_currency",
+        "label": "Product Currency",
+        "default": "$"
+      },
+      {
+        "type": "header",
+        "content": "Styling"
+      },
+      {
+        "type": "textarea",
+        "id": "featured-collection",
+        "label": "Collection Style",
+        "default": "w-90 mx-auto p-20 md:my-5 max-md:p-5"
+      },
+      {
+        "type": "textarea",
+        "id": "featured-collection__feature-headers",
+        "label": "Heading Style",
+        "default": "mb-4 text-4xl font-bold max-md:text-3xl"
+      },
+      {
+        "type": "textarea",
+        "id": "featured-collection__centered-content",
+        "label": "Collections Content Style",
+        "default": "mx-auto mb-10 text-center"
+      },
+      {
+        "type": "textarea",
+        "id": "featured-collection__view-all-link-section",
+        "label": "View All Products Style",
+        "default": "text-purple-700 font-semibold"
+      },
+      {
+        "type": "textarea",
+        "id": "featured-collection__tabsCSS",
+        "label": "Category Tab Style",
+        "default": "flex flex-wrap justify-center items-center my-4 py-0 list-none md:m-6 max-md:mx-auto max-md:p-0 max-md:w-full"
+      },
+      {
+        "type": "textarea",
+        "id": "featured-collection__tab-link",
+        "label": "Single Category Tab Style",
+        "default": "inline-block px-4 py-2 m-1 border border-gray-300 rounded bg-gray-100 text-sm text-center text-gray-700 transition duration-300 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 max-md:text-xs max-md:flex-grow max-md:overflow-hidden max-md:whitespace-nowrap max-md:overflow-ellipsis mdmax-:px-2 max-md:py-1"
+      },
+      {
+        "type": "textarea",
+        "id": "featured-collection__product-container",
+        "label": "Product Container Style",
+        "default": "flex overflow-x-auto flex-nowrap justify-start items-stretch mx-auto my-0 pb-[30px] [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-track]:bg-gray-300 [&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb:hover]:bg-gray-900"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "text",
+            "id": "category",
+            "label": "Category"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "text",
+            "id": "price",
+            "label": "Price"
+          },
+          {
+            "type": "text",
+            "id": "strikeThroughPrice",
+            "label": "Original Price"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "deal_heading",
+            "label": "Deal Heading",
+            "default": "DEAL"
+          },
+          {
+            "type": "text",
+            "id": "deal",
+            "label": "Deal"
+          },
+          {
+            "type": "text",
+            "id": "image_url_width",
+            "label": "Image URL width",
+            "default": "300"
+          },
+          {
+            "type": "text",
+            "id": "image_tag_width",
+            "label": "Image Tag width",
+            "default": "300"
+          },
+          {
+            "type": "header",
+            "content": "Stying"
+          },
+          {
+            "type": "textarea",
+            "id": "featured-collection__product-card",
+            "label": "Product Card Style",
+            "default": "flex-none w-60 min-w-200 mx-10 shadow-lg rounded-md bg-white text-left relative overflow-hidden"
+          },
+          {
+            "type": "textarea",
+            "id": "featured-collection__card-img",
+            "label": "Card Image Style",
+            "default": "w-240 min-w-200 rounded-lg overflow-hidden relative"
+          },
+          {
+            "type": "textarea",
+            "id": "featured-collection__card-img_tag",
+            "label": "Card Image Tag Style",
+            "default": "hover:scale-105 cursor-pointer"
+          },
+          {
+            "type": "textarea",
+            "id": "featured-collection__deal-tag",
+            "label": "Deal Tag Style",
+            "default": "absolute top-2 left-2 bg-yellow-500 text-xs px-2 py-1 rounded font-bold text-gray-700"
+          },
+          {
+            "type": "textarea",
+            "id": "featured-collection__category",
+            "label": "Category Css Style",
+            "default": "my-3 px-3 py-2 border border-gray-300 rounded-full inline-block uppercase text-xs font-semibold"
+          },
+          {
+            "type": "text",
+            "id": "featured-collection__title",
+            "label": "Title Style",
+            "default": "ml-3 text-2xl text-gray-700"
+          },
+          {
+            "type": "text",
+            "id": "featured-collection__description",
+            "label": "Description Style",
+            "default": "px-3 pb-5 text-base text-gray-600"
+          },
+          {
+            "type": "text",
+            "id": "featured-collection__price",
+            "label": "Price Style",
+            "default": "ml-3 font-bold text-black"
+          },
+          {
+            "type": "text",
+            "id": "featured-collection__s-tag",
+            "label": "Strike Tag Style"
+          },
+          {
+            "type": "text",
+            "id": "featured-collection__strikePrice",
+            "label": "Strike Price Style",
+            "default": "font-normal text-gray-600"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Collection Showcase"
+      }
+    ]
+  }
 {% endschema %}

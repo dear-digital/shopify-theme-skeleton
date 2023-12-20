@@ -1,0 +1,88 @@
+<section class="back-to-top_section_classes {{ section.settings.back-to-top_section_classes }}">
+  <a
+    id="BackToTop"
+    href="#"
+    title="Back to the top"
+    class="back-to-top_classes {{ section.settings.back-to-top_classes }}"
+  >
+    <i class="arrow_classes {{ section.settings.arrow_classes }}"></i>
+  </a>
+</section>
+
+<style>
+  .back-to-top_classes {
+    transition: opacity 0.3s;
+    opacity: 0;
+    text-decoration: none;
+  }
+  
+  .back-to-top_classes.show {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var goTopBtn = document.querySelector('.back-to-top_classes');
+    if (!goTopBtn) return; // Check if button exists
+  
+    function trackScroll() {
+      var scrolled = window.pageYOffset;
+      var coords = 300;
+      if (scrolled > coords) {
+        goTopBtn.classList.add('show'); // Use CSS class for showing/hiding
+      } else {
+        goTopBtn.classList.remove('show');
+      }
+    }
+  
+    function backToTop() {
+      if (window.pageYOffset > 0) {
+        window.scrollBy(0, -80);
+        requestAnimationFrame(backToTop); // Smooth scrolling
+      } else {
+        goTopBtn.classList.remove('show'); // Ensure it's hidden after reaching the top
+      }
+    }
+  
+    window.addEventListener('scroll', trackScroll); // Consider debouncing this
+    goTopBtn.addEventListener('click', backToTop);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Back-to-Top Button",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tailwind Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "back-to-top_section_classes",
+      "label": "Section Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "back-to-top_classes",
+      "label": "Back to Top Section Styling",
+      "default": "fixed no-underline text-[#7a7a7a] bg-[#eee] z-[60000] transition-[#eee] duration-[0.3s,#7a7a7a] delay-[0.3s] p-[0.3em] rounded-tl-[3px] rounded-bl-[3px] rounded-[10px] right-0 bottom-[4em] hover:no-underline hover:text-[#414141] hover:bg-[#ddd]"
+    },
+    {
+      "type": "textarea",
+      "id": "arrow_classes",
+      "label": "Arrow Icon Styling",
+      "default": "inline-block w-0 h-0 border-b-[25px] border-b-black border-x-[20px] border-x-transparent border-solid"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Custom",
+      "name": "Back to Top Button"
+    }
+  ]
+}
+{% endschema %}

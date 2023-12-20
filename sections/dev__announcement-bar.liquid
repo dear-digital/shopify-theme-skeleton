@@ -1,29 +1,39 @@
 <div class="announcement" {{ block.shopify_attributes }}>
-  <div class="announcement__wrapper rel">
+  <div class="announcement__wrapper {{ section.settings.announcement__wrapper }} ">
+
+    {% if section.blocks.size > 0 %}
+    <div class="announcement__button-prev {{ section.settings.announcement__button-prev }}">
+      {% render 'icon-previous' %}
+    </div>
+    {%- endif -%}
+
     <div
-      class="announcement__content"
+      class="announcement__content {{ section.settings.announcement__content }}"
       role="region"
       aria-label="{{ 'sections.header.announcement' | t }}"
-      data-duration="{{ section.settings.animation_duration | times: 1000 }}"
     >
       {% for block in section.blocks %}
-        {%- if block.settings.text != blank -%}
-          <div class="announcement__item {% if forloop.first %}slide-in{% endif %}">
-            {%- if block.settings.link != blank -%}
+        {%- if block.settings.text != blank or block.settings.link != blank -%}
+          <div class="announcement__item {{ section.settings.announcement__item }}">
               <a href="{{ block.settings.link }}" class="announcement__link">
-            {%- endif -%}
-            <p class="announcement__message">
-              <span>{{ block.settings.text | escape }}</span>
-            </p>
-            {%- if block.settings.link != blank -%}
+                <p class="announcement__message {{ section.settings.announcement__message }}">
+                  <span>{{ block.settings.text | escape }}</span>
+                </p>
               </a>
-            {%- endif -%}
           </div>
         {%- endif -%}
       {% endfor %}
     </div>
+
+    {% if section.blocks.size > 0 %}
+    <div class="announcement__button-next {{ section.settings.announcement__button-next }}">
+      {% render 'icon-next' %}
+    </div>
+    {%- endif -%}
+    
   </div>
 </div>
+
 
 {% schema %}
 {
@@ -39,6 +49,46 @@
       "step": 1,
       "default": 4,
       "unit": "s"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "announcement__wrapper",
+      "label": "Style Wrapper",
+      "default": "flex bg-black text-white px-4 py-1 md:py-2 items-center"
+    },
+    {
+      "type": "textarea",
+      "id": "announcement__button-prev",
+      "label": "Style Previous Button",
+      "default": "hover:text-slate-400 hover:cursor-pointer w-3.5 h-3.5 md:w-4 md:h-4"
+    },
+    {
+      "type": "textarea",
+      "id": "announcement__button-next",
+      "label": "Style Next Button",
+      "default": "hover:text-slate-400 hover:cursor-pointer w-3.5 h-3.5 md:w-4 md:h-4"
+    },
+    {
+      "type": "textarea",
+      "id": "announcement__content",
+      "label": "Style Content",
+      "default": "flex w-full"
+    },
+    {
+      "type": "textarea",
+      "id": "announcement__item",
+      "label": "Style Item",
+      "default": "mx-auto"
+    },
+    {
+      "type": "textarea",
+      "id": "announcement__message",
+      "label": "Style Message",
+      "default": "font-semibold text-sm md:text-base"
     }
   ],
   "blocks": [
@@ -68,8 +118,4 @@
 }
 {% endschema %}
 
-{% stylesheet %}
-{% endstylesheet %}
 
-{% javascript %}
-{% endjavascript %}

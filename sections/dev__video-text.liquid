@@ -1,16 +1,51 @@
 <!-- sections/dev__video-text.liquid -->
-
+{%- liquid
+  assign video_id = section.settings.video.id | default: section.settings.video_url.id
+-%}
 <div class="video-text-container {{ section.settings.video_text_container_styles }}">
   <!-- Video container -->
   <div class="video-container {{ section.settings.video_container_styles }}">
-    <video
-      class="video-container__video {{ section.settings.video_container_video_styles }}"
-      controls
-      autoplay
-      loop
-    >
-      <source src="{{ section.settings.video_link }}">
-    </video>
+
+    {%- if section.settings.video -%}
+      {{
+        section.settings.video
+        | video_tag:
+          image_size: '1100x',
+          loop: section.settings.enable_video_looping,
+          controls: section.settings.controls,
+          muted: section.settings.mute
+      }}
+    {%- else -%}
+      {%- liquid
+        assign loop = ''
+        if section.settings.enable_link_video_looping
+          assign loop = '&loop=1&playlist=' | append: video_id
+        endif
+      -%}
+      {%- if section.settings.video_url.type == 'youtube' -%}
+        <div class="link-video-container {{ section.settings.link_video_container_styles }}">
+          <div class="youtube-embed-container {{ section.settings.youtube-embed_container_styles }}">
+            <iframe
+              class="youtube-iframe {{ section.settings.youtube-iframe_classes }}"
+              src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1{{ loop }}"
+              allowfullscreen
+              title="{{ section.settings.description | escape }}"
+            ></iframe>
+          </div>
+        </div>
+      {%- else -%}
+        <div class="link-video-container {{ section.settings.link_video_container_styles }}">
+          <div class="vimeo-embed-container {{ section.settings.vimeo-embed_container_styles }}">
+            <iframe
+              class="vimeo-iframe {{ section.settings.vimeo-iframe_classes }}"
+              src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}"
+              allowfullscreen
+              title="{{ section.settings.description | escape }}"
+            ></iframe>
+        </div>
+      </div>
+      {%- endif -%}
+    {%- endif -%}
   </div>
 
   <!-- Text container -->
@@ -47,8 +82,57 @@
   "settings": [
     {
       "type": "video",
-      "id": "video_link",
-      "label": "Video Link"
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Play video on loop",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "controls",
+      "label": "Video Controls",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "mute",
+      "label": "Video Mute",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Or embed video from URL"
+    },
+    {
+      "type": "paragraph",
+      "content": "Shows when no Shopify-hosted video is selected."
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "label": "URL",
+      "info": "Use a YouTube or Vimeo URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_link_video_looping",
+      "label": "Play link video on loop",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Video alt text",
+      "info": "Describe the video for customers using screen readers. [Learn more](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-features#video)"
     },
     {
       "type": "header",
@@ -66,6 +150,36 @@
       "id": "video_container_styles",
       "label": "Video Container",
       "default": "w-full md:w-1/2 md:order-1"
+    },
+    {
+      "type": "text",
+      "id": "link_video_container_styles",
+      "label": "Link Video Container",
+      "default": "relative overflow-hidden pb-[56.25%]"
+    },
+    {
+      "type": "text",
+      "id": "youtube-embed_container_styles",
+      "label": "Youtube Link Video Container",
+      "default": "absolute w-full h-full left-0 top-0"
+    },
+    {
+      "type": "text",
+      "id": "vimeo-embed_container_styles",
+      "label": "Vimeo Link Video Container",
+      "default": "absolute w-full h-full left-0 top-0"
+    },
+    {
+      "type": "text",
+      "id": "youtube-iframe_classes",
+      "label": "iFrame Youtube Video Style",
+      "default": "w-full h-full left-0 top-0"
+    },
+    {
+      "type": "text",
+      "id": "vimeo-iframe_classes",
+      "label": "iFrame Vimeo Video Style",
+      "default": "w-full h-full left-0 top-0"
     },
     {
       "type": "text",
