@@ -1,0 +1,62 @@
+name: "💡 Feature Request"
+description: Suggest an idea for this project
+title: "💡 [FEATURE]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: "## 💡 Feature Request\nThank you for suggesting a new feature!"
+  - type: checkboxes
+    attributes:
+      label: Duplicate check
+      description: Please check if there's already an issue for this feature request.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    id: reference_issues
+    attributes:
+      label: "Related Issues"
+      description: "If there are any related issues or feature requests, please link them here."
+      placeholder: "e.g., #123"
+    validations:
+      required: false
+  - type: textarea
+    id: description
+    attributes:
+      label: "Feature Description"
+      description: "What is the feature you'd like to see? How should it work?"
+      placeholder: "Detailed description of the feature."
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: "Motivation"
+      description: "Why is this feature important? What problem does it solve?"
+      placeholder: "Explain why this feature is needed."
+    validations:
+      required: true
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Additional Context"
+      description: "Add any other context or screenshots about the feature request here."
+      placeholder: "Any additional information that can help understand the feature."
+    validations:
+      required: false
+  - type: textarea
+    id: files-modified
+    attributes:
+      label: "File Modifications"
+      description: "Write name(s) of file(s) you want to Create, Update or Delete as part of the solution (optional)."
+      placeholder: "e.g., Create: file1.liquid, Update: file2.css, Delete: file3.js"
+    validations:
+      required: false
+  - type: checkboxes
+    attributes:
+      label: Information Completeness
+      description: "Ensure that you've provided all the necessary details for your feature request."
+      options:
+        - label: Yes, I have provided all the necessary information
+          required: true

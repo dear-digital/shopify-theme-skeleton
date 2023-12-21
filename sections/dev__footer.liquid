@@ -1,0 +1,168 @@
+<footer class="footer {{ section.settings.footer__main }}">
+  {% for block in section.blocks %}
+    <div class="footer__section {{ block.settings.footer__section }}">
+      <input
+        type="checkbox"
+        id="footer-toggle-{{ forloop.index }}"
+        class="footer__toggle-checkbox {{ block.settings.footer__toggle-checkbox }}"
+      >
+      <label for="footer-toggle-{{ forloop.index }}" class="footer__heading {{ block.settings.footer__heading }}">
+        {{- block.settings.heading -}}
+      </label>
+      <ul class="footer__links-list {{ block.settings.footer__links-list_ul }} ">
+        {% for link in linklists[block.settings.menu].links %}
+          <li class="footer__link-item {{ block.settings.footer__links-list_li }}">
+            <a href="{{ link.url }}" class="footer__link {{ block.settings.footer__link }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+  <div class="footer__section footer__section--newsletter {{ section.settings.footer__section--newsletter }}">
+    <p class="footer__title footer__title--common {{ section.settings.footer__title }}">
+      {{ section.settings.newsletter_heading }}
+    </p>
+    <form class="footer__form {{ section.settings.footer__form }}">
+      <input
+        type="email"
+        placeholder="{{ section.settings.email_placeholder }}"
+        class="footer__input {{ section.settings.footer__input }}"
+      >
+      <button type="submit" class="footer__button {{ section.settings.footer__button }}">
+        {{ section.settings.button_text }}
+      </button>
+    </form>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Footer Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind Styling Classes"
+        },
+        {
+          "type": "textarea",
+          "id": "footer__section",
+          "label": "Style Footer Block Section",
+          "default": "w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 p-2 mr-4 mb-4"
+        },
+        {
+          "type": "textarea",
+          "id": "footer__heading",
+          "label": "Style Footer Heading",
+          "default": "text-2xl text-white font-semibold mb-5"
+        },
+        {
+          "type": "textarea",
+          "id": "footer__links-list_ul",
+          "label": "Style Footer List",
+          "default": "p-2"
+        },
+        {
+          "type": "textarea",
+          "id": "footer__links-list_li",
+          "label": "Style Footer List Items",
+          "default": "p-2"
+        },
+        {
+          "type": "textarea",
+          "id": "footer__link",
+          "label": "Style Footer Links",
+          "default": "m-2"
+        },
+        {
+          "type": "textarea",
+          "id": "footer__toggle-checkbox",
+          "label": "Style Footer Toggle Checkbox",
+          "default": "inline-block md:hidden"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter Heading",
+      "default": "Join the club"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email Placeholder",
+      "default": "Your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "footer__main",
+      "label": "Style Footer Section",
+      "default": " bg-purple-800 text-white p-8 flex flex-wrap justify-content-between  "
+    },
+    {
+      "type": "textarea",
+      "id": "footer__section--newsletter",
+      "label": "Style Footer Section Newsletter",
+      "default": " p-2 "
+    },
+    {
+      "type": "textarea",
+      "id": "footer__title",
+      "label": "Style Footer Title",
+      "default": "text-2xl font-semibold text-white mb-5 uppercase tracking-wide md:text-center"
+    },
+    {
+      "type": "textarea",
+      "id": "footer__form",
+      "label": "Style Footer Form",
+      "default": "flex gap-4 "
+    },
+    {
+      "type": "textarea",
+      "id": "footer__input",
+      "label": "Style Footer Input",
+      "default": "p-4 border-none rounded flex-grow-1 text-black"
+    },
+    {
+      "type": "textarea",
+      "id": "footer__button",
+      "label": "Style Footer Button",
+      "default": " bg-purple-400 text-white border-none p-4 rounded cursor-pointer hover:bg-purple-500"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,46 @@
+name: Shopify Theme Management
+
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+
+jobs:
+  manage-theme:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Debug API Authentication
+        run: |
+          curl -v -X GET "https://${{ secrets.SHOP_STORE }}/admin/api/2023-10/shop.json" \
+            -H "Content-Type: application/json" \
+            -H "X-Shopify-Access-Token: ${{ secrets.SHOP_PASSWORD }}"
+        env:
+          SHOP_STORE: ${{ secrets.SHOP_STORE }}
+          SHOP_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+
+      # Create and deploy a PR specific Shopify theme when PR is opened/updated
+      - name: Deploy PR-specific Shopify theme
+        if: github.event.action != 'closed'
+        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        with:
+          ACTION: 'DEPLOYMENT_PREVIEW'
+          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
+          SHOPIFY_THEME_DIRECTORY: '.' # Or your theme directory
+          SHOPIFY_ALLOW_LIVE_THEME_DEPLOYMENT: false # Set to true if deploying to a live theme
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Remove the previously created PR specific Shopify theme when PR is closed
+      - name: Remove PR-specific Shopify theme
+        if: github.event.action == 'closed'
+        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        with:
+          ACTION: 'REMOVE_DEPLOYMENT_PREVIEW_THEME'
+          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

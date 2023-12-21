@@ -1,0 +1,123 @@
+<div class="banner-template {{ section.settings.banner-template }}">
+  <div class="image-banner {{ section.settings.image-banner }}">
+    <div class="image-banner-content {{ section.settings.image-banner-content }}">
+      <p class="image-banner-small-title {{ section.settings.image-banner-small-title }}">{{ section.settings.small_title }}</p>
+      <h2 class="image-banner-title {{ section.settings.image-banner-title }}">
+        {{ section.settings.main_title }}
+      </h2>
+      <div class="image-banner-description {{ section.settings.image-banner-description }}">
+        <p>{{ section.settings.content }}</p>
+      </div>
+    </div>
+    <div class="image-banner-image {{ section.settings.image-banner-image }}">
+      {%- assign image_url_width = section.settings.image_url_width -%}
+      {%- assign image_tag_width = section.settings.image_tag_width -%}
+        {% if section.settings.image %}
+          {{ section.settings.image | image_url: width: image_url_width | image_tag: width: image_tag_width }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image with Text Overlay",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Small Title",
+      "id": "small_title",
+      "default": "Welcome to the..."
+    },
+    {
+      "type": "text",
+      "label": "Main Title",
+      "id": "main_title",
+      "default": "The most awaiting sale is near"
+    },
+    {
+      "type": "text",
+      "label": "Content",
+      "id": "content",
+      "default": "This is the most \n awesome Shopify Skeleton Theme with many features like \n inbuild schema Tailwind CSS, Schema Blocks for repetitive function and many more !!"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Add a Image"
+    },
+    {
+      "type": "text",
+      "label": "Image Alt Text",
+      "id": "alt_text",
+      "default": "Image Alt Text"
+    },
+    {
+      "type": "text",
+      "id": "image_url_width",
+      "label": "Image URL width",
+      "default": "500"
+    },
+    {
+      "type": "text",
+      "id": "image_tag_width",
+      "label": "Image Tag width",
+      "default": "500"
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "banner-template",
+      "label": "Banner Template Style",
+      "default": "relative w-full max-w-1200 mx-auto"
+    },
+    {
+      "type": "textarea",
+      "id": "image-banner",
+      "label": "Image Text Entire Style",
+      "default": "flex relative overflow-hidden max-md:flex-col"
+    },
+    {
+      "type": "textarea",
+      "id": "image-banner-content",
+      "label": "Image Content Style",
+      "default": "p-16 mt-16 flex-1 bg-white bg-opacity-80 z-10 max-md:p-2.5 max-md:flex-col max-md:w-full max-md:mt-4"
+    },
+    {
+      "type": "textarea",
+      "id": "image-banner-small-title",
+      "label": "Small Title Style",
+      "default": "text-2xl text-red-500 mb-4 max-md:mb-2"
+    },
+    {
+      "type": "textarea",
+      "id": "image-banner-title",
+      "label": "Title Style",
+      "default": "text-6xl text-gray-700 font-bold mb-10 max-md:text-4xl max-md:mb-2"
+    },
+    {
+      "type": "textarea",
+      "id": "image-banner-description",
+      "label": "Description Style",
+      "default": "text-lg text-gray-600 mb-5"
+    },
+    {
+      "type": "textarea",
+      "id": "image-banner-image",
+      "label": "Image Style",
+      "default": "flex-1 w-full h-auto block"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with Text Overlay",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

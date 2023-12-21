@@ -1,0 +1,241 @@
+<!-- Carousel Container -->
+<div class="carousel {{ section.settings.carousel }}">
+  <!-- Carousel Text -->
+  <div class="carousel__text {{ section.settings.carousel__text }}">
+    <h2 class="carousel__heading {{ section.settings.carousel__heading }}">{{ section.settings.heading_text }}</h2>
+    <p class="carousel__subheading {{ section.settings.carousel__subheading }}">
+      {{ section.settings.subheading_text }}
+    </p>
+    <div class="carousel__cta-container {{ section.settings.carousel__cta-container }}">
+      <a
+        href="{{ section.settings.cta_url }}"
+        class="carousel__cta-link {{ section.settings.carousel__cta-link }}"
+        target="_blank"
+      >
+        {{- section.settings.cta_text -}}
+      </a>
+    </div>
+  </div>
+
+  <!-- Upper Row Carousel -->
+  {%- assign image_url_width = section.settings.image_url_width -%}
+  {%- assign image_url_height = section.settings.image_url_height -%}
+  <div class="carousel__row {{ section.settings.carousel__row }}">
+    {% for block in section.blocks %}
+      {% if block.type == 'upper-image' %}
+        <div class="carousel__row_upper {{ block.settings.carousel__row_upper }}">
+          {%- assign carousel__image_style = 'carousel__image ' | append: section.settings.carousel__image -%}
+          <div class="carousel__upper-cell  {{ block.settings.carousel__upper-cell }}">
+            {% if block.settings.image %}
+              {{
+                block.settings.image
+                | image_url: width: image_url_width, height: image_url_height
+                | image_tag: class: carousel__image_style
+              }}
+            {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Lower Row Carousel -->
+  <div class="carousel__row {{ section.settings.carousel__row }}">
+    {% for block in section.blocks %}
+      {% if block.type == 'lower-image' %}
+        <div class="carousel__row_lower {{ block.settings.carousel__row_lower }}">
+          {%- assign carousel__image_style = 'carousel__image ' | append: section.settings.carousel__image -%}
+          <div class="carousel__lower-cell  {{ block.settings.carousel__lower-cell }}">
+            {% if block.settings.image %}
+              {{
+                block.settings.image
+                | image_url: width: image_url_width, height: image_url_height
+                | image_tag: class: carousel__image_style
+              }}
+            {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  @keyframes slide-left {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slide-right {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Two-Row Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "MORE THAN 1,25,000"
+    },
+    {
+      "type": "text",
+      "id": "subheading_text",
+      "label": "Subheading Text",
+      "default": "YUMMY GUMMERS"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "@yummygumsvitamins"
+    },
+    {
+      "type": "text",
+      "id": "image_url_width",
+      "label": "Image URL width",
+      "default": "800"
+    },
+    {
+      "type": "text",
+      "id": "image_url_height",
+      "label": "Image URL height",
+      "default": "800"
+    },
+    {
+      "type": "header",
+      "content": "Stylings"
+    },
+    {
+      "type": "textarea",
+      "id": "carousel",
+      "label": "Carousel Container Styles",
+      "default": "relative pt-[125px] max-md:pt-[100px]"
+    },
+    {
+      "type": "textarea",
+      "id": "carousel__text",
+      "label": "Carousel Text Styles",
+      "default": "text-center absolute top-0 left-0 w-full z-1 p-[10px] bg-white bg-opacity-80"
+    },
+    {
+      "type": "textarea",
+      "id": "carousel__heading",
+      "label": "Heading Styles",
+      "default": "text-5xl font-bold text-purple-700 ml-2 max-md:text-3xl"
+    },
+    {
+      "type": "textarea",
+      "id": "carousel__subheading",
+      "label": "Subheading Styles",
+      "default": "text-3xl font-semibold text-purple-900 ml-2 max-md:text-xl"
+    },
+    {
+      "type": "textarea",
+      "id": "carousel__cta-container",
+      "label": "CTA Container Styles",
+      "default": "flex items-center justify-center gap-[4px]"
+    },
+    {
+      "type": "textarea",
+      "id": "carousel__cta-link",
+      "label": "CTA Link Styles",
+      "default": "inline-block text-purple-900 font-bold rounded-md transition duration-300 hover:bg-gray-300"
+    },
+    {
+      "type": "header",
+      "content": "Cell Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "carousel__row",
+      "label": "Row Styles",
+      "default": "overflow-hidden whitespace-nowrap flex flex-wrap"
+    },
+    {
+      "type": "textarea",
+      "id": "carousel__image",
+      "label": "Image Styles",
+      "default": "w-[150px] h-[150px] object-cover rounded-lg m-[10px]"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "upper-image",
+      "name": "Upper Row Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image for Upper Row"
+        },
+        {
+          "type": "textarea",
+          "id": "carousel__upper-cell",
+          "label": "Upper Cell Styles",
+          "default": "inline-block vertical-align-middle whitespace-normal flex-shrink-0 animate-[slide-left_4s_linear_infinite]"
+        },
+        {
+          "type": "textarea",
+          "id": "carousel__row_upper",
+          "label": "Upper Row Styles",
+          "default": "inline-block align-middle whitespace-normal flex-[0_0_auto]"
+        }
+      ],
+      "limit": 15
+    },
+    {
+      "type": "lower-image",
+      "name": "Lower Row Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image for Lower Row"
+        },
+        {
+          "type": "textarea",
+          "id": "carousel__lower-cell",
+          "label": "Lower Cell Styles",
+          "default": "inline-block vertical-align-middle whitespace-normal flex-shrink-0 animate-[slide-right_4s_linear_infinite]"
+        },
+        {
+          "type": "textarea",
+          "id": "carousel__row_lower",
+          "label": "Lower Row Styles",
+          "default": "inline-block align-middle whitespace-normal flex-[0_0_auto]"
+        }
+      ],
+      "limit": 15
+    }
+  ],
+  "max_blocks": 30,
+  "presets": [
+    {
+      "name": "Two-Row Carousel",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

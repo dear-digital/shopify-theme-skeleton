@@ -1,0 +1,152 @@
+<div class="table__maindiv {{ section.settings.table__maindiv }} ">
+  <table class="table__subdiv {{ section.settings.table__subdiv }} ">
+    <thead class="table__thead  {{ section.settings.table__thead }}">
+      <tr>
+        <th scope="col" class="table__trow {{ section.settings.table__trow }} ">
+          {{ section.settings.table__heading1 }}
+        </th>
+        <th scope="col" class="{{ section.settings.table__trow }}">{{ section.settings.table__heading2 }}</th>
+        <th scope="col" class="{{ section.settings.table__trow }}">{{ section.settings.table__heading3 }}</th>
+        <th scope="col" class="{{ section.settings.table__trow }}">{{ section.settings.table__heading4 }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for block in section.blocks %}
+        <tr class="table__mainblock {{ block.settings.table__mainblock }}">
+          <th scope="row" class="table__heading_style {{ block.settings.table__heading_style }}">
+            {{ block.settings.table__blockheading1 }}
+          </th>
+          <td class="table__sub_heading_style {{ block.settings.table__sub_heading_style }}">
+            {{ block.settings.table__blockheading2 }}
+          </td>
+          <td class="table__sub_heading_style {{ block.settings.table__sub_heading_style }}">
+            {{ block.settings.table__blockheading3 }}
+          </td>
+          <td class="table__sub_heading_style {{ block.settings.table__sub_heading_style }}">
+            {{ block.settings.table__blockheading4 }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% schema %}
+{
+  "name": "Table Display",
+  "settings": [
+    {
+      "type": "text",
+      "id": "table__heading1",
+      "label": "Table Heading First",
+      "default": "Product Name"
+    },
+    {
+      "type": "text",
+      "id": "table__heading2",
+      "label": "Table Heading Second",
+      "default": "Color"
+    },
+    {
+      "type": "text",
+      "id": "table__heading3",
+      "label": "Table Heading Third",
+      "default": "Category"
+    },
+    {
+      "type": "text",
+      "id": "table__heading4",
+      "label": "Table Heading Fourth",
+      "default": "Price"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "table__maindiv",
+      "label": "Main Table Section Styling",
+      "default": "relative overflow-x-auto p-5 "
+    },
+    {
+      "type": "textarea",
+      "id": "table__subdiv",
+      "label": "Sub Table Section Styling",
+      "default": "w-full text-sm text-left rtl:text-right text-gray-400 "
+    },
+    {
+      "type": "textarea",
+      "id": "table__thead",
+      "label": "Table Head Styling",
+      "default": "text-xs text-gray-300 uppercase bg-gray-700 "
+    },
+    {
+      "type": "textarea",
+      "id": "table__trow",
+      "label": "Table Row Styling",
+      "default": "px-6 py-3"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "table_block",
+      "name": "Add Table Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "table__blockheading1",
+          "label": "TableBlock Heading First",
+          "default": "Apple MacBook Pro 17"
+        },
+        {
+          "type": "text",
+          "id": "table__blockheading2",
+          "label": "Table Block Heading Second",
+          "default": "Silver"
+        },
+        {
+          "type": "text",
+          "id": "table__blockheading3",
+          "label": "Table Block Heading Third",
+          "default": "Laptop"
+        },
+        {
+          "type": "text",
+          "id": "table__blockheading4",
+          "label": "Table Block Heading Fourth",
+          "default": "$2999"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind Styling Classes"
+        },
+        {
+          "type": "textarea",
+          "id": "table__mainblock",
+          "label": "Main Table Block Styling",
+          "default": "bg-gray-800 border-gray-700 text-white"
+        },
+        {
+          "type": "textarea",
+          "id": "table__heading_style",
+          "label": "Table Block Heading Styling",
+          "default": "px-6 py-4 font-medium whitespace-nowrap "
+        },
+        {
+          "type": "textarea",
+          "id": "table__sub_heading_style",
+          "label": "Table Block Row Styling",
+          "default": "px-6 py-3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Table",
+      "name": "Table Display"
+    }
+  ]
+}
+{% endschema %}

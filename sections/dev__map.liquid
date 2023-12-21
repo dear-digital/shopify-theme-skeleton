@@ -1,0 +1,226 @@
+<section class="map-section_classes {{ section.settings.map-section_classes }}">
+  <div class="map-container_classes {{ section.settings.map-container_classes }}">
+    <iframe
+      width="{{ section.settings.iframe_width }}"
+      height="{{ section.settings.iframe_height }}"
+      class="map-frame_classes {{ section.settings.map-frame_classes }}"
+      title="map"
+      scrolling="{{ section.settings.iframe_scrolling }}"
+      src="https://maps.google.com/maps?width={{ section.settings.iframe_width }}&height={{ section.settings.iframe_height }}&hl=en&q={{ section.settings.map_address }}&ie=UTF8&t={{ section.settings.default_map_type }}&z={{ section.settings.default_zoom }}&iwloc=B&output=embed"
+    ></iframe>
+  </div>
+  <div class="info-container_classes {{ section.settings.info-container_classes }}">
+    <div class="address-container_classes {{ section.settings.address-container_classes }}">
+      <div class="address-info_classes {{ section.settings.address-info_classes }}">
+        <h2 class="address-heading_classes {{ section.settings.address-heading_classes }}">
+          {{ section.settings.map_address_heading }}
+        </h2>
+        <p class="address-text_classes {{ section.settings.address-text_classes }}">
+          {{ section.settings.map_address }}
+        </p>
+      </div>
+      <div class="details_classes {{ section.settings.details_classes }}">
+        <h2 class="email-heading_classes {{ section.settings.email-heading_classes }}">
+          {{ section.settings.email_address_heading }}
+        </h2>
+        <a class="email-info_classes {{ section.settings.email-info_classes }}">{{ section.settings.email_address }}</a>
+        <h2 class="phone-heading_classes {{ section.settings.phone-heading_classes }}">
+          {{ section.settings.phone_number_heading }}
+        </h2>
+        <p class="phone-info_classes {{ section.settings.phone-info_classes }}">{{ section.settings.phone_number }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Google Map Integration",
+  "settings": [
+    {
+      "type": "text",
+      "id": "iframe_width",
+      "label": "iframe Width",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "iframe_height",
+      "label": "iframe Height",
+      "default": "100%"
+    },
+    {
+      "type": "select",
+      "id": "iframe_scrolling",
+      "label": "iframe Scrolling",
+      "options": [
+        {
+          "value": "no",
+          "label": "No"
+        },
+        {
+          "value": "yes",
+          "label": "Yes"
+        }
+      ],
+      "default": "no"
+    },
+    {
+      "type": "text",
+      "id": "map_address_heading",
+      "label": "Address Heading",
+      "default": "ADDRESS"
+    },
+    {
+      "type": "text",
+      "id": "map_address",
+      "label": "Address",
+      "default": "Rooigemlaan 532  9000 Ghent, Belgium"
+    },
+    {
+      "type": "text",
+      "id": "email_address_heading",
+      "label": "Email Heading",
+      "default": "EMAIL"
+    },
+    {
+      "type": "text",
+      "id": "email_address",
+      "label": "Enter your Email",
+      "default": "example@email.com"
+    },
+    {
+      "type": "text",
+      "id": "phone_number_heading",
+      "label": "Phone Number Heading",
+      "default": "PHONE"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone Number",
+      "default": "123-456-7890"
+    },
+    {
+      "type": "range",
+      "id": "default_zoom",
+      "label": "Default Zoom Level",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "default_map_type",
+      "label": "Default Map Type",
+      "options": [
+        {
+          "value": "",
+          "label": "Map"
+        },
+        {
+          "value": "k",
+          "label": "Satellite"
+        },
+        {
+          "value": "h",
+          "label": "Hybrid"
+        },
+        {
+          "value": "p",
+          "label": "Terrain"
+        }
+      ],
+      "default": "p"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "map-section_classes",
+      "label": "Map Section Styling",
+      "default": "relative text-gray-600"
+    },
+    {
+      "type": "textarea",
+      "id": "map-container_classes",
+      "label": "Map Container Styling",
+      "default": "absolute inset-0 bg-gray-300"
+    },
+    {
+      "type": "textarea",
+      "id": "map-frame_classes",
+      "label": "Map Frame Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "info-container_classes",
+      "label": "Information Container Styling",
+      "default": "mx-auto flex px-5 py-24"
+    },
+    {
+      "type": "textarea",
+      "id": "address-container_classes",
+      "label": "Address Container Styling",
+      "default": "relative flex flex-wrap rounded bg-white py-6 shadow-md mt-[100px] max-md:py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "address-info_classes",
+      "label": "Address Information Styling",
+      "default": "px-6 lg:w-1/2"
+    },
+    {
+      "type": "textarea",
+      "id": "address-heading_classes",
+      "label": "Address Heading Styling",
+      "default": "text-xs font-semibold tracking-widest text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "id": "address-text_classes",
+      "label": "Address Text Styling",
+      "default": "mt-1 flex max-md:font-light"
+    },
+    {
+      "type": "textarea",
+      "id": "details_classes",
+      "label": "Details Styling",
+      "default": "mt-4 px-6 lg:mt-0 lg:w-1/2 max-md:font-light max-md:mt-2"
+    },
+    {
+      "type": "textarea",
+      "id": "email-heading_classes",
+      "label": "Email Heading Styling",
+      "default": "text-xs font-semibold tracking-widest text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "id": "email-info_classes",
+      "label": "Email Information Styling",
+      "default": "leading-relaxed text-indigo-500"
+    },
+    {
+      "type": "textarea",
+      "id": "phone-heading_classes",
+      "label": "Phone Heading Styling",
+      "default": "mt-4 text-xs font-semibold tracking-widest text-gray-900 max-md:mt-2"
+    },
+    {
+      "type": "textarea",
+      "id": "phone-info_classes",
+      "label": "Phone Information Styling",
+      "default": "leading-relaxed"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Custom",
+      "name": "Google Map Integration"
+    }
+  ]
+}
+{% endschema %}

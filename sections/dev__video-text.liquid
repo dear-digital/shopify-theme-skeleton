@@ -1,0 +1,297 @@
+<!-- sections/dev__video-text.liquid -->
+{%- liquid
+  assign video_id = section.settings.video.id | default: section.settings.video_url.id
+-%}
+<div class="video-text-container {{ section.settings.video_text_container_styles }}">
+  <!-- Video container -->
+  <div class="video-container {{ section.settings.video_container_styles }}">
+
+    {%- if section.settings.video -%}
+      {{
+        section.settings.video
+        | video_tag:
+          image_size: '1100x',
+          loop: section.settings.enable_video_looping,
+          controls: section.settings.controls,
+          muted: section.settings.mute
+      }}
+    {%- else -%}
+      {%- liquid
+        assign loop = ''
+        if section.settings.enable_link_video_looping
+          assign loop = '&loop=1&playlist=' | append: video_id
+        endif
+      -%}
+      {%- if section.settings.video_url.type == 'youtube' -%}
+        <div class="link-video-container {{ section.settings.link_video_container_styles }}">
+          <div class="youtube-embed-container {{ section.settings.youtube-embed_container_styles }}">
+            <iframe
+              class="youtube-iframe {{ section.settings.youtube-iframe_classes }}"
+              src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1{{ loop }}"
+              allowfullscreen
+              title="{{ section.settings.description | escape }}"
+            ></iframe>
+          </div>
+        </div>
+      {%- else -%}
+        <div class="link-video-container {{ section.settings.link_video_container_styles }}">
+          <div class="vimeo-embed-container {{ section.settings.vimeo-embed_container_styles }}">
+            <iframe
+              class="vimeo-iframe {{ section.settings.vimeo-iframe_classes }}"
+              src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}"
+              allowfullscreen
+              title="{{ section.settings.description | escape }}"
+            ></iframe>
+        </div>
+      </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+
+  <!-- Text container -->
+  <div class="text-container {{ section.settings.text_container_styles }}">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'heading' %}
+          <h2 class="text-container__heading {{ section.settings.text_container_heading_styles }}">
+            {{ block.settings.heading }}
+          </h2>
+        {% when 'sub_heading' %}
+          <h3 class="text-container__sub-heading {{ section.settings.text_container_sub_heading_styles }}">
+            {{ block.settings.sub_heading }}
+          </h3>
+        {% when 'paragraph' %}
+          <p class="text-container__paragraph {{ section.settings.text_container_paragraph_styles }}">
+            {{ block.settings.paragraph }}
+          </p>
+        {% when 'button' %}
+          <a
+            href="{{ block.settings.button_link }}"
+            class="text-container__button {{ section.settings.text_container_button_styles }}"
+          >
+            {{ block.settings.button_text }}
+          </a>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video with Text",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Play video on loop",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "controls",
+      "label": "Video Controls",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "mute",
+      "label": "Video Mute",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Or embed video from URL"
+    },
+    {
+      "type": "paragraph",
+      "content": "Shows when no Shopify-hosted video is selected."
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "label": "URL",
+      "info": "Use a YouTube or Vimeo URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_link_video_looping",
+      "label": "Play link video on loop",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Video alt text",
+      "info": "Describe the video for customers using screen readers. [Learn more](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-features#video)"
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes (If Needed)",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "text",
+      "id": "video_text_container_styles",
+      "label": "Video Text Container",
+      "default": "p-4 md:p-8 flex flex-col items-center justify-center md:flex-row"
+    },
+    {
+      "type": "text",
+      "id": "video_container_styles",
+      "label": "Video Container",
+      "default": "w-full md:w-1/2 md:order-1"
+    },
+    {
+      "type": "text",
+      "id": "link_video_container_styles",
+      "label": "Link Video Container",
+      "default": "relative overflow-hidden pb-[56.25%]"
+    },
+    {
+      "type": "text",
+      "id": "youtube-embed_container_styles",
+      "label": "Youtube Link Video Container",
+      "default": "absolute w-full h-full left-0 top-0"
+    },
+    {
+      "type": "text",
+      "id": "vimeo-embed_container_styles",
+      "label": "Vimeo Link Video Container",
+      "default": "absolute w-full h-full left-0 top-0"
+    },
+    {
+      "type": "text",
+      "id": "youtube-iframe_classes",
+      "label": "iFrame Youtube Video Style",
+      "default": "w-full h-full left-0 top-0"
+    },
+    {
+      "type": "text",
+      "id": "vimeo-iframe_classes",
+      "label": "iFrame Vimeo Video Style",
+      "default": "w-full h-full left-0 top-0"
+    },
+    {
+      "type": "text",
+      "id": "video_container_video_styles",
+      "label": "Video",
+      "default": "w-full h-full rounded-lg"
+    },
+    {
+      "type": "text",
+      "id": "text_container_styles",
+      "label": "Text Container",
+      "default": "w-full text-center md:w-1/2 md:order-2 p-4 md:p-8 py-10"
+    },
+    {
+      "type": "text",
+      "id": "text_container_heading_styles",
+      "label": "Heading",
+      "default": "text-2xl md:text-4xl font-bold mb-4"
+    },
+    {
+      "type": "text",
+      "id": "text_container_sub_heading_styles",
+      "label": "Sub Heading",
+      "default": "text-lg md:text-3xl text-gray-700 mb-4"
+    },
+    {
+      "type": "text",
+      "id": "text_container_paragraph_styles",
+      "label": "Paragraph",
+      "default": "text-base md:text-lg text-gray-700 mb-4"
+    },
+    {
+      "type": "text",
+      "id": "text_container_button_styles",
+      "label": "Button",
+      "default": "md:text-lg py-2 px-5 rounded-full border-2 border-slate-400 inline-block"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Heading",
+      "type": "heading",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Heading",
+          "id": "heading",
+          "default": "GEZOND LEVEN"
+        }
+      ]
+    },
+    {
+      "name": "Sub Heading",
+      "type": "sub_heading",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Sub Heading",
+          "id": "sub_heading",
+          "default": "HET GEHEIM ZIT IN JE ROUTINE"
+        }
+      ]
+    },
+    {
+      "name": "Paragraph",
+      "type": "paragraph",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Paragraph",
+          "id": "paragraph",
+          "default": "Elke dag supplementen slikken is best een uitdaging. Maar als he lekkere Yummygums zijn, houd je dat gemakkelijk vol. Plezier in je  outine motiveert om goed voor jezelf te blijven zorgen."
+        }
+      ]
+    },
+    {
+      "name": "Button",
+      "type": "button",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Button Text",
+          "id": "button_text",
+          "default": "Your Button"
+        },
+        {
+          "type": "url",
+          "label": "Button Link",
+          "id": "button_link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video with Text",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "sub_heading"
+        },
+        {
+          "type": "paragraph"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

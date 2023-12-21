@@ -1,0 +1,300 @@
+<div class="collage_class {{ section.settings.collage_class }}">
+  {% if section.settings.heading != blank %}
+    <div class="collage-wrapper-title {{ section.settings.collage-wrapper-title }}">
+        {{ section.settings.heading }}
+    </div>
+  {% endif %}
+  <div class="page-width-styles {{ section.settings.page-width-styles }}">
+    <div class="collage-styles {{ section.settings.collage-styles }} ">
+      {% for block in section.blocks %}
+        <div class="items-container {{ section.settings.items-container }}">
+          {%- assign image_url_width = section.settings.image_url_width -%}
+          {%- assign image_tag_width = section.settings.image_tag_width -%}
+          <div class="collage__item {{ section.settings.collage__item }}">
+            {% case block.type %}
+              {% when 'image' %}
+                <div class="collage-card {{ block.settings.collage-card }}">
+                    {% if block.settings.image %}
+                      {{ block.settings.image | image_url: width: image_url_width | image_tag: width: image_tag_width }}
+                    {% else %}
+                      {{ 'image' | placeholder_svg_tag }}
+                    {% endif %}
+                </div>
+                {% when 'product' %}
+                <div class="product-card {{ block.settings.product-card }}">
+                  {% if block.settings.product %}
+                    {% assign product__image-styles = block.settings.product__image-styles %}
+                    {{ block.settings.product | image_url: width: image_url_width | image_tag: width: image_tag_width, class: product__image-styles }}
+                      <p class="product__title {{ block.settings.product__title }}">{{ block.settings.product.title }}</p>
+                      <p class="product__description {{ block.settings.product__description }}">{{ block.settings.product.description }}</p>
+                      <p class="product__price {{ block.settings.product__price }}">Price: {{ block.settings.product.price | money }}</p>
+                      <p class="product__sku {{ block.settings.product__sku }}">SKU: {{ block.settings.product.sku }}</p>
+                      <!-- Add more product details as needed -->
+                      <a href="{{ block.settings.product.url }}" class="product__button {{ block.settings.product__button }}">Shop Now</a>
+                  {% endif %}
+                </div>
+                {% when 'collection' %}
+                <div class="collection-card {{ block.settings.collection-card }}">
+                    {%- if block.settings.collection != blank -%}
+                      {{ block.settings.collection | image_url: width: image_url_width | image_tag: width: image_tag_width }}
+                    {% else %}
+                      {{ 'image' | placeholder_svg_tag }}
+                    {% endif %}
+                    <div class="collection__title {{ block.settings.collection__title }}">{{ block.settings.collection.title }}</div>
+                    <div class="collection__description {{ block.settings.collection__description }}">{{ block.settings.collection.description }}</div>
+                    <!-- Display collection items or details as needed -->
+                    <a href="{{ block.settings.collection.url }}" class="collection__button {{ block.settings.collection__button }}">
+                      {{- block.settings.collection_text | default: block.settings.collection.title -}}
+                    </a>
+                </div>
+                {% when 'video' %}
+                <div class="video-card {{ block.settings.video-card }}">
+                  {% assign video_image-styles = block.settings.video_image-styles %}
+                  {{ block.settings.cover_image | image_url: width: image_url_width | image_tag: width: image_tag_width, class: video_image-styles }}
+                  <a href="{{ block.settings.video_url }}" class="collage-card__link"></a>
+                </div>
+            {% endcase %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Collage",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Multimedia Collage",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "image_url_width",
+      "label": "Image URL width",
+      "default": "800"
+    },
+    {
+      "type": "text",
+      "id": "image_tag_width",
+      "label": "Image Tag width",
+      "default": "500"
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "collage_class",
+      "label": "Collage Style Section",
+      "default": "bg-slate-100 gradient isolate"
+    },
+    {
+      "type": "textarea",
+      "id": "page-width-styles",
+      "label": "Style Section",
+      "default": "flex-col w-[85%] max-w-screen-xl mx-auto p-2  grid grid-row-3 gap-4"
+    },
+    {
+      "type": "textarea",
+      "id": "collage-wrapper-title",
+      "label": "Title Style Section",
+      "default": "text-4xl px-4 py-4 md:flex-basis-full"
+    },
+    {
+      "type": "textarea",
+      "id": "collage-styles",
+      "label": "Collage Style Section",
+      "default": "flex flex-row flex-wrap justify-between"
+    },
+    {
+      "type": "textarea",
+      "id": "items-container",
+      "label": "Items Container Section",
+      "default": "mt-2"
+    },
+    {
+      "type": "text",
+      "id": "collage__item",
+      "label": "Collage Item Style Section",
+      "default": "flex-row box-border mb-20 w-full"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "collage-card",
+          "label": "Collage Card Style Section",
+          "default": "bg-white border border-gray-300 rounded-lg w-[30vh] overflow-hidden shadow-md"
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "checkbox",
+          "id": "second_image",
+          "default": false,
+          "label": "Second Image"
+        },
+        {
+          "type": "text",
+          "id": "product-card",
+          "label": "Product Card Style Section",
+          "default": "bg-white border border-gray-300 rounded-lg w-[35vh] overflow-hidden shadow-md p-4"
+        },
+        {
+          "type": "text",
+          "id": "product__image-styles",
+          "label": "Image Style Section",
+          "default": "max-w-none"
+        },
+        {
+          "type": "text",
+          "id": "product__title",
+          "label": "Product Title Style Section",
+          "default": "text-xl"
+        },
+        {
+          "type": "text",
+          "id": "product__description",
+          "label": "Product Description Style Section",
+          "default": "text-gray-600 mb-2"
+        },
+        {
+          "type": "text",
+          "id": "product__price",
+          "label": "Product Price Style Section",
+          "default": "text-red-500 mb-2"
+        },
+        {
+          "type": "text",
+          "id": "product__sku",
+          "label": "Product Sku Style Section",
+          "default": "text-gray-500 mb-2"
+        },
+        {
+          "type": "text",
+          "id": "product__button",
+          "label": "Product Button Style Section",
+          "default": "inline-block px-4 py-2 text-base text-center no-underline rounded-md transition duration-300 ease-in-out bg-blue-500 text-white"
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "collection_text",
+          "label": "Collection Display Text",
+          "info": "Defaults to collection name if empty"
+        },
+        {
+          "type": "text",
+          "id": "collection-card",
+          "label": "Collection Card Style Section",
+          "default": "bg-white border border-gray-300 rounded-lg w-[50vh] overflow-hidden shadow-md p-4 max-md:w-[35vh]"
+        },
+        {
+          "type": "text",
+          "id": "collection__title",
+          "label": "Collection Title Style",
+          "default": "text-xl font-semibold"
+        },
+        {
+          "type": "text",
+          "id": "collection__description",
+          "label": "Collection Description Style",
+          "default": "text-lg"
+        },
+        {
+          "type": "text",
+          "id": "collection__button",
+          "label": "Collection Button Style Section",
+          "default": "inline-block px-4 py-2 text-base text-center no-underline rounded-md transition duration-300 ease-in-out bg-green-600 text-white"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Video Cover Image"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "label": "Video URL",
+          "info": "Enter the video URL"
+        },
+        {
+          "type": "text",
+          "id": "video_image-styles",
+          "label": "Image Style Section",
+          "default": "w-[300px] h-[350px]"
+        },
+        {
+          "type": "text",
+          "id": "Video-card",
+          "label": "Video Card Style Section",
+          "default": "bg-white border border-gray-300 rounded-lg w-[30vh] overflow-hidden shadow-md p-4"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Custom Collage",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

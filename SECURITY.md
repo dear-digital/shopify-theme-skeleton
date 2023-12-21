@@ -9,7 +9,7 @@ As we are currently in the initial development phase, the version below is consi
 | 0.1.x   | :white_circle: Under Development |
 | < 0.1   | :x:                |
 
-Please note that security updates will be provided for versions 1.0.0 and above after our expected stable release in December.
+Please note that security updates will be provided for versions 1.0.0 and above after our expected stable release in February 2024.
 
 ## Reporting a Vulnerability
 

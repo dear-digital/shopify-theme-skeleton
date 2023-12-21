@@ -1,17 +1,5 @@
 <!-- dev__multi-column.liquid -->
 
-{%- style -%}
-
-  .multi-column__item {
-
-    & .multi-column__item-img img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover; 
-    }
-}
-{%- endstyle -%}
-
 <div class="multi-column {{ section.settings.multi-column }}">
   <h2 class="{{ section.settings.multi-column__section-title }}">
     {{ section.settings.section_title }}
@@ -21,38 +9,37 @@
     {% for block in section.blocks %}
       <div class="multi-column__item {{ section.settings.multi-column__item }}">
         {% if block.settings.image %}
-        <div class="multi-column__item-img {{ section.settings.multi-column__item-img }}">
-           {{ block.settings.image | image_url : width: 200 | image_tag }}
-        </div>
+          {%- assign image_alt = block.settings.image_alt_text -%}
+          {%- assign image_styles = section.settings.multi-column__style--item-img -%}
+          <div class="multi-column__item-img {{ section.settings.multi-column__item-img }}">
+            {{ block.settings.image | image_url: width: 200 | image_tag: alt: image_alt,
+                class: image_styles }}
+          </div>
         {% endif %}
 
         <h3 class="multi-column__item-title {{ section.settings.multi-column__item-title }}">
           {{ block.settings.column_title }}
         </h3>
-        <p class="multi-column__item-content {{ section.settings.multi-column__item-content }}">  
+        <p class="multi-column__item-content {{ section.settings.multi-column__item-content }}">
           {{ block.settings.column_content }}
         </p>
 
         {% if block.settings.link_label != blank and block.settings.linkUrl != blank %}
-              <a href="{{ block.settings.linkUrl }}" class="multi-column__item-link {{ section.settings.multi-column__item-link }}"> 
-                  {{ block.settings.link_label }}
-              </a>
+          <a
+            href="{{ block.settings.linkUrl }}"
+            class="multi-column__item-link {{ section.settings.multi-column__item-link }}"
+          >
+            {{ block.settings.link_label }}
+          </a>
         {% endif %}
       </div>
-
-     {% assign column_counter = column_counter | plus: 1 %}
-      {% if column_counter == 3 %}
-        {% assign column_counter = 0 %}
-        </div>
-        <div class="multi-column__container {{ section.settings.multi-column__container }}">
-      {% endif %}
     {% endfor %}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Multi-Column",
+  "name": "Multi-Column Display",
   "class": "multi-column",
   "settings": [
     {
@@ -66,49 +53,55 @@
       "content": "Tailwind Styling Classes"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "multi-column",
       "label": "Style Section",
       "default": "w-[90%] mt-5 md:mt-10 mx-auto"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "multi-column__section-title",
       "label": "Style Section Header",
       "default": "md:pb-4 text-2xl md:text-3xl font-semibold"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "multi-column__container",
       "label": "Style Multi-Column Container",
-      "default": "mt-7 md:mt-5 flex flex-col gap-5 md:gap-10 md:flex-row"
+      "default": "mt-7 md:mt-4 flex flex-wrap gap-4 "
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "multi-column__item",
       "label": "Style Multi-Column Item",
       "default": "w-full md:w-[30%] px-2.5 py-2.5 md:px-3.5 md:py-3.5 rounded-[15px] md:rounded-[20px] bg-[#ebe7e7]"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "multi-column__item-img",
-      "label": "Style Column Item Image",
+      "label": "Style Column Item Image Container",
       "default": "w-full h-[150px] md:h-[200px] overflow-hidden rounded-[10px]"
     },
     {
-      "type": "text",
+      "type": "textarea",
+      "label": "Style Column Item Image",
+      "id": "multi-column__style--item-img",
+      "default": "w-full h-full object-cover"
+    },
+    {
+      "type": "textarea",
       "id": "multi-column__item-title",
       "label": "Style Column Title",
       "default": "text-lg md:text-xl mt-2.5 font-medium break-normal"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "multi-column__item-content",
       "label": "Style Column Content",
       "default": "text-sm md:text-base font-light break-normal"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "multi-column__item-link",
       "label": "Style Column Link",
       "default": "text-sm md:text-base font-normal cursor-pointer text-blue-900 hover:text-blue-600 hover:underline"
@@ -138,6 +131,11 @@
         },
         {
           "type": "text",
+          "id": "image_alt_text",
+          "label": "Image Alt Text"
+        },
+        {
+          "type": "text",
           "id": "link_label",
           "label": "Link Label"
         },
@@ -151,7 +149,7 @@
   ],
   "presets": [
     {
-      "name": "Multi-Column",
+      "name": "Multi-Column Content Display",
       "category": "Custom"
     }
   ]

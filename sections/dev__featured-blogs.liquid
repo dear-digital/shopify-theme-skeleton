@@ -1,47 +1,71 @@
 {% assign blog_handle = section.settings.blog %}
 {% assign blog = blogs[blog_handle] %}
 
-<div class="featured-blog">
-  <{{ section.settings.heading_size }} class="featured-blog__heading">
+<div class="featured-blog {{ section.settings.featured_blog_styles }}">
+  <h1 class="featured-blog__heading {{ section.settings.heading_styles }}">
     {{ section.settings.heading }}
-  </{{ section.settings.heading_size }}>
+  </h1>
 
-  <div class="blog-posts" style="columns: {{ section.settings.columns_desktop }};">
+  <div class="blog-posts columns-{{ section.settings.columns_desktop }} {{ section.settings.blog-posts }}">
     {% for article in blog.articles limit: section.settings.post_limit %}
-      <article class="blog-post {{ section.settings.color_scheme }}">
+      <article class="blog-post {{ section.settings.color_scheme }} {{ section.settings.blog_post_styles }}">
         {% if section.settings.show_image and article.image %}
-          {{ article.image | image_url: 'master' | image_tag: article.title }}
+          {% assign blog-post__image_classes = section.settings.blog-post__image %}
+          {{ article.image | image_url: width: 2000 | image_tag: class: blog-post__image_classes }}
         {% endif %}
 
-        <{{ section.settings.article_heading_size }} class="blog-post__title">
+        <h1 class="blog-post__title {{ section.settings.article_title_styles }}">
           {{- article.title -}}
-        </{{ section.settings.article_heading_size }}>
+        </h1>
 
         {% if section.settings.show_date %}
-          <p class="blog-post__date">{{ article.published_at | date: section.settings.date_format }}</p>
+          <p class="blog-post__date {{ section.settings.date_styles }}">
+            {{ article.published_at | date: section.settings.date_format }}
+          </p>
         {% endif %}
 
         {% if section.settings.show_author %}
-          <p class="blog-post__author">{{ article.author.name }}</p>
+          <p class="blog-post__author {{ section.settings.author_styles }}">{{ article.author.name }}</p>
         {% endif %}
 
-        <p class="blog-post__content">
+        <p class="blog-post__content {{ section.settings.content_styles }}">
           {{ article.content | strip_html | truncatewords: section.settings.truncate_words }}
         </p>
-        <a href="{{ article.url }}" class="blog-post__read-more">{{ section.settings.read_more_text }}</a>
+        <a href="{{ article.url }}" class="blog-post__read-more {{ section.settings.read_more_styles }}">
+          {{- section.settings.read_more_text -}}
+        </a>
       </article>
     {% endfor %}
   </div>
 
   {% if section.settings.show_view_all %}
-    <a href="{{ blog.url }}" class="featured-blog__view-all">{{ section.settings.view_all_text }}</a>
+    <a href="{{ blog.url }}" class="featured-blog__view-all {{ section.settings.view_all_styles }}">
+      {{ section.settings.view_all_text }}
+    </a>
   {% endif %}
 </div>
 
 {% schema %}
 {
-  "name": "Featured Blog",
+  "name": "Featured Blogs",
   "settings": [
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "label": "Featured Blog Section Styles",
+      "id": "featured_blog_styles",
+      "default": "mx-6 my-2  md:mx-10 md:my-4 flex flex-col"
+    },
+    {
+      "type": "textarea",
+      "label": "Blog Posts",
+      "id": "blog-posts",
+      "default": "flex flex-col gap-4 md:block md:gap-4"
+    },
     {
       "type": "inline_richtext",
       "id": "heading",
@@ -49,52 +73,16 @@
       "label": "Heading"
     },
     {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h1",
-          "label": "Heading 1"
-        },
-        {
-          "value": "h2",
-          "label": "Heading 2"
-        },
-        {
-          "value": "h3",
-          "label": "Heading 3"
-        },
-        {
-          "value": "h4",
-          "label": "Heading 4"
-        }
-      ],
-      "default": "h1",
-      "label": "Heading Size"
+      "type": "textarea",
+      "label": "Heading Styles",
+      "id": "heading_styles",
+      "default": "text-2xl md:text-3xl font-semibold capitalize mb-4"
     },
     {
-      "type": "select",
-      "id": "article_heading_size",
-      "options": [
-        {
-          "value": "h1",
-          "label": "H1"
-        },
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h3",
-          "label": "H3"
-        },
-        {
-          "value": "h4",
-          "label": "H4"
-        }
-      ],
-      "default": "h2",
-      "label": "Article Title Size"
+      "type": "textarea",
+      "label": "Article Title Styles",
+      "id": "article_title_styles",
+      "default": "font-bold md:text-lg mt-2 md:mt-1"
     },
     {
       "type": "blog",
@@ -155,6 +143,12 @@
       "default": "scheme-1"
     },
     {
+      "type": "textarea",
+      "label": "Blog Post Styles",
+      "id": "blog_post_styles",
+      "default": "bg-gray-100 p-3"
+    },
+    {
       "type": "checkbox",
       "id": "show_image",
       "default": true,
@@ -171,6 +165,42 @@
       "id": "show_author",
       "default": false,
       "label": "Show Author"
+    },
+    {
+      "type": "textarea",
+      "label": "Blog Image Styles",
+      "id": "blog-post__image",
+      "default": "w-full h-[150px] md:h-[200px] object-cover"
+    },
+    {
+      "type": "textarea",
+      "label": "Date Styles",
+      "id": "date_styles",
+      "default": "text-xs md:text-sm"
+    },
+    {
+      "type": "textarea",
+      "label": "Author Styles",
+      "id": "author_styles",
+      "default": "text-sm font-semibold"
+    },
+    {
+      "type": "textarea",
+      "label": "Content Styles",
+      "id": "content_styles",
+      "default": "text-gray-600 mt-2 text-sm md:text-base"
+    },
+    {
+      "type": "textarea",
+      "label": "Read More Link Styles",
+      "id": "read_more_styles",
+      "default": "text-xs md:text-sm underline text-blue-900 hover:text-blue-600"
+    },
+    {
+      "type": "textarea",
+      "label": "View All Link Styles",
+      "id": "view_all_styles",
+      "default": "text-sm md:text-base font-semibold py-1 bg-blue-300 w-fit mx-auto px-2 rounded-lg hover:bg-blue-400 hover:cursor-pointer mt-5"
     },
     {
       "type": "checkbox",
@@ -193,7 +223,7 @@
   ],
   "presets": [
     {
-      "name": "Featured Blog Section"
+      "name": "Featured Blogs Showcase"
     }
   ]
 }

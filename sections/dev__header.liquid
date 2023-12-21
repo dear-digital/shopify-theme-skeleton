@@ -1,64 +1,83 @@
 {{ 'dev__header.css' | asset_url | stylesheet_tag }}
 
-<header class="header">
-    <button class="navbar-toggler" onclick="toggleNavbar()">
-        <span class="navbar-toggler-icon">{% render 'icon-hamburger' %}</span>
-    </button>
-    <div class="logo" id="logo">
-      {% if section.settings.logo != blank %}
-        <a href="#"> 
-            {{ section.settings.logo | image_url: width: 50 | image_tag: width: 30 }}
-        </a>
-      {% endif %}
-    </div>
-    <nav class="navbar" id="navbar">
-        <ul class="navbar__nav-list">  
-            {% for link in section.settings.menu.links %}
-                <li class="navbar__nav-item"> 
-                    <span class="navbar__main-menu"> {{ link.title | link_to: link.url }}  </span>
-                    {% if link.links.size > 0 %}
-                        <ul class="navbar__menu dropdown-child">
-                            {% for child_link in link.links %}
-                                <li class="navbar__menu-link">
-                                    <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-                                    {% if child_link.links.size > 0 %}
-                                        <ul class="navbar__menu dropdown-grandchild">
-                                            {% for grandchild_link in child_link.links %}
-                                                <li class="navbar__sub-menu-link">
-                                                    <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+<header class="header" style="background-color: {{ section.settings.background_color }};">
+  <button class="navbar-toggler" onclick="toggleNavbar()">
+    <span class="navbar-toggler-icon">{% render 'icon-hamburger' %}</span>
+  </button>
+  <div class="logo" id="logo">
+    {% if section.settings.logo != blank %}
+      <a href="#">
+        {%- liquid
+          assign image_url_width = section.settings.image_url_width
+          assign logo_image_styles = section.settings.logo_image_styles
+          assign logo_alt = section.settings.logo.alt | default: shop.name | escape
+          assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio
+        -%}
+        {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
+        {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}
+        {{
+          section.settings.logo
+          | image_url: width: image_url_width
+          | image_tag:
+            widths: widths,
+            height: logo_height,
+            width: section.settings.logo_width,
+            alt: logo_alt,
+            sizes: sizes,
+            class: logo_image_styles,
+            preload: true
+        }}
+      </a>
+    {%- else -%}
+      <span class="h2">{{ shop.name }}</span>
+    {% endif %}
+  </div>
+  <nav class="navbar" id="navbar">
+    <ul class="navbar__nav-list">
+      {% for link in section.settings.menu.links %}
+        <li class="navbar__nav-item">
+          <span class="navbar__main-menu"> {{ link.title | link_to: link.url }} </span>
+          {% if link.links.size > 0 %}
+            <ul class="navbar__menu dropdown-child">
+              {% for child_link in link.links %}
+                <li class="navbar__menu-link">
+                  <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                  {% if child_link.links.size > 0 %}
+                    <ul class="navbar__menu dropdown-grandchild">
+                      {% for grandchild_link in child_link.links %}
+                        <li class="navbar__sub-menu-link">
+                          <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
                 </li>
-            {%- endfor %}
-        </ul>
-    </nav>
-    <div class="actions">
-      {% if section.settings.search == true %}
-        <a href="#"> 
-          {% render 'icon-search' %}
-        </a>
-      {% endif %}
-      {% if section.settings.cart == true %}
-        <a href="#"> 
-            {% render 'icon-cart' %}
-        </a>
-      {% endif %}
-    </div>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+      {%- endfor %}
+    </ul>
+  </nav>
+  <div class="actions">
+    {% if section.settings.search == true %}
+      <a href="#">
+        {% render 'icon-search' %}
+      </a>
+    {% endif %}
+    {% if section.settings.cart == true %}
+      <a href="#">
+        {% render 'icon-cart' %}
+      </a>
+    {% endif %}
+  </div>
 </header>
 
 <script>
-
-function toggleNavbar() {
-    var navbar = document.getElementById("navbar");
-    navbar.classList.toggle("responsive");
-}
-
+  function toggleNavbar() {
+    var navbar = document.getElementById('navbar');
+    navbar.classList.toggle('responsive');
+  }
 </script>
 
 {% schema %}
@@ -70,6 +89,16 @@ function toggleNavbar() {
       "type": "image_picker",
       "id": "logo",
       "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 100,
+      "unit": "px",
+      "label": "Set Logo width"
     },
     {
       "type": "text",
@@ -90,6 +119,27 @@ function toggleNavbar() {
       "type": "checkbox",
       "id": "cart",
       "label": "Enable Cart Icon"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": " Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling"
+    },
+    {
+      "type": "text",
+      "id": "image_url_width",
+      "label": "Image URL width",
+      "default": "500"
+    },
+    {
+      "type": "text",
+      "id": "logo_image_styles",
+      "label": "Logo Image Style Section",
+      "default": "w-full rounded-lg"
     }
   ]
 }
