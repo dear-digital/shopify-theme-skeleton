@@ -1,0 +1,96 @@
+{{ 'slideshow.css' | asset_url | stylesheet_tag }}
+<slideshow-component>
+  <div id="sliderContainer" class="slider-container" >
+    {% for block in section.blocks %}
+      {% assign settings = block.settings %}
+      <div class="hero-slide" style="background-image:url({{ settings.slide_bg | img_url: 'original' }});">
+        <div class="page-width hero-slide-content centered-box">
+          <h2>{{ settings.main_title }}</h2>
+          <p>{{ settings.sub_title }}</p>
+          <a class="slideshow_button" href="{{ settings.slide_url }}">
+            {{ settings.slide_url_text }}
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+    
+    <div id="sliderControls" class="slider-controls">
+      <span id="slideCurrent"></span> / <span id="slideTotal"></span>
+      <span id="prev" class="slider-button prev">
+        {% render 'icon-left-arrow' %}
+      </span>
+      <span id="next" class="slider-button next">
+        {% render 'icon-right-arrow' %}
+      </span>
+    </div>
+  </div>
+</slideshow-component>
+
+<script src="{{ 'slideshow.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "tag": "section",
+  "class": "section",
+  "settings":[
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 3,
+      "max": 9,
+      "step": 1,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide_bg",
+          "label": "Slide Background"
+        },
+        {
+          "type": "text",
+          "id": "main_title",
+          "label": "Slide Title",
+          "default": "Title"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Slide Subtitle",
+          "default": "Subtitle"
+        },
+        {
+          "type": "url",
+          "id": "slide_url",
+          "label": "Slide URL"
+        },
+        {
+          "type": "text",
+          "id": "slide_url_text",
+          "label": "Slide Button Text",
+          "default": "Shop"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "category": "Slider",
+      "blocks": [
+        {
+          "type": "select"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

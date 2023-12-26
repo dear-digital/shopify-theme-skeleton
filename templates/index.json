@@ -13,9 +13,26 @@
         "simple-cta__description": "text-gray-600 mb-4",
         "simple-cta__button": "inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
       }
+    },
+    "1703136243197f9627": {
+      "type": "apps",
+      "blocks": {
+        "7c450dac-4942-4fac-a28c-0a5a89d540f9": {
+          "type": "shopify:\/\/apps\/powr-image-slider\/blocks\/app-block\/db02efbb-fd06-4a97-88f3-663cfa9effba",
+          "settings": {
+            "app_id": "4d89ddd8_1703135906"
+          }
+        }
+      },
+      "block_order": [
+        "7c450dac-4942-4fac-a28c-0a5a89d540f9"
+      ],
+      "settings": {
+      }
     }
   },
   "order": [
-    "00f180cc-37f9-4ca3-b4c4-fda0760014c8"
+    "00f180cc-37f9-4ca3-b4c4-fda0760014c8",
+    "1703136243197f9627"
   ]
 }
