@@ -27,3 +27,5 @@ Contributors can progress through different levels based on points accumulated, 
 
 ## Conclusion
 Our new rewards system is a testament to our commitment to an inclusive, equitable community of contributors. We value your contributions and look forward to your continued involvement in the Skeleton Shopify Theme project.
+
+<sub>Note: The updated rewards system will not apply to issues numbered 1 through 227.</sub>
