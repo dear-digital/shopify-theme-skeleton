@@ -1,0 +1,37 @@
+<div class="{{ block.settings.tailwindbutton }}">
+  {%- if block.settings.button_label != blank -%}
+    <a href="{{ block.settings.button_link }}">
+      {{- block.settings.button_label | escape -}}
+    </a>
+  {%- endif -%}
+</div>
+
+{% schema %}
+ {
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Button label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind Styling Classes"
+        },
+        {
+          "type": "textarea",
+          "id": "tailwindbutton",
+          "label": "Style Button",
+          "default": "w-[150px] items-center mt-2 px-3 py-2 text-xs md:text-sm font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-900 mx-auto"
+        }
+      ],
+    "presets": [{"name": "Button preset"}]
+    }
+{% endschema %}
