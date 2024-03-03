@@ -5,14 +5,14 @@
     {% for block in section.blocks %}
       <div class="logo-carousel__item {{ section.settings.logo_carousel_item_styles }}">
         {% if block.settings.logo %}
-          {{ block.settings.logo | img_url: 'master' | img_tag: class: 'logo-carousel__image' }}
+          {{ block.settings.logo | image_url: 'master' | image_tag: class: 'logo-carousel__image' }}
         {% endif %}
       </div>
     {% endfor %}
     {% for block in section.blocks %}
       <div class="logo-carousel__item {{ section.settings.logo_carousel_item_styles }}">
         {% if block.settings.logo %}
-          {{ block.settings.logo | img_url: 'master' | img_tag: class: 'logo-carousel__image' }}
+          {{ block.settings.logo | image_url: 'master' | image_tag: class: 'logo-carousel__image' }}
         {% endif %}
       </div>
     {% endfor %}
@@ -40,57 +40,57 @@
 </script>
 
 {% schema %}
-  {
-    "name": "Logo Carousel",
-    "class": "shopify-brand-carousel",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Apply Tailwind CSS Classes",
-        "info": "Note: Insert classes with space between them."
-      },
-      {
-        "type": "textarea",
-        "label": "Logo Carousel Container",
-        "id": "logo_carousel_styles",
-        "default": "p-6 relative m-auto md:w-3/4 overflow-hidden bg-white before:absolute before:left-0 before:top-0 before:z-[2] before:h-full before:w-[100px] before:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] before:content-[''] after:absolute after:right-0 after:top-0 after:z-[2] after:h-full after:w-[100px] after:-scale-x-100 after:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] after:content-['']"
-      },
-      {
-        "type": "textarea",
-        "label": "Logo Carousel Wrapper",
-        "id": "logo_carousel_wrapper_styles",
-        "default": "animate-infinite-slider flex gap-5 w-[calc(250px*10)]"
-      },
-      {
-        "type": "textarea",
-        "label": "Logo Carousel Item",
-        "id": "logo_carousel_item_styles",
-        "default": "slide flex w-[125px] items-center justify-center"
-      },
-      {
-        "type": "textarea",
-        "label": "Logo Carousel Image Styles",
-        "id": "logo_carousel_image_styles"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "image",
-        "name": "Logo",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "logo",
-            "label": "Logo",
-            "info": "Select the logo"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Logo Carousel"
-      }
-    ]
-  }
+{
+  "name": "Logo Carousel",
+  "class": "shopify-brand-carousel",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "label": "Logo Carousel Container",
+      "id": "logo_carousel_styles",
+      "default": "p-6 relative m-auto md:w-3/4 overflow-hidden bg-white before:absolute before:left-0 before:top-0 before:z-[2] before:h-full before:w-[100px] before:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] before:content-[''] after:absolute after:right-0 after:top-0 after:z-[2] after:h-full after:w-[100px] after:-scale-x-100 after:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] after:content-['']"
+    },
+    {
+      "type": "textarea",
+      "label": "Logo Carousel Wrapper",
+      "id": "logo_carousel_wrapper_styles",
+      "default": "animate-infinite-slider flex gap-5 w-[calc(250px*10)]"
+    },
+    {
+      "type": "textarea",
+      "label": "Logo Carousel Item",
+      "id": "logo_carousel_item_styles",
+      "default": "slide flex w-[125px] items-center justify-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Logo Carousel Image Styles",
+      "id": "logo_carousel_image_styles"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo",
+          "info": "Select the logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo Carousel"
+    }
+  ]
+}
 {% endschema %}
