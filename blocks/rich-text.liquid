@@ -1,0 +1,58 @@
+<!-- Block: Rich Text -->
+<div class="rich-text {{ block.settings.rich-text_div }}">
+  <div class="rich-text__blocks">
+    <div class="rich-text__heading {{ block.settings.tailwindheader }}">
+      {{ block.settings.heading }}
+    </div>
+    <div class="rich-text__text {{ block.settings.tailwindtext }}">
+      {{ block.settings.text }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Rich Text Block",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Talk about your brand",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Share information about your brand with your customers</p>",
+      "label": "Text"
+    },
+    {
+      "type": "header",
+      "content": "Tailwing Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "rich-text_div",
+      "label": "Style Header Container",
+      "default": "px-5 py-5 text-center"
+    },
+    {
+      "type": "textarea",
+      "id": "tailwindheader",
+      "label": "Style Header Container",
+      "default": "text-2xl font-bold text-gray-900 px-3 py-2 capitalize"
+    },
+    {
+      "type": "textarea",
+      "id": "tailwindtext",
+      "label": "Style Text Container",
+      "default": "text-base md:text-xl text-gray-700 px-3 py-2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text"
+    }
+  ]
+}
+{% endschema %}
