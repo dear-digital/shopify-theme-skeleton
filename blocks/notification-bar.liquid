@@ -1,0 +1,111 @@
+{%- style -%}
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+{%- endstyle -%}
+
+<div class="flex items-center justify-center {{ block.settings.notification }}">
+  {% if block.settings.notification_text != blank %}
+    <div class="{{ block.settings.notification__simple_texts_div }}">
+      <div class="{{ block.settings.notification__style_bold_text }}">
+        {% if block.settings.bold_text != blank and block.settings.linkUrl != blank %}
+            <a href="{{ block.settings.linkUrl }}" target="_blank">
+                {{ block.settings.bold_text }}
+            </a>
+        {% endif %}
+    </div>
+    <p class="{{ block.settings.notification__style_text }}">
+        <span class="blinking_circle {{ block.settings.notification__blinking_circle }}"></span>
+        {{ block.settings.notification_text }}
+      </p>
+
+      {% if block.settings.sub_notification_text != blank %}
+        <p class="{{ block.settings.notification__style_sub_text }}">
+          {{ block.settings.sub_notification_text }}
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Notification Bar Block",
+  "settings": [
+    {
+      "type": "text",
+      "id": "notification_text",
+      "label": "Notification Text",
+      "default": "Limited Time Offer"
+    },
+    {
+      "type": "text",
+      "id": "sub_notification_text",
+      "label": "Sub Notification Text",
+      "default": "60% Off for 6 Months"
+    },
+    {
+      "type": "text",
+      "id": "bold_text",
+      "label": "Bold Text",
+      "default": "Buy Now and Save"
+    },
+    {
+      "type": "url",
+      "id": "linkUrl",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "notification",
+      "label": "Style Notification Container",
+      "default": "bg-purple-900 text-white py-2 gap-1"
+    },
+    {
+      "type": "textarea",
+      "id": "notification__blinking_circle",
+      "label": "Style Blinking Circle",
+      "default": "inline-block h-2 w-2 md:h-3 md:w-3 bg-purple-300 rounded-full mr-1 animate-[blink_1s_infinite]"
+    },
+    {
+      "type": "textarea",
+      "id": "notification__simple_texts_div",
+      "label": "Style Simple Text Div",
+      "default": "leading-1 md:leading-5 pointer-events-none mr-2 md:mr-4 text-center"
+    },
+    {
+      "type": "textarea",
+      "id": "notification__style_text",
+      "label": "Style Notification Text",
+      "default": "text-sm md:text-base"
+    },
+    {
+      "type": "textarea",
+      "id": "notification__style_sub_text",
+      "label": "Style Notification Sub Text",
+      "default": "text-xs md:text-sm font-semibold"
+    },
+    {
+      "type": "textarea",
+      "id": "notification__style_bold_text",
+      "label": "Style Notification Bold Text",
+      "default": "text-sm md:text-xl font-bold underline hover:text-gray-300 uppercase"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Notification Bar Block"
+    }
+  ]
+}
+{% endschema %}
