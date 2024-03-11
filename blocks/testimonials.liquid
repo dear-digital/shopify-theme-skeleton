@@ -1,0 +1,147 @@
+<!-- Testimonials Block -->
+<div class="testimonial-container {{ block.settings.testimonials_container_styles }}">
+  <div class="testimonial-grid {{ block.settings.testimonials_grid_styles }}">
+    <blockquote class="testimonial-block {{ block.settings.testimonials_block_styles }}">
+      <div class="testimonial-content {{ block.settings.testimonials_content_styles }}">
+        {% if block.settings.testimonial_image %}
+          {{
+            block.settings.testimonial_image
+            | image_url: width: block.settings.image_width, height: block.settings.image_height
+            | image_tag: class: block.settings.testimonials_image_styles
+          }}
+        {% endif %}
+
+        <div class="testimonial-info {{ block.settings.testimonials_info_styles }}">
+          <div class="star-rating {{ block.settings.star_rating_styles }}">
+            {% for i in (1..block.settings.testimonial_rating) %}
+              {% render 'icon-star' %}
+            {% endfor %}
+          </div>
+
+          <p class="testimonial-author {{ block.settings.testimonial_author_styles }}">
+            {{ block.settings.testimonial_author }}
+          </p>
+        </div>
+      </div>
+
+      <p class="testimonial-text {{ block.settings.testimonial_text_styles }}">
+        {{ block.settings.testimonial_text }}
+      </p>
+    </blockquote>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials Block",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "testimonial_image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "testimonial_rating",
+      "label": "Rating",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "testimonial_author",
+      "label": "Author",
+      "default": "Paul Starr"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_text",
+      "label": "Paragraph",
+      "default": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius accusamus error officiis atque voluptates magnam!"
+    },
+    {
+      "type": "number",
+      "id": "image_width",
+      "label": "Image Width",
+      "default": 56
+    },
+    {
+      "type": "number",
+      "id": "image_height",
+      "label": "Image Height",
+      "default": 56
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes (If Needed)",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "id": "testimonials_container_styles",
+      "label": "Testimonial Container",
+      "default": "bg-white mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 "
+    },
+    {
+      "type": "textarea",
+      "id": "testimonials_grid_styles",
+      "label": "Testimonial Grid",
+      "default": "mt-8 grid grid-cols-1 gap-4 md:gap-8"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonials_block_styles",
+      "label": "Testimonial Block",
+      "default": "rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8 md:flex md:gap-8"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonials_content_styles",
+      "label": "Testimonial Content",
+      "default": "flex md:basis-1/5 items-center gap-4"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonials_image_styles",
+      "label": "Testimonial Image",
+      "default": "rounded-full object-cover"
+    },
+    {
+      "type": "text",
+      "id": "testimonials_info_styles",
+      "label": "Testimonial Info"
+    },
+    {
+      "type": "text",
+      "id": "star_rating_styles",
+      "label": "Star Rating",
+      "default": "flex justify-center gap-0.5 text-green-500"
+    },
+    {
+      "type": "text",
+      "id": "star_svg_styles",
+      "label": "SVG",
+      "default": "h-5 w-5"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_author_styles",
+      "label": "Testimonial Author",
+      "default": "mt-0.5 text-lg font-medium text-gray-900"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_text_styles",
+      "label": "Testimonial Text",
+      "default": "mt-4 md:basis-3/5 text-gray-700"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Block"
+    }
+  ]
+}
+{% endschema %}
