@@ -1,0 +1,95 @@
+<div class="image-text-overlay-container {{ section.settings.image-text-overlay-container }}">
+    {%- assign image_url_width = section.settings.image_url_width -%}
+    {%- assign image_tag_styles_class = section.settings.image-text-overlay-image-tag -%}
+    {% if section.settings.image %}
+        {{ section.settings.image | image_url: width: image_url_width | image_tag: class: image_tag_styles_class }}
+    {% else %}
+        {{ 'product-1' | placeholder_svg_tag }}
+    {% endif %}
+  
+  <div class="image-text-overlay-content {{ section.settings.image-text-overlay-content }}">
+    <h2 class="image-text-overlay-title {{ section.settings.image-text-overlay-title }}">
+    {{ section.settings.main_title }}
+    </h2>
+    <div class="image-text-overlay-description {{ section.settings.image-text-overlay-description }}">
+    <p>{{ section.settings.content }}</p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image with Text Overlay",
+  "settings": [
+    {
+      "type": "textarea",
+      "label": "Main Title",
+      "id": "main_title",
+      "default": "Shopify developer documentation"
+    },
+    {
+      "type": "textarea",
+      "label": "Content",
+      "id": "content",
+      "default": "Learn how to build an app, theme, custom storefront, or marketplace. Whether you’re just getting started, deep in the development process, or ready to distribute and monetize your work, Shopify’s docs, dev tools and frameworks make building easy and efficient."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Add a Image"
+    },
+    {
+      "type": "text",
+      "label": "Image Alt Text",
+      "id": "alt_text",
+      "default": "Image Alt Text"
+    },
+    {
+      "type": "text",
+      "id": "image_url_width",
+      "label": "Image URL width",
+      "default": "1000"
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "image-text-overlay-container",
+      "label": "Image Text Container",
+      "default": "relative h-[300px] md:h-[500px]"
+    },
+    {
+      "type": "textarea",
+      "id": "image-text-overlay-image-tag",
+      "label": "Overlay Image Style",
+      "default": "h-full w-full object-cover"
+    },
+    {
+      "type": "textarea",
+      "id": "image-text-overlay-content",
+      "label": "Image Content Style",
+      "default": "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+    },
+    {
+      "type": "textarea",
+      "id": "image-text-overlay-title",
+      "label": "Title Style",
+      "default": "text-6xl text-gray-700 font-bold mb-10 max-md:text-4xl max-md:mb-2"
+    },
+    {
+      "type": "textarea",
+      "id": "image-text-overlay-description",
+      "label": "Description Style",
+      "default": "text-lg text-gray-600 mb-5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with Text Overlay",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
