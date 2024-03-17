@@ -33,14 +33,14 @@
         data-category="{{ block.settings.category | handle }}"
       >
         <div class="featured-collection__card-img {{ block.settings.featured-collection__card-img }}">
-          {%- assign image_url_width = section.settings.image_url_width -%}
-          {%- assign image_tag_width = section.settings.image_tag_width -%}
+          {%- assign image_url_width = block.settings.image_url_width -%}
+          {%- assign image_url_height = block.settings.image_url_height -%}
           <div class="featured-collection__card-img_tag {{ block.settings.featured-collection__card-img_tag }}">
             {% if block.settings.image != blank %}
               {{
                 block.settings.image
-                | image_url: width: image_url_width
-                | image_tag: width: image_tag_width, loading: 'lazy'
+                | image_url: width: image_url_width, height: image_url_height
+                | image_tag: class: block.settings.featured-collection_image_styles
               }}
             {% else %}
               {{ 'image' | placeholder_svg_tag }}
@@ -239,9 +239,15 @@
         },
         {
           "type": "text",
-          "id": "image_tag_width",
-          "label": "Image Tag width",
+          "id": "image_url_height",
+          "label": "Image URL height",
           "default": "300"
+        },
+        {
+          "type":"textarea",
+          "id": "featured-collection_image_styles",
+          "label": "Block Image Styles",
+          "default": "rounded-full object-cover"
         },
         {
           "type": "header",
