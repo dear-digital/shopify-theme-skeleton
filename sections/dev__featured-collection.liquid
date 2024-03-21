@@ -176,13 +176,13 @@
       "type": "textarea",
       "id": "featured-collection__tab-link",
       "label": "Single Category Tab Style",
-      "default": "inline-block px-4 py-2 m-1 border border-gray-300 rounded bg-gray-100 text-sm text-center text-gray-700 transition duration-300 hover:bg-gray-300 focus:bg-gray-200 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 max-md:text-xs max-md:flex-grow max-md:overflow-hidden max-md:whitespace-nowrap max-md:overflow-ellipsis mdmax-:px-2 max-md:py-1"
+      "default": "inline-block px-4 py-2 m-1 border border-gray-300 rounded-full bg-gray-100 text-sm text-center text-gray-700 transition duration-300 hover:bg-gray-300 focus:bg-gray-200 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 max-md:text-xs max-md:flex-grow max-md:overflow-hidden max-md:whitespace-nowrap max-md:overflow-ellipsis max-md:px-2 max-md:py-1"
     },
     {
       "type": "textarea",
       "id": "featured-collection__product-container",
       "label": "Product Container Style",
-      "default": "flex overflow-x-auto flex-nowrap justify-start items-stretch mx-auto my-0 pb-[30px] [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-track]:bg-gray-300 [&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb:hover]:bg-gray-900"
+      "default": "flex overflow-x-auto flex-nowrap justify-start items-stretch mx-auto my-0 pb-[30px] [&::-webkit-scrollbar]:h-[2px] [&::-webkit-scrollbar-track]:bg-gray-300 [&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb:hover]:bg-gray-900"
     }
   ],
   "blocks": [
@@ -257,7 +257,7 @@
           "type": "textarea",
           "id": "featured-collection__product-card",
           "label": "Product Card Style",
-          "default": "flex-none w-72 min-w-200 mx-10 shadow-lg rounded-lg bg-white text-left relative overflow-hidden text-black"
+          "default": "flex-none w-72 max-md:w-60 min-w-200 mx-10 shadow-lg rounded-[20px] bg-white text-left relative overflow-hidden text-black"
         },
         {
           "type": "textarea",
@@ -275,19 +275,19 @@
           "type": "textarea",
           "id": "featured-collection__deal-tag",
           "label": "Deal Tag Style",
-          "default": "absolute top-2 left-2 bg-yellow-500 text-xs px-2 py-1 rounded font-bold text-gray-700"
+          "default": "absolute top-2 left-2 bg-yellow-500 text-xs px-2 py-1 rounded-full font-extrabold text-white tracking-wider"
         },
         {
           "type": "textarea",
           "id": "featured-collection__category",
           "label": "Category Css Style",
-          "default": "my-3 px-3 py-2 border border-gray-300 rounded-full inline-block uppercase text-xs font-semibold"
+          "default": "my-3 px-3 py-1 ml-1 border-2 border-blue-600 rounded-full inline-block uppercase text-xs font-bold ml-3"
         },
         {
           "type": "text",
           "id": "featured-collection__title",
           "label": "Title Style",
-          "default": "ml-3 text-2xl text-gray-700"
+          "default": "ml-3 text-2xl text-gray-700 font-bold"
         },
         {
           "type": "text",
@@ -299,7 +299,7 @@
           "type": "text",
           "id": "featured-collection__price",
           "label": "Price Style",
-          "default": "ml-3 font-bold text-black"
+          "default": "ml-3 font-bold text-black mb-5 text-xl"
         },
         {
           "type": "text",
