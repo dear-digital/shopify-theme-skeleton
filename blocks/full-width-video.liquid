@@ -1,0 +1,87 @@
+<!-- blocks/dev__video.liquid -->
+<div class="{{ block.settings.video_block_container }}">
+  <div class="{{ block.settings.video_container }}">
+    {%- if block.settings.video -%}
+      {{
+        block.settings.video
+        | video_tag:
+          image_size: '1100x',
+          autoplay: block.settings.autoplay_video,
+          controls: block.settings.controls,
+          muted: block.settings.mute,
+          loop: block.settings.enable_video_looping,
+          class: block.settings.video_styling 
+      }}
+    {%- else -%}
+        <div class="text-center font-bold uppercase mt-10">
+            No Video Added Yet
+        </div>
+    {%- endif -%}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Full Width Video",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+     {
+      "type": "checkbox",
+      "id": "autoplay_video",
+      "label": "Auto Play Video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Play video on loop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "controls",
+      "label": "Video Controls",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "mute",
+      "label": "Video Mute",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Tailwind CSS Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "video_block_container",
+      "label": "Video block Container",
+      "default": "relative w-full h-screen overflow-hidden"
+    },
+    {
+      "type": "textarea",
+      "id": "video_container",
+      "label": "Video Container  ",
+      "default": "absolute top-0 left-0 w-full h-full"
+    },
+    {
+      "type": "textarea",
+      "id": "video_styling",
+      "label": "Video Styling",
+      "default": "object-cover"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Full Width Video Block"
+    }
+  ]
+}
+
+{% endschema %}
