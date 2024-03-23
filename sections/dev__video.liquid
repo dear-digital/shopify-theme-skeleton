@@ -1,0 +1,153 @@
+<!-- sections/dev__video.liquid -->
+<div class="{{ section.settings.video_section_container }}">
+  <div class="{{ section.settings.video_container }}">
+    {%- if section.settings.video -%}
+      {{
+        section.settings.video
+        | video_tag:
+          image_size: '1100x',
+          autoplay: section.settings.autoplay_video,
+          controls: section.settings.controls,
+          muted: section.settings.mute,
+          loop: section.settings.enable_video_looping,
+          class: section.settings.video_styling 
+      }}
+    {%- else -%}
+      {%- liquid
+        assign loop = ''
+        if section.settings.enable_link_video_looping
+          assign loop = '&loop=1'
+        endif
+      -%}
+      {%- if section.settings.video_url.type == 'youtube' -%}
+        <div class="{{ section.settings.url_video_container }}">
+          <iframe
+            class="{{ section.settings.url_video }}"
+            src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1{{ loop }}"
+            allowfullscreen
+            title="{{ section.settings.description | escape }}"
+          ></iframe>
+        </div>
+      {%- else -%}
+        <div class="{{ section.settings.url_video_container }}">
+          <iframe
+            class="{{ section.settings.url_video }}"
+            src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autoplay=1{{ loop }}"
+            allowfullscreen
+            title="{{ section.settings.description | escape }}"
+          ></iframe>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Fullscreen Video",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+     {
+      "type": "checkbox",
+      "id": "autoplay_video",
+      "label": "Auto Play Video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Play video on loop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "controls",
+      "label": "Video Controls",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "mute",
+      "label": "Video Mute",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Settings for Embedded video from URL"
+    },
+    {
+      "type": "paragraph",
+      "content": "Shows when no Shopify-hosted video is selected. Allowed URLs from [ YouTube, Vimeo ]"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "label": "URL",
+      "info": "Use a YouTube or Vimeo URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_link_video_looping",
+      "label": "Play URL video on loop",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Video alt text",
+      "info": "Describe the video for customers using screen readers. [Learn more](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-features#video)"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind CSS Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "video_section_container",
+      "label": "Video Section Container",
+      "default": "relative w-full h-screen overflow-hidden"
+    },
+    {
+      "type": "textarea",
+      "id": "video_container",
+      "label": "Video Container  ",
+      "default": "absolute top-0 left-0 w-full h-full"
+    },
+    {
+      "type": "textarea",
+      "id": "video_styling",
+      "label": "Video Styling",
+      "default": "object-cover"
+    },
+    {
+      "type": "textarea",
+      "id": "url_video_container",
+      "label": "URL Video Container",
+      "default": "relative w-full h-full"
+    },
+    {
+      "type": "textarea",
+      "id": "url_video",
+      "label": "URL Video Iframe",
+      "default": "absolute top-0 left-0 w-full h-full"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fullscreen Video",
+      "category": "Custom"
+    }
+  ]
+}
+
+{% endschema %}
