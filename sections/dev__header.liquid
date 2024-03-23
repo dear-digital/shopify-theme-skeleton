@@ -1,10 +1,10 @@
-{{ 'dev__header.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'dev__header.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
-<header class="header" style="background-color: {{ section.settings.background_color }};">
-  <button class="navbar-toggler" onclick="toggleNavbar()">
-    <span class="navbar-toggler-icon">{% render 'icon-hamburger' %}</span>
+<header class="header_classes {{ section.settings.header_classes }}" style="background-color: {{ section.settings.background_color }};">
+  <button class="navbar-toggler_classes {{ section.settings.navbar-toggler_classes }}" onclick="toggleNavbar()">
+    <span class="navbar-toggler-icon_classes {{ section.settings.navbar-toggler-icon_classes }}">{% render 'icon-hamburger' %}</span>
   </button>
-  <div class="logo" id="logo">
+  <div class="logo_classes {{ section.settings.logo_classes }}" id="logo">
     {% if section.settings.logo != blank %}
       <a href="#">
         {%- liquid
@@ -29,24 +29,24 @@
         }}
       </a>
     {%- else -%}
-      <span class="h2">{{ shop.name }}</span>
+      <span class="shop-name_classes {{ section.settings.shop-name_classes }}">{{ shop.name }}</span>
     {% endif %}
   </div>
-  <nav class="navbar" id="navbar">
-    <ul class="navbar__nav-list">
+  <nav class="navbar_classes {{ section.settings.navbar_classes }}" id="navbar">
+    <ul class="navbar__nav-list_classes {{ section.settings.navbar__nav-list_classes }}">
       {% for link in section.settings.menu.links %}
-        <li class="navbar__nav-item">
-          <span class="navbar__main-menu"> {{ link.title | link_to: link.url }} </span>
+        <li class="navbar__nav-item_classes {{ section.settings.navbar__nav-item_classes }}">
+          <span class="navbar__main-menu_classes {{ section.settings.navbar__main-menu_classes }}"> {{ link.title | link_to: link.url }} </span>
           {% if link.links.size > 0 %}
-            <ul class="navbar__menu dropdown-child">
+            <ul class="navbar__menu_classes dropdown-child_classes {{ section.settings.dropdown-child_classes }}">
               {% for child_link in link.links %}
-                <li class="navbar__menu-link">
-                  <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                <li class="navbar__menu-link_classes {{ section.settings.navbar__menu-link_classes }}">
+                  <a class="navbar-anchor-tag_classes {{ section.settings.navbar-anchor-tag_classes }}" href="{{ child_link.url }}">{{ child_link.title }}</a>
                   {% if child_link.links.size > 0 %}
-                    <ul class="navbar__menu dropdown-grandchild">
+                    <ul class="navbar__menu_classes dropdown-grandchild_classes {{ section.settings.dropdown-grandchild_classes }}">
                       {% for grandchild_link in child_link.links %}
-                        <li class="navbar__sub-menu-link">
-                          <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                        <li class="navbar__sub-menu-link_classes {{ section.settings.navbar__sub-menu-link_classes }}">
+                          <a class="navbar-anchor-tag_classes {{ section.settings.navbar-anchor-tag_classes }}" href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
                         </li>
                       {% endfor %}
                     </ul>
@@ -59,14 +59,14 @@
       {%- endfor %}
     </ul>
   </nav>
-  <div class="actions">
+  <div class="actions_classes">
     {% if section.settings.search == true %}
-      <a href="#">
+      <a class="actions-anchor_classes {{ section.settings.actions-anchor_classes }}" href="#">
         {% render 'icon-search' %}
       </a>
     {% endif %}
     {% if section.settings.cart == true %}
-      <a href="#">
+      <a class="actions-anchor_classes {{ section.settings.actions-anchor_classes }}" href="#">
         {% render 'icon-cart' %}
       </a>
     {% endif %}
@@ -140,6 +140,102 @@
       "id": "logo_image_styles",
       "label": "Logo Image Style Section",
       "default": "w-full rounded-lg"
+    },
+    {
+      "type": "text",
+      "id": "header_classes",
+      "label": "Header Section Style",
+      "default": "flex justify-between items-center bg-[rgb(217,218,220)] px-[30px] py-[15px]"
+    },
+    {
+      "type": "text",
+      "id": "navbar-toggler_classes",
+      "label": "Navbar Toggler Style",
+      "default": "hidden cursor-pointer border-[none] background: none"
+    },
+    {
+      "type": "text",
+      "id": "navbar-toggler-icon_classes",
+      "label": "Navbar Toggler Icon Style",
+      "default": "text-2xl"
+    },
+    {
+      "type": "text",
+      "id": "logo_classes",
+      "label": "Logo Style",
+      "default": "w-[200px] flex items-center"
+    },
+    {
+      "type": "text",
+      "id": "shop-name_classes",
+      "label": "Shop Name Style",
+      "default": "font-semibold"
+    },
+    {
+      "type": "text",
+      "id": "navbar_classes",
+      "label": "Navbar Style",
+      "default": "w-6/12"
+    },
+    {
+      "type": "text",
+      "id": "navbar-anchor-tag_classes",
+      "label": "Navbar Anchor Tag Style",
+      "default": "text-inherit no-underline"
+    },
+    {
+      "type": "text",
+      "id": "navbar__nav-list_classes",
+      "label": "Navbar List Style",
+      "default": "flex justify-between items-center m-0 px-2.5 py-0 underline"
+    },
+    {
+      "type": "text",
+      "id": "navbar__nav-item_classes",
+      "label": "Navbar Item Style",
+      "default": "relative w-[200px] mr-[15px] hover:block hover:min-w-[200px]"
+    },
+    {
+      "type": "text",
+      "id": "navbar__main-menu_classes",
+      "label": "Navbar Main Menu Style",
+      "default": "hover:underline"
+    },
+    {
+      "type": "text",
+      "id": "dropdown-child_classes",
+      "label": "Dropdown Child Style",
+      "default": "bg-white shadow-[0_4px_8px_rgba(0,0,0,0.2)] rounded border border-solid border-[#ddd] hidden absolute z-[100] min-w-full left-0 top-full hover:block hover:ml-0 hover:-mt-px hover:left-full hover:top-0"
+    },
+    {
+      "type": "text",
+      "id": "navbar__menu-link_classes",
+      "label": "Navbar Menu Link Style",
+      "default": "block transition-[background-color] duration-[0.3s] ease-[ease] pl-[3px] pr-0 pt-2.5 pb-0 hover:bg-[#f0f0f0]"
+    },
+    {
+      "type": "text",
+      "id": "dropdown-grandchild_classes",
+      "label": "Dropdown Grand Child Style",
+      "default": "hidden min-w-[150px] z-[1000] left-full top-0 block ml-0 -mt-px "
+    },
+    {
+      "type": "text",
+      "id": "navbar__sub-menu-link_classes",
+      "label": "Navbar Sub Menu Link Style",
+      "default": "text-sm w-full ml-1.5 mr-0 mt-2.5 mb-0"
+    },
+    {
+      "type": "text",
+      "id": "action_classes",
+      "label": "Action Style",
+      "default": "w-[200px] flex justify-evenly"
+    },
+    {
+      "type": "text",
+      "id": "action-anchor_classes",
+      "label": "Action Anchor Style",
+      "default": "flex items-center m-0 p-0"
     }
   ]
 }
