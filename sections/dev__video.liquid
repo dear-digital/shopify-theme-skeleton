@@ -1,7 +1,6 @@
 <!-- sections/dev__video.liquid -->
 
 <div class="{{ section.settings.video_section_container }}">
-  <div class="{{ section.settings.video_container }}">
     {%- if section.settings.video -%}
       {{
         section.settings.video
@@ -14,11 +13,10 @@
           class: section.settings.video_styling 
       }}
     {%- else -%}
-        <div class="text-center font-bold uppercase mt-10">
+        <div class="{{ section.settings.no_video_text }}">
             No Video Added Yet
         </div>
     {%- endif -%}
-  </div>
 </div>
 
 
@@ -63,19 +61,19 @@
       "type": "textarea",
       "id": "video_section_container",
       "label": "Video Section Container",
-      "default": "relative w-full h-screen overflow-hidden"
-    },
-    {
-      "type": "textarea",
-      "id": "video_container",
-      "label": "Video Container  ",
-      "default": "absolute top-0 left-0 w-full h-full"
+      "default": "w-full"
     },
     {
       "type": "textarea",
       "id": "video_styling",
       "label": "Video Styling",
-      "default": "object-cover"
+      "default": "w-full"
+    },
+    {
+      "type": "textarea",
+      "id": "no_video_text",
+      "label": "No Video Text Styling",
+      "default": "text-center font-bold uppercase my-10"
     }
   ],
   "presets": [
