@@ -84,6 +84,10 @@
       {% section 'dev__modal' %}
     {% endif %}
 
+    {% if settings.initial_modalWithImage_enabled and template == 'index' %}
+      {% section 'dev__modal-image' %}
+    {% endif %}
+
     {% comment %}
       {% section 'dev__announcement-bar' %}
       {% section 'dev__header' %}
