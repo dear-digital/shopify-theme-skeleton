@@ -1,7 +1,6 @@
 <!-- modal-image.liquid -->
-
+<div id="modal_window">
 <div class="modal-dark-overlay {{ section.settings.style_modal-dark-overlay }}"></div>
-
 <div class="modal-container {{ section.settings.style_modal-container }}">
   <div class="modal {{ section.settings.style_modal }}">
     <div class="modal-img {{ section.settings.modal-img }}">
@@ -19,7 +18,7 @@
         {% endif %}
       </div>
     </div>
-    <button id="closeModal" class="close {{ section.settings.style_close }}">{% render 'icon-cross' %}</button>
+    <button id="closeModal" class="close {{ section.settings.style_close }}" onclick="document.getElementById('modal_window').style.display='none'">{% render 'icon-cross' %}</button>
     <div class="modal-content {{ section.settings.modal-content }}">
       <div class="modal-offers {{ section.settings.modal-style_offers }}">{{ section.settings['modal-offers'] }}</div>
       <input
@@ -32,6 +31,7 @@
       </button>
     </div>
   </div>
+</div>
 </div>
 
 <script>
@@ -52,11 +52,6 @@
   document.addEventListener('DOMContentLoaded', function () {
     toggleModal(true); // Show modal on page load
   });
-
-  // Close Modal
-  document.querySelector('#closeModal').onclick = function () {
-    toggleModal(false);
-  };
 
   // Close Modal when clicked outside the modal
   window.onclick = function (e) {
