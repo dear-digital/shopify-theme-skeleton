@@ -1,25 +1,13 @@
 <!-- modal.liquid -->
 
-{%- style -%}
-  .icon-cross {
-    width: 20px;
-  }
+<div class="modal-dark-overlay {{ section.settings.style_modal-dark-overlay }}"></div>
 
-  @media screen and (max-width: 768px) {
-    .icon-cross {
-      width: 18px;
-    }
-  }
-{%- endstyle -%}
-
-<div class="modal-dark-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 overflow-auto"></div>
-
-<div class="modal-container fixed top-0 left-0 w-full h-full">
-  <div class="modal relative mx-auto {{ section.settings.style_modal }}">
-    <button id="closeModal" class="close absolute right-[20px] cursor-pointer">{% render 'icon-cross' %}</button>
-    <h2 class="{{ section.settings.style_modal_header }}">{{ section.settings.modal_header }}</h2>
-    <p class="{{ section.settings.style_modal_content }}">{{ section.settings.modal_content }}</p>
-    <button id="acknowledgeButton" class="{{ section.settings.style_modal_button }}">
+<div class="modal-container {{ section.settings.style_modal-container }}">
+  <div class="modal {{ section.settings.style_modal }}">
+    <button id="closeModal" class="close {{ section.settings.style_close }}">{% render 'icon-cross' %}</button>
+    <h2 class="modal_header {{ section.settings.style_modal_header }}">{{ section.settings.modal_header }}</h2>
+    <p class="modal_content {{ section.settings.style_modal_content }}">{{ section.settings.modal_content }}</p>
+    <button id="acknowledgeButton" class="modal_button {{ section.settings.style_modal_button }}">
       {{ section.settings.modal_button }}
     </button>
   </div>
@@ -90,10 +78,28 @@
       "content": "Tailwind Styling Classes"
     },
     {
+      "type": "text",
+      "label": "Modal Dark Overlay",
+      "id": "style_modal-dark-overlay",
+      "default": "fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 overflow-auto"
+    },
+    {
+      "type": "textarea",
+      "label": "Modal Container",
+      "id": "style_modal-container",
+      "default": " fixed top-0 left-0 w-full h-full"
+    },
+    {
       "type": "textarea",
       "label": "Style Modal",
       "id": "style_modal",
-      "default": "w-[80%] md:w-[40%] bg-white px-[20px] pt-[18px] pb-[12px] md:px-[40px] md:py-[20px] rounded-[10px] shadow-lg top-[25%]"
+      "default": "relative mx-auto w-[80%] md:w-[40%] bg-white px-[20px] pt-[18px] pb-[12px] md:px-[40px] md:py-[20px] rounded-[10px] shadow-lg top-[25%]"
+    },
+    {
+      "type": "textarea",
+      "label": "Close Button",
+      "id": "style_close",
+      "default": "absolute right-[20px] cursor-pointer w-8 max-md:w-5"
     },
     {
       "type": "textarea",

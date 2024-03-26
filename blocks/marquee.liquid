@@ -1,0 +1,90 @@
+<div class="{{ block.settings.marquee_container_classes }}">
+    <div class="{{ block.settings.marquee_content_classes }}">
+      {% for i in (1..block.settings.marquee_repeat_count) %}
+        {{ block.settings.marquee_text -}}
+        {%- unless forloop.last %} • {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+  
+  <style>
+    @keyframes animation-marquee {
+      {{ block.settings.marquee_animation }}
+    }
+  
+    .animation-marquee {
+       {{ block.settings.marquee_animation_time }};
+    }
+  
+    .animation-marquee:hover {
+        {{ block.settings.marquee_animation_hover }};
+    }
+  </style>
+  
+  {% schema %}
+  {
+    "name": "Marquee Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "marquee_text",
+        "label": "Marquee Text",
+        "default": "FASHION FOR ALL "
+      },
+      {
+        "type": "header",
+        "content": "Styling Classes"
+      },
+      {
+        "type": "text",
+        "id": "marquee_container_classes",
+        "label": "Marquee Container Classes",
+        "default": "whitespace-nowrap w-full p-5 bg-blue-100"
+      },
+      {
+        "type": "text",
+        "id": "marquee_content_classes",
+        "label": "Marquee Content Classes",
+        "default": "inline-block animation-marquee text-2xl text-blue-900 font-bold"
+      },
+      {
+        "type": "number",
+        "id": "marquee_repeat_count",
+        "label": "Number of Repeats",
+        "default": 5
+      },
+      {
+        "type": "header",
+        "content": "Keyframe Animation"
+      },
+      {
+        "type": "textarea",
+        "id": "marquee_animation",
+        "label": "Marquee Animation",
+        "default": "0% { transform: translateX(100%); }\n100% { transform: translateX(-100%); }\n infinite { transform: translateX(-100%); }        "
+      },
+      {
+        "type": "textarea",
+        "id": "marquee_animation_time",
+        "label": "Marquee Animation Time",
+        "default": "animation: animation-marquee 10s linear infinite;"
+      },
+      {
+        "type": "textarea",
+        "id": "marquee_animation_hover",
+        "label": "Marquee Animation Hover",
+        "default": "animation-play-state: paused;"
+      },
+      {
+        "type": "header",
+        "content": "Presets"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Marquee Text"
+      }
+    ]
+  }
+  {% endschema %}
+  
