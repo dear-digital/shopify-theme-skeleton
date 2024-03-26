@@ -4,7 +4,7 @@
     {% if section.settings.image %}
         {{ section.settings.image | image_url: width: image_url_width | image_tag: class: image_tag_styles_class }}
     {% else %}
-        {{ 'product-1' | placeholder_svg_tag }}
+        {{ 'product-1' | placeholder_svg_tag: image_tag_styles_class }}
     {% endif %}
   
   <div class="image-text-overlay-content {{ section.settings.image-text-overlay-content }}">
@@ -25,13 +25,13 @@
       "type": "textarea",
       "label": "Main Title",
       "id": "main_title",
-      "default": "Shopify developer documentation"
+      "default": "The most awaiting sale is near"
     },
     {
       "type": "textarea",
       "label": "Content",
       "id": "content",
-      "default": "Learn how to build an app, theme, custom storefront, or marketplace. Whether you’re just getting started, deep in the development process, or ready to distribute and monetize your work, Shopify’s docs, dev tools and frameworks make building easy and efficient."
+      "default": "This is the most \n awesome Shopify Skeleton Theme with many features like \n inbuild schema Tailwind CSS, Schema Blocks for repetitive function and many more !!"
     },
     {
       "type": "image_picker",
@@ -69,20 +69,20 @@
     {
       "type": "textarea",
       "id": "image-text-overlay-content",
-      "label": "Image Content Style",
-      "default": "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      "label": "Text Content Style",
+      "default": "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[75%] md:w-fit"
     },
     {
       "type": "textarea",
       "id": "image-text-overlay-title",
       "label": "Title Style",
-      "default": "text-6xl text-gray-700 font-bold mb-10 max-md:text-4xl max-md:mb-2"
+      "default": "text-2xl md:text-5xl text-gray-700 font-bold mb-2 md:mb-10 capitalize"
     },
     {
       "type": "textarea",
       "id": "image-text-overlay-description",
       "label": "Description Style",
-      "default": "text-lg text-gray-600 mb-5"
+      "default": "text-sm md:text-lg text-gray-600 mb-1 md:mb-5"
     }
   ],
   "presets": [
