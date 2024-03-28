@@ -2,7 +2,7 @@
 
 <div class="{{ section.settings.background_color }}" x-data="{ mobileMenuOpen: false }">
   <div class="{{ section.settings.container_classes }}">
-    <div class="flex justify-between items-center py-6">
+    <div class="{{ section.settings.sub-container_classes }}">
       <!-- STORE NAME / STORE LOGO -->
       <div class="{{ section.settings.logo_classes }}" id="logo">
         {% if section.settings.logo != blank %}
@@ -215,6 +215,12 @@
       "id": "container_classes",
       "label": "Container Classes",
       "default": "mx-auto px-4 sm:px-6"
+    },
+    {
+      "type": "textarea",
+      "id": "sub-container_classes",
+      "label": "Sub Container Classes",
+      "default": "flex justify-between items-center py-6"
     },
     {
       "type": "textarea",
