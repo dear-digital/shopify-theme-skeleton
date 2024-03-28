@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer utilities {
-.pause {
+  .pause {
     animation-play-state: paused;
+  }
 }
+
+* {
+  box-sizing: border-box;
 }

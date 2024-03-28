@@ -1,54 +1,82 @@
-<div class="announcement" {{ block.shopify_attributes }}>
-  <div class="announcement__wrapper {{ section.settings.announcement__wrapper }} ">
-
+<div class="slideshow relative {{section.settings.slideshow}}">
+  {% if section.blocks.size == 0 %}
+    <div class="slide {{section.settings.slide}}">
+      <a href="#">No Announcements</a>
+    </div>
+  {% else %}
+    {% for block in section.blocks %}
+      <div class="slide {{section.settings.slide}}">
+        <a href="{{block.settings.link}}">{{ block.settings.text }}</a>
+      </div>
+    {% endfor %}
     {% if section.blocks.size > 0 %}
-    <div class="announcement__button-prev {{ section.settings.announcement__button-prev }}">
-      {% render 'icon-previous' %}
-    </div>
-    {%- endif -%}
-
-    <div
-      class="announcement__content {{ section.settings.announcement__content }}"
-      role="region"
-      aria-label="{{ 'sections.header.announcement' | t }}"
-    >
-      {% for block in section.blocks %}
-        {%- if block.settings.text != blank or block.settings.link != blank -%}
-          <div class="announcement__item {{ section.settings.announcement__item }}">
-              <a href="{{ block.settings.link }}" class="announcement__link">
-                <p class="announcement__message {{ section.settings.announcement__message }}">
-                  <span>{{ block.settings.text | escape }}</span>
-                </p>
-              </a>
-          </div>
-        {%- endif -%}
-      {% endfor %}
-    </div>
-
-    {% if section.blocks.size > 0 %}
-    <div class="announcement__button-next {{ section.settings.announcement__button-next }}">
-      {% render 'icon-next' %}
-    </div>
-    {%- endif -%}
-    
-  </div>
+      <a
+        class="control control--prev prev {{section.settings.controlPrev}}"
+        onclick="plusSlides(-1)"
+        >&larr;</a
+      >
+      <a
+        class="control control--next next {{section.settings.controlNext}}"
+        onclick="plusSlides(1)"
+        >&rarr;</a
+      >
+    {% endif %}
+  {% endif %}
 </div>
 
+<script>
+  let slideIndex = 1;
+  let autoRotateInterval = {{ section.settings.auto_rotate_interval | default: 0 }} * 1000; // Convert seconds to milliseconds
+  let autoRotateTimer;
+
+  showSlides(slideIndex);
+
+  function plusSlides(n) {
+    clearTimeout(autoRotateTimer);
+    showSlides((slideIndex += n));
+  }
+
+  function currentSlide(n) {
+    clearTimeout(autoRotateTimer);
+    showSlides((slideIndex = n));
+  }
+
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName('slide');
+    if (n > slides.length) {
+      slideIndex = 1;
+    }
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none';
+    }
+    slides[slideIndex - 1].style.display = 'block';
+
+    if (autoRotateInterval > 0) {
+      autoRotateTimer = setTimeout(() => {
+        plusSlides(1);
+      }, autoRotateInterval);
+    }
+  }
+</script>
 
 {% schema %}
 {
   "name": "Announcement Bar",
-  "class": "shopify-announcement",
+  "enabled_on": { "groups": ["header"] },
   "settings": [
     {
       "type": "range",
-      "id": "animation_duration",
-      "label": "Animation duration",
+      "id": "auto_rotate_interval",
+      "label": "Auto-Rotate Interval (seconds)",
       "min": 0,
-      "max": 10,
+      "max": 5,
       "step": 1,
-      "default": 4,
-      "unit": "s"
+      "default": 0,
+      "info": "Set to 0 to disable the slideshow. Remember to save the theme after making changes."
     },
     {
       "type": "header",
@@ -56,51 +84,38 @@
     },
     {
       "type": "textarea",
-      "id": "announcement__wrapper",
-      "label": "Style Wrapper",
-      "default": "flex bg-black text-white px-4 py-1 md:py-2 items-center"
+      "id": "slideshow",
+      "label": "Slideshow Main Container",
+      "default": "bg-black m-0 select-none"
     },
     {
       "type": "textarea",
-      "id": "announcement__button-prev",
-      "label": "Style Previous Button",
-      "default": "hover:text-slate-400 hover:cursor-pointer w-3.5 h-3.5 md:w-4 md:h-4"
+      "id": "slide",
+      "label": "Slide",
+      "default": "none p-3 text-center text-white font-bold italic"
     },
     {
       "type": "textarea",
-      "id": "announcement__button-next",
-      "label": "Style Next Button",
-      "default": "hover:text-slate-400 hover:cursor-pointer w-3.5 h-3.5 md:w-4 md:h-4"
+      "id": "controlPrev",
+      "label": "Control Prev",
+      "default": "absolute cursor-pointer top-2/4 w-auto -mt-8 p-4 text-[#888] font-bold text-xl text-white"
     },
     {
       "type": "textarea",
-      "id": "announcement__content",
-      "label": "Style Content",
-      "default": "flex w-full"
-    },
-    {
-      "type": "textarea",
-      "id": "announcement__item",
-      "label": "Style Item",
-      "default": "mx-auto"
-    },
-    {
-      "type": "textarea",
-      "id": "announcement__message",
-      "label": "Style Message",
-      "default": "font-semibold text-sm md:text-base"
+      "id": "controlNext",
+      "label": "Control Next",
+      "default": "absolute cursor-pointer top-2/4 w-auto -mt-8 p-4 text-[#888] font-bold text-xl text-white right-0"
     }
   ],
   "blocks": [
     {
+      "type": "announcement",
       "name": "Text",
-      "type": "text",
       "settings": [
         {
           "type": "text",
           "id": "text",
-          "label": "Text",
-          "placeholder": "Text"
+          "label": "Text"
         },
         {
           "type": "url",
@@ -112,10 +127,29 @@
   ],
   "presets": [
     {
-      "name": "Announcement Bar"
+      "name": "Default",
+      "category": "Announcement Bar",
+      "blocks": [
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "Announcement 1"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "Announcement 2"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "Announcement 3"
+          }
+        }
+      ]
     }
   ]
 }
 {% endschema %}
-
-
