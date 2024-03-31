@@ -1,0 +1,273 @@
+{% assign product = section.settings.product %}
+
+<div class="max-w-6xl mx-auto my-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="product--medias">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: '300' | image_tag: width: '300' }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+
+    {% if product != blank %}
+      <div class="product--information top-5 p-2">
+        {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+          <input
+            type="hidden"
+            name="id"
+            value="{{ product.id }}"
+          >
+
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'vendor' %}
+                <div class="my-3">
+                  <span class="text-xs text-gray-500">{{ product.vendor }}</span>
+                </div>
+              {% when 'title' %}
+                <div class="my-3">
+                  <h1 class="text-3xl text-gray-900">{{ product.title }}</h1>
+                </div>
+              {% when 'price' %}
+                <div class="my-3" id="price-{{ section.id }}">
+                  <span class="text-base text-gray-500 line-through">{{ product.compare_at_price | money }}</span>
+                  <span class="text-lg text-gray-900">{{ product.price | money }}</span>
+
+                  {% if product.price < product.compare_at_price %}
+                    <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
+                  {% endif %}
+                </div>
+              {% when 'variant_selector' %}
+                <div class="my-3">
+                  {% unless product.has_only_default_variant %}
+                    <variant-selector data-url="{{ product.url}}" data-section="{{ section.id }}">
+                      {% for option in product.options_with_values %}
+                        <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
+
+                        <div class="my-2">
+                          <select
+                            name="options[{{ option.name | escape }}]"
+                            id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                            class="w-full border py-3 px-3"
+                          >
+                            {% for value in option.values %}
+                              <option
+                                value="{{ value | escape }}"
+                                {% if option.selected_value == value %}
+                                  selected="selected"
+                                {% endif %}
+                              >
+                                {{ value }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        </div>
+
+                        <script type="application/json">
+                          {{ product.variants | json }}
+                        </script>
+                      {% endfor %}
+                    </variant-selector>
+                  {% endunless %}
+                </div>
+
+              {% when 'quantity' %}
+                <div class="my-3">
+                  <label for="Quantity-{{ section.id }}">Quantity</label>
+
+                  <div class="my-2">
+                    <input
+                      type="number"
+                      name="quantity"
+                      id="Quantity-{{ section.id }}"
+                      value="1"
+                      min="1"
+                      class="w-full border px-3 py-3"
+                    >
+                  </div>
+                </div>
+              {% when 'description' %}
+                <div class="my-3">
+                  <p class="text-gray-700">{{ product.description }}</p>
+                </div>
+
+              {% when 'checkout_buttons' %}
+                <div class="my-3">
+                  <form action="/cart/add" method="post">
+                    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                    <button
+                      type="submit"
+                      name="add"
+                      class="w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-700 rounded-sm my-2"
+                      {% if product.available == false %}
+                        disabled
+                      {% endif %}
+                    >
+                      {% if product.available == false %}
+                        Sold out
+                      {% else %}
+                        Add to cart
+                      {% endif %}
+                    </button>
+                  </form>
+                </div>
+              {% else %}
+
+            {% endcase %}
+          {% endfor %}
+        {% endform %}
+      </div>
+    {% else %}
+      <div class="text-xl font-blod max-w-6xl mx-auto my-8">
+        <p>No product selected.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  class VariantSelector extends HTMLElement {
+    constructor() {
+      super();
+      this.addEventListener('change', this.onVariantChange);
+    }
+
+    onVariantChange() {
+      this.getSelectedOptions();
+      this.getSelectedVariant();
+
+      if (this.currentVariant) {
+        this.updateURL();
+        this.updateFormID();
+        this.updatePrice();
+      }
+    }
+
+    getSelectedOptions() {
+      this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+      console.log(this.options);
+    }
+
+    getVariantJSON() {
+      this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+      return this.variantData;
+    }
+
+    getSelectedVariant() {
+      this.currentVariant = this.getVariantJSON().find((variant) => {
+        const findings = !variant.options
+          .map((option, index) => {
+            return this.options[index] === option;
+          })
+          .includes(false);
+
+        if (findings) return variant;
+      });
+
+      console.log(this.currentVariant);
+    }
+
+    updateURL() {
+      if (!this.currentVariant) return;
+
+      window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
+    }
+
+    updateFormID() {
+      const form_input = document.querySelector('#product-form').querySelector('input[name="id"]');
+      form_input.value = this.currentVariant.id;
+    }
+
+    updatePrice() {
+      fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
+        .then((response) => response.text())
+        .then((responseText) => {
+          const id = `price-${this.dataset.section}`;
+          const html = new DOMParser().parseFromString(responseText, 'text/html');
+
+          const oldPrice = document.getElementById(id);
+          const newPrice = html.getElementById(id);
+
+          if (oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
+        });
+    }
+  }
+
+  customElements.define('variant-selector', VariantSelector);
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select a Product"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "vendor",
+      "name": "Vendor",
+      "limit": 1
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variant_selector",
+      "name": "Variant Selector",
+      "limit": 1
+    },
+    {
+      "type": "quantity",
+      "name": "Quantity",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "checkout_buttons",
+      "name": "Checkout Buttons",
+      "limit": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Display",
+      "blocks": [
+        {
+          "type": "vendor"
+        },
+        {
+          "type": "price"
+        },
+        {
+          "type": "variant_selector"
+        },
+        {
+          "type": "quantity"
+        },
+        {
+          "type": "description"
+        },
+        {
+          "type": "checkout_buttons"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
