@@ -1,5 +1,5 @@
 <div class="timer">
-  <h4 class="timer__title">Special Offer End In</h4>
+  <h4 class="timer__title">{{ section.settings.title }}</h4>
   <div class="timer-display">
     <div class="timer-block">
       <span class="timer-block__num js-timer-days">00</span>
@@ -48,16 +48,18 @@
     right: 0;
     top: 3px;
   }
-  .timer-block__num, .timer-block__unit {
+  .timer-block__num,
+  .timer-block__unit {
     display: block;
     text-align: center;
   }
 </style>
+
 <script>
   function updateTimer() {
-    var endDateTime = new Date('2024-12-31T23:59:59').getTime(); // Replace '2024-12-31T23:59:59' with your desired end date and time
+    var endDateTime = new Date('{{ section.settings.end_date }}').getTime();
 
-    var x = setInterval(function() {
+    var x = setInterval(function () {
       var now = new Date().getTime();
       var distance = endDateTime - now;
 
@@ -79,7 +81,34 @@
     }, 1000);
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     updateTimer();
   });
 </script>
+
+{% schema %}
+{
+  "name": "Countdown Timer Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Special Offer End In"
+    },
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "End Date",
+      "default": "2024-12-31",
+      "info": "YYYY-MM-DD"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown Timer",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
