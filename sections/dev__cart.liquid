@@ -35,26 +35,26 @@
                     {% endif %}
                   </a>
                 </td>
-                <td class="table-details__classes {{ section.settings.table-details__classes }} py-4 px-2 flex flex-col justify-center">
-                  <a href="{{ item.url }}" class="table-product-title__classes {{ section.settings.table-product-title__classes }} my-1">{{ item.product.title | truncatewords: 5 }}</a>
-                  <span class="table-variant-title__classes {{ section.settings.table-variant-title__classes }} text-sm text-gray-500 my-1">{{ item.variant.title }}</span>
+                <td class="table-details__classes {{ section.settings.table-details__classes }}">
+                  <a href="{{ item.url }}" class="table-product-title__classes {{ section.settings.table-product-title__classes }}">{{ item.product.title | truncatewords: 5 }}</a>
+                  <span class="table-variant-title__classes {{ section.settings.table-variant-title__classes }}">{{ item.variant.title }}</span>
                   <a
                     href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0"
-                    class="table-remove__classes {{ section.settings.table-remove__classes }} text-sm font-medium text-red-500 my-1"
+                    class="table-remove__classes {{ section.settings.table-remove__classes }}"
                     >{{ section.settings.table-remove }}</a
                   >
                 </td>
-                <td class="table-item-quantity__classes {{  section.settings.table-item-quantity__classes }} py-4 px-2">
+                <td class="table-item-quantity__classes {{  section.settings.table-item-quantity__classes }}">
                   <input
                     type="number"
                     name="updates[]"
                     value="{{ item.quantity }}"
                     min="1"
                     id="updates_{{ forloop.index }}"
-                    class="table-item__classes {{  section.settings.table-item__classes }} w-20 border p-2"
+                    class="table-item__classes {{  section.settings.table-item__classes }}"
                   >
                 </td>
-                <td class="table-item-price__classes {{ section.settings.table-item-price__classes }} py-4 px-2">
+                <td class="table-item-price__classes {{ section.settings.table-item-price__classes }}">
                   {{ item.line_price | money }}
                 </td>
               </tr>
@@ -62,30 +62,29 @@
           </tbody>
         </table>
 
-        <div class="flex flex-col md:flex-row items-center justify-between">
-          <div class="w-full my-4">
-            <div class="flex flex-col items-start">
-              <label for="cart_notes" class="my-1">{{ section.settings.cart-notes-title }}</label>
-              <textarea name="note" id="cart_notes" class="w-full md:max-w-lg resize-none border h-20"></textarea>
+        <div class="checkout-container__classes {{ section.settings.checkout-container__classes }}">
+          <div class="cart-notes-container__classes {{ section.settings.cart-notes-container__classes }}">
+            <div class="cart-notes__classes {{ section.settings.cart-notes__classes }}">
+              <label for="cart_notes" class="cart-notes-text__classes {{ section.settings.cart-notes-text__classes }}">{{ section.settings.cart-notes-text }}</label>
+              <textarea name="note" id="cart_notes" class="cart-notes-textarea__classes {{ section.settings.cart-notes-textarea__classes }}"></textarea>
             </div>
           </div>
-          <div class="w-full my-4 md:w-80">
-            <h3 class="text-xl">{{ section.settings.subtotal-text }} {{ cart.total_price | money }}</h3>
-
-            <div class="my-2">
+          <div class="checkout-subtotal__classes {{ section.settings.checkout-subtotal__classes }}">
+            <h3 class="checkout-subtotal-text__classes {{ section.settings.checkout-subtotal-text__classes }}">{{ section.settings.subtotal-text }} {{ cart.total_price | money }}</h3>
+            <div class="checkout-update__classes {{ section.settings.checkout-update__classes }}">
               <button
                 type="submit"
                 name="update"
-                class="w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white"
+                class="checkout-update-button__classes {{ section.settings.checkout-update-button__classes }}"
               >
                 {{ section.settings.update-button }}
               </button>
             </div>
-            <div class="my-2">
+            <div class="checkout__classes {{ section.settings.checkout__classes }}">
               <button
                 type="submit"
                 name="checkout"
-                class="w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white"
+                class="checkout-button__classes {{ section.settings.checkout-button__classes }}"
               >
                 {{ section.settings.checkout-button }}
               </button>
@@ -96,14 +95,14 @@
     </div>
   </div>
 {% else %}
-  <div class="max-w-6xl h-60 my-4 mx-auto flex items-center justify-center">
-    <div class="text-center">
-      <h1 class="text-3xl my-4">Your cart is empty</h1>
-      <div class="my-4 py-4">
+  <div class="cart-empty-container__classes {{ section.settings.cart-empty-container__classes }}">
+    <div class="cart-empty-sub-container__classes {{ section.settings.cart-empty-sub-container__classes }}">
+      <h1 class="cart-empty-text__classes {{ section.settings.cart-empty-text__classes }}">{{ section.settings.cart-empty }}</h1>
+      <div class="cart-empty-collections__classes {{ section.settings.cart-empty-collections__classes }}">
         <a
           href="{{ routes.all_products_collection_url }}"
-          class="border border-gray-600 text-white bg-gray-600 px-8 py-3"
-          >Continue shopping</a
+          class="cart-empty-collections-text__classes {{ section.settings.cart-empty-collections-text__classes }}"
+          >{{ section.settings.cart-continue-shopping }}</a
         >
       </div>
     </div>
@@ -175,6 +174,12 @@
       "default": "Checkout"
     },
     {
+      "type": "text",
+      "id": "cart-empty",
+      "label": "Cart Empty Text",
+      "default": "Your cart is empty"
+    },
+    {
       "type": "header",
       "content": "Apply Tailwind CSS Classes (If Needed)",
       "info": "Note: Insert classes with space between them."
@@ -211,7 +216,7 @@
     },
     {
       "type": "header",
-      "content": "Table Content"
+      "content": "Table Content Tailwind CSS"
     },
     {
       "type": "textarea",
@@ -260,6 +265,152 @@
       "label": "Product Image Classes",
       "id": "product-image__classes",
       "default": "w-20 h-20 object-cover border"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Details Classes",
+      "id": "table-details__classes",
+      "default": "py-4 px-2 flex flex-col justify-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Product Title Classes",
+      "id": "table-product-title__classes",
+      "default": "my-1"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Variant Title Classes",
+      "id": "table-variant-title__classes",
+      "default": "text-sm text-gray-500 my-1"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Remove Classes",
+      "id": "table-remove__classes",
+      "default": "text-sm font-medium text-red-500 my-1"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Item Quantity Classes",
+      "id": "table-item-quantity__classes",
+      "default": "py-4 px-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Item Classes",
+      "id": "table-item__classes",
+      "default": "w-20 border p-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Item Price Classes",
+      "id": "table-item-price__classes",
+      "default": "py-4 px-2"
+    },
+    {
+      "type": "header",
+      "content": "Checkout Content Tailwind CSS"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Container Classes",
+      "id": "checkout-container__classes",
+      "default": "flex flex-col md:flex-row items-center justify-between"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Notes Container Classes",
+      "id": "cart-notes-container__classes",
+      "default": "w-full my-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Notes Classes",
+      "id": "cart-notes__classes",
+      "default": "flex flex-col items-start"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Notes Text Classes",
+      "id": "cart-notes-text__classes",
+      "default": "my-1"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Notes Textarea Classes",
+      "id": "cart-notes-textarea__classes",
+      "default": "w-full md:max-w-lg resize-none border h-20"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Subtotal Classes",
+      "id": "checkout-subtotal__classes",
+      "default": "w-full my-4 md:w-80"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Subtotal Text Classes",
+      "id": "checkout-subtotal-text__classes",
+      "default": "text-xl"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Update Classes",
+      "id": "checkout-update__classes",
+      "default": "my-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Update Button Classes",
+      "id": "checkout-update-button__classes",
+      "default": "w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Classes",
+      "id": "checkout__classes",
+      "default": "my-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Button Classes",
+      "id": "checkout-button__classes",
+      "default": "w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white"
+    },
+    {
+      "type": "header",
+      "content": "Empty Content Tailwind CSS"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Empty Container Classes",
+      "id": "cart-empty-container__classes",
+      "default": "max-w-6xl h-60 my-4 mx-auto flex items-center justify-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Empty Sub Container Classes",
+      "id": "cart-empty-sub-container__classes",
+      "default": "text-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Empty Text Classes",
+      "id": "cart-empty-text__classes",
+      "default": "text-3xl my-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Empty Collections Classes",
+      "id": "cart-empty-collections__classes",
+      "default": "my-4 py-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Empty Collections Text Classes",
+      "id": "cart-empty-collections-text__classes",
+      "default": "border border-gray-600 text-white bg-gray-600 px-8 py-3"
     }
   ],
   "blocks": [
