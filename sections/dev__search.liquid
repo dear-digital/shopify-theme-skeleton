@@ -1,0 +1,83 @@
+<div class="container mx-auto relative">
+  <div class="fixed inset-0 bg-black opacity-50 z-50" id="overlay" style="display: none;"></div>
+  {% paginate search.results by 10 %}
+    <h1 class="text-xl my-4 text-center">Search Results</h1>
+
+    <div class="flex justify-center items-center relative z-50">
+      <form action="{{ routes.search_url }}" method="get" class="border flex rounded z-50 relative">
+        <input
+          type="search"
+          name="q"
+          id="searchInput"
+          placeholder="Search"
+          value="{{ search.terms | escape }}"
+          class="px-4 py-2 w-[500px] max-md:w-36 border-none"
+        >
+        <button type="submit" class="bg-gray-900 hover:bg-gray-700 text-white border px-4">Search</button>
+      </form>
+      <button onclick="closeSearch()" class="-mr-2 p-5">
+        {% render 'icon-close' %}
+      </button>
+    </div>
+    {% if search.performed %}
+      {% if search.results.size > 0 %}
+        <div class="max-w-6xl mx-auto relative z-50">
+          <p class="text-gray-500 text-center my-10">
+            {{ search.results.size }} results for the search term {{ search.terms | escape }}
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {% for item in search.results %}
+              {% if item.object_type == 'product' %}
+                <div class="col">
+                  <div class="card shadow">
+                    {% if item.images.size > 0 %}
+                      <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
+                        {{ item | image_url: width: '50px' | image_tag: width: '50px' }}
+                      </a>
+                    {% endif %}
+                    <div class="card-body">
+                      <h5>{{ item.title | link_to: item.url }}</h5>
+                      <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+      {% else %}
+        <div class="text-center my-4">
+          <p>No results found for the search term: {{ search.terms | escape }}. Try to use a different keyword</p>
+        </div>
+      {% endif %}
+    {% endif %}
+
+    {% render 'icon-pagination', pagination: paginate %}
+  {% endpaginate %}
+</div>
+
+<script>
+  let typingTimer; // Timer identifier
+  const typingDelay = 1200; // Delay in milliseconds before performing the search action
+
+  function closeSearch() {
+    // Hide the search results container or perform any other actions to close the search
+    document.querySelector('.container').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+  }
+
+  // Function to handle the search input
+  function handleSearchInput(event) {
+    clearTimeout(typingTimer); // Clear the previous timer
+    typingTimer = setTimeout(performSearch, typingDelay); // Set a new timer
+  }
+
+  // Function to perform the search action
+  function performSearch() {
+    document.querySelector('form').submit(); // Submit the search form
+  }
+
+  // Add event listener for the search input
+  document.getElementById('searchInput').addEventListener('input', handleSearchInput);
+</script>
