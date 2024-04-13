@@ -1,10 +1,10 @@
 {% assign main_menu_linklist = linklists[section.settings.menu].links %}
 
-<div class="{{ section.settings.background_color }}" x-data="{ mobileMenuOpen: false }">
-  <div class="{{ section.settings.container_classes }}">
-    <div class="{{ section.settings.sub-container_classes }}">
+<div class="theme_navbar_classes {{ section.settings.theme_navbar_classes }}" x-data="{ mobileMenuOpen: false }">
+  <div class="container_classes {{ section.settings.container_classes }}">
+    <div class="sub-container_classes {{ section.settings.sub-container_classes }}">
       <!-- STORE NAME / STORE LOGO -->
-      <div class="{{ section.settings.logo_classes }}" id="logo">
+      <div class="logo_classes {{ section.settings.logo_classes }}" id="logo">
         {% if section.settings.logo != blank %}
           <a href="#">
             {%- liquid
@@ -29,15 +29,15 @@
             }}
           </a>
         {%- else -%}
-          <span class="{{ section.settings.shop_name_classes }}">{{ shop.name }}</span>
+          <span class="shop_name_classes {{ section.settings.shop_name_classes }}">{{ shop.name }}</span>
         {% endif %}
       </div>
 
-      <div class="{{ section.settings.hamburger_button_classes }}">
+      <div class="hamburger_button_classes {{ section.settings.hamburger_button_classes }}">
         <button
           x-on:click="mobileMenuOpen = !mobileMenuOpen"
           type="button"
-          class="{{ section.settings.hamburger_button_styles }}"
+          class="hamburger_button_styles {{ section.settings.hamburger_button_styles }}"
         >
           <!-- Icon for hamburger menu -->
           {% render 'icon-hamburger' %}
@@ -45,14 +45,14 @@
       </div>
 
       <!-- NAVIGATION MENU -->
-      <nav class="{{ section.settings.navbar_classes }}">
+      <nav class="navbar_classes {{ section.settings.navbar_classes }}">
         {% for link in main_menu_linklist %}
           {% if link.links != blank %}
             {% assign link_handle = link.handle | replace: '-', '_' %}
-            <div x-data="{ {{ link_handle }}: false }" class="{{ section.settings.navbar_link_wrapper_classes }}">
+            <div x-data="{ {{ link_handle }}: false }" class="navbar_link_wrapper_classes  {{ section.settings.navbar_link_wrapper_classes }}">
               <button
                 x-on:click="{{ link_handle }} = !{{ link_handle }}"
-                class="{{ section.settings.navbar_link_button_classes }}"
+                class="navbar_link_button_classes {{ section.settings.navbar_link_button_classes }}"
               >
                 {{ link.title }}
                 <!-- Icon for dropdown -->
@@ -62,12 +62,12 @@
               <div
                 x-show="{{ link_handle }}"
                 @click.away="{{ link_handle }} = false"
-                class="{{ section.settings.navbar_dropdown_classes }}"
+                class="navbar_dropdown_classes {{ section.settings.navbar_dropdown_classes }}"
               >
-                <div class="{{ section.settings.dropdown_content_classes }}">
-                  <div class="{{ section.settings.dropdown_inner_classes }}">
+                <div class="dropdown_content_classes {{ section.settings.dropdown_content_classes }}">
+                  <div class="dropdown_inner_classes {{ section.settings.dropdown_inner_classes }}">
                     {% for childlink in link.links %}
-                      <a href="{{ childlink.url }}" class="{{ section.settings.dropdown_link_classes }}">
+                      <a href="{{ childlink.url }}" class="dropdown_link_classes {{ section.settings.dropdown_link_classes }}">
                         {{ childlink.title }}
                       </a>
                     {% endfor %}
@@ -76,22 +76,22 @@
               </div>
             </div>
           {% else %}
-            <div class="{{ section.settings.navbar_link_wrapper_classes }}">
-              <a href="{{ link.url }}" class="{{ section.settings.navbar_link_classes }}">{{ link.title }}</a>
+            <div class="navbar_link_wrapper_classes {{ section.settings.navbar_link_wrapper_classes }}">
+              <a href="{{ link.url }}" class="navbar_link_classes {{ section.settings.navbar_link_classes }}">{{ link.title }}</a>
             </div>
           {% endif %}
         {% endfor %}
       </nav>
 
-      <div class="{{ section.settings.utility_menu_classes }}">
+      <div class="utility_menu_classes {{ section.settings.utility_menu_classes }}">
         {% if section.settings.cart == true %}
-          <a href="{{ routes.cart_url }}" class="{{ section.settings.cart_link_classes }}">
+          <a href="{{ routes.cart_url }}" class="cart_link_classes {{ section.settings.cart_link_classes }}">
             <!-- Icon for cart -->
             {% render 'icon-cart' %}
           </a>
         {% endif %}
         {% if section.settings.search == true %}
-          <a href="#" class="{{ section.settings.search_link_classes }}">
+          <a href="{{ routes.search_url }}" class="search_link_classes {{ section.settings.search_link_classes }}">
             <!-- Icon for search -->
             {% render 'icon-search' %}
           </a>
@@ -101,17 +101,17 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div x-show="mobileMenuOpen" class="{{ section.settings.mobile_menu_classes }}">
-    <div class="{{ section.settings.mobile_menu_content_classes }}">
-      <div class="{{ section.settings.mobile_menu_header_classes }}">
+  <div x-show="mobileMenuOpen" class="mobile_menu_classes {{ section.settings.mobile_menu_classes }}">
+    <div class="mobile_menu_content_classes {{ section.settings.mobile_menu_content_classes }}">
+      <div class="mobile_menu_header_classes {{ section.settings.mobile_menu_header_classes }}">
         <div>
-          <h1 class="{{ section.settings.mobile_menu_title_classes }}">{{ shop.name }}</h1>
+          <h1 class="mobile_menu_title_classes {{ section.settings.mobile_menu_title_classes }}">{{ shop.name }}</h1>
         </div>
         <div>
           <button
             x-on:click="mobileMenuOpen = false"
             type="button"
-            class="{{ section.settings.mobile_menu_close_button_classes }}"
+            class="mobile_menu_close_button_classes {{ section.settings.mobile_menu_close_button_classes }}"
           >
             <!-- Icon for closing mobile menu -->
             {% render 'icon-close' %}
@@ -120,29 +120,43 @@
       </div>
 
       <!-- Navigation Links for Mobile Menu -->
-      <div class="{{ section.settings.mobile_menu_links_classes }}">
-        <nav class="{{ section.settings.mobile_menu_nav_classes }}">
+      <div class="mobile_menu_links_classes {{ section.settings.mobile_menu_links_classes }}">
+        <nav class="mobile_menu_nav_classes {{ section.settings.mobile_menu_nav_classes }}">
+          <div class="mobile_icons_classes {{ section.settings.mobile_icons_classes }}">
+            {% if section.settings.cart == true %}
+              <a href="{{ routes.cart_url }}" class="cart_link_classes {{ section.settings.cart_link_classes }}">
+                <!-- Icon for cart -->
+                {% render 'icon-cart' %}
+              </a>
+            {% endif %}
+            {% if section.settings.search == true %}
+              <a href="{{ routes.search_url }}" class="search_link_classes {{ section.settings.search_link_classes }}">
+                <!-- Icon for search -->
+                {% render 'icon-search' %}
+              </a>
+            {% endif %}
+          </div>
           {% for link in main_menu_linklist %}
             {% assign link_handle = link.handle | replace: '-', '_' %}
             {% if link.links != blank %}
               <div
                 x-data="{ {{ link_handle }}: false }"
-                class="{{ section.settings.mobile_menu_dropdown_wrapper_classes }}"
+                class="mobile_menu_dropdown_wrapper_classes {{ section.settings.mobile_menu_dropdown_wrapper_classes }}"
               >
                 <button
                   x-on:click="{{ link_handle }} = !{{ link_handle }}"
                   type="button"
-                  class="{{ section.settings.mobile_menu_dropdown_button_classes }}"
+                  class="mobile_menu_dropdown_button_classes {{ section.settings.mobile_menu_dropdown_button_classes }}"
                 >
                   {{ link.title }}
                   <!-- Icon for dropdown -->
                   {% render 'icon-hamburger' %}
                 </button>
 
-                <div x-show="{{ link_handle }}" class="{{ section.settings.mobile_menu_dropdown_content_classes }}">
-                  <div class="{{ section.settings.mobile_menu_dropdown_inner_classes }}">
+                <div x-show="{{ link_handle }}" class="mobile_menu_dropdown_content_classes {{ section.settings.mobile_menu_dropdown_content_classes }}">
+                  <div class="mobile_menu_dropdown_inner_classes {{ section.settings.mobile_menu_dropdown_inner_classes }}">
                     {% for childlink in link.links %}
-                      <a href="{{ childlink.url }}" class="{{ section.settings.mobile_menu_dropdown_link_classes }}">
+                      <a href="{{ childlink.url }}" class="mobile_menu_dropdown_link_classes {{ section.settings.mobile_menu_dropdown_link_classes }}">
                         {{ childlink.title }}
                       </a>
                     {% endfor %}
@@ -150,7 +164,7 @@
                 </div>
               </div>
             {% else %}
-              <a href="{{ link.url }}" class="{{ section.settings.mobile_menu_link_classes }}">{{ link.title }}</a>
+              <a href="{{ link.url }}" class="mobile_menu_link_classes {{ section.settings.mobile_menu_link_classes }}">{{ link.title }}</a>
             {% endif %}
           {% endfor %}
         </nav>
@@ -203,7 +217,7 @@
     },
     {
       "type": "color",
-      "id": "background_color",
+      "id": "theme_navbar_classes",
       "label": "Background Color"
     },
     {
@@ -357,6 +371,12 @@
       "id": "mobile_menu_nav_classes",
       "label": "Mobile Menu Navigation Classes",
       "default": "grid gap-y-7"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_icons_classes",
+      "label": "Mobile Icons Classes",
+      "default": "flex gap-4"
     },
     {
       "type": "textarea",
