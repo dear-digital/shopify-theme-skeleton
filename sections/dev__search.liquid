@@ -1,10 +1,10 @@
 <div class="container mx-auto relative">
-  <div class="fixed inset-0 bg-black opacity-50 " id="overlay" style="display: none;"></div>
+  <div class="fixed inset-0 bg-black opacity-50 hidden" id="overlay"></div>
   {% paginate search.results by 20 %}
     <h1 class="text-xl my-4 text-center">Search Results</h1>
 
     <div class="flex justify-center items-center relative ">
-      <form action="{{ routes.search_url }}" method="get" class="border flex rounded  relative">
+      <form action="{{ routes.search_url }}" method="get" class="border flex rounded relative">
         <input
           type="search"
           name="q"
