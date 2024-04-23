@@ -12,13 +12,19 @@
             class="register-form-error__classes {{ section.settings.register-form-error__classes }}"
             role="alert"
           >
-            <strong class="register-form-error-text__classes {{ section.settings.register-form-error-text__classes }}">{{ section.settings['error-title'] }}</strong>
-            <p class="register-form-error-message__classes {{ section.settings.register-form-error-message__classes }}">{{ form.errors | default_errors }}</p>
+            <strong class="register-form-error-text__classes {{ section.settings.register-form-error-text__classes }}">
+              {{- section.settings['error-title'] -}}
+            </strong>
+            <p class="register-form-error-message__classes {{ section.settings.register-form-error-message__classes }}">
+              {{ form.errors | default_errors }}
+            </p>
           </div>
         {% endif %}
 
         <div class="firstname__classes {{ section.settings.firstname__classes }}">
-          <label for="first_name" class="firstname-text__classes {{ section.settings.firstname-text__classes }}">First name</label>
+          <label for="first_name" class="firstname-text__classes {{ section.settings.firstname-text__classes }}">
+            {{- section.settings['firstname-title'] -}}
+          </label>
           <input
             type="text"
             name="customer[first_name]"
@@ -30,7 +36,9 @@
         </div>
 
         <div class="lastname__classes {{ section.settings.lastname__classes }}">
-          <label for="last_name" class="lastname-text__classes {{ section.settings.lastname-text__classes }}">{{ section.settings['lastname-title'] }}</label>
+          <label for="last_name" class="lastname-text__classes {{ section.settings.lastname-text__classes }}">
+            {{- section.settings['lastname-title'] -}}
+          </label>
           <input
             type="text"
             name="customer[last_name]"
@@ -42,7 +50,9 @@
         </div>
 
         <div class="email__classes {{ section.settings.email__classes }}">
-          <label for="email_address" class="email-text__classes {{ section.settings.email-text__classes }}">{{ section.settings['email-title'] }}</label>
+          <label for="email_address" class="email-text__classes {{ section.settings.email-text__classes }}">
+            {{- section.settings['email-title'] -}}
+          </label>
           <input
             type="email"
             name="customer[email]"
@@ -54,7 +64,9 @@
         </div>
 
         <div class="password__classes {{ section.settings.password__classes }}">
-          <label for="password" class="password-text__classes {{ section.settings.password-text__classes }}">{{ section.settings['password-title'] }}</label>
+          <label for="password" class="password-text__classes {{ section.settings.password-text__classes }}">
+            {{- section.settings['password-title'] -}}
+          </label>
           <input
             type="password"
             name="customer[password]"
@@ -131,124 +143,124 @@
       "info": "Note: Insert classes with space between them."
     },
     {
-        "type": "textarea",
-        "id": "customer-register__classes",
-        "default": "h-full flex items-center justify-center py-12 px-6 md:px-4 lg:px-8",
-        "label": "Customer Register Classes"
+      "type": "textarea",
+      "id": "customer-register__classes",
+      "default": "h-full flex items-center justify-center py-12 px-6 md:px-4 lg:px-8",
+      "label": "Customer Register Classes"
     },
     {
-        "type": "textarea",
-        "id": "register-form__classes",
-        "default": "max-w-md w-full space-y-8",
-        "label": "Register Form Classes"
+      "type": "textarea",
+      "id": "register-form__classes",
+      "default": "max-w-md w-full space-y-8",
+      "label": "Register Form Classes"
     },
     {
-        "type": "textarea",
-        "id": "register-title__classes",
-        "default": "text-center text-3xl font-bold mt-6",
-        "label": "Register Title Classes"
+      "type": "textarea",
+      "id": "register-title__classes",
+      "default": "text-center text-3xl font-bold mt-6",
+      "label": "Register Title Classes"
     },
     {
-        "type": "textarea",
-        "id": "register-inner__classes",
-        "default": "mt-8",
-        "label": "Register Inner Classes"
+      "type": "textarea",
+      "id": "register-inner__classes",
+      "default": "mt-8",
+      "label": "Register Inner Classes"
     },
     {
-        "type": "textarea",
-        "id": "register-form-error__classes",
-        "default": "relative border border-red-400 bg-red-100 text-red 700 px-4 py-3",
-        "label": "Register Form Error Classes"
+      "type": "textarea",
+      "id": "register-form-error__classes",
+      "default": "relative border border-red-400 bg-red-100 text-red 700 px-4 py-3",
+      "label": "Register Form Error Classes"
     },
     {
-        "type": "textarea",
-        "id": "register-form-error-text__classes",
-        "default": "font-bold",
-        "label": "Register Form Error Text Classes"
+      "type": "textarea",
+      "id": "register-form-error-text__classes",
+      "default": "font-bold",
+      "label": "Register Form Error Text Classes"
     },
     {
-        "type": "textarea",
-        "id": "register-form-error-message__classes",
-        "default": "block sm:inline",
-        "label": "Register Form Error Message Classes"
+      "type": "textarea",
+      "id": "register-form-error-message__classes",
+      "default": "block sm:inline",
+      "label": "Register Form Error Message Classes"
     },
     {
-        "type": "textarea",
-        "id": "firstname__classes",
-        "default": "my-2",
-        "label": "First Name Classes"
+      "type": "textarea",
+      "id": "firstname__classes",
+      "default": "my-2",
+      "label": "First Name Classes"
     },
     {
-        "type": "textarea",
-        "id": "firstname-text__classes",
-        "default": "sr-only",
-        "label": "First Name Text Classes"
+      "type": "textarea",
+      "id": "firstname-text__classes",
+      "default": "sr-only",
+      "label": "First Name Text Classes"
     },
     {
-        "type": "textarea",
-        "id": "firstname-input__classes",
-        "default": "relative block w-full px-3 py-2 border",
-        "label": "First Name Input Classes"
+      "type": "textarea",
+      "id": "firstname-input__classes",
+      "default": "relative block w-full px-3 py-2 border",
+      "label": "First Name Input Classes"
     },
     {
-        "type": "textarea",
-        "id": "lastname__classes",
-        "default": "my-2",
-        "label": "Last Name Classes"
+      "type": "textarea",
+      "id": "lastname__classes",
+      "default": "my-2",
+      "label": "Last Name Classes"
     },
     {
-        "type": "textarea",
-        "id": "lastname-text__classes",
-        "default": "sr-only",
-        "label": "Last Name Text Classes"
+      "type": "textarea",
+      "id": "lastname-text__classes",
+      "default": "sr-only",
+      "label": "Last Name Text Classes"
     },
     {
-        "type": "textarea",
-        "id": "lastname-input__classes",
-        "default": "relative block w-full px-3 py-2 border",
-        "label": "Last Name Input Classes"
+      "type": "textarea",
+      "id": "lastname-input__classes",
+      "default": "relative block w-full px-3 py-2 border",
+      "label": "Last Name Input Classes"
     },
     {
-        "type": "textarea",
-        "id": "email__classes",
-        "default": "my-2",
-        "label": "Email Classes"
+      "type": "textarea",
+      "id": "email__classes",
+      "default": "my-2",
+      "label": "Email Classes"
     },
     {
-        "type": "textarea",
-        "id": "email-text__classes",
-        "default": "sr-only",
-        "label": "Email Text Classes"
+      "type": "textarea",
+      "id": "email-text__classes",
+      "default": "sr-only",
+      "label": "Email Text Classes"
     },
     {
-        "type": "textarea",
-        "id": "email-input__classes",
-        "default": "relative block w-full px-3 py-2 border",
-        "label": "Email Input Classes"
+      "type": "textarea",
+      "id": "email-input__classes",
+      "default": "relative block w-full px-3 py-2 border",
+      "label": "Email Input Classes"
     },
     {
-        "type": "textarea",
-        "id": "password__classes",
-        "default": "my-2",
-        "label": "Password Classes"
+      "type": "textarea",
+      "id": "password__classes",
+      "default": "my-2",
+      "label": "Password Classes"
     },
     {
-        "type": "textarea",
-        "id": "password-text__classes",
-        "default": "sr-only",
-        "label": "Password Text Classes"
+      "type": "textarea",
+      "id": "password-text__classes",
+      "default": "sr-only",
+      "label": "Password Text Classes"
     },
     {
-        "type": "textarea",
-        "id": "password-input__classes",
-        "default": "relative block w-full px-3 py-2 border",
-        "label": "Password Input Classes"
+      "type": "textarea",
+      "id": "password-input__classes",
+      "default": "relative block w-full px-3 py-2 border",
+      "label": "Password Input Classes"
     },
     {
-        "type": "textarea",
-        "id": "create-button__classes",
-        "default": "relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900",
-        "label": "Create an Account Button Classes"
+      "type": "textarea",
+      "id": "create-button__classes",
+      "default": "relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900",
+      "label": "Create an Account Button Classes"
     }
   ]
 }
