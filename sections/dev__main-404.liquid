@@ -1,0 +1,92 @@
+<div class="section_container_styles {{ section.settings.section_container_styles }}">
+  <div class="title_styles {{ section.settings.title_styles }}">{{ section.settings.title }}</div>
+  <div class="sub-title-container_styles {{ section.settings.sub-title-container_styles }}">
+    <p class="sub-title_styles {{ section.settings.sub-title_styles }}">{{ section.settings.subtext_title }}</p>
+  </div>
+  <div class="link-container_styles {{ section.settings.link-container_styles }}">
+    {% if section.settings.button_url == blank %}
+      {% assign shop_url = shop.secure_url %}
+    {% else %}
+      {% assign shop_url = section.settings.button_url %}
+    {% endif %}
+    <a
+      href="{{ shop_url }}"
+      class="link_styles {{ section.settings.link_styles }}"
+    >
+      {{- section.settings.button_label -}}
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Template 404",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "404",
+      "label": "404 Heading Title"
+    },
+    {
+      "type": "text",
+      "id": "subtext_title",
+      "default": "The page that you're looking for is not found",
+      "label": "404 Subtext Title"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Back to homepage",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "id": "section_container_styles",
+      "label": "Section Container Styles",
+      "default": "w-full h-screen flex flex-col items-center justify-center"
+    },
+    {
+      "type": "textarea",
+      "id": "title_styles",
+      "label": "Title Styles",
+      "default": "text-5xl font-bold my-4"
+    },
+    {
+      "type": "textarea",
+      "id": "sub-title-container_styles",
+      "label": "Sub Title Container Styles",
+      "default": "my-4"
+    },
+    {
+      "type": "textarea",
+      "id": "sub-title_styles",
+      "label": "Sub Title Styles",
+      "default": "text-base md:text-xl leading-normal"
+    },
+    {
+      "type": "textarea",
+      "id": "link-container_styles",
+      "label": "Link Container Styles",
+      "default": "my-4"
+    },
+    {
+      "type": "textarea",
+      "id": "link_styles",
+      "label": "Link Styles",
+      "default": "px-4 inline py-2 text-base font-medium shadow bg-green-600 hover:bg-green-800 text-white"
+    }
+  ]
+}
+{% endschema %}

@@ -31,6 +31,12 @@
                 "id": "initial_modal_enabled",
                 "label": "Enable Welcome Modal",
                 "default": false
+            },
+            {
+                "type": "checkbox",
+                "id": "initial_modalWithImage_enabled",
+                "label": "Enable Welcome Modal with Image",
+                "default": false
             }
         ]
     },

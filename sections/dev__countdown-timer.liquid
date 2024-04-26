@@ -1,0 +1,152 @@
+<div class=" {{ section.settings.container__main }}">
+  <div class="{{ section.settings.subcontainer__main }}">
+    <div class="{{ section.settings.title__div }}">
+      <h1 class="{{ section.settings.title__h1__div }}">
+        {{ section.settings.title }}
+      </h1>
+      <div class=" {{ section.settings.subtitle__div }}">
+        {{ section.settings.subtitle }}
+      </div>
+    </div>
+    <div class=" {{ section.settings.timer__container }}">
+      <div class=" {{ section.settings.timer_subdiv }}">
+        <div class="{{ section.settings.timer_numbers }} js-timer-days">00</div>
+        <div class="{{ section.settings.timer__text }}">Days</div>
+      </div>
+      <div class=" {{ section.settings.timer_subdiv }}">
+        <div class="{{ section.settings.timer_numbers }} js-timer-hours">00</div>
+        <div class="{{ section.settings.timer__text }}">Hours</div>
+      </div>
+      <div class=" {{ section.settings.timer_subdiv }}">
+        <div class="{{ section.settings.timer_numbers }} js-timer-minutes">00</div>
+        <div class="{{ section.settings.timer__text }}">Minutes</div>
+      </div>
+      <div class=" {{ section.settings.timer_subdiv }}">
+        <div class="{{ section.settings.timer_numbers }} js-timer-seconds">00</div>
+        <div class="{{ section.settings.timer__text }}">Seconds</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateTimer() {
+    var endDateTime = new Date('{{ section.settings.end_date }}').getTime();
+
+    var x = setInterval(function () {
+      var now = new Date().getTime();
+      var distance = endDateTime - now;
+
+      if (distance <= 0) {
+        clearInterval(x);
+        document.querySelector('.timer').classList.add('timer--expired');
+        return;
+      }
+
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.querySelector('.js-timer-days').innerText = days < 10 ? '0' + days : days;
+      document.querySelector('.js-timer-hours').innerText = hours < 10 ? '0' + hours : hours;
+      document.querySelector('.js-timer-minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+      document.querySelector('.js-timer-seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+    }, 1000);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    updateTimer();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Countdown Timer Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Huraaaaay, Limited Period Offer"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sub Title",
+      "default": "Be a part of our club, Grab the offer now!"
+    },
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "End Date",
+      "default": "2024-12-31",
+      "info": "YYYY-MM-DD"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "label": "Countdown Container Styles",
+      "id": "container__main",
+      "default": "flex justify-center items-center bg-blue-100"
+    },
+    {
+      "type": "textarea",
+      "label": "Countdown Sub Container Styles",
+      "id": "subcontainer__main",
+      "default": "mx-3 sm:p-7 p-4 rounded-md flex justify-center flex-col gap-6"
+    },
+    {
+      "type": "textarea",
+      "label": "Title Styles",
+      "id": "title__div",
+      "default": "flex flex-col gap-2 py-4 px-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Sub Title Styles",
+      "id": "subtitle__div",
+      "default": "text-sm font-semibold text-center leading-8 text-black"
+    },
+    {
+      "type": "textarea",
+      "label": "H1 Styles",
+      "id": "title__h1__div",
+      "default": "text-center sm:text-3xl text-xl font-semibold leading-8"
+    },
+    {
+      "type": "textarea",
+      "label": "Timer Container Styles",
+      "id": "timer__container",
+      "default": "flex justify-between sm:px-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Timer Sub-Div Styles",
+      "id": "timer_subdiv",
+      "default": "flex flex-col justify-center items-center gap-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Timer Numbers Styles",
+      "id": "timer_numbers",
+      "default": "py-3 px-3 bg-gray-900 text-white text-3xl font-semibold rounded-md"
+    },
+    {
+      "type": "textarea",
+      "label": "Timer text Styles",
+      "id": "timer__text",
+      "default": "text-sm text-black font-bold"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown Timer",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

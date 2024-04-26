@@ -1,0 +1,443 @@
+{% assign product = section.settings.product %}
+
+<div class="main-container__classes {{ section.settings.main-container__classes }}">
+  <div class="sub-container__classes {{ section.settings.sub-container__classes }}">
+    <div class="product-image__classes {{ section.settings.product-image__classes }}">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: '300' | image_tag: width: '300' }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+
+    {% if product != blank %}
+      <div class="product-information__classes {{ section.settings.product-information__classes }}">
+        {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+          <input
+            type="hidden"
+            name="id"
+            value="{{ product.id }}"
+          >
+
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'vendor' %}
+                <div class="vendor__classes {{ section.settings.vendor__classes }}">
+                  <span class="vendor-text__classes {{ section.settings.vendor-text__classes }}">
+                    {{- product.vendor -}}
+                  </span>
+                </div>
+              {% when 'title' %}
+                <div class="title__classes {{ section.settings.title__classes }}">
+                  <h1 class="title-text__classes {{ section.settings.title-text__classes }}">{{ product.title }}</h1>
+                </div>
+              {% when 'price' %}
+                <div class="price__classes {{ section.settings.price__classes }}" id="price-{{ section.id }}">
+                  <span class="price-compare-text__classes {{ section.settings.price-compare-text__classes }}">
+                    {{- product.compare_at_price | money -}}
+                  </span>
+                  <span class="price-text__classes {{ section.settings.price-text__classes }}">
+                    {{- product.price | money -}}
+                  </span>
+
+                  {% if product.price < product.compare_at_price %}
+                    <span class="price-sales__classes {{ section.settings.price-sales__classes }}">Sale</span>
+                  {% endif %}
+                </div>
+              {% when 'variant_selector' %}
+                <div class="variant__classes {{ section.settings.variant__classes }}">
+                  {% unless product.has_only_default_variant %}
+                    <variant-selector data-url="{{ product.url}}" data-section="{{ section.id }}">
+                      {% for option in product.options_with_values %}
+                        <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
+
+                        <div class="variant-sub__classes {{ section.settings.variant-sub__classes }}">
+                          <select
+                            name="options[{{ option.name | escape }}]"
+                            id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                            class="variant-select__classes {{ section.settings.variant-select__classes }}"
+                          >
+                            {% for value in option.values %}
+                              <option
+                                value="{{ value | escape }}"
+                                {% if option.selected_value == value %}
+                                  selected="selected"
+                                {% endif %}
+                              >
+                                {{ value }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        </div>
+
+                        <script type="application/json">
+                          {{ product.variants | json }}
+                        </script>
+                      {% endfor %}
+                    </variant-selector>
+                  {% endunless %}
+                </div>
+
+              {% when 'quantity' %}
+                <div class="quantity__classes {{ section.settings.quantity__classes }}">
+                  <label for="Quantity-{{ section.id }}">Quantity</label>
+
+                  <div class="quantity-sub__classes {{ section.settings.quantity-sub__classes }}">
+                    <input
+                      type="number"
+                      name="quantity"
+                      id="Quantity-{{ section.id }}"
+                      value="1"
+                      min="1"
+                      class="quantity-input__classes {{  section.settings.quantity-input__classes }}"
+                    >
+                  </div>
+                </div>
+              {% when 'description' %}
+                <div class="description__classes {{  section.settings.description__classes }}">
+                  <p class="description-text__classes {{  section.settings.description-text__classes }}">{{ product.description }}</p>
+                </div>
+
+              {% when 'checkout_buttons' %}
+                <div class="checkout__classes {{  section.settings.checkout__classes }}">
+                  <form action="/cart/add" method="post">
+                    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                    <button
+                      type="submit"
+                      name="add"
+                      class="checkout-button__classes {{  section.settings.checkout-button__classes }}"
+                      {% if product.available == false %}
+                        disabled
+                      {% endif %}
+                    >
+                      {% if product.available == false %}
+                        {{ section.settings.sold-out_text }}
+                      {% else %}
+                        {{ section.settings.add-to-cart_text }}
+                      {% endif %}
+                    </button>
+                  </form>
+                </div>
+              {% else %}
+
+            {% endcase %}
+          {% endfor %}
+        {% endform %}
+      </div>
+    {% else %}
+      <div class="no-product__classes {{ section.settings.no-product__classes }}">
+        {{ section.settings.no-product_text }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  class VariantSelector extends HTMLElement {
+    constructor() {
+      super();
+      this.addEventListener('change', this.onVariantChange);
+    }
+
+    onVariantChange() {
+      this.getSelectedOptions();
+      this.getSelectedVariant();
+
+      if (this.currentVariant) {
+        this.updateURL();
+        this.updateFormID();
+        this.updatePrice();
+      }
+    }
+
+    getSelectedOptions() {
+      this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+      console.log(this.options);
+    }
+
+    getVariantJSON() {
+      this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+      return this.variantData;
+    }
+
+    getSelectedVariant() {
+      this.currentVariant = this.getVariantJSON().find((variant) => {
+        const findings = !variant.options
+          .map((option, index) => {
+            return this.options[index] === option;
+          })
+          .includes(false);
+
+        if (findings) return variant;
+      });
+
+      console.log(this.currentVariant);
+    }
+
+    updateURL() {
+      if (!this.currentVariant) return;
+
+      window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
+    }
+
+    updateFormID() {
+      const form_input = document.querySelector('#product-form').querySelector('input[name="id"]');
+      form_input.value = this.currentVariant.id;
+    }
+
+    updatePrice() {
+      fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
+        .then((response) => response.text())
+        .then((responseText) => {
+          const id = `price-${this.dataset.section}`;
+          const html = new DOMParser().parseFromString(responseText, 'text/html');
+
+          const oldPrice = document.getElementById(id);
+          const newPrice = html.getElementById(id);
+
+          if (oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
+        });
+    }
+  }
+
+  customElements.define('variant-selector', VariantSelector);
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select a Product"
+    },
+    {
+      "type": "text",
+      "id": "sold-out_text",
+      "label": "Sold Out Text",
+      "default": "Sold Out"
+    },
+    {
+      "type": "text",
+      "id": "add-to-cart_text",
+      "label": "Add to Cart Text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "text",
+      "id": "no-product_text",
+      "label": "No Product Text",
+      "default": "No Product Selected."
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes (If Needed)",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "label": "Main Container Class",
+      "id": "main-container__classes",
+      "default": "max-w-6xl mx-auto my-8"
+    },
+    {
+      "type": "textarea",
+      "label": "Sub Container Class",
+      "id": "sub-container__classes",
+      "default": "grid grid-cols-1 md:grid-cols-2 gap-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Product Image Class",
+      "id": "product-image__classes",
+      "default": "grid justify-center p-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Product's Information Class",
+      "id": "product-information__classes",
+      "default": "top-5 p-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Vendor Class",
+      "id": "vendor__classes",
+      "default": "my-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Vendor Text Class",
+      "id": "vendor-text__classes",
+      "default": "text-xs text-gray-500"
+    },
+    {
+      "type": "textarea",
+      "label": "Title Class",
+      "id": "title__classes",
+      "default": "my-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Title Text Class",
+      "id": "title-text__classes",
+      "default": "text-3xl text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "label": "Price Class",
+      "id": "price__classes",
+      "default": "my-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Price Compare At Text Class",
+      "id": "price-compare-text__classes",
+      "default": "text-base text-gray-500 line-through"
+    },
+    {
+      "type": "textarea",
+      "label": "Price Text Class",
+      "id": "price-text__classes",
+      "default": "text-lg text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "label": "Sales Button Class",
+      "id": "price-sales__classes",
+      "default": "px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Variant Class",
+      "id": "variant__classes",
+      "default": "my-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Variant Sub Class",
+      "id": "variant-sub__classes",
+      "default": "my-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Variant Select Class",
+      "id": "variant-select__classes",
+      "default": "w-full border py-3 px-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Quantity Class",
+      "id": "quantity__classes",
+      "default": "my-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Quantity Sub Class",
+      "id": "quantity-sub__classes",
+      "default": "my-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Quantity Input Class",
+      "id": "quantity-input__classes",
+      "default": "w-full border px-3 py-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Description Class",
+      "id": "description__classes",
+      "default": "my-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Description Text Class",
+      "id": "description-text__classes",
+      "default": "text-gray-700"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Class",
+      "id": "checkout__classes",
+      "default": "my-3"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Button Class",
+      "id": "checkout-button__classes",
+      "default": "w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-700 rounded-sm my-2"
+    },
+    {
+      "type": "textarea",
+      "label": "No Product Class",
+      "id": "no-product__classes",
+      "default": "text-xl font-blod max-w-6xl mx-auto my-8"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "vendor",
+      "name": "Vendor",
+      "limit": 1
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variant_selector",
+      "name": "Variant Selector",
+      "limit": 1
+    },
+    {
+      "type": "quantity",
+      "name": "Quantity",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "checkout_buttons",
+      "name": "Checkout Buttons",
+      "limit": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Display",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "vendor"
+        },
+        {
+          "type": "price"
+        },
+        {
+          "type": "variant_selector"
+        },
+        {
+          "type": "quantity"
+        },
+        {
+          "type": "description"
+        },
+        {
+          "type": "checkout_buttons"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

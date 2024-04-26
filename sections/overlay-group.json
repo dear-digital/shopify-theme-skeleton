@@ -1,0 +1,12 @@
+{
+    "name": "Overlay Group",
+    "type": "aside",
+    "sections": {
+      "aside": {
+        "type": "dev__modal-image"
+      }
+    },
+    "order": [
+      "aside"
+    ]
+  }

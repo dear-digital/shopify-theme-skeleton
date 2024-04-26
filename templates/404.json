@@ -1,11 +1,8 @@
 {
     "sections": {
-        "e691a74f-e680-4d8a-aeee-e8d83bd89db4": {
-            "type": "image-banner",
-            "settings": {}
+        "template": {
+            "type": "dev__main-404"
         }
     },
-    "order": [
-        "e691a74f-e680-4d8a-aeee-e8d83bd89db4"
-    ]
+    "order": ["template"]
 }
