@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="featured-collection__product-container {{ section.settings.featured-collection__product-container }}">
+  <div class="featured-collection__product-container {{ section.settings.featured-collection__product-container }} [&::-webkit-scrollbar]:h-[{{ section.settings.scroll_bar_height}}px]">
     {% for block in section.blocks %}
       <div
         class="featured-collection__product-card {{ block.settings.featured-collection__product-card }}"
@@ -139,6 +139,16 @@
       "default": "$"
     },
     {
+      "type": "range",
+      "id": "scroll_bar_height",
+      "label": "Scroll Bar Height",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 10,
+      "unit": "px"
+    },
+    {
       "type": "header",
       "content": "Styling"
     },
@@ -182,7 +192,7 @@
       "type": "textarea",
       "id": "featured-collection__product-container",
       "label": "Product Container Style",
-      "default": "flex overflow-x-auto flex-nowrap justify-start items-stretch mx-auto my-0 pb-[30px] [&::-webkit-scrollbar]:h-[2px] [&::-webkit-scrollbar-track]:bg-gray-300 [&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb:hover]:bg-gray-900"
+      "default": "flex overflow-x-auto flex-nowrap justify-start items-stretch mx-auto my-0 pb-[30px] [&::-webkit-scrollbar-track]:bg-gray-200 [&::-webkit-scrollbar-thumb]:bg-gray-500 [&::-webkit-scrollbar-thumb:hover]:bg-gray-600"
     }
   ],
   "blocks": [

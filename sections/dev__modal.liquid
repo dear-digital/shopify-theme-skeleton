@@ -1,23 +1,72 @@
 <!-- modal.liquid -->
-
-<div class="modal-dark-overlay {{ section.settings.style_modal-dark-overlay }}"></div>
-
-<div class="modal-container {{ section.settings.style_modal-container }}">
-  <div class="modal {{ section.settings.style_modal }}">
-    <button id="closeModal" class="close {{ section.settings.style_close }}">{% render 'icon-cross' %}</button>
-    <h2 class="modal_header {{ section.settings.style_modal_header }}">{{ section.settings.modal_header }}</h2>
-    <p class="modal_content {{ section.settings.style_modal_content }}">{{ section.settings.modal_content }}</p>
-    <button id="acknowledgeButton" class="modal_button {{ section.settings.style_modal_button }}">
-      {{ section.settings.modal_button }}
-    </button>
+<div id="modal_window">
+  <div class="modal-dark-overlay {{ section.settings.style_modal-dark-overlay }}"></div>
+  <div class="modal-container {{ section.settings.style_modal-container }}">
+    <div class="modal {{ section.settings.style_modal }}">
+      <button
+        id="closeModal"
+        class="close {{ section.settings.style_close }}"
+        onclick="document.getElementById('modal_window').style.display='none'"
+      >
+        {% render 'icon-cross' %}
+      </button>
+      <h2 class="modal_header {{ section.settings.style_modal_header }}">{{ section.settings.modal_header }}</h2>
+      <p class="modal_content {{ section.settings.style_modal_content }}">{{ section.settings.modal_content }}</p>
+      <button
+        id="acknowledgeButton"
+        class="modal_button {{ section.settings.style_modal_button }}"
+        onclick="document.getElementById('modal_window').style.display='none'"
+      >
+        {{ section.settings.modal_button }}
+      </button>
+    </div>
   </div>
 </div>
 
+{% comment %}
+  <script>
+    const toggleModal = (show) => {
+      const overlay = document.querySelector('.modal-dark-overlay');
+      const modalContainer = document.querySelector('.modal-container');
+      const modal = document.querySelector('.modal');
+
+      if (show) {
+        overlay.style.display = 'block';
+        modalContainer.style.display = 'block';
+      } else {
+        overlay.style.display = 'none';
+        modalContainer.style.display = 'none';
+        modal.style.display = 'none';
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+      toggleModal(true); // Show modal on page load
+    });
+
+    // Close Modal
+    document.querySelector('#closeModal').onclick = function () {
+      toggleModal(false);
+    };
+
+    document.querySelector('#acknowledgeButton').onclick = function () {
+      toggleModal(false);
+    };
+
+    // Close Modal when clicked outside the modal
+    window.onclick = function (e) {
+      if (e.target === document.querySelector('.modal-container')) {
+        toggleModal(false);
+      }
+    };
+  </script>
+{% endcomment %}
+
 <script>
-  const toggleModal = (show) => {
-    const overlay = document.querySelector('.modal-dark-overlay');
-    const modalContainer = document.querySelector('.modal-container');
-    const modal = document.querySelector('.modal');
+  function toggleModal(show) {
+    var overlay = document.querySelector('.modal-dark-overlay');
+    var modalContainer = document.querySelector('.modal-container');
+    var modal = document.querySelector('.modal');
 
     if (show) {
       overlay.style.display = 'block';
@@ -25,22 +74,12 @@
     } else {
       overlay.style.display = 'none';
       modalContainer.style.display = 'none';
-      modal.style.display = 'none';
     }
-  };
+  }
 
   document.addEventListener('DOMContentLoaded', function () {
     toggleModal(true); // Show modal on page load
   });
-
-  // Close Modal
-  document.querySelector('#closeModal').onclick = function () {
-    toggleModal(false);
-  };
-
-  document.querySelector('#acknowledgeButton').onclick = function () {
-    toggleModal(false);
-  };
 
   // Close Modal when clicked outside the modal
   window.onclick = function (e) {
