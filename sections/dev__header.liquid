@@ -1,97 +1,179 @@
-{{ 'dev__header.css' | asset_url | stylesheet_tag }}
+{% assign main_menu_linklist = linklists[section.settings.menu].links %}
 
-<header class="header" style="background-color: {{ section.settings.background_color }};">
-  <button class="navbar-toggler" onclick="toggleNavbar()">
-    <span class="navbar-toggler-icon">{% render 'icon-hamburger' %}</span>
-  </button>
-  <div class="logo" id="logo">
-    {% if section.settings.logo != blank %}
-      <a href="#">
-        {%- liquid
-          assign image_url_width = section.settings.image_url_width
-          assign logo_image_styles = section.settings.logo_image_styles
-          assign logo_alt = section.settings.logo.alt | default: shop.name | escape
-          assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio
-        -%}
-        {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
-        {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}
-        {{
-          section.settings.logo
-          | image_url: width: image_url_width
-          | image_tag:
-            widths: widths,
-            height: logo_height,
-            width: section.settings.logo_width,
-            alt: logo_alt,
-            sizes: sizes,
-            class: logo_image_styles,
-            preload: true
-        }}
-      </a>
-    {%- else -%}
-      <span class="h2">{{ shop.name }}</span>
-    {% endif %}
-  </div>
-  <nav class="navbar" id="navbar">
-    <ul class="navbar__nav-list">
-      {% for link in section.settings.menu.links %}
-        <li class="navbar__nav-item">
-          <span class="navbar__main-menu"> {{ link.title | link_to: link.url }} </span>
-          {% if link.links.size > 0 %}
-            <ul class="navbar__menu dropdown-child">
-              {% for child_link in link.links %}
-                <li class="navbar__menu-link">
-                  <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-                  {% if child_link.links.size > 0 %}
-                    <ul class="navbar__menu dropdown-grandchild">
-                      {% for grandchild_link in child_link.links %}
-                        <li class="navbar__sub-menu-link">
-                          <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  {% endif %}
-                </li>
-              {% endfor %}
-            </ul>
+<div class="theme_navbar_classes {{ section.settings.theme_navbar_classes }}" x-data="{ mobileMenuOpen: false }">
+  <div class="container_classes {{ section.settings.container_classes }}">
+    <div class="sub-container_classes {{ section.settings.sub-container_classes }}">
+      <!-- STORE NAME / STORE LOGO -->
+      <div class="logo_classes {{ section.settings.logo_classes }}" id="logo">
+        {% if section.settings.logo != blank %}
+          <a href="#">
+            {%- liquid
+              assign image_url_width = section.settings.image_url_width
+              assign logo_image_styles = section.settings.logo_image_styles
+              assign logo_alt = section.settings.logo.alt | default: shop.name | escape
+              assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio
+            -%}
+            {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
+            {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}
+            {{
+              section.settings.logo
+              | image_url: width: image_url_width
+              | image_tag:
+                widths: widths,
+                height: logo_height,
+                width: section.settings.logo_width,
+                alt: logo_alt,
+                sizes: sizes,
+                class: logo_image_styles,
+                preload: true
+            }}
+          </a>
+        {%- else -%}
+          <span class="shop_name_classes {{ section.settings.shop_name_classes }}">{{ shop.name }}</span>
+        {% endif %}
+      </div>
+
+      <div class="hamburger_button_classes {{ section.settings.hamburger_button_classes }}">
+        <button
+          x-on:click="mobileMenuOpen = !mobileMenuOpen"
+          type="button"
+          class="hamburger_button_styles {{ section.settings.hamburger_button_styles }}"
+        >
+          <!-- Icon for hamburger menu -->
+          {% render 'icon-hamburger' %}
+        </button>
+      </div>
+
+      <!-- NAVIGATION MENU -->
+      <nav class="navbar_classes {{ section.settings.navbar_classes }}">
+        {% for link in main_menu_linklist %}
+          {% if link.links != blank %}
+            {% assign link_handle = link.handle | replace: '-', '_' %}
+            <div x-data="{ {{ link_handle }}: false }" class="navbar_link_wrapper_classes  {{ section.settings.navbar_link_wrapper_classes }}">
+              <button
+                x-on:click="{{ link_handle }} = !{{ link_handle }}"
+                class="navbar_link_button_classes {{ section.settings.navbar_link_button_classes }}"
+              >
+                {{ link.title }}
+                <!-- Icon for dropdown -->
+                {% render 'icon-hamburger' %}
+              </button>
+
+              <div
+                x-show="{{ link_handle }}"
+                @click.away="{{ link_handle }} = false"
+                class="navbar_dropdown_classes {{ section.settings.navbar_dropdown_classes }}"
+              >
+                <div class="dropdown_content_classes {{ section.settings.dropdown_content_classes }}">
+                  <div class="dropdown_inner_classes {{ section.settings.dropdown_inner_classes }}">
+                    {% for childlink in link.links %}
+                      <a href="{{ childlink.url }}" class="dropdown_link_classes {{ section.settings.dropdown_link_classes }}">
+                        {{ childlink.title }}
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% else %}
+            <div class="navbar_link_wrapper_classes {{ section.settings.navbar_link_wrapper_classes }}">
+              <a href="{{ link.url }}" class="navbar_link_classes {{ section.settings.navbar_link_classes }}">{{ link.title }}</a>
+            </div>
           {% endif %}
-        </li>
-      {%- endfor %}
-    </ul>
-  </nav>
-  <div class="actions">
-    {% if section.settings.search == true %}
-      <a href="#">
-        {% render 'icon-search' %}
-      </a>
-    {% endif %}
-    {% if section.settings.cart == true %}
-      <a href="#">
-        {% render 'icon-cart' %}
-      </a>
-    {% endif %}
-    {% if shop.customer_accounts_enabled %}
-      {% if customer %}
-        <a href="{{ routes.account_url }}" class="text-base text-gray-500 hover:text-gray-900">account</a>
-        {{ 'Log out' | customer_logout_link | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-900"' }}
-      {% else %}
-        {{ 'Log in ' | customer_login_link | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-900"' }}
-        {{
-          'Register'
-          | customer_register_link
-          | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-900"'
-        }}
-      {% endif %}
-    {% endif %}
-  </div>
-</header>
+        {% endfor %}
+      </nav>
 
-<script>
-  function toggleNavbar() {
-    var navbar = document.getElementById('navbar');
-    navbar.classList.toggle('responsive');
-  }
-</script>
+      <div class="utility_menu_classes {{ section.settings.utility_menu_classes }}">
+        {% if section.settings.cart == true %}
+          <a href="{{ routes.cart_url }}" class="cart_link_classes {{ section.settings.cart_link_classes }}">
+            <!-- Icon for cart -->
+            {% render 'icon-cart' %}
+          </a>
+        {% endif %}
+        {% if section.settings.search == true %}
+          <a href="{{ routes.search_url }}" class="search_link_classes {{ section.settings.search_link_classes }}">
+            <!-- Icon for search -->
+            {% render 'icon-search' %}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div x-show="mobileMenuOpen" class="mobile_menu_classes {{ section.settings.mobile_menu_classes }}">
+    <div class="mobile_menu_content_classes {{ section.settings.mobile_menu_content_classes }}">
+      <div class="mobile_menu_header_classes {{ section.settings.mobile_menu_header_classes }}">
+        <div>
+          <h1 class="mobile_menu_title_classes {{ section.settings.mobile_menu_title_classes }}">{{ shop.name }}</h1>
+        </div>
+        <div>
+          <button
+            x-on:click="mobileMenuOpen = false"
+            type="button"
+            class="mobile_menu_close_button_classes {{ section.settings.mobile_menu_close_button_classes }}"
+          >
+            <!-- Icon for closing mobile menu -->
+            {% render 'icon-close' %}
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Links for Mobile Menu -->
+      <div class="mobile_menu_links_classes {{ section.settings.mobile_menu_links_classes }}">
+        <nav class="mobile_menu_nav_classes {{ section.settings.mobile_menu_nav_classes }}">
+          <div class="mobile_icons_classes {{ section.settings.mobile_icons_classes }}">
+            {% if section.settings.cart == true %}
+              <a href="{{ routes.cart_url }}" class="cart_link_classes {{ section.settings.cart_link_classes }}">
+                <!-- Icon for cart -->
+                {% render 'icon-cart' %}
+              </a>
+            {% endif %}
+            {% if section.settings.search == true %}
+              <a href="{{ routes.search_url }}" class="search_link_classes {{ section.settings.search_link_classes }}">
+                <!-- Icon for search -->
+                {% render 'icon-search' %}
+              </a>
+            {% endif %}
+          </div>
+          {% for link in main_menu_linklist %}
+            {% assign link_handle = link.handle | replace: '-', '_' %}
+            {% if link.links != blank %}
+              <div
+                x-data="{ {{ link_handle }}: false }"
+                class="mobile_menu_dropdown_wrapper_classes {{ section.settings.mobile_menu_dropdown_wrapper_classes }}"
+              >
+                <button
+                  x-on:click="{{ link_handle }} = !{{ link_handle }}"
+                  type="button"
+                  class="mobile_menu_dropdown_button_classes {{ section.settings.mobile_menu_dropdown_button_classes }}"
+                >
+                  {{ link.title }}
+                  <!-- Icon for dropdown -->
+                  {% render 'icon-hamburger' %}
+                </button>
+
+                <div x-show="{{ link_handle }}" class="mobile_menu_dropdown_content_classes {{ section.settings.mobile_menu_dropdown_content_classes }}">
+                  <div class="mobile_menu_dropdown_inner_classes {{ section.settings.mobile_menu_dropdown_inner_classes }}">
+                    {% for childlink in link.links %}
+                      <a href="{{ childlink.url }}" class="mobile_menu_dropdown_link_classes {{ section.settings.mobile_menu_dropdown_link_classes }}">
+                        {{ childlink.title }}
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              <a href="{{ link.url }}" class="mobile_menu_link_classes {{ section.settings.mobile_menu_link_classes }}">{{ link.title }}</a>
+            {% endif %}
+          {% endfor %}
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
 {% schema %}
 {
@@ -135,24 +217,196 @@
     },
     {
       "type": "color",
-      "id": "background_color",
-      "label": " Background Color"
+      "id": "theme_navbar_classes",
+      "label": "Background Color"
     },
     {
       "type": "header",
-      "content": "Tailwind Styling"
+      "content": "Header Styling"
     },
     {
-      "type": "text",
-      "id": "image_url_width",
-      "label": "Image URL width",
-      "default": "500"
+      "type": "textarea",
+      "id": "container_classes",
+      "label": "Container Classes",
+      "default": "mx-auto px-4 sm:px-6"
+    },
+    {
+      "type": "textarea",
+      "id": "sub-container_classes",
+      "label": "Sub Container Classes",
+      "default": "flex justify-between items-center py-6"
+    },
+    {
+      "type": "textarea",
+      "id": "logo_classes",
+      "label": "Logo Classes",
+      "default": "lg:flex-1 truncate"
     },
     {
       "type": "text",
       "id": "logo_image_styles",
       "label": "Logo Image Style Section",
-      "default": "w-full rounded-lg"
+      "default": "rounded-lg"
+    },
+    {
+      "type": "textarea",
+      "id": "shop_name_classes",
+      "label": "Shop Name Classes",
+      "default": "font-semibold"
+    },
+    {
+      "type": "textarea",
+      "id": "hamburger_button_classes",
+      "label": "Hamburger Button Classes",
+      "default": "-mr-2 -my-2 ml-3 md:hidden"
+    },
+    {
+      "type": "textarea",
+      "id": "hamburger_button_styles",
+      "label": "Hamburger Button Styles",
+      "default": "bg-white p-2 inline-flex items-center justify-center focus:outline-none"
+    },
+    {
+      "type": "textarea",
+      "id": "navbar_classes",
+      "label": "Navbar Classes",
+      "default": "hidden md:flex space-x-10"
+    },
+    {
+      "type": "textarea",
+      "id": "navbar_link_wrapper_classes",
+      "label": "Navbar Link Wrapper Classes",
+      "default": "relative"
+    },
+    {
+      "type": "textarea",
+      "id": "navbar_link_button_classes",
+      "label": "Navbar Link Button Classes",
+      "default": "inline-flex items-center text-base text-gray-500 hover:text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "id": "navbar_dropdown_classes",
+      "label": "Navbar Dropdown Classes",
+      "default": "absolute z-10 -ml-5 mt-5 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2"
+    },
+    {
+      "type": "textarea",
+      "id": "dropdown_content_classes",
+      "label": "Dropdown Content Classes",
+      "default": "shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg"
+    },
+    {
+      "type": "textarea",
+      "id": "dropdown_inner_classes",
+      "label": "Dropdown Inner Classes",
+      "default": "relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8"
+    },
+    {
+      "type": "textarea",
+      "id": "dropdown_link_classes",
+      "label": "Dropdown Link Classes",
+      "default": "-m-3 p-3 flex items start rounded-lg hover:bg-gray-100"
+    },
+    {
+      "type": "textarea",
+      "id": "utility_menu_classes",
+      "label": "Utility Menu Classes",
+      "default": "hidden md:flex items-center justify-end md:flex-1 space-x-5"
+    },
+    {
+      "type": "textarea",
+      "id": "cart_link_classes",
+      "label": "Cart Link Classes",
+      "default": "whitespace-nowrap text-base text-gray-500 hover:text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "id": "search_link_classes",
+      "label": "Search Link Classes",
+      "default": "text-gray-500 hover:text-gray-900"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Menu Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_classes",
+      "label": "Mobile Menu Classes",
+      "default": "absolute z-10 top-0 inset-x-0 p-2 transform origin-top-left md:hidden"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_content_classes",
+      "label": "Mobile Menu Content Classes",
+      "default": "shadow-lg rounded-lg ring-1 ring-black ring-opacity-5 bg-white w-full"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_header_classes",
+      "label": "Mobile Menu Header Classes",
+      "default": "flex items-center justify-between pb-3"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_title_classes",
+      "label": "Mobile Menu Title Classes",
+      "default": "text-lg text-gray-500 p-5"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_close_button_classes",
+      "label": "Mobile Menu Close Button Classes",
+      "default": "-mr-2 p-5"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_links_classes",
+      "label": "Mobile Menu Links Classes",
+      "default": "pt-3 p-5"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_nav_classes",
+      "label": "Mobile Menu Navigation Classes",
+      "default": "grid gap-y-7"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_icons_classes",
+      "label": "Mobile Icons Classes",
+      "default": "flex gap-4"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_dropdown_wrapper_classes",
+      "label": "Mobile Menu Dropdown Wrapper Classes",
+      "default": "relative"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_dropdown_button_classes",
+      "label": "Mobile Menu Dropdown Button Classes",
+      "default": "text-base text-gray-500 hover:text-gray-900 flex items-center justify-between w-full"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_dropdown_content_classes",
+      "label": "Mobile Menu Dropdown Content Classes",
+      "default": "grid gap-y-7 py-3"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_dropdown_inner_classes",
+      "label": "Mobile Menu Dropdown Inner Classes",
+      "default": "-m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_dropdown_link_classes",
+      "label": "Mobile Menu Dropdown Link Classes",
+      "default": "ml-3 text-base font-medium text-gray-500"
     }
   ]
 }

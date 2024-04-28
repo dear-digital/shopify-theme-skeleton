@@ -1,0 +1,434 @@
+{% if cart.item_count > 0 %}
+  <div class="main-container__classes {{ section.settings.main-container__classes }}">
+    <div class="cart-container__classes {{ section.settings.cart-container__classes }}">
+      <div class="cart-sub-container__classes {{ section.settings.cart-sub-container__classes }}">
+        <h1 class="cart-title__classes {{ section.settings.cart-title__classes }}">
+          {{ section.settings['cart-title'] }}
+        </h1>
+        <a
+          href="{{ routes.all_products_collection_url }}"
+          class="cart-continue-shopping__classes {{ section.settings.cart-continue-shopping__classes }}"
+        >
+          {{- section.settings['cart-continue-shopping'] -}}
+        </a>
+      </div>
+    </div>
+
+    <div class="form__classes {{ section.settings.form__classes }}">
+      <form action="{{ routes.cart_url }}" method="POST" novalidate>
+        <table class="table__classes {{  section.settings.table__classes }}">
+          <thead>
+            <th class="table-product__classes {{ section.settings.table-product__classes }}">{{ section.settings.table-product }}</th>
+            <th class="table-quantity__classes {{ section.settings.table-quantity__classes }}">{{ section.settings.table-quantity }}</th>
+            <th class="table-total__classes {{ section.settings.table-total__classes }}">{{ section.settings.table-total }}</th>
+          </thead>
+          <tbody>
+            {% for item in cart.items %}
+              <tr class="table-row__classes {{ section.settings.table-row__classes }}">
+                <td class="table-image__classes {{ section.settings.table-image__classes }}">
+                  <a href="{{ item.url }}">
+                    {% assign product_image__classes = section.settings.product-image__classes  %}
+                    {% if item.image %}
+                      {{ item.image | image_url: width: '300' | image_tag: class: product_image__classes }}
+                    {% else %}
+                      {{ 'product-1' | placeholder_svg_tag: product_image__classes }}
+                    {% endif %}
+                  </a>
+                </td>
+                <td class="table-details__classes {{ section.settings.table-details__classes }}">
+                  <a href="{{ item.url }}" class="table-product-title__classes {{ section.settings.table-product-title__classes }}">{{ item.product.title | truncatewords: 5 }}</a>
+                  <span class="table-variant-title__classes {{ section.settings.table-variant-title__classes }}">{{ item.variant.title }}</span>
+                  <a
+                    href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0"
+                    class="table-remove__classes {{ section.settings.table-remove__classes }}"
+                    >{{ section.settings.table-remove }}</a
+                  >
+                </td>
+                <td class="table-item-quantity__classes {{  section.settings.table-item-quantity__classes }}">
+                  <input
+                    type="number"
+                    name="updates[]"
+                    value="{{ item.quantity }}"
+                    min="1"
+                    id="updates_{{ forloop.index }}"
+                    class="table-item__classes {{  section.settings.table-item__classes }}"
+                  >
+                </td>
+                <td class="table-item-price__classes {{ section.settings.table-item-price__classes }}">
+                  {{ item.line_price | money }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <div class="checkout-container__classes {{ section.settings.checkout-container__classes }}">
+          <div class="cart-notes-container__classes {{ section.settings.cart-notes-container__classes }}">
+            <div class="cart-notes__classes {{ section.settings.cart-notes__classes }}">
+              <label for="cart_notes" class="cart-notes-text__classes {{ section.settings.cart-notes-text__classes }}">{{ section.settings.cart-notes-text }}</label>
+              <textarea name="note" id="cart_notes" class="cart-notes-textarea__classes {{ section.settings.cart-notes-textarea__classes }}"></textarea>
+            </div>
+          </div>
+          <div class="checkout-subtotal__classes {{ section.settings.checkout-subtotal__classes }}">
+            <h3 class="checkout-subtotal-text__classes {{ section.settings.checkout-subtotal-text__classes }}">{{ section.settings.subtotal-text }} {{ cart.total_price | money }}</h3>
+            <div class="checkout-update__classes {{ section.settings.checkout-update__classes }}">
+              <button
+                type="submit"
+                name="update"
+                class="checkout-update-button__classes {{ section.settings.checkout-update-button__classes }}"
+              >
+                {{ section.settings.update-button }}
+              </button>
+            </div>
+            <div class="checkout__classes {{ section.settings.checkout__classes }}">
+              <button
+                type="submit"
+                name="checkout"
+                class="checkout-button__classes {{ section.settings.checkout-button__classes }}"
+              >
+                {{ section.settings.checkout-button }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% else %}
+  <div class="cart-empty-container__classes {{ section.settings.cart-empty-container__classes }}">
+    <div class="cart-empty-sub-container__classes {{ section.settings.cart-empty-sub-container__classes }}">
+      <h1 class="cart-empty-text__classes {{ section.settings.cart-empty-text__classes }}">{{ section.settings.cart-empty }}</h1>
+      <div class="cart-empty-collections__classes {{ section.settings.cart-empty-collections__classes }}">
+        <a
+          href="{{ routes.all_products_collection_url }}"
+          class="cart-empty-collections-text__classes {{ section.settings.cart-empty-collections-text__classes }}"
+          >{{ section.settings.cart-continue-shopping }}</a
+        >
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Template Cart",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cart-title",
+      "label": "Cart Title",
+      "default": "Your Cart"
+    },
+    {
+      "type": "text",
+      "id": "cart-continue-shopping",
+      "label": "Cart Continue Shopping",
+      "default": "Continue Shopping"
+    },
+    {
+      "type": "text",
+      "id": "table-product",
+      "label": "Table Product Text",
+      "default": "Product"
+    },
+    {
+      "type": "text",
+      "id": "table-quantity",
+      "label": "Table Quantity Text",
+      "default": "Quantity"
+    },
+    {
+      "type": "text",
+      "id": "table-total",
+      "label": "Table Total Text",
+      "default": "Total Price"
+    },
+    {
+      "type": "text",
+      "id": "table-remove",
+      "label": "Remove Text",
+      "default": "remove"
+    },
+    {
+      "type": "text",
+      "id": "cart-notes-text",
+      "label": "Cart Notes Text",
+      "default": "Cart notes"
+    },
+    {
+      "type": "text",
+      "id": "subtotal-text",
+      "label": "Subtotal Text",
+      "default": "Subtotal: "
+    },
+    {
+      "type": "text",
+      "id": "update-button",
+      "label": "Update Button Text",
+      "default": "Update"
+    },
+    {
+      "type": "text",
+      "id": "checkout-button",
+      "label": "Checkout Button Text",
+      "default": "Checkout"
+    },
+    {
+      "type": "text",
+      "id": "cart-empty",
+      "label": "Cart Empty Text",
+      "default": "Your cart is empty"
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes (If Needed)",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "label": "Main Container Classes",
+      "id": "main-container__classes",
+      "default": "p-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Container Classes",
+      "id": "cart-container__classes",
+      "default": "max-w-6xl flex flex-col my-10 mx-auto"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Sub Container Classes",
+      "id": "cart-sub-container__classes",
+      "default": "flex items-end justify-between my-5"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Title Classes",
+      "id": "cart-title__classes",
+      "default": "text-3xl"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Continue Shopping Classes",
+      "id": "cart-continue-shopping__classes",
+      "default": "text-blue-600 hover:text-blue-800 font-medium underline"
+    },
+    {
+      "type": "header",
+      "content": "Table Content Tailwind CSS"
+    },
+    {
+      "type": "textarea",
+      "label": "Form Classes",
+      "id": "form__classes",
+      "default": "max-w-6xl flex flex-col my-10 mx-auto"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Classes",
+      "id": "table__classes",
+      "default": "table-auto divide-y divide-gray-200 my-4 w-full"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Product Classes",
+      "id": "table-product__classes",
+      "default": "px-6 py-3 text-left text-sm font-medium text-gray-500"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Quantity Classes",
+      "id": "table-quantity__classes",
+      "default": "px-6 py-3 text-left text-sm font-medium text-gray-500"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Total Classes",
+      "id": "table-total__classes",
+      "default": "px-6 py-3 text-left text-sm font-medium text-gray-500"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Row Classes",
+      "id": "table-row__classes",
+      "default": "table-row"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Image Classes",
+      "id": "table-image__classes",
+      "default": "py-4 px-2 flex flex-col justify-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Product Image Classes",
+      "id": "product-image__classes",
+      "default": "w-20 h-20 object-cover border"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Details Classes",
+      "id": "table-details__classes",
+      "default": "py-4 px-2 flex flex-col justify-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Product Title Classes",
+      "id": "table-product-title__classes",
+      "default": "my-1"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Variant Title Classes",
+      "id": "table-variant-title__classes",
+      "default": "text-sm text-gray-500 my-1"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Remove Classes",
+      "id": "table-remove__classes",
+      "default": "text-sm font-medium text-red-500 my-1"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Item Quantity Classes",
+      "id": "table-item-quantity__classes",
+      "default": "py-4 px-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Item Classes",
+      "id": "table-item__classes",
+      "default": "w-20 border p-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Table Item Price Classes",
+      "id": "table-item-price__classes",
+      "default": "py-4 px-2"
+    },
+    {
+      "type": "header",
+      "content": "Checkout Content Tailwind CSS"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Container Classes",
+      "id": "checkout-container__classes",
+      "default": "flex flex-col md:flex-row items-center justify-between"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Notes Container Classes",
+      "id": "cart-notes-container__classes",
+      "default": "w-full my-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Notes Classes",
+      "id": "cart-notes__classes",
+      "default": "flex flex-col items-start"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Notes Text Classes",
+      "id": "cart-notes-text__classes",
+      "default": "my-1"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Notes Textarea Classes",
+      "id": "cart-notes-textarea__classes",
+      "default": "w-full md:max-w-lg resize-none border h-20"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Subtotal Classes",
+      "id": "checkout-subtotal__classes",
+      "default": "w-full my-4 md:w-80"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Subtotal Text Classes",
+      "id": "checkout-subtotal-text__classes",
+      "default": "text-xl"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Update Classes",
+      "id": "checkout-update__classes",
+      "default": "my-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Update Button Classes",
+      "id": "checkout-update-button__classes",
+      "default": "w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Classes",
+      "id": "checkout__classes",
+      "default": "my-2"
+    },
+    {
+      "type": "textarea",
+      "label": "Checkout Button Classes",
+      "id": "checkout-button__classes",
+      "default": "w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white"
+    },
+    {
+      "type": "header",
+      "content": "Empty Content Tailwind CSS"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Empty Container Classes",
+      "id": "cart-empty-container__classes",
+      "default": "max-w-6xl h-60 my-4 mx-auto flex items-center justify-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Empty Sub Container Classes",
+      "id": "cart-empty-sub-container__classes",
+      "default": "text-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Empty Text Classes",
+      "id": "cart-empty-text__classes",
+      "default": "text-3xl my-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Empty Collections Classes",
+      "id": "cart-empty-collections__classes",
+      "default": "my-4 py-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Cart Empty Collections Text Classes",
+      "id": "cart-empty-collections-text__classes",
+      "default": "border border-gray-600 text-white bg-gray-600 px-8 py-3"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "subtotal",
+      "name": "Subtotal",
+      "limit": 1
+    },
+    {
+      "type": "update_button",
+      "name": "Update Button",
+      "limit": 1
+    },
+    {
+      "type": "checkout_button",
+      "name": "Checkout Button",
+      "limit": 1
+    }
+  ]
+}
+{% endschema %}
