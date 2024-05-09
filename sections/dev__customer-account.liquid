@@ -1,33 +1,35 @@
-<div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-    <h1 class="text-2xl font-bold text-gray-700">Account</h1>
+<div class="account-container__classes max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h1 class="account-title__classes text-2xl font-bold text-gray-700">Account</h1>
 
-    <div class="block md:flex gap-4">
+    <div class="account-inner-container__classes block md:flex gap-4">
         {% assign number_of_orders = customer.orders | size %}
         {% if number_of_orders > 0 %}
-            <div class="w-full my-6 md:my-12">
-                <h2 class="text-xl font-bold text-gray-700">Order history</h2>
+            <div class="account-orders-history__classes w-full my-6 md:my-12">
+                <h2 class="account-orders-title__classes text-xl font-bold text-gray-700">Order history</h2>
 
                 {% paginate customer.orders by 4 %}
-                    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                    <div class="account-orders__classes mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         {% for order in customer.orders %}
-                            <div class="relative">
-                                <div class="w-full min-80 bg-gray-200 rounded-md overflow-hidden lg:h-80">
+                            <div class="orders-container__classes relative">
+                                <div class="orders-image-container__classes w-full min-80 bg-gray-200 rounded-md overflow-hidden lg:h-80">
                                     {% if order.line_items.first.image %}
-                                        <img class="w-full h-full object-center object-cover" src="{{ order.line_items.first.image | img_url: 'medium' }}" alt="{{ order.line_items.first.image.alt }}">
+                                        {% comment %} <img class="orders-image__classes w-full h-full object-center object-cover" loading="lazy" src="{{ order.line_items.first.image | image_url: 'medium' }}" alt="{{ order.line_items.first.image.alt }}"> {% endcomment %}
+                                        <div class="orders-image__classes w-full h-full object-center object-cover">
+                                            {{ order.line_items.first.image | | image_url: width: 300 | image_tag }}
+                                        </div>
                                     {% else %}
-                                        {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-center object-cover' }}
+                                        {{ 'product-1' | placeholder_svg_tag: 'orders-image__classes w-full h-full object-center object-cover' }}
                                     {% endif %}
                                 </div>
 
-                                <div class="mt-4 flex items-start justify-between">
-                                    <div>
-                                        <h3 class="text-sm text-gray-700">{{ order.name | link_to: order.customer_url }}</h3>
-
-                                        <p class="mt-1 text-sm text-gray-500">{{ order.financial_status_label }}</p>
+                                <div class="orders-details__classes mt-4 flex items-start justify-between">
+                                    <div class="orders-number-status__classes">
+                                        <h3 class="orders-name__classes text-sm text-gray-700">{{ order.name | link_to: order.customer_url }}</h3>
+                                        <p class="orders-status__classes mt-1 text-sm text-gray-500">{{ order.financial_status_label }}</p>
                                     </div>
-                                    <div class="text-right">
-                                        <p class="text-sm font-medium text-white bg-gray-700 rounded-full px-3 py-1">{{ order.fulfillment_status_label }}</p>
-                                        <p class="text-sm">{{ order.total_price | money }}</p>
+                                    <div class="orders-fulfillment-price__classes text-right">
+                                        <p class="orders-fulfillment__classes text-sm font-medium text-white bg-gray-700 rounded-full px-3 py-1">{{ order.fulfillment_status_label }}</p>
+                                        <p class="orders-price__classes text-sm">{{ order.total_price | money }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -35,25 +37,32 @@
 
                     </div>
 
-                    <div class="max-w-6xl mx-auto">
+                    <div class="orders-pagination__classes max-w-6xl mx-auto">
                         {% render 'icon-pagination', pagination: paginate %}
                     </div>
 
                 {% endpaginate %}
             </div>
         {% else %}
-            <div class="w-full h-80 flex items-center justify-center">
-                <h2 class="text-base md:text-2xl font-medium">You currently don't have any orders</h2>
+            <div class="account-no-orders__classes w-full h-80 flex items-center justify-center">
+                <h2 class="account-no-orders-title__classes text-base md:text-2xl font-medium">You currently don't have any orders</h2>
             </div>
         {% endif %}
-
-
-        <div class="w-full md:w-1/4">
-            <h2 class="text-xl font-bold text-gray-700 mb-12">Account details</h2>
-
+        <div class="account-details__classes w-full md:w-1/4">
+            <h2 class="account-details-title__classes text-xl font-bold text-gray-700 mb-12">Account details</h2>
             {{ customer.default_address | format_address }}
-
-            <a href="{{ routes.account_addresses_url }}" class="text-sm text-blue-600 hover:text-blue-900 underline">View addresses</a>
+            <a href="{{ routes.account_addresses_url }}" class="account-view-address__classes text-sm text-blue-600 hover:text-blue-900 underline">View addresses</a>
         </div>
     </div>
 </div>
+{% schema %}
+{
+    "name": "Accounts",
+    "presets": [
+        {
+            "name": "Accounts Page",
+            "category": "Custom"
+        }
+    ]
+}
+{% endschema %}
