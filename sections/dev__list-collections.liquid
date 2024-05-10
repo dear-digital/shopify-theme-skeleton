@@ -1,52 +1,129 @@
-<div class="list-collections-container__classes flex flex-col items-center my-8">
-    <h1 class="list-collections-title__classes text-3xl font-medium">{{ section.settings.title }}</h1>
+<div class="list-collections-container__classes {{ section.settings.list-collections-container__classes }}">
+  <h1 class="list-collections-title__classes {{ section.settings.list-collections-title__classes }}">
+    {{ section.settings.title }}
+  </h1>
 
-    <div class="list-collections__classes max-w-6xl mx-auto my-3">
-        <div class="list-collections-inner__classes grid grid-cols-1 md:grid-cols-3 gap-3">
-            {% for collection in collections %}
-                {% if collection.all_products_count > 0 %}
-                    <div class="collections__classes w-full py-6 px-3">
-                        <div class="collections-inner__classes border bg-white overflow-hidden">
-                            <a class="collections-link__classes " href="{{ collection.url }}">
-                                <div class="collections-image-container__classes h-80 overflow-hidden">
-                                    {% if collection.featured_image != blank %}
-                                        {% assign collection_image = collection.featured_image %}
-                                    {% else %}
-                                        {% assign collection_image = collection.products.first.image %}
-                                    {% endif %}
-                                    <div class="collections-image__classes w-full h-full object-cover transition duration-1000 ease-in-out transform hover:scale-105">
-                                        {{ collection_image | image_url: width: 300, height: 400 | image_tag }}
-                                    </div>
-                                </div>
-                            </a>
+  <div class="list-collections__classes {{ section.settings.list-collections__classes }}">
+    <div class="list-collections-inner__classes {{ section.settings.list-collections-inner__classes }}">
+      {% for collection in collections %}
+        {% if collection.all_products_count > 0 %}
+          <div class="collections__classes {{ section.settings.collections__classes }}">
+            <div class="collections-inner__classes {{ section.settings.collections-inner__classes }}">
+              <a
+                class="collections-link__classes {{ section.settings.collections-link__classes }}"
+                href="{{ collection.url }}"
+              >
+                <div class="collections-image-container__classes {{ section.settings.collections-image-container__classes }}">
+                  {% if collection.featured_image != blank %}
+                    {% assign collection_image = collection.featured_image %}
+                  {% else %}
+                    {% assign collection_image = collection.products.first.image %}
+                  {% endif %}
+                  <div class="collections-image__classes {{ section.settings.collections-image__classes }}">
+                    {{ collection_image | image_url: width: 300, height: 400 | image_tag }}
+                  </div>
+                </div>
+              </a>
 
-                            <div class="collections-title-container__classes p-4 bg-gray-100">
-                                <h1 class="collections-title__classes text-xl">{{ collection.title }}</h1>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+              <div class="collections-title-container__classes {{ section.settings.collections-title-container__classes }}">
+                <h1 class="collections-title__classes {{ section.settings.collections-title__classes }}">
+                  {{ collection.title }}
+                </h1>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
+  </div>
 </div>
 
 {% schema %}
 {
-    "name": "Template List Collections",
-    "settings": [
-        {
-            "type": "text",
-            "id": "title",
-            "default": "Collections",
-            "label": "Title"
-        }
-    ],
-    "presets": [
-      {
-        "name": "List Collections",
-        "category": "Custom"
-      }
-    ]
+  "name": "Template List Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Collections",
+      "label": "Title"
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes (If Needed)",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "id": "list-collections-container__classes",
+      "label": "List Collections Container Classes",
+      "default": "flex flex-col items-center my-8"
+    },
+    {
+      "type": "textarea",
+      "id": "list-collections-title__classes",
+      "label": "List Collections Title Classes",
+      "default": "text-3xl font-medium"
+    },
+    {
+      "type": "textarea",
+      "id": "list-collections__classes",
+      "label": "List Collections Classes",
+      "default": "max-w-6xl mx-auto my-3"
+    },
+    {
+      "type": "textarea",
+      "id": "list-collections-inner__classes",
+      "label": "List Collections Inner Classes",
+      "default": "grid grid-cols-1 md:grid-cols-3 gap-3"
+    },
+    {
+      "type": "textarea",
+      "id": "collections__classes",
+      "label": "Collections Classes",
+      "default": "w-full py-6 px-3"
+    },
+    {
+      "type": "textarea",
+      "id": "collections-inner__classes",
+      "label": "Collections Inner Classes",
+      "default": "border bg-white overflow-hidden"
+    },
+    {
+      "type": "textarea",
+      "id": "collections-link__classes",
+      "label": "Collections Link Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "collections-image-container__classes",
+      "label": "Collection Image Container Classes",
+      "default": "h-80 overflow-hidden"
+    },
+    {
+      "type": "textarea",
+      "id": "collections-image__classes",
+      "label": "Collections Image Classes",
+      "default": "w-full h-full object-cover transition duration-1000 ease-in-out transform hover:scale-105"
+    },
+    {
+      "type": "textarea",
+      "id": "collections-title-container__classes",
+      "label": "Collections Title Container Classes",
+      "default": "p-4 bg-gray-100"
+    },
+    {
+      "type": "textarea",
+      "id": "collections-title__classes",
+      "label": "Collections Title Classes",
+      "default": "text-center text-xl"
+    }
+  ],
+  "presets": [
+    {
+      "name": "List Collections",
+      "category": "Custom"
+    }
+  ]
 }
 {% endschema %}
