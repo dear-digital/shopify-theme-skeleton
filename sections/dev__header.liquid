@@ -29,7 +29,9 @@
             }}
           </a>
         {%- else -%}
-          <span class="shop_name_classes {{ section.settings.shop_name_classes }}">{{ shop.name }}</span>
+          <a href="{{ shop.url }}">
+            <span class="shop_name_classes {{ section.settings.shop_name_classes }}">{{ shop.name }}</span>
+          </a>
         {% endif %}
       </div>
 
@@ -49,7 +51,10 @@
         {% for link in main_menu_linklist %}
           {% if link.links != blank %}
             {% assign link_handle = link.handle | replace: '-', '_' %}
-            <div x-data="{ {{ link_handle }}: false }" class="navbar_link_wrapper_classes  {{ section.settings.navbar_link_wrapper_classes }}">
+            <div
+              x-data="{ {{ link_handle }}: false }"
+              class="navbar_link_wrapper_classes  {{ section.settings.navbar_link_wrapper_classes }}"
+            >
               <button
                 x-on:click="{{ link_handle }} = !{{ link_handle }}"
                 class="navbar_link_button_classes {{ section.settings.navbar_link_button_classes }}"
@@ -67,7 +72,10 @@
                 <div class="dropdown_content_classes {{ section.settings.dropdown_content_classes }}">
                   <div class="dropdown_inner_classes {{ section.settings.dropdown_inner_classes }}">
                     {% for childlink in link.links %}
-                      <a href="{{ childlink.url }}" class="dropdown_link_classes {{ section.settings.dropdown_link_classes }}">
+                      <a
+                        href="{{ childlink.url }}"
+                        class="dropdown_link_classes {{ section.settings.dropdown_link_classes }}"
+                      >
                         {{ childlink.title }}
                       </a>
                     {% endfor %}
@@ -77,7 +85,9 @@
             </div>
           {% else %}
             <div class="navbar_link_wrapper_classes {{ section.settings.navbar_link_wrapper_classes }}">
-              <a href="{{ link.url }}" class="navbar_link_classes {{ section.settings.navbar_link_classes }}">{{ link.title }}</a>
+              <a href="{{ link.url }}" class="navbar_link_classes {{ section.settings.navbar_link_classes }}">
+                {{- link.title -}}
+              </a>
             </div>
           {% endif %}
         {% endfor %}
@@ -95,6 +105,15 @@
             <!-- Icon for search -->
             {% render 'icon-search' %}
           </a>
+        {% endif %}
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            <a href="{{ routes.account_url }}" class="account-link__classes {{ section.settings.account-link__classes }}">{{ section.settings.account-text }}</a>
+            <a href="{{ routes.account_logout_url }}" class="logout-link__classes {{ section.settings.logout-link__classes }}">{{ section.settings.logout-text }}</a>
+          {% else %}
+            <a href="{{ routes.account_login_url }}" class="login-link__classes {{ section.settings.login-link__classes }}">{{ section.settings.login-text }}</a>
+            <a href="{{ routes.account_register_url }}" class="register-link__classes {{ section.settings.register-link__classes }}">{{ section.settings.register-text }}</a>
+          {% endif %}
         {% endif %}
       </div>
     </div>
@@ -136,6 +155,15 @@
               </a>
             {% endif %}
           </div>
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+              <a href="{{ routes.account_url }}" class="account-link__classes {{ section.settings.account-link__classes }}">{{ section.settings.account-text }}</a>
+              <a href="{{ routes.account_logout_url }}" class="logout-link__classes {{ section.settings.logout-link__classes }}">{{ section.settings.logout-text }}</a>
+            {% else %}
+              <a href="{{ routes.account_login_url }}" class="login-link__classes {{ section.settings.login-link__classes }}">{{ section.settings.login-text }}</a>
+              <a href="{{ routes.account_register_url }}" class="register-link__classes {{ section.settings.register-link__classes }}">{{ section.settings.register-text }}</a>
+            {% endif %}
+          {% endif %}
           {% for link in main_menu_linklist %}
             {% assign link_handle = link.handle | replace: '-', '_' %}
             {% if link.links != blank %}
@@ -153,10 +181,16 @@
                   {% render 'icon-hamburger' %}
                 </button>
 
-                <div x-show="{{ link_handle }}" class="mobile_menu_dropdown_content_classes {{ section.settings.mobile_menu_dropdown_content_classes }}">
+                <div
+                  x-show="{{ link_handle }}"
+                  class="mobile_menu_dropdown_content_classes {{ section.settings.mobile_menu_dropdown_content_classes }}"
+                >
                   <div class="mobile_menu_dropdown_inner_classes {{ section.settings.mobile_menu_dropdown_inner_classes }}">
                     {% for childlink in link.links %}
-                      <a href="{{ childlink.url }}" class="mobile_menu_dropdown_link_classes {{ section.settings.mobile_menu_dropdown_link_classes }}">
+                      <a
+                        href="{{ childlink.url }}"
+                        class="mobile_menu_dropdown_link_classes {{ section.settings.mobile_menu_dropdown_link_classes }}"
+                      >
                         {{ childlink.title }}
                       </a>
                     {% endfor %}
@@ -164,7 +198,9 @@
                 </div>
               </div>
             {% else %}
-              <a href="{{ link.url }}" class="mobile_menu_link_classes {{ section.settings.mobile_menu_link_classes }}">{{ link.title }}</a>
+              <a href="{{ link.url }}" class="mobile_menu_link_classes {{ section.settings.mobile_menu_link_classes }}">
+                {{- link.title -}}
+              </a>
             {% endif %}
           {% endfor %}
         </nav>
@@ -216,13 +252,38 @@
       "label": "Enable Cart Icon"
     },
     {
-      "type": "color",
-      "id": "theme_navbar_classes",
-      "label": "Background Color"
+      "type": "text",
+      "id": "account-text",
+      "label": "Account Text",
+      "default": "Account"
+    },
+    {
+      "type": "text",
+      "id": "logout-text",
+      "label": "Logout Text",
+      "default": "Logout"
+    },
+    {
+      "type": "text",
+      "id": "login-text",
+      "label": "Login Text",
+      "default": "Login"
+    },
+    {
+      "type": "text",
+      "id": "register-text",
+      "label": "Register Text",
+      "default": "Register"
     },
     {
       "type": "header",
-      "content": "Header Styling"
+      "content": "Header Styling",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "id": "theme_navbar_classes",
+      "label": "Theme Navbar Classes"
     },
     {
       "type": "textarea",
@@ -324,6 +385,30 @@
       "type": "textarea",
       "id": "search_link_classes",
       "label": "Search Link Classes",
+      "default": "text-gray-500 hover:text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "id": "account-link__classes",
+      "label": "Account Link Classes",
+      "default": "text-gray-500 hover:text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "id": "logout-link__classes",
+      "label": "Logout Link Classes",
+      "default": "text-gray-500 hover:text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "id": "login-link__classes",
+      "label": "Login Link Classes",
+      "default": "text-gray-500 hover:text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "id": "register-link__classes",
+      "label": "Register Link Classes",
       "default": "text-gray-500 hover:text-gray-900"
     },
     {

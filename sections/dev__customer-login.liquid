@@ -1,0 +1,422 @@
+<div
+  class="login-container__classes {{ section.settings.login-container__classes }}"
+  x-data="{ loginForm: true, pwRecoverForm: false }"
+>
+  <div x-show="loginForm" class="login__classes {{ section.settings.login__classes }}">
+    <div>
+      <h1 class="login-title__classes {{ section.settings.login-title__classes }}">
+        {{ section.settings['login-title'] }}
+      </h1>
+    </div>
+    <div class="login-form__classes {{ section.settings.login-form__classes }}">
+      {% form 'customer_login' %}
+        {% if form.errors %}
+          <div
+            class="login-error__classes {{ section.settings.login-error__classes }}"
+            role="alert"
+          >
+            <strong class="login-error-title__classes {{ section.settings.login-error-title__classes }}">
+              {{- section.settings['login-error-title'] -}}
+            </strong>
+            <p class="login-error-message__classes {{ section.settings.login-error-message__classes }}">
+              {{ form.errors | default_errors }}
+            </p>
+          </div>
+        {% endif %}
+
+        <div class="login-email__classes {{ section.settings.login-email__classes }}">
+          <label
+            for="email_address"
+            class="login-email-label__classes {{ section.settings.login-email-label__classes }}"
+          >
+            {{- section.settings['login-email-label'] -}}
+          </label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="email_address"
+            autocomplete="email"
+            class="login-email-input__classes {{ section.settings.login-email-input__classes }}"
+            placeholder="{{ section.settings.login-email-placeholder }}"
+          >
+        </div>
+
+        {% if form.password_needed %}
+          <div class="login-password__classes {{ section.settings.login-password__classes }}">
+            <label
+              for="password"
+              class="login-password-label__classes {{ section.settings.login-password-label__classes }}"
+            >
+              {{- section.settings['login-password-label'] -}}
+            </label>
+            <input
+              type="password"
+              name="customer[password]"
+              id="password"
+              autocomplete="current-password"
+              class="login-password-input__classes {{ section.settings.login-password-input__classes }}"
+              placeholder="{{ section.settings.login-password-placeholder }}"
+            >
+          </div>
+        {% endif %}
+
+        <div class="forgot-password__classes {{ section.settings.forgot-password__classes }}">
+          <a
+            x-on:click="loginForm = false; pwRecoverForm = true"
+            href="#"
+            class="forgot-password-link__classes {{ section.settings.forgot-password-link__classes }}"
+          >
+            {{ section.settings['forgot-password-text'] }}
+          </a>
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="login-button__classes {{ section.settings.login-button__classes }}"
+          >
+            {{ section.settings['login-button'] }}
+          </button>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+  <div x-show="pwRecoverForm" class="recover-password__classes {{ section.settings.recover-password__classes }}">
+    <div>
+      <h1 class="recover-password-title__classes {{ section.settings.recover-password-title__classes }}">
+        {{ section.settings['recover-password-title'] }}
+      </h1>
+    </div>
+    <div class="recover-password-form__classes {{ section.settings.recover-password-form__classes }}">
+      {% form 'recover_customer_password' %}
+        {% if form.errors %}
+          <div
+            class="recover-password-error__classes {{ section.settings.recover-password-error__classes }}"
+            role="alert"
+          >
+            <strong class="recover-password-error-title__classes {{ section.settings.recover-password-error-title__classes }}">
+              {{- section.settings['recover-password-error-title'] -}}
+            </strong>
+            <p class="recover-password-error-message__classes {{ section.settings.recover-password-error-message__classes }}">{{ form.errors | default_errors }}</p>
+          </div>
+        {% endif %}
+
+        <div class="recover-password-email__classes {{ section.settings.recover-password-email__classes }}">
+          <label for="email" class="recover-password-email-label__classes {{ section.settings.recover-password-email-label__classes }}">
+            {{- section.settings['recover-password-email-label'] -}}
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            autocomplete="email"
+            class="recover-password-email-input__classes {{ section.settings.recover-password-email-input__classes }}"
+            placeholder="{{ section.settings.recover-password-email-placeholder }}"
+          >
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="recover-password-button__classes {{ section.settings.recover-password-button__classes }}"
+          >
+            {{ section.settings['recover-password-button'] }}
+          </button>
+        </div>
+
+        <div class="back-to-login__classes {{ section.settings.back-to-login__classes }}">
+          <a
+            x-on:click="loginForm = true; pwRecoverForm = false"
+            href="#"
+            class="back-to-login-link__classes {{ section.settings.back-to-login-link__classes }}"
+          >
+            {{- section.settings['back-to-login-text'] -}}
+          </a>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+
+{% schema %}
+{
+  "name": "Customer Login Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Login Section"
+    },
+    {
+      "type": "text",
+      "id": "login-title",
+      "default": "Sign in to your account",
+      "label": "Login Page Title"
+    },
+    {
+      "type": "text",
+      "id": "login-error-title",
+      "default": "Error!",
+      "label": "Login Error Title"
+    },
+    {
+      "type": "text",
+      "id": "login-email-label",
+      "default": "Email address",
+      "label": "Login Email address Label"
+    },
+    {
+      "type": "text",
+      "id": "login-email-placeholder",
+      "default": "Email address",
+      "label": "Login Email address Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "login-password-label",
+      "default": "Password",
+      "label": "Login Password Label"
+    },
+    {
+      "type": "text",
+      "id": "login-password-placeholder",
+      "default": "Password",
+      "label": "Login Password Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "forgot-password-text",
+      "default": "Forgot your password?",
+      "label": "Forgot Password Text"
+    },
+    {
+      "type": "text",
+      "id": "login-button",
+      "default": "Sign In",
+      "label": "Login Button Text"
+    },
+    {
+      "type": "header",
+      "content": "Recover Password Section"
+    },
+    {
+      "type": "text",
+      "id": "recover-password-title",
+      "default": "Recover your password",
+      "label": "Recover Password Title"
+    },
+    {
+      "type": "text",
+      "id": "recover-password-error-title",
+      "default": "Error!",
+      "label": "Recover Password Error Title"
+    },
+    {
+      "type": "text",
+      "id": "recover-password-email-label",
+      "default": "Email address",
+      "label": "Recover Password Email address Label"
+    },
+    {
+      "type": "text",
+      "id": "recover-password-email-placeholder",
+      "default": "Email address",
+      "label": "Recover Password Email address Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "recover-password-button",
+      "default": "Recover password",
+      "label": "Recover Password Button Text"
+    },
+    {
+      "type": "text",
+      "id": "back-to-login-text",
+      "default": "Back to Login",
+      "label": "Back to Login Title"
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "id": "login-container__classes",
+      "default": "h-full flex items-center justify-center py-12 px-6 md:px-4 lg:px-8",
+      "label": "Customer Login Container Classes"
+    },
+    {
+      "type": "header",
+      "content": "Login Tailwind CSS Section"
+    },
+    {
+      "type": "textarea",
+      "id": "login__classes",
+      "default": "max-w-md w-full space-y-8",
+      "label": "Login Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-title__classes",
+      "default": "text-center text-3xl font-bold mt-6",
+      "label": "Login Title Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-form__classes",
+      "default": "mt-8",
+      "label": "Login Form Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-error__classes",
+      "default": "relative border border-red-400 bg-red-100 text-red 700 px-4 py-3",
+      "label": "Login Error Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-error-title__classes",
+      "default": "font-bold",
+      "label": "Login Error Title Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-error-message__classes",
+      "default": "block sm:inline",
+      "label": "Login Error Message Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-email__classes",
+      "default": "my-2",
+      "label": "Login Email Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-email-label__classes",
+      "default": "sr-only",
+      "label": "Login Email Label Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-email-input__classes",
+      "default": "relative block w-full px-3 py-2 border",
+      "label": "Login Email Input Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-password__classes",
+      "default": "my-2",
+      "label": "Login Password Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-password-label__classes",
+      "default": "sr-only",
+      "label": "Login Password Label Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-password-input__classes",
+      "default": "relative block w-full px-3 py-2 border",
+      "label": "Login Password Input Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "forgot-password__classes",
+      "default": "my-2 text-sm",
+      "label": "Forgot Password Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "forgot-password-link__classes",
+      "default": "underline text-gray-500 hover:text-gray-900",
+      "label": "Forgot Password Link Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "login-button__classes",
+      "default": "relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900",
+      "label": "Login Button Classes"
+    },
+    {
+      "type": "header",
+      "content": "Recover Password Tailwind CSS Section"
+    },
+    {
+      "type": "textarea",
+      "id": "recover-password__classes",
+      "default": "max-w-md w-full space-y-8",
+      "label": "Recover Password Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "recover-password-title__classes",
+      "default": "text-center text-3xl font-bold mt-6",
+      "label": "Recover Password Title Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "recover-password-form__classes",
+      "default": "mt-8",
+      "label": "Recover Password Form Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "recover-password-error__classes",
+      "default": "relative border border-red-400 bg-red-100 text-red 700 px-4 py-3",
+      "label": "Recover Password Error Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "recover-password-error-title__classes",
+      "default": "font-bold",
+      "label": "Recover Password Error Title Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "recover-password-error-message__classes",
+      "default": "block sm:inline",
+      "label": "Recover Password Error Message Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "recover-password-email__classes",
+      "default": "my-2",
+      "label": "Recover Password Email Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "recover-password-email-label__classes",
+      "default": "sr-only",
+      "label": "Recover Password Email Label Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "recover-password-email-input__classes",
+      "default": "relative block w-full px-3 py-2 border",
+      "label": "Recover Password Email Input Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "recover-password-button__classes",
+      "default": "relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900",
+      "label": "Recover Password Button Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "back-to-login__classes",
+      "default": "mt-8 text-sm",
+      "label": "Back to Login Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "back-to-login-link__classes",
+      "default": "underline text-gray-500 hover:text-gray-900",
+      "label": "Back to Login Link Classes"
+    }
+  ]
+}
+{% endschema %}

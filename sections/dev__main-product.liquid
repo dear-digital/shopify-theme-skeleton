@@ -1,4 +1,4 @@
-{% assign product = section.settings.product %}
+{% assign selected_variant = product.selected_or_first_available_variant %}
 
 <div class="main-container__classes {{ section.settings.main-container__classes }}">
   <div class="sub-container__classes {{ section.settings.sub-container__classes }}">
@@ -16,7 +16,7 @@
           <input
             type="hidden"
             name="id"
-            value="{{ product.id }}"
+            value="{{ selected_variant.id }}"
           >
 
           {% for block in section.blocks %}
@@ -34,13 +34,13 @@
               {% when 'price' %}
                 <div class="price__classes {{ section.settings.price__classes }}" id="price-{{ section.id }}">
                   <span class="price-compare-text__classes {{ section.settings.price-compare-text__classes }}">
-                    {{- product.compare_at_price | money -}}
+                    {{- selected_variant.compare_at_price | money -}}
                   </span>
                   <span class="price-text__classes {{ section.settings.price-text__classes }}">
-                    {{- product.price | money -}}
+                    {{- selected_variant.price | money -}}
                   </span>
 
-                  {% if product.price < product.compare_at_price %}
+                  {% if selected_variant.price < selected_variant.compare_at_price %}
                     <span class="price-sales__classes {{ section.settings.price-sales__classes }}">Sale</span>
                   {% endif %}
                 </div>
@@ -106,11 +106,11 @@
                       type="submit"
                       name="add"
                       class="checkout-button__classes {{  section.settings.checkout-button__classes }}"
-                      {% if product.available == false %}
+                      {% if selected_variant.available == false %}
                         disabled
                       {% endif %}
                     >
-                      {% if product.available == false %}
+                      {% if selected_variant.available == false %}
                         {{ section.settings.sold-out_text }}
                       {% else %}
                         {{ section.settings.add-to-cart_text }}
@@ -119,11 +119,9 @@
                   </form>
                 </div>
               {% else %}
+
             {% endcase %}
           {% endfor %}
-          <a class="view-full-details__classes {{ section.settings.view-full-details__classes }}" href="{{ product.url }}">
-            {{ section.settings.view-full-details-text }}
-          </a>
         {% endform %}
       </div>
     {% else %}
@@ -210,11 +208,6 @@
   "name": "Product",
   "settings": [
     {
-      "type": "product",
-      "id": "product",
-      "label": "Select a Product"
-    },
-    {
       "type": "text",
       "id": "sold-out_text",
       "label": "Sold Out Text",
@@ -231,12 +224,6 @@
       "id": "no-product_text",
       "label": "No Product Text",
       "default": "No Product Selected."
-    },
-    {
-      "type": "text",
-      "id": "view-full-details-text",
-      "label": "View Full Details Text",
-      "default": "View Full Details"
     },
     {
       "type": "header",
@@ -380,12 +367,6 @@
       "label": "No Product Class",
       "id": "no-product__classes",
       "default": "text-xl font-blod max-w-6xl mx-auto my-8"
-    },
-    {
-      "type": "textarea",
-      "label": "View Full Details Class",
-      "id": "view-full-details__classes",
-      "default": "hover:underline"
     }
   ],
   "blocks": [
@@ -423,34 +404,6 @@
       "type": "checkout_buttons",
       "name": "Checkout Buttons",
       "limit": 1
-    }
-  ],
-  "presets": [
-    {
-      "name": "Product Display",
-      "blocks": [
-        {
-          "type": "title"
-        },
-        {
-          "type": "vendor"
-        },
-        {
-          "type": "price"
-        },
-        {
-          "type": "variant_selector"
-        },
-        {
-          "type": "quantity"
-        },
-        {
-          "type": "description"
-        },
-        {
-          "type": "checkout_buttons"
-        }
-      ]
     }
   ]
 }
