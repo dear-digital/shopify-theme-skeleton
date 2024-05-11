@@ -1,10 +1,16 @@
 <div class="search-container__classes {{ section.settings.search-container__classes }}">
   <div class="paginate__classes {{ section.settings.paginate__classes }}" id="overlay"></div>
   {% paginate search.results by 8 %}
-    <h1 class="search-title__classes {{ section.settings.search-title__classes }}">{{ section.settings.search-title }}</h1>
+    <h1 class="search-title__classes {{ section.settings.search-title__classes }}">
+      {{ section.settings['search-title'] }}
+    </h1>
 
     <div class="search__classes {{ section.settings.search__classes }}">
-      <form action="{{ routes.search_url }}" method="get" class="search-form__classes {{ section.settings.search-form__classes }}">
+      <form
+        action="{{ routes.search_url }}"
+        method="get"
+        class="search-form__classes {{ section.settings.search-form__classes }}"
+      >
         <input
           type="search"
           name="q"
@@ -13,9 +19,14 @@
           value="{{ search.terms | escape }}"
           class="search-input__classes {{ section.settings.search-input__classes }}"
         >
-        <button type="submit" class="search-button__classes {{ section.settings.search-button__classes }}">{{ section.settings.search-button-text }}</button>
+        <button type="submit" class="search-button__classes {{ section.settings.search-button__classes }}">
+          {{ section.settings['search-button-text'] }}
+        </button>
       </form>
-      <button onclick="closeSearch()" class="search-close-button__classes {{ section.settings.search-close-button__classes }}">
+      <button
+        onclick="closeSearch()"
+        class="search-close-button__classes {{ section.settings.search-close-button__classes }}"
+      >
         {% render 'icon-close' %}
       </button>
     </div>
@@ -23,7 +34,9 @@
       {% if search.results.size > 0 %}
         <div class="search-results-container__classes {{ section.settings.search-results-container__classes }}">
           <p class="search-results-size__classes {{ section.settings.search-results-size__classes }}">
-            {{ search.results.size }} {{ section.settings.search-results-text }} {{ search.terms | escape }}
+            {{ search.results.size }}
+            {{ section.settings['search-results-text'] }}
+            {{ search.terms | escape }}
           </p>
           <div class="search-results__classes {{ section.settings.search-results__classes }}">
             {% for item in search.results %}
@@ -31,7 +44,11 @@
                 <div class="search-product-container__classes {{ section.settings.search-product-container__classes }}">
                   <div class="search-product__classes {{ section.settings.search-product__classes }}">
                     {% if item.images.size > 0 %}
-                      <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}" class="search-product-image__classes {{ section.settings.search-product-image__classes }}">
+                      <a
+                        href="{{ item.url | within: collection }}"
+                        title="{{ item.title | escape }}"
+                        class="search-product-image__classes {{ section.settings.search-product-image__classes }}"
+                      >
                         {{ item | image_url: width: '50px' | image_tag: width: '50px' }}
                       </a>
                     {% endif %}
@@ -47,9 +64,12 @@
 
       {% else %}
         <div class="search-no-results__classes {{ section.settings.search-no-results__classes }}">
-          <p>{{ section.settings.search-no-results-text }} {{ search.terms | escape }}</p>
+          <p>
+            {{ section.settings['search-no-results-text'] }}
+            {{ search.terms | escape }}
+          </p>
         </div>
-      {% endif %}   
+      {% endif %}
     {% endif %}
 
     {% render 'icon-pagination', pagination: paginate %}
@@ -84,31 +104,31 @@
 {% schema %}
 {
   "name": "Search Bar",
-  "tag":"section",
+  "tag": "section",
   "settings": [
     {
-        "type": "text",
-        "id": "search-title",
-        "label": "Search Title",
-        "default": "Search Results"
+      "type": "text",
+      "id": "search-title",
+      "label": "Search Title",
+      "default": "Search Results"
     },
     {
-        "type": "text",
-        "id": "search-button-text",
-        "label": "Search Button Text",
-        "default": "Search"
+      "type": "text",
+      "id": "search-button-text",
+      "label": "Search Button Text",
+      "default": "Search"
     },
     {
-        "type": "text",
-        "id": "search-results-text",
-        "label": "Search Results Text",
-        "default": "results for the search term"
+      "type": "text",
+      "id": "search-results-text",
+      "label": "Search Results Text",
+      "default": "results for the search term"
     },
     {
-        "type": "text",
-        "id": "search-no-results-text",
-        "label": "Search No Results Text",
-        "default": "No results found for the search term: "
+      "type": "text",
+      "id": "search-no-results-text",
+      "label": "Search No Results Text",
+      "default": "No results found for the search term: "
     },
     {
       "type": "header",
@@ -207,5 +227,4 @@
     }
   ]
 }
-
 {% endschema %}

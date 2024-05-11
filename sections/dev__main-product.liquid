@@ -47,7 +47,7 @@
               {% when 'variant_selector' %}
                 <div class="variant__classes {{ section.settings.variant__classes }}">
                   {% unless product.has_only_default_variant %}
-                    <variant-selector data-url="{{ product.url}}" data-section="{{ section.id }}">
+                    <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                       {% for option in product.options_with_values %}
                         <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
 
@@ -89,23 +89,23 @@
                       id="Quantity-{{ section.id }}"
                       value="1"
                       min="1"
-                      class="quantity-input__classes {{  section.settings.quantity-input__classes }}"
+                      class="quantity-input__classes {{ section.settings.quantity-input__classes }}"
                     >
                   </div>
                 </div>
               {% when 'description' %}
-                <div class="description__classes {{  section.settings.description__classes }}">
-                  <p class="description-text__classes {{  section.settings.description-text__classes }}">{{ product.description }}</p>
+                <div class="description__classes {{ section.settings.description__classes }}">
+                  <p class="description-text__classes {{ section.settings.description-text__classes }}">{{ product.description }}</p>
                 </div>
 
               {% when 'checkout_buttons' %}
-                <div class="checkout__classes {{  section.settings.checkout__classes }}">
+                <div class="checkout__classes {{ section.settings.checkout__classes }}">
                   <form action="/cart/add" method="post">
                     <input type="hidden" name="id" value="{{ product.variants.first.id }}">
                     <button
                       type="submit"
                       name="add"
-                      class="checkout-button__classes {{  section.settings.checkout-button__classes }}"
+                      class="checkout-button__classes {{ section.settings.checkout-button__classes }}"
                       {% if selected_variant.available == false %}
                         disabled
                       {% endif %}

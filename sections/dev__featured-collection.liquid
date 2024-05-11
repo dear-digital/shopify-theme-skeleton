@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="featured-collection__product-container {{ section.settings.featured-collection__product-container }} [&::-webkit-scrollbar]:h-[{{ section.settings.scroll_bar_height}}px]">
+  <div class="featured-collection__product-container {{ section.settings.featured-collection__product-container }} [&::-webkit-scrollbar]:h-[{{ section.settings.scroll_bar_height }}px]">
     {% for block in section.blocks %}
       <div
         class="featured-collection__product-card {{ block.settings.featured-collection__product-card }}"
@@ -40,7 +40,7 @@
               {{
                 block.settings.image
                 | image_url: width: image_url_width, height: image_url_height
-                | image_tag: class: block.settings.featured-collection_image_styles
+                | image_tag: class: block.settings['featured-collection_image_styles']
               }}
             {% else %}
               {{ 'image' | placeholder_svg_tag }}
@@ -254,7 +254,7 @@
           "default": "300"
         },
         {
-          "type":"textarea",
+          "type": "textarea",
           "id": "featured-collection_image_styles",
           "label": "Block Image Styles",
           "default": "object-cover"

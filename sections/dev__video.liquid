@@ -1,24 +1,21 @@
 <!-- sections/dev__video.liquid -->
 
 <div class="{{ section.settings.video_section_container }}">
-    {%- if section.settings.video -%}
-      {{
-        section.settings.video
-        | video_tag:
-          image_size: '1100x',
-          autoplay: section.settings.autoplay_video,
-          controls: section.settings.controls,
-          muted: section.settings.mute,
-          loop: section.settings.enable_video_looping,
-          class: section.settings.video_styling 
-      }}
-    {%- else -%}
-        <div class="{{ section.settings.no_video_text }}">
-            No Video Added Yet
-        </div>
-    {%- endif -%}
+  {%- if section.settings.video -%}
+    {{
+      section.settings.video
+      | video_tag:
+        image_size: '1100x',
+        autoplay: section.settings.autoplay_video,
+        controls: section.settings.controls,
+        muted: section.settings.mute,
+        loop: section.settings.enable_video_looping,
+        class: section.settings.video_styling
+    }}
+  {%- else -%}
+    <div class="{{ section.settings.no_video_text }}">No Video Added Yet</div>
+  {%- endif -%}
 </div>
-
 
 {% schema %}
 {
@@ -29,7 +26,7 @@
       "id": "video",
       "label": "Video"
     },
-     {
+    {
       "type": "checkbox",
       "id": "autoplay_video",
       "label": "Auto Play Video",
@@ -82,5 +79,4 @@
     }
   ]
 }
-
 {% endschema %}

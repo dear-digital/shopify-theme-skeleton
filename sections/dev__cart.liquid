@@ -16,7 +16,7 @@
 
     <div class="form__classes {{ section.settings.form__classes }}">
       <form action="{{ routes.cart_url }}" method="POST" novalidate>
-        <table class="table__classes {{  section.settings.table__classes }}">
+        <table class="table__classes {{ section.settings.table__classes }}">
           <thead>
             <th class="table-product__classes {{ section.settings.table-product__classes }}">{{ section.settings.table-product }}</th>
             <th class="table-quantity__classes {{ section.settings.table-quantity__classes }}">{{ section.settings.table-quantity }}</th>
@@ -27,7 +27,7 @@
               <tr class="table-row__classes {{ section.settings.table-row__classes }}">
                 <td class="table-image__classes {{ section.settings.table-image__classes }}">
                   <a href="{{ item.url }}">
-                    {% assign product_image__classes = section.settings.product-image__classes  %}
+                    {% assign product_image__classes = section.settings.product-image__classes %}
                     {% if item.image %}
                       {{ item.image | image_url: width: '300' | image_tag: class: product_image__classes }}
                     {% else %}
@@ -44,14 +44,14 @@
                     >{{ section.settings.table-remove }}</a
                   >
                 </td>
-                <td class="table-item-quantity__classes {{  section.settings.table-item-quantity__classes }}">
+                <td class="table-item-quantity__classes {{ section.settings.table-item-quantity__classes }}">
                   <input
                     type="number"
                     name="updates[]"
                     value="{{ item.quantity }}"
                     min="1"
                     id="updates_{{ forloop.index }}"
-                    class="table-item__classes {{  section.settings.table-item__classes }}"
+                    class="table-item__classes {{ section.settings.table-item__classes }}"
                   >
                 </td>
                 <td class="table-item-price__classes {{ section.settings.table-item-price__classes }}">
