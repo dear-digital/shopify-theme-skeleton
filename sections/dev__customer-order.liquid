@@ -1,9 +1,9 @@
 <div class="orders-container__classes {{ section.settings.orders-container__classes }}">
   <div class="orders-details__classes {{ section.settings.orders-details__classes }}">
     <div class="orders-title__classes {{ section.settings.orders-title__classes }}">
-      <h1 class="orders-name__classes {{ section.settings.orders-name__classes }}">Order {{ order.name }}</h1>
+      <h1 class="orders-name__classes {{ section.settings.orders-name__classes }}">{{ section.settings.order-name }} {{ order.name }}</h1>
       <p class="orders-date__classes {{ section.settings.orders-date__classes }}">
-        Placed on {{ order.created_at | date: format: 'date' }}
+        {{ section.settings.order-created-at }} {{ order.created_at | date: format: 'date' }}
       </p>
       <span class="orders-status__classes {{ section.settings.orders-status__classes }}">
         {{- order.financial_status_label -}}
@@ -12,7 +12,7 @@
     <a
       href="{{ routes.account_url }}"
       class="back-to-accounts__classes {{ section.settings.back-to-accounts__classes }}"
-      >Back to account</a
+      >{{ section.settings.back-to-accounts-text }}</a
     >
   </div>
 
@@ -39,7 +39,7 @@
               <tbody>
                 <tr>
                   <td class="item-price-original-title__classes {{ section.settings.item-price-original-title__classes }}">
-                    Price
+                    {{ section.settings.item-price-original-title }}
                   </td>
                   <td class="item-price-original__classes {{ section.settings.item-price-original__classes }}">
                     {{ line_item.original_price | money }}
@@ -47,7 +47,7 @@
                 </tr>
                 <tr>
                   <td class="item-quantity-title__classes {{ section.settings.item-quantity-title__classes }}">
-                    Quantity
+                    {{ section.settings.item-quantity-title }}
                   </td>
                   <td class="item-quantity__classes {{ section.settings.item-quantity__classes }}">
                     {{ line_item.quantity }}
@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                   <td class="item-final-price-title__classes {{ section.settings.item-final-price-title__classes }}">
-                    Final price
+                    {{ section.settings.item-final-price-title }}
                   </td>
                   <td class="item-final-price__classes {{ section.settings.item-final-price__classes }}">
                     {{ line_item.final_line_price | money }}
@@ -71,32 +71,32 @@
 
           <div class="item-delivery-address-container__classes {{ section.settings.item-delivery-address-container__classes }}">
             <h1 class="item-delivery-address-title__classes {{ section.settings.item-delivery-address-title__classes }}">
-              Delivery address
+              {{ section.settings.item-delivery-address-title }}
             </h1>
-            <p>Address 1: {{ order.shipping_address.address1 }}</p>
-            <p>Address 2: {{ order.shipping_address.address2 }}</p>
-            <p>Street: {{ order.shipping_address.street }}</p>
-            <p>Province: {{ order.shipping_address.province }}</p>
-            <p>City: {{ order.shipping_address.city }}</p>
-            <p>ZIP: {{ order.shipping_address.zip }}</p>
-            <p>Country: {{ order.shipping_address.country }}</p>
+            <p>{{ section.settings.order-shipping-address-1-title }} {{ order.shipping_address.address1 }}</p>
+            <p>{{ section.settings.order-shipping-address-2-title }} {{ order.shipping_address.address2 }}</p>
+            <p>{{ section.settings.order-shipping-address-street-title }} {{ order.shipping_address.street }}</p>
+            <p>{{ section.settings.order-shipping-address-province-title }} {{ order.shipping_address.province }}</p>
+            <p>{{ section.settings.order-shipping-address-city-title }} {{ order.shipping_address.city }}</p>
+            <p>{{ section.settings.order-shipping-address-zip-title }} {{ order.shipping_address.zip }}</p>
+            <p>{{ section.settings.order-shipping-address-country-title }} {{ order.shipping_address.country }}</p>
           </div>
         </div>
 
         <div class="item-fulfillment__classes {{ section.settings.item-fulfillment__classes }}">
           <h1 class="item-fulfillment-title__classes {{ section.settings.item-fulfillment-title__classes }}">
-            Fulfillment
+            {{ section.settings.item-fulfillment-title }}
           </h1>
 
           {% if line_item.successfully_fulfilled_quantity > 0 %}
             <p class="item-fulfillment-quantity__classes {{ section.settings.item-fulfillment-quantity__classes }}">
-              We have fulfilled {{ line_item.successfully_fulfilled_quantity }} items of your recent order.
+              {{ section.settings.item-fulfillment-quantity-title }} {{ line_item.successfully_fulfilled_quantity }} items of your recent order.
             </p>
             <p class="item-tracking-company__classes {{ section.settings.item-tracking-company__classes }}">
-              Tracking company: {{ line_item.fulfillment.tracking_company }}
+              {{ section.settings.item-tracking-company-title }} {{ line_item.fulfillment.tracking_company }}
             </p>
             <p class="item-tracking-number__classes {{ section.settings.item-tracking-number__classes }}">
-              Tracking number: {{ line_item.fulfillment.tracking_number }}
+              {{ section.settings.item-tracking-number-title }} {{ line_item.fulfillment.tracking_number }}
             </p>
 
             <a
@@ -104,11 +104,11 @@
               href="{{ line_item.fulfillment.tracking_url }}"
               class="item-tracking-url__classes {{ section.settings.item-tracking-url__classes }}"
             >
-              Track order
+              {{ section.settings.item-tracking-url-title }}
             </a>
           {% else %}
             <p class="item-not-fulfilled__classes {{ section.settings.item-not-fulfilled__classes }}">
-              This item is not yet fulfilled
+              {{ section.settings.item-not-fulfilled-title }}
             </p>
           {% endif %}
         </div>
@@ -119,13 +119,13 @@
   <div class="orders-billing-address-conatiner__classes {{ section.settings.orders-billing-address-conatiner__classes }}">
     <div class="orders-billing-address__classes {{ section.settings.orders-billing-address__classes }}">
       <h1 class="orders-billing-address-title__classes {{ section.settings.orders-billing-address-title__classes }}">
-        Billing address
+        {{ section.settings.orders-billing-address-title }}
       </h1>
       {{ order.billing_address | format_address }}
     </div>
     <div class="orders-payment__classes {{ section.settings.orders-payment__classes }}">
       <h1 class="orders-payment-title__classes {{ section.settings.orders-payment-title__classes }}">
-        Payment information
+        {{ section.settings.orders-payment-title }}
       </h1>
 
       {% for transaction in order.transactions %}
@@ -149,7 +149,7 @@
             </span>
           {% else %}
             <p class="orders-manually-placed__classes {{ section.settings.orders-manually-placed__classes }}">
-              This order is manually placed on {{ shop.name }}
+              {{ section.settings.orders-manually-placed-title }} {{ shop.name }}
             </p>
           {% endif %}
         </div>
@@ -159,25 +159,25 @@
       <table class="orders-total-table__classes {{ section.settings.orders-total-table__classes }}">
         <tbody>
           <tr>
-            <td class="table-subtotal-title__classes {{ section.settings.table-subtotal-title__classes }}">Subtotal</td>
+            <td class="table-subtotal-title__classes {{ section.settings.table-subtotal-title__classes }}">{{ section.settings.table-subtotal-title }}</td>
             <td class="table-subtotal__classes {{ section.settings.table-subtotal__classes }}">
               {{ order.subtotal_price | money }}
             </td>
           </tr>
           <tr>
-            <td class="table-taxes-title__classes {{ section.settings.table-taxes-title__classes }}">Taxes</td>
+            <td class="table-taxes-title__classes {{ section.settings.table-taxes-title__classes }}">{{ section.settings.table-taxes-title }}</td>
             <td class="table-taxes__classes {{ section.settings.table-taxes__classes }}">
               {{ order.tax_price | money }}
             </td>
           </tr>
           <tr>
-            <td class="table-shipping-title__classes {{ section.settings.table-shipping-title__classes }}">Shipping</td>
+            <td class="table-shipping-title__classes {{ section.settings.table-shipping-title__classes }}">{{ section.settings.table-shipping-title }}</td>
             <td class="table-shipping__classes {{ section.settings.table-shipping__classes }}">
               {{ order.shipping_price | money }}
             </td>
           </tr>
           <tr>
-            <td class="table-total-title__classes {{ section.settings.table-total-title__classes }}">Total</td>
+            <td class="table-total-title__classes {{ section.settings.table-total-title__classes }}">{{ section.settings.table-total-title }}</td>
             <td class="table-total__classes {{ section.settings.table-total__classes }}">
               {{ order.total_price | money }}
             </td>
@@ -190,10 +190,172 @@
 
 {% schema %}
 {
-  "name": "Order 120",
+  "name": "Order",
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "order-name",
+      "label": "Order Name",
+      "default": "Order"
+    },
+    {
+      "type": "text",
+      "id": "order-created-at",
+      "label": "Order Creation Text",
+      "default": "Placed on"
+    },
+    {
+      "type": "text",
+      "id": "back-to-accounts-text",
+      "label": "Back to Accounts Text",
+      "default": "Back to account"
+    },
+    {
+      "type": "text",
+      "id": "item-price-original-title",
+      "label": "Item Price Original Title",
+      "default": "Price"
+    },
+    {
+      "type": "text",
+      "id": "item-quantity-title",
+      "label": "Item Quantity Title",
+      "default": "Quantity"
+    },
+    {
+      "type": "text",
+      "id": "item-final-price-title",
+      "label": "Item Final Price Title",
+      "default": "Final Price"
+    },
+    {
+      "type": "text",
+      "id": "item-delivery-address-title",
+      "label": "Item Delivery Address Title",
+      "default": "Delivery Address"
+    },
+    {
+      "type": "text",
+      "id": "order-shipping-address-1-title",
+      "label": "Order Shipping Address 1 Title",
+      "default": "Address 1:"
+    },
+    {
+      "type": "text",
+      "id": "order-shipping-address-2-title",
+      "label": "Order Shipping Address 2 Title",
+      "default": "Address 2:"
+    },
+    {
+      "type": "text",
+      "id": "order-shipping-address-street-title",
+      "label": "Order Shipping Address Street Title",
+      "default": "Street:"
+    },
+    {
+      "type": "text",
+      "id": "order-shipping-address-province-title",
+      "label": "Order Shipping Address Province Title",
+      "default": "Province:"
+    },
+    {
+      "type": "text",
+      "id": "order-shipping-address-city-title",
+      "label": "Order Shipping Address City Title",
+      "default": "City:"
+    },
+    {
+      "type": "text",
+      "id": "order-shipping-address-zip-title",
+      "label": "Order Shipping Address ZIP Title",
+      "default": "ZIP:"
+    },
+    {
+      "type": "text",
+      "id": "order-shipping-address-country-title",
+      "label": "Order Shipping Address Country Title",
+      "default": "Country:"
+    },
+    {
+      "type": "text",
+      "id": "item-fulfillment-title",
+      "label": "Item Fulfillment Title",
+      "default": "Fulfillment"
+    },
+    {
+      "type": "text",
+      "id": "item-fulfillment-quantity-title",
+      "label": "Item Fulfillment Quantity Title",
+      "default": "We have fulfilled"
+    },
+    {
+      "type": "text",
+      "id": "item-tracking-company-title",
+      "label": "Item Tracking Company Title",
+      "default": "Tracking company:"
+    },
+    {
+      "type": "text",
+      "id": "item-tracking-number-title",
+      "label": "Item Tracking Number Title",
+      "default": "Tracking number:"
+    },
+    {
+      "type": "text",
+      "id": "item-tracking-url-title",
+      "label": "Item Tracking URL Title",
+      "default": "Track Order"
+    },
+    {
+      "type": "text",
+      "id": "item-not-fulfilled-title",
+      "label": "Item Not fulfilled Title",
+      "default": "This item is not yet fulfilled!"
+    },
+    {
+      "type": "text",
+      "id": "orders-billing-address-title",
+      "label": "Orders Billing Address Title",
+      "default": "Billing Address"
+    },
+    {
+      "type": "text",
+      "id": "orders-payment-title",
+      "label": "Orders Payment Title",
+      "default": "Payment Information"
+    },
+    {
+      "type": "text",
+      "id": "orders-manually-placed-title",
+      "label": "Orders Manually Placed Title",
+      "default": "This order is manually placed on"
+    },
+    {
+      "type": "text",
+      "id": "table-subtotal-title",
+      "label": "Table Subtotal Title",
+      "default": "Subtotal"
+    },
+    {
+      "type": "text",
+      "id": "table-taxes-title",
+      "label": "Table Taxes Title",
+      "default": "Taxes"
+    },
+    {
+      "type": "text",
+      "id": "table-shipping-title",
+      "label": "Table Shipping Title",
+      "default": "Shipping"
+    },
+    {
+      "type": "text",
+      "id": "table-total-title",
+      "label": "Table Total Title",
+      "default": "Total"
+    },
     {
       "type": "header",
       "content": "Apply Tailwind CSS Classes (If Needed)",
