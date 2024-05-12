@@ -1,66 +1,78 @@
-<div class="orders-container__classes max-w-6xl mx-auto px-4 py-12">
-  <div class="orders-details__classes flex items-start md:items-end justify-between my-5">
-    <div class="orders-title__classes w-1/2">
-      <h1 class="orders-name__classes text-2xl font-bold text-gray-700">Order {{ order.name }}</h1>
-      <p class="orders-date__classes text-gray-500 my-2">Placed on {{ order.created_at | date: format: 'date' }}</p>
-      <span class="orders-status__classes text-sm text-white bg-gray-700 rounded-full my-2 px-4 py-1">
+<div class="orders-container__classes {{ section.settings.orders-container__classes }}">
+  <div class="orders-details__classes {{ section.settings.orders-details__classes }}">
+    <div class="orders-title__classes {{ section.settings.orders-title__classes }}">
+      <h1 class="orders-name__classes {{ section.settings.orders-name__classes }}">Order {{ order.name }}</h1>
+      <p class="orders-date__classes {{ section.settings.orders-date__classes }}">
+        Placed on {{ order.created_at | date: format: 'date' }}
+      </p>
+      <span class="orders-status__classes {{ section.settings.orders-status__classes }}">
         {{- order.financial_status_label -}}
       </span>
     </div>
     <a
       href="{{ routes.account_url }}"
-      class="back-to-accounts__classes text-blue-700 hover:text-blue-900 underline font-medium"
+      class="back-to-accounts__classes {{ section.settings.back-to-accounts__classes }}"
       >Back to account</a
     >
   </div>
 
-  <div class="orders-item-container__classes ">
+  <div class="orders-item-container__classes {{ section.settings.orders-item-container__classes }}">
     {% for line_item in order.line_items %}
-      <div class="orders-item__classes w-full border border-gray-200 divide-y rounded-sm mb-4">
-        <div class="item-details__classes grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-12 p-4 md:p-12">
-          <div class="item-image-container__classes w-full h-80 min-h-80 bg-gray-200 rounded-md overflow-hidden border">
+      <div class="orders-item__classes {{ section.settings.orders-item__classes }}">
+        <div class="item-details__classes {{ section.settings.item-details__classes }}">
+          <div class="item-image-container__classes {{ section.settings.item-image-container__classes }}">
             {% if line_item.image %}
-              <div classs="item-image__classes {{ section.settings.item-image__classes }} w-full h-full object-center object-cover">
+              <div class="item-image__classes {{ section.settings.item-image__classes }}">
                 {{ line_item.image | image_url: width: 300, height: 400 | image_tag }}
               </div>
             {% else %}
-              {{ 'product-1' | placeholder_svg_tag: 'item-image__classes w-full h-full object-center object-cover' }}
+              {{ 'product-1' | placeholder_svg_tag: section.settings['item-image__classes'] }}
             {% endif %}
           </div>
 
           <div>
-            <h1 class="item-title__classes text-xl font-medium mb-4">
+            <h1 class="item-title__classes {{ section.settings.item-title__classes }}">
               {{ line_item.title | link_to: line_item.product.url }}
             </h1>
 
-            <table class="item-details-table__classes table-auto w-full mb-4">
+            <table class="item-details-table__classes {{ section.settings.item-details-table__classes }}">
               <tbody>
                 <tr>
-                  <td class="item-price-original-title__classes border border-gray-200 px-4 py-2">Price</td>
-                  <td class="item-price-original__classes border border-gray-200 px-4 py-2">
+                  <td class="item-price-original-title__classes {{ section.settings.item-price-original-title__classes }}">
+                    Price
+                  </td>
+                  <td class="item-price-original__classes {{ section.settings.item-price-original__classes }}">
                     {{ line_item.original_price | money }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="item-quantity-title__classes border border-gray-200 px-4 py-2">Quantity</td>
-                  <td class="item-quantity__classes border border-gray-200 px-4 py-2">{{ line_item.quantity }}</td>
+                  <td class="item-quantity-title__classes {{ section.settings.item-quantity-title__classes }}">
+                    Quantity
+                  </td>
+                  <td class="item-quantity__classes {{ section.settings.item-quantity__classes }}">
+                    {{ line_item.quantity }}
+                  </td>
                 </tr>
                 <tr>
-                  <td class="item-final-price-title__classes border border-gray-200 px-4 py-2">Final price</td>
-                  <td class="item-final-price__classes border border-gray-200 px-4 py-2">
+                  <td class="item-final-price-title__classes {{ section.settings.item-final-price-title__classes }}">
+                    Final price
+                  </td>
+                  <td class="item-final-price__classes {{ section.settings.item-final-price__classes }}">
                     {{ line_item.final_line_price | money }}
                   </td>
                 </tr>
               </tbody>
             </table>
 
-            <div class="item-description__classes text-gray-500 mb-4">
+            <div class="item-description__classes {{ section.settings.item-description__classes }}">
               {{ line_item.product.description | truncatewords: 15 }}
             </div>
           </div>
 
-          <div class="item-delivery-address-container__classes ">
-            <h1 class="item-delivery-address-title__classes font-medium mb-4">Delivery address</h1>
+          <div class="item-delivery-address-container__classes {{ section.settings.item-delivery-address-container__classes }}">
+            <h1 class="item-delivery-address-title__classes {{ section.settings.item-delivery-address-title__classes }}">
+              Delivery address
+            </h1>
             <p>Address 1: {{ order.shipping_address.address1 }}</p>
             <p>Address 2: {{ order.shipping_address.address2 }}</p>
             <p>Street: {{ order.shipping_address.street }}</p>
@@ -71,45 +83,53 @@
           </div>
         </div>
 
-        <div class="item-fulfillment__classes p-4 md:p-12">
-          <h1 class="item-fulfillment-title__classes text-lg font-medium mb-4">Fulfillment</h1>
+        <div class="item-fulfillment__classes {{ section.settings.item-fulfillment__classes }}">
+          <h1 class="item-fulfillment-title__classes {{ section.settings.item-fulfillment-title__classes }}">
+            Fulfillment
+          </h1>
 
           {% if line_item.successfully_fulfilled_quantity > 0 %}
-            <p class="item-fulfillment-quantity__classes mb-2">
+            <p class="item-fulfillment-quantity__classes {{ section.settings.item-fulfillment-quantity__classes }}">
               We have fulfilled {{ line_item.successfully_fulfilled_quantity }} items of your recent order.
             </p>
-            <p class="item-tracking-company__classes mb-2">
+            <p class="item-tracking-company__classes {{ section.settings.item-tracking-company__classes }}">
               Tracking company: {{ line_item.fulfillment.tracking_company }}
             </p>
-            <p class="item-tracking-number__classes mb-2">
+            <p class="item-tracking-number__classes {{ section.settings.item-tracking-number__classes }}">
               Tracking number: {{ line_item.fulfillment.tracking_number }}
             </p>
 
             <a
               target="_blank"
               href="{{ line_item.fulfillment.tracking_url }}"
-              class="item-tracking-url__classes flex w-max text-sm text-white font-medium bg-gray-700 hover:underline hover:bg-gray-900 px-4 py-1 rounded"
+              class="item-tracking-url__classes {{ section.settings.item-tracking-url__classes }}"
             >
               Track order
             </a>
           {% else %}
-            <p class="item-not-fulfilled__classes text-gray-500">This item is not yet fulfilled</p>
+            <p class="item-not-fulfilled__classes {{ section.settings.item-not-fulfilled__classes }}">
+              This item is not yet fulfilled
+            </p>
           {% endif %}
         </div>
       </div>
     {% endfor %}
   </div>
 
-  <div class="orders-billing-address-conatiner__classes w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-12 border border-gray-200 rounded-sm p-4 md:p-12 my-6 bg-gray-50">
-    <div class="orders-billing-address__classes ">
-      <h1 class="orders-billing-address-title__classes font-medium mb-4">Billing address</h1>
+  <div class="orders-billing-address-conatiner__classes {{ section.settings.orders-billing-address-conatiner__classes }}">
+    <div class="orders-billing-address__classes {{ section.settings.orders-billing-address__classes }}">
+      <h1 class="orders-billing-address-title__classes {{ section.settings.orders-billing-address-title__classes }}">
+        Billing address
+      </h1>
       {{ order.billing_address | format_address }}
     </div>
-    <div class="orders-payment__classes ">
-      <h1 class="orders-payment-title__classes font-medium mb-4">Payment information</h1>
+    <div class="orders-payment__classes {{ section.settings.orders-payment__classes }}">
+      <h1 class="orders-payment-title__classes {{ section.settings.orders-payment-title__classes }}">
+        Payment information
+      </h1>
 
       {% for transaction in order.transactions %}
-        <div class="orders-transaction__classes mb-4">
+        <div class="orders-transaction__classes {{ section.settings.orders-transaction__classes }}">
           {% assign credit_card_company = transaction.payment_details.credit_card_company %}
           {% assign credit_card_last_four_digits = transaction.payment_details.credit_card_number %}
 
@@ -124,33 +144,43 @@
                 {% assign background = 'green' %}
             {% endcase %}
 
-            <span class="orders-transaction-status__classes bg-{{ background }}-700 rounded-full text-sm px-4 py-1 text-white">
+            <span class="orders-transaction-status__classes {{ section.settings.orders-transaction-status__classes }} bg-{{ background }}-700">
               {{- transaction.status_label -}}
             </span>
           {% else %}
-            <p class="orders-manually-placed__classes text-sm mb-4">This order is manually placed on {{ shop.name }}</p>
+            <p class="orders-manually-placed__classes {{ section.settings.orders-manually-placed__classes }}">
+              This order is manually placed on {{ shop.name }}
+            </p>
           {% endif %}
         </div>
       {% endfor %}
     </div>
-    <div class="orders-total-details__classes ">
-      <table class="orders-total-table__classes table-auto w-full mb-4">
+    <div class="orders-total-details__classes {{ section.settings.orders-total-details__classes }}">
+      <table class="orders-total-table__classes {{ section.settings.orders-total-table__classes }}">
         <tbody>
           <tr>
-            <td class="table-subtotal-title__classes border border-gray-200 px-4 py-2">Subtotal</td>
-            <td class="table-subtotal__classes border border-gray-200 px-4 py-2">{{ order.subtotal_price | money }}</td>
+            <td class="table-subtotal-title__classes {{ section.settings.table-subtotal-title__classes }}">Subtotal</td>
+            <td class="table-subtotal__classes {{ section.settings.table-subtotal__classes }}">
+              {{ order.subtotal_price | money }}
+            </td>
           </tr>
           <tr>
-            <td class="table-taxes-title__classes border border-gray-200 px-4 py-2">Taxes</td>
-            <td class="table-taxes__classes border border-gray-200 px-4 py-2">{{ order.tax_price | money }}</td>
+            <td class="table-taxes-title__classes {{ section.settings.table-taxes-title__classes }}">Taxes</td>
+            <td class="table-taxes__classes {{ section.settings.table-taxes__classes }}">
+              {{ order.tax_price | money }}
+            </td>
           </tr>
           <tr>
-            <td class="table-shipping-title__classes border border-gray-200 px-4 py-2">Shipping</td>
-            <td class="table-shipping__classes border border-gray-200 px-4 py-2">{{ order.shipping_price | money }}</td>
+            <td class="table-shipping-title__classes {{ section.settings.table-shipping-title__classes }}">Shipping</td>
+            <td class="table-shipping__classes {{ section.settings.table-shipping__classes }}">
+              {{ order.shipping_price | money }}
+            </td>
           </tr>
           <tr>
-            <td class="table-total-title__classes border border-gray-200 px-4 py-2">Total</td>
-            <td class="table-total__classes border border-gray-200 px-4 py-2">{{ order.total_price | money }}</td>
+            <td class="table-total-title__classes {{ section.settings.table-total-title__classes }}">Total</td>
+            <td class="table-total__classes {{ section.settings.table-total__classes }}">
+              {{ order.total_price | money }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -160,15 +190,292 @@
 
 {% schema %}
 {
-  "name": "Order",
+  "name": "Order 120",
   "tag": "section",
   "class": "section",
   "settings": [
     {
       "type": "textarea",
-      "id": "account-view-address__classes",
-      "label": " Classes",
-      "default": "text-sm text-blue-600 hover:text-blue-900 underline"
+      "id": "orders-container__classes",
+      "label": "Orders Container Styles",
+      "default": "max-w-6xl mx-auto px-4 py-12"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-details__classes",
+      "label": "Orders Details Styles",
+      "default": "flex items-start md:items-end justify-between my-5"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-title__classes",
+      "label": "Orders Title Styles",
+      "default": "w-1/2"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-name__classes",
+      "label": "Orders Name Styles",
+      "default": "text-2xl font-bold text-gray-700"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-date__classes",
+      "label": "Orders Date Styles",
+      "default": "text-gray-500 my-2"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-status__classes",
+      "label": "Orders Status Styles",
+      "default": "text-sm text-white bg-gray-700 rounded-full my-2 px-4 py-1"
+    },
+    {
+      "type": "textarea",
+      "id": "back-to-accounts__classes",
+      "label": "Back to Accounts Link Styles",
+      "default": "text-blue-700 hover:text-blue-900 underline font-medium"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-item-container__classes",
+      "label": "Orders Item Container Styles"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-item__classes",
+      "label": "Orders Item Styles",
+      "default": "w-full border border-gray-200 divide-y rounded-sm mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "item-details__classes",
+      "label": "Item Details Styles",
+      "default": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-12 p-4 md:p-12"
+    },
+    {
+      "type": "textarea",
+      "id": "item-image-container__classes",
+      "label": "Item Image Container Styles",
+      "default": "w-full h-80 min-h-80 bg-gray-200 rounded-md overflow-hidden border"
+    },
+    {
+      "type": "textarea",
+      "id": "item-image__classes",
+      "label": "Item Image Styles",
+      "default": "w-full h-full object-center object-cover"
+    },
+    {
+      "type": "textarea",
+      "id": "item-title__classes",
+      "label": "Item Title Styles",
+      "default": "text-xl font-medium mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "item-details-table__classes",
+      "label": "Item Details Table Styles",
+      "default": "table-auto w-full mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "item-price-original-title__classes",
+      "label": "Item Price Original Title Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "item-price-original__classes",
+      "label": "Item Price Original Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "item-quantity-title__classes",
+      "label": "Item Quantity Title Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "item-quantity__classes",
+      "label": "Item Quantity Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "item-final-price-title__classes",
+      "label": "Item Final Price Title Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "item-final-price__classes",
+      "label": "Item Final Price Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "item-description__classes",
+      "label": "Item Description Styles",
+      "default": "text-gray-500 mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "item-delivery-address-container__classes",
+      "label": "Item Delivery Address Container Styles"
+    },
+    {
+      "type": "textarea",
+      "id": "item-delivery-address-title__classes",
+      "label": "Item Delivery Address Title Styles",
+      "default": "font-medium mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "item-fulfillment__classes",
+      "label": "Item Fulfillment Styles",
+      "default": "p-4 md:p-12"
+    },
+    {
+      "type": "textarea",
+      "id": "item-fulfillment-title__classes",
+      "label": "Item Fulfillment Title Styles",
+      "default": "text-lg font-medium mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "item-fulfillment-quantity__classes",
+      "label": "Item Fulfillment Quantity Styles",
+      "default": "mb-2"
+    },
+    {
+      "type": "textarea",
+      "id": "item-tracking-company__classes",
+      "label": "Item Tracking Company Styles",
+      "default": "mb-2"
+    },
+    {
+      "type": "textarea",
+      "id": "item-tracking-number__classes",
+      "label": "Item Tracking Number Styles",
+      "default": "mb-2"
+    },
+    {
+      "type": "textarea",
+      "id": "item-tracking-url__classes",
+      "label": "Item Tracking URL Styles",
+      "default": "flex w-max text-sm text-white font-medium bg-gray-700 hover:underline hover:bg-gray-900 px-4 py-1 rounded"
+    },
+    {
+      "type": "textarea",
+      "id": "item-not-fulfilled__classes",
+      "label": "Item Not Fulfilled Styles",
+      "default": "text-gray-500"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-billing-address-conatiner__classes",
+      "label": "Orders Billing Address Container Styles",
+      "default": "w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-12 border border-gray-200 rounded-sm p-4 md:p-12 my-6 bg-gray-50"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-billing-address__classes",
+      "label": "Orders Billing Address Styles"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-billing-address-title__classes",
+      "label": "Orders Billing Address Title Styles",
+      "default": "font-medium mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-payment__classes",
+      "label": "Orders Payment Styles"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-payment-title__classes",
+      "label": "Orders Payment Title Styles",
+      "default": "font-medium mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-transaction__classes",
+      "label": "Orders Transaction Styles",
+      "default": "mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-transaction-status__classes",
+      "label": "Orders Transaction Status Styles",
+      "default": "rounded-full text-sm px-4 py-1 text-white"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-manually-placed__classes",
+      "label": "Orders Manually Placed Styles",
+      "default": "text-sm mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-total-details__classes",
+      "label": "Orders Total Details Styles"
+    },
+    {
+      "type": "textarea",
+      "id": "orders-total-table__classes",
+      "label": "Orders Total Table Styles",
+      "default": "table-auto w-full mb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "table-subtotal-title__classes",
+      "label": "Table Subtotal Title Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "table-subtotal__classes",
+      "label": "Table Subtotal Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "table-taxes-title__classes",
+      "label": "Table Taxes Title Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "table-taxes__classes",
+      "label": "Table Taxes Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "table-shipping-title__classes",
+      "label": "Table Shipping Title Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "table-shipping__classes",
+      "label": "Table Shipping Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "table-total-title__classes",
+      "label": "Table Total Title Styles",
+      "default": "border border-gray-200 px-4 py-2"
+    },
+    {
+      "type": "textarea",
+      "id": "table-total__classes",
+      "label": "Table Total Styles",
+      "default": "border border-gray-200 px-4 py-2"
     }
   ]
 }
