@@ -1,18 +1,27 @@
 <section id="{{ 'home-' | append: section.id }}">
   <div class="px-5 2xl:px-20">
-    <div class="grid {{ section.settings.per_row_sm }} {{ section.settings.per_row_md }} {{ section.settings.per_row_lg }} py-5 gap-5">
+    <h2 class="text-4xl font-semibold text-gray-900 mt-4 mb-4 text-center">{{ section.settings.stats_heading }}</h2>
+    <div class="grid py-5 gap-5 {{ section.settings.per_row_sm }} {{ section.settings.per_row_md }} {{ section.settings.per_row_lg }}">
       {% for block in section.blocks %}
         <div class="card-wrapper {{ section.settings.card_wrapper_styles }} text-center place-self-center">
           <div class="card {{ section.settings.card_styles }} max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 2xl:mt-5 2xl:mx-24">
-            <div class="card__content {{ section.settings.card_content_styles }} px-4 py-3 md:p-5">
+            <div class="card__content {{ section.settings.card_content_styles }} flex flex-col items-center justify-center px-4 py-3 md:p-5">
               <span class="card__button-icon {{ section.settings.card_button_icon_styles }}">
-                {% render 'arrow' %}
+                {% if block.settings.icon_select == 'icon-rocket' %}
+                  {% render 'icon-rocket' %}
+                {% elsif block.settings.icon_select == 'icon-calendar' %}
+                  {% render 'icon-calendar' %}
+                {% elsif block.settings.icon_select == 'icon-sales' %}
+                  {% render 'icon-sales' %}
+                {% elsif block.settings.icon_select == 'icon-users-group' %}
+                  {% render 'icon-users-group' %}
+                {% endif %}
               </span>
               <h5 class="card__details {{ section.settings.card_details_styles }} mb-2 text-lg md:text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                {{ block.settings.card_details }}
+                {{ block.settings.stats_details }}
               </h5>
               <p class="card__subdetails {{ section.settings.card_subdetails_styles }} text-sm md:text-base mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {{ block.settings.card_subdetails }}
+                {{ block.settings.stats_subdetails }}
               </p>
             </div>
           </div>
@@ -23,8 +32,14 @@
 </section>
 {% schema %}
 {
-  "name": "4 Column Image Tiles",
+  "name": "Stats Bar Section",
   "settings": [
+    {
+      "type": "text",
+      "id": "stats_heading",
+      "label": "Stats Bar Heading",
+      "default": "Statistics Bar"
+    },
     {
       "type": "select",
       "id": "per_row_sm",
@@ -116,75 +131,55 @@
   ],
   "blocks": [
     {
-      "type": "image",
-      "name": "Image Tile",
+      "type": "card_block",
+      "name": "Stats Tile",
       "settings": [
         {
-          "type": "header",
-          "content": "Image Tiles"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "range",
-          "id": "image_gradient_darkness",
-          "min": 0,
-          "max": 100,
-          "step": 10,
-          "unit": "%",
-          "label": "Image Gradient Darkness",
-          "default": 30
-        },
-        {
-          "type": "header",
-          "content": "Tile Title"
+          "type": "text",
+          "label": "Stats Details",
+          "id": "stats_details",
+          "default": "10000+"
         },
         {
           "type": "text",
-          "id": "tile_text",
-          "label": "Tile Title",
-          "default": "Some Text"
+          "label": "Stats Sub Details",
+          "id": "stats_subdetails",
+          "default": "Statistics Information!!"
         },
         {
-          "type": "header",
-          "content": "Button Settings"
-        },
-        {
-          "type": "url",
-          "id": "button_url",
-          "label": "Button URL"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button text",
-          "default": "Learn more"
-        },
-        {
-          "type": "textarea",
-          "label": "Card Details",
-          "id": "card_details",
-          "default": "Add card Details"
-        },
-        {
-          "type": "textarea",
-          "label": "Card Sub Details",
-          "id": "card_subdetails",
-          "default": "Add card sub Details"
+          "type": "select",
+          "id": "icon_select",
+          "label": "Select Icon",
+          "default": "icon-rocket",
+          "options": [
+            {
+              "label": "Rocket",
+              "value": "icon-rocket"
+            },
+            {
+              "label": "Calendar",
+              "value": "icon-calendar"
+            },
+            {
+              "label": "Sales",
+              "value": "icon-sales"
+            },
+            {
+              "label": "Users Group",
+              "value": "icon-users-group"
+            }
+          ]
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "4 Column Image Tiles",
-      "category": "4 Column Image Tiles",
+      "name": "Statistics Bars",
+      "category": "Statistics Bar",
       "blocks": [
         {
-          "type": "image"
+          "type": "card_block"
         }
       ]
     }
