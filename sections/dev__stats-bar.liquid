@@ -1,0 +1,193 @@
+<section id="{{ 'home-' | append: section.id }}">
+  <div class="px-5 2xl:px-20">
+    <div class="grid {{ section.settings.per_row_sm }} {{ section.settings.per_row_md }} {{ section.settings.per_row_lg }} py-5 gap-5">
+      {% for block in section.blocks %}
+        <div class="card-wrapper {{ section.settings.card_wrapper_styles }} text-center place-self-center">
+          <div class="card {{ section.settings.card_styles }} max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 2xl:mt-5 2xl:mx-24">
+            <div class="card__content {{ section.settings.card_content_styles }} px-4 py-3 md:p-5">
+              <span class="card__button-icon {{ section.settings.card_button_icon_styles }}">
+                {% render 'arrow' %}
+              </span>
+              <h5 class="card__details {{ section.settings.card_details_styles }} mb-2 text-lg md:text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                {{ block.settings.card_details }}
+              </h5>
+              <p class="card__subdetails {{ section.settings.card_subdetails_styles }} text-sm md:text-base mb-3 font-normal text-gray-700 dark:text-gray-400">
+                {{ block.settings.card_subdetails }}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "4 Column Image Tiles",
+  "settings": [
+    {
+      "type": "select",
+      "id": "per_row_sm",
+      "label": "Products per row (mobile)",
+      "default": "grid-cols-2",
+      "options": [
+        {
+          "label": "1",
+          "value": "grid-cols-1"
+        },
+        {
+          "label": "2",
+          "value": "grid-cols-2"
+        },
+        {
+          "label": "3",
+          "value": "grid-cols-3"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "per_row_md",
+      "label": "Products per row (tablet)",
+      "default": "md:grid-cols-3",
+      "options": [
+        {
+          "label": "1",
+          "value": "md:grid-cols-1"
+        },
+        {
+          "label": "2",
+          "value": "md:grid-cols-2"
+        },
+        {
+          "label": "3",
+          "value": "md:grid-cols-3"
+        },
+        {
+          "label": "4",
+          "value": "md:grid-cols-4"
+        },
+        {
+          "label": "5",
+          "value": "md:grid-cols-5"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "per_row_lg",
+      "label": "Products per row (desktop)",
+      "default": "lg:grid-cols-4",
+      "options": [
+        {
+          "label": "1",
+          "value": "lg:grid-cols-1"
+        },
+        {
+          "label": "2",
+          "value": "lg:grid-cols-2"
+        },
+        {
+          "label": "3",
+          "value": "lg:grid-cols-3"
+        },
+        {
+          "label": "4",
+          "value": "lg:grid-cols-4"
+        },
+        {
+          "label": "5",
+          "value": "lg:grid-cols-5"
+        },
+        {
+          "label": "6",
+          "value": "lg:grid-cols-6"
+        },
+        {
+          "label": "7",
+          "value": "lg:grid-cols-7"
+        },
+        {
+          "label": "8",
+          "value": "lg:grid-cols-8"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image Tile",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image Tiles"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_gradient_darkness",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
+          "label": "Image Gradient Darkness",
+          "default": 30
+        },
+        {
+          "type": "header",
+          "content": "Tile Title"
+        },
+        {
+          "type": "text",
+          "id": "tile_text",
+          "label": "Tile Title",
+          "default": "Some Text"
+        },
+        {
+          "type": "header",
+          "content": "Button Settings"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Learn more"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Details",
+          "id": "card_details",
+          "default": "Add card Details"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Sub Details",
+          "id": "card_subdetails",
+          "default": "Add card sub Details"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "4 Column Image Tiles",
+      "category": "4 Column Image Tiles",
+      "blocks": [
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
