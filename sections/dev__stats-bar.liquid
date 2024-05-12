@@ -1,11 +1,11 @@
 <section id="{{ 'home-' | append: section.id }}">
-  <div class="stats-container__classes {{ section.settings.stats-container__classes }} px-5 2xl:px-20">
-    <h2 class="stats-title__classes {{ section.settings.stats-title__classes }} text-4xl font-semibold text-gray-900 mt-4 mb-4 text-center">{{ section.settings.stats_heading }}</h2>
-    <div class="stats-inner-container__classes {{ section.settings.stats-inner-container__classes }} grid py-5 gap-5 {{ section.settings.per_row_sm }} {{ section.settings.per_row_md }} {{ section.settings.per_row_lg }}">
+  <div class="stats-container__classes {{ section.settings.stats-container__classes }}">
+    <h2 class="stats-title__classes {{ section.settings.stats-title__classes }}">{{ section.settings.stats_heading }}</h2>
+    <div class="stats-inner-container__classes {{ section.settings.stats-inner-container__classes }} {{ section.settings.per_row_sm }} {{ section.settings.per_row_md }} {{ section.settings.per_row_lg }}">
       {% for block in section.blocks %}
-        <div class="stats-wrapper__classes {{ section.settings.stats-wrapper__classes }} text-center place-self-center">
-          <div class="stats__classes {{ section.settings.stats__classes }} max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 2xl:mt-5 2xl:mx-24">
-            <div class="stats-content__classes {{ section.settings.stats-content__classes }} flex flex-col items-center justify-center px-4 py-3 md:p-5">
+        <div class="stats-wrapper__classes {{ section.settings.stats-wrapper__classes }}">
+          <div class="stats__classes {{ section.settings.stats__classes }} ">
+            <div class="stats-content__classes {{ section.settings.stats-content__classes }}">
               <span class="stats-icon__classes {{ section.settings.stats-icon__classes }}">
                 {% if block.settings.icon_select == 'icon-rocket' %}
                   {% render 'icon-rocket' %}
@@ -17,12 +17,12 @@
                   {% render 'icon-users-group' %}
                 {% endif %}
               </span>
-              <h5 class="stats-details__classes {{ section.settings.stats-details__classes }} mb-2 text-lg md:text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+              <div class="stats-details__classes {{ section.settings.stats-details__classes }}">
                 {{ block.settings.stats_details }}
-              </h5>
-              <p class="stats-subdetails__classes {{ section.settings.stats-subdetails__classes }} text-sm md:text-base mb-3 font-normal text-gray-700 dark:text-gray-400">
+              </div>
+              <div class="stats-subdetails__classes {{ section.settings.stats-subdetails__classes }}">
                 {{ block.settings.stats_subdetails }}
-              </p>
+              </div>
             </div>
           </div>
         </div>
@@ -127,6 +127,64 @@
           "value": "lg:grid-cols-8"
         }
       ]
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes (If Needed)",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "id": "stats-container__classes",
+      "label": "Stats Container Classes",
+      "default": "px-5 2xl:px-20"
+    },
+    {
+      "type": "textarea",
+      "id": "stats-title__classes",
+      "label": "Stats Title Classes",
+      "default": "text-4xl font-semibold text-gray-900 mt-4 mb-4 text-center"
+    },
+    {
+      "type": "textarea",
+      "id": "stats-inner-container__classes",
+      "label": "Stats Inner Container Classes",
+      "default": "grid py-5 gap-5"
+    },
+    {
+      "type": "textarea",
+      "id": "stats-wrapper__classes",
+      "label": "Stats Wrapper Classes",
+      "default": "text-center place-self-center"
+    },
+    {
+      "type": "textarea",
+      "id": "stats__classes",
+      "label": "Stats Classes",
+      "default": "max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 2xl:mt-5 2xl:mx-24  transition duration-300 ease-in-out transform hover:scale-105"
+    },
+    {
+      "type": "textarea",
+      "id": "stats-content__classes",
+      "label": "Stats Content Classes",
+      "default": "flex flex-col items-center justify-center px-4 py-3 md:p-5"
+    },
+    {
+      "type": "textarea",
+      "id": "stats-icon__classes",
+      "label": "Stats Icon Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "stats-details__classes",
+      "label": "Stats Details Classes",
+      "default": "mb-2 text-lg md:text-xl font-semibold tracking-tight text-gray-900 dark:text-white"
+    },
+    {
+      "type": "textarea",
+      "id": "stats-subdetails__classes",
+      "label": "Stats Subdetails Classes",
+      "default": "text-sm md:text-base mb-3 font-normal text-gray-700 dark:text-gray-400"
     }
   ],
   "blocks": [
