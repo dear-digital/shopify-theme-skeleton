@@ -2,7 +2,7 @@
   <div class="hero__left-col {{ section.settings.hero__left-col }}">
     <div class="hero__header {{ section.settings.hero__header }}">
       <h1 class="hero__title {{ section.settings.hero__title }}">{{ section.settings['hero-main'] }}</h1>
-      <p class="hero__subtitle {{ section.settings.hero__subtitle }}">{{ section.settings['hero-main-richtext'] }}</p>
+      <div class="hero__subtitle {{ section.settings.hero__subtitle }}">{{ section.settings['hero-main-richtext'] }}</div>
     </div>
     <div class="hero__content {{ section.settings.hero__content }}">
       {% if section.settings.hero__image != blank %}
@@ -20,17 +20,17 @@
   <div class="hero__right-col {{ section.settings.hero__right-col }}">
     {% for block in section.blocks %}
       {% if block.type == 'collection' and block.settings.collection != blank %}
-        <div class="hero__row {{ block.settings.hero__row }}">
+        <div class="hero__row {{ block.settings.hero__row }} {% if block.settings.reverse-image %} flex-row-reverse	{% endif %}">
           <div class="hero__product-image {{ block.settings.hero__product-image }}">
             {% if block.settings.collection.featured_image != blank %}
               {{
                 block.settings.collection.featured_image
-                | image_url: width: 360
+                | image_url: width: 500
                 | image_tag: class: block.settings['hero__product-img']
               }}
             {% endif %}
           </div>
-          <div class="hero__product {{ block.settings.hero__product }}">
+            <div class="hero__product {{ block.settings.hero__product }} {% if block.settings.reverse-image %} border-r-[1px] {% else %} border-l-[1px] {% endif %}">
             <h3 class="hero__product-title {{ block.settings.hero__product-title }}">
               {{ block.settings.collection.title }}
             </h3>
@@ -40,8 +40,8 @@
             >
               {{- block.settings.text | append: '→' -}}
             </a>
+            </div>
           </div>
-        </div>
       {% endif %}
     {% endfor %}
   </div>
@@ -54,12 +54,14 @@
     {
       "type": "html",
       "id": "hero-main",
-      "label": "Hero heading"
+      "label": "Hero heading",
+      "default": "Kyiv LuxeBouquets"
     },
     {
       "type": "richtext",
       "id": "hero-main-richtext",
-      "label": "Hero subheading"
+      "label": "Hero subheading",
+      "default": "<p>Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread Joy with Our Online Flower Delivery Service</p>"
     },
     {
       "type": "image_picker",
@@ -69,7 +71,8 @@
     {
       "type": "textarea",
       "id": "hero__description",
-      "label": "Hero description"
+      "label": "Hero description",
+      "default": "Experience the joy of giving with our modern floral studio. Order online and send fresh flowers, plants and gifts today."
     },
 
     {
@@ -79,47 +82,56 @@
     {
       "type": "textarea",
       "id": "hero",
-      "label": "Style hero"
+      "label": "Style hero",
+      "default": "flex-wrap md:flex-nowrap md:flex bg-red-200 w-full justify-between items-start border-t-[1px] border-[#121212]"
     },
     {
       "type": "textarea",
       "id": "hero__left-col",
-      "label": "Style hero__left-col"
+      "label": "Style hero__left-col",
+      "default": "border-l-[1px] border-b-[1px] border-[#121212] w-full md:w-1/2 p-[80px]"
     },
     {
       "type": "textarea",
       "id": "hero__header",
-      "label": "Style hero__header"
+      "label": "Style hero__header",
+      "default": "flex flex-col"
     },
     {
       "type": "textarea",
       "id": "hero__title",
-      "label": "Style hero__title"
+      "label": "Style hero__title",
+      "default": "text-desktop-heading-1 font-semibold"
     },
     {
       "type": "textarea",
       "id": "hero__subtitle",
-      "label": "Style hero__subtitle"
+      "label": "Style hero__subtitle",
+      "default": "font-regular text-desktop-subtitle py-[16px]"
     },
     {
       "type": "textarea",
       "id": "hero__content",
-      "label": "Style hero__content"
+      "label": "Style hero__content",
+      "default": "flex pt-[24px] border-t-[1px] border-[#121212]"
     },
     {
       "type": "textarea",
       "id": "tail-hero__image",
-      "label": "Style hero__image"
+      "label": "Style hero__image",
+      "default": "h-64 w-64 object-cover basis-1/2 pr-[24px] border-r-[1px] border-[#121212]"
     },
     {
       "type": "textarea",
       "id": "tail-hero__description",
-      "label": "Style hero__description"
+      "label": "Style hero__description",
+      "default": "basis-2/2 pl-[24px] content-end text-desktop-caption"
     },
     {
       "type": "textarea",
       "id": "hero__right-col",
-      "label": "Style hero__right-col"
+      "label": "Style hero__right-col",
+      "default": "w-full md:w-1/2 bg-red-300"
     }
   ],
   "blocks": [
@@ -146,32 +158,32 @@
         {
           "type": "textarea",
           "id": "hero__row",
-          "label": "Style hero__row"
+          "label": "Style hero__row",
+          "default": "flex items-stretch border-l-[1px] border-b-[1px] border-r-[1px]  border-[#121212]"
         },
         {
           "type": "textarea",
           "id": "hero__product",
-          "label": "Style hero__product"
+          "label": "Style hero__product",
+          "default": "w-1/2 flex flex-col justify-between flex-grow border-[#121212]"
         },
         {
           "type": "textarea",
           "id": "hero__product-title",
-          "label": "Style hero__product-title"
+          "label": "Style hero__product-title",
+          "default": "flex-none mt-auto text-center text-desktop-heading-3 font-medium"
         },
         {
           "type": "textarea",
           "id": "hero__product-link",
-          "label": "Style hero__product-link"
+          "label": "Style hero__product-link",
+          "default": "mt-auto text-center text-desktop-heading-6 font-semibold pb-2"
         },
         {
           "type": "textarea",
           "id": "hero__product-image",
-          "label": "Style hero__product-image"
-        },
-        {
-          "type": "textarea",
-          "id": "hero__product-img",
-          "label": "Style hero__product-img"
+          "label": "Style hero__product-image",
+          "default": "w-1/2 flex-grow object-cover"
         }
       ]
     }

@@ -1,59 +1,57 @@
 {
   "sections": {
-    "hero_XVGR7H": {
+    "hero_ydY9tK": {
       "type": "hero",
       "blocks": {
-        "collection_NnQ6ce": {
-          "type": "collection",
-          "settings": {
-            "collection": "new-snowboards",
-            "text": "",
-            "reverse-image": false,
-            "hero__row": "",
-            "hero__product": "",
-            "hero__product-title": "",
-            "hero__product-link": "",
-            "hero__product-image": "",
-            "hero__product-img": ""
-          }
-        },
-        "collection_caeNrY": {
+        "collection_km7wLd": {
           "type": "collection",
           "settings": {
             "collection": "dried-flowers",
-            "text": "",
+            "text": "Shop now",
             "reverse-image": false,
-            "hero__row": "",
-            "hero__product": "",
-            "hero__product-title": "",
-            "hero__product-link": "",
-            "hero__product-image": "",
-            "hero__product-img": ""
+            "hero__row": "flex items-stretch border-l-[1px] border-b-[1px] border-r-[1px]  border-[#121212]",
+            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-[#121212]",
+            "hero__product-title": "flex-none mt-auto text-center text-desktop-heading-3 font-medium",
+            "hero__product-link": "mt-auto text-center text-desktop-heading-6 font-semibold pb-2",
+            "hero__product-image": "w-1\/2 flex-grow object-cover"
+          }
+        },
+        "collection_TnDJWK": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-snowboards",
+            "text": "Shop now",
+            "reverse-image": true,
+            "hero__row": "flex items-stretch border-l-[1px] border-b-[1px] border-r-[1px]  border-[#121212]",
+            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-[#121212]",
+            "hero__product-title": "flex-none mt-auto text-center text-desktop-heading-3 font-medium",
+            "hero__product-link": "mt-auto text-center text-desktop-heading-6 font-semibold pb-2",
+            "hero__product-image": "w-1\/2 flex-grow object-cover"
           }
         }
       },
       "block_order": [
-        "collection_NnQ6ce",
-        "collection_caeNrY"
+        "collection_km7wLd",
+        "collection_TnDJWK"
       ],
       "settings": {
         "hero-main": "Kyiv LuxeBouquets",
         "hero-main-richtext": "<p>Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread Joy with Our <strong>Online Flower Delivery Service<\/strong><\/p>",
         "hero__image": "shopify:\/\/shop_images\/heroimage.jpg",
         "hero__description": "Experience the joy of giving with our modern floral studio. Order online and send fresh flowers, plants and gifts today.",
-        "hero": "flex flex-wrap",
-        "hero__left-col": "border-[1px] border-brand-light-gray w-full bg-brand-light-gray",
-        "hero__header": "",
-        "hero__title": "text-desktop-heading-1",
-        "hero__subtitle": "",
-        "hero__content": "",
-        "tail-hero__image": "",
-        "tail-hero__description": "",
-        "hero__right-col": "w-full"
+        "hero": "flex-wrap md:flex-nowrap md:flex bg-red-200 w-full justify-between items-start border-t-[1px] border-[#121212]",
+        "hero__left-col": "border-l-[1px] border-b-[1px] border-[#121212] w-full md:w-1\/2 p-[80px]",
+        "hero__header": "flex flex-col",
+        "hero__title": "text-desktop-heading-1 font-semibold",
+        "hero__subtitle": "font-regular text-desktop-subtitle py-[16px]",
+        "hero__content": "flex pt-[24px] border-t-[1px] border-[#121212]",
+        "tail-hero__image": "h-64 w-64 object-cover basis-1\/2 pr-[24px] border-r-[1px] border-[#121212]",
+        "tail-hero__description": "basis-2\/2 pl-[24px] content-end text-desktop-caption",
+        "hero__right-col": "w-full md:w-1\/2 bg-red-300"
       }
     }
   },
   "order": [
-    "hero_XVGR7H"
+    "hero_ydY9tK"
   ]
 }
