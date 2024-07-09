@@ -42,7 +42,7 @@
         "hero__image": "shopify:\/\/shop_images\/heroimage.jpg",
         "hero__description": "Experience the joy of giving with our modern floral studio. Order online and send fresh flowers, plants and gifts today.",
         "hero": "flex flex-wrap",
-        "hero__left-col": "border-[1px] border-[dark-gray] w-full",
+        "hero__left-col": "border-[1px] border-brand-light-gray w-full bg-brand-light-gray",
         "hero__header": "",
         "hero__title": "text-desktop-heading-1",
         "hero__subtitle": "",
