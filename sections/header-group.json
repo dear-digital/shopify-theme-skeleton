@@ -66,7 +66,7 @@
         "left_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1\/4",
         "right_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1\/4",
         "mobile_menu_button_container_classes": "flex w-full justify-between md:hidden",
-        "mobile_menu_button_classes": "border-x-[1px] border-brand-black w-1\/6 flex items-center justify-center md:hidden",
+        "mobile_menu_button_classes": "border-x-[1px] border-brand-black aspect-square flex items-center justify-center md:hidden",
         "mobile_menu_svg_classes": "w-5 h-5",
         "mobile_menu_container_classes": "pt-2 bg-white hidden md:hidden",
         "mobile_menu_item_classes": "block py-4 text-gray-600 hover:text-gray-900 border-b-[1px] border-brand-black pl-4 text-mobile-heading-6"

@@ -998,6 +998,10 @@ video {
   aspect-ratio: 0.95;
 }
 
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
 .h-2 {
   height: 0.5rem;
 }
@@ -1068,6 +1072,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-\[47px\] {
+  height: 47px;
 }
 
 .max-h-0 {
@@ -1190,6 +1198,10 @@ video {
 
 .w-1\/6 {
   width: 16.666667%;
+}
+
+.w-\[47px\] {
+  width: 47px;
 }
 
 .max-w-2xl {
