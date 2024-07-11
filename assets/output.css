@@ -3130,6 +3130,10 @@ video {
     height: 100%;
   }
 
+  .md\:h-\[56px\] {
+    height: 56px;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -3524,6 +3528,10 @@ video {
     display: flex;
   }
 
+  .lg\:hidden {
+    display: none;
+  }
+
   .lg\:h-1 {
     height: 0.25rem;
   }
@@ -3632,6 +3640,10 @@ video {
 
   .lg\:overflow-y-auto {
     overflow-y: auto;
+  }
+
+  .lg\:border-\[1px\] {
+    border-width: 1px;
   }
 
   .lg\:border-y-\[1px\] {
