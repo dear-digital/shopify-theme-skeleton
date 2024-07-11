@@ -51,9 +51,24 @@
         "mobile_menu_dropdown_inner_classes": "-m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50",
         "mobile_menu_dropdown_link_classes": "ml-3 text-base font-medium text-gray-500"
       }
+    },
+    "navbar_aPxfdy": {
+      "type": "navbar",
+      "settings": {
+        "menu": "main-menu",
+        "right_menu": "right-menu",
+        "navbar_classes": "h-[83px] fixed w-full bg-red-200 z-10",
+        "container_classes": "border-[1px] border-brand-black flex justify-between h-full",
+        "navbar__menu_left": "hidden md:flex h-full w-1\/2 pl-[1px]",
+        "navbar__menu_right": "hidden md:flex h-full w-1\/2 bg-red-300 justify-end pr-[1px]",
+        "left_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1\/4",
+        "right_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1\/4",
+        "mobile_menu_classes": "md:hidden p-2"
+      }
     }
   },
   "order": [
-    "header"
+    "header",
+    "navbar_aPxfdy"
   ]
 }

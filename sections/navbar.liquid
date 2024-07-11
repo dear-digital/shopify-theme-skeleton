@@ -1,0 +1,99 @@
+<nav class="navbar {{ section.settings.navbar_classes }}">
+  <div class="navbar__container {{ section.settings.container_classes }}">
+    <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
+      {% for link in linklists[section.settings.menu].links %}
+        <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
+      {% for link in linklists[section.settings.right_menu].links %}
+        <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
+          {% comment %} {% if link.title == 'Cart' %}
+            {% render 'icon-cart' %}
+          {% elsif link.title == 'Sign In' %}
+            {% render 'icon-sign-in' %}
+          {% endif %} {% endcomment %}
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Navbar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Menu Selection"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Left Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "right_menu",
+      "label": "Right Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "navbar_classes",
+      "label": "Navbar classes",
+      "default": "h-[83px] fixed w-full bg-red-200 z-10"
+    },
+    {
+      "type": "textarea",
+      "id": "container_classes",
+      "label": "Container classes",
+      "default": "border-[1px] border-brand-black flex justify-between h-full"
+    },
+    {
+      "type": "textarea",
+      "id": "navbar__menu_left",
+      "label": "Left menu classes",
+      "default": "hidden md:flex h-full w-1/2 pl-[1px]"
+    },
+    {
+      "type": "textarea",
+      "id": "navbar__menu_right",
+      "label": "Right menu classes",
+      "default": "hidden md:flex h-full w-1/2 bg-red-300 justify-end pr-[1px]"
+    },
+    {
+      "type": "textarea",
+      "id": "left_menu_item_classes",
+      "label": "Left menu item classes",
+      "default": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1/4"
+    },
+    {
+      "type": "textarea",
+      "id": "right_menu_item_classes",
+      "label": "Right menu item classes",
+      "default": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1/4"
+    },
+    {
+      "type": "text",
+      "id": "mobile_menu_classes",
+      "label": "Mobile menu button classes",
+      "default": "md:hidden p-2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Navbar"
+    }
+  ]
+}
+{% endschema %}
