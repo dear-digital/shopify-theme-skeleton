@@ -63,7 +63,9 @@
         "navbar__menu_right": "hidden md:flex h-full w-1\/2 bg-red-300 justify-end pr-[1px]",
         "left_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1\/4",
         "right_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1\/4",
-        "mobile_menu_classes": "md:hidden p-2"
+        "mobile_menu_button_classes": "p-2 focus:outline-none",
+        "mobile_menu_container_classes": "bg-red-300 px-2 pt-2 pb-4",
+        "mobile_menu_item_classes": "block px-3 py-2 text-gray-600 hover:text-gray-900"
       }
     }
   },

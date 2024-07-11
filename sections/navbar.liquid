@@ -1,25 +1,43 @@
 <nav class="navbar {{ section.settings.navbar_classes }}">
   <div class="navbar__container {{ section.settings.container_classes }}">
-    <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
-      {% for link in linklists[section.settings.menu].links %}
-        <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
-          {{ link.title }}
-        </a>
-      {% endfor %}
+    <!-- Mobile menu button -->
+    <div class="md:hidden flex items-center">
+      <button id="mobile-menu-button" class="{{ section.settings.mobile_menu_button_classes }}">
+        {% render 'icon-hamburger' %}
+      </button>
     </div>
 
-    <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
-      {% for link in linklists[section.settings.right_menu].links %}
-        <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
-          {% comment %} {% if link.title == 'Cart' %}
-            {% render 'icon-cart' %}
-          {% elsif link.title == 'Sign In' %}
-            {% render 'icon-sign-in' %}
-          {% endif %} {% endcomment %}
-          {{ link.title }}
-        </a>
-      {% endfor %}
+    <!-- Desktop menu -->
+    <div class="hidden md:flex w-full justify-between">
+      <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
+        {% for link in linklists[section.settings.menu].links %}
+          <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </div>
+      <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
+        {% for link in linklists[section.settings.right_menu].links %}
+          <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </div>
     </div>
+  </div>
+
+  <!-- Mobile menu (hidden by default) -->
+  <div id="mobile-menu" class="hidden md:hidden {{ section.settings.mobile_menu_container_classes }}">
+    {% for link in linklists[section.settings.menu].links %}
+      <a href="{{ link.url }}" class="{{ section.settings.mobile_menu_item_classes }}">
+        {{ link.title }}
+      </a>
+    {% endfor %}
+    {% for link in linklists[section.settings.right_menu].links %}
+      <a href="{{ link.url }}" class="{{ section.settings.mobile_menu_item_classes }}">
+        {{ link.title }}
+      </a>
+    {% endfor %}
   </div>
 </nav>
 
@@ -51,43 +69,55 @@
       "type": "textarea",
       "id": "navbar_classes",
       "label": "Navbar classes",
-      "default": "h-[83px] fixed w-full bg-red-200 z-10"
+      "default": "fixed w-full bg-red-200 z-10"
     },
     {
       "type": "textarea",
       "id": "container_classes",
       "label": "Container classes",
-      "default": "border-[1px] border-brand-black flex justify-between h-full"
+      "default": "md:border-[1px] md:border-brand-black md:flex md:justify-between md:h-[83px] px-4 py-2 md:py-0"
     },
     {
       "type": "textarea",
       "id": "navbar__menu_left",
       "label": "Left menu classes",
-      "default": "hidden md:flex h-full w-1/2 pl-[1px]"
+      "default": "md:flex md:h-full md:w-1/2 md:pl-[1px]"
     },
     {
       "type": "textarea",
       "id": "navbar__menu_right",
       "label": "Right menu classes",
-      "default": "hidden md:flex h-full w-1/2 bg-red-300 justify-end pr-[1px]"
+      "default": "md:flex md:h-full md:w-1/2 md:bg-red-300 md:justify-end md:pr-[1px]"
     },
     {
       "type": "textarea",
       "id": "left_menu_item_classes",
       "label": "Left menu item classes",
-      "default": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1/4"
+      "default": "md:text-gray-600 md:hover:text-gray-900 md:border-brand-black md:border-r-[1px] md:flex md:items-center md:justify-center md:w-1/4"
     },
     {
       "type": "textarea",
       "id": "right_menu_item_classes",
       "label": "Right menu item classes",
-      "default": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1/4"
+      "default": "md:text-gray-600 md:hover:text-gray-900 md:border-brand-black md:border-l-[1px] md:flex md:items-center md:justify-center md:w-1/4"
     },
     {
       "type": "text",
-      "id": "mobile_menu_classes",
+      "id": "mobile_menu_button_classes",
       "label": "Mobile menu button classes",
-      "default": "md:hidden p-2"
+      "default": "p-2 focus:outline-none"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_container_classes",
+      "label": "Mobile menu container classes",
+      "default": "bg-red-200 px-2 pt-2 pb-4"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_item_classes",
+      "label": "Mobile menu item classes",
+      "default": "block px-3 py-2 text-gray-600 hover:text-gray-900"
     }
   ],
   "presets": [
@@ -97,3 +127,14 @@
   ]
 }
 {% endschema %}
+
+<script>
+
+  if(Shopify.designMode) {
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        var mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    });
+  }
+
+</script>
