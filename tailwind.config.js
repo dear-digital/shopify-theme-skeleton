@@ -1,13 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-    './layout/*.liquid', 
-    './sections/*.liquid', 
-    './snippets/*.liquid',
-    './templates/customers/*.liquid',
-    './templates/*.liquid',
-    './sections/*.json',
-    './templates/*.json'
+  content: [
+    "./layout/*.liquid",
+    "./sections/*.liquid",
+    "./snippets/*.liquid",
+    "./templates/customers/*.liquid",
+    "./templates/*.liquid",
+    "./sections/*.json",
+    "./templates/*.json",
   ],
   theme: {
     extend: {
@@ -104,8 +104,8 @@ module.exports = {
         uppercase: "uppercase",
       },
       screens: {
-        '2xl': '1440px',  // large screen
+        lg: "1440px", // large screen
       },
     },
   },
-  }
+};

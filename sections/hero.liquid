@@ -2,7 +2,9 @@
   <div class="hero__left-col {{ section.settings.hero__left-col }}">
     <div class="hero__header {{ section.settings.hero__header }}">
       <h1 class="hero__title {{ section.settings.hero__title }}">{{ section.settings['hero-main'] }}</h1>
-      <div class="hero__subtitle {{ section.settings.hero__subtitle }}">{{ section.settings['hero-main-richtext'] }}</div>
+      <div class="hero__subtitle {{ section.settings.hero__subtitle }}">
+        {{ section.settings['hero-main-richtext'] }}
+      </div>
     </div>
     <div class="hero__content {{ section.settings.hero__content }}">
       {% if section.settings.hero__image != blank %}
@@ -18,9 +20,10 @@
     </div>
   </div>
   <div class="hero__right-col {{ section.settings.hero__right-col }}">
+    {% assign first_block = true %}
     {% for block in section.blocks %}
       {% if block.type == 'collection' and block.settings.collection != blank %}
-        <div class="hero__row {{ block.settings.hero__row }} {% if block.settings.reverse-image %} flex-row-reverse	{% endif %}">
+        <div class="hero__row {{ block.settings.hero__row }} {% if block.settings.reverse-image %} flex-row-reverse	{% endif %} {% unless first_block %}border-t-0 {% endunless %}">
           <div class="hero__product-image {{ block.settings.hero__product-image }} {% unless block.settings.reverse-image %}border-r-[1px]{% endunless %}">
             {% if block.settings.collection.featured_image != blank %}
               {{
@@ -30,7 +33,7 @@
               }}
             {% endif %}
           </div>
-            <div class="hero__product {{ block.settings.hero__product }} {% if block.settings.reverse-image %}border-r-[1px]{% endif %}">
+          <div class="hero__product {{ block.settings.hero__product }} {% if block.settings.reverse-image %}border-r-[1px]{% endif %}">
             <h3 class="hero__product-title {{ block.settings.hero__product-title }}">
               {{ block.settings.collection.title }}
             </h3>
@@ -38,16 +41,16 @@
               href="{{ block.settings.collection.url }}"
               class="hero__product-link {{ block.settings.hero__product-link }} {% unless block.settings.reverse-image %}flex-row-reverse{% endunless %}"
             >
-              {% liquid
-                  assign arrow = '<span>→</span>' 
-                  unless block.settings.reverse-image
-                    assign arrow = '<span>←</span>'
-                  endunless  
-              %}
-              {{- block.settings.text | append: arrow -}}
+              <span class="hero__product-link-text {{ block.settings.hero__product-link-text }} {% if block.settings.reverse-image %}mr-1{% else %}ml-1{% endif %}">
+                {{- block.settings.text -}}
+              </span>
+              <span class="hero__product-link-svg ml-1 mr-0 {{ block.settings.hero__product-link-svg }} {% if block.settings.reverse-image %} group-hover:translate-x-1 {% else %} group-hover:-translate-x-1 {% endif %} {% unless block.settings.reverse-image %} rotate-180 ml-0 mr-1 {% endunless %}">
+                {% render 'icon-right-arrow' %}
+              </span>
             </a>
-            </div>
           </div>
+          {% assign first_block = false %}
+        </div>
       {% endif %}
     {% endfor %}
   </div>
@@ -89,55 +92,55 @@
       "type": "textarea",
       "id": "hero",
       "label": "Style hero",
-      "default": "flex-wrap md:flex-nowrap md:flex bg-red-200 w-full justify-between items-start border-t-[1px] border-[#121212]"
+      "default": "flex-wrap lg:flex-nowrap lg:flex w-full justify-between items-start lg:items-stretch lg:h-screen"
     },
     {
       "type": "textarea",
       "id": "hero__left-col",
       "label": "Style hero__left-col",
-      "default": "border-l-[1px] border-b-[1px] border-[#121212] w-full md:w-1/2 p-[80px]"
+      "default": "w-full lg:w-1/2 px-4 py-10 md:p-20 lg:border-y-[1px] lg:border-brand-black lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden"
     },
     {
       "type": "textarea",
       "id": "hero__header",
       "label": "Style hero__header",
-      "default": "flex flex-col"
+      "default": "flex flex-col lg:h-[50%] lg:justify-center"
     },
     {
       "type": "textarea",
       "id": "hero__title",
       "label": "Style hero__title",
-      "default": "text-desktop-heading-1 font-semibold"
+      "default": "text-mobile-heading-1 font-semibold pb-4 md:pr-12 md:text-desktop-heading-1"
     },
     {
       "type": "textarea",
       "id": "hero__subtitle",
       "label": "Style hero__subtitle",
-      "default": "font-regular text-desktop-subtitle py-[16px]"
+      "default": "text-mobile-hero-caption pb-6 md:pb-[54px] md:text-desktop-hero-caption lg:pb-0"
     },
     {
       "type": "textarea",
       "id": "hero__content",
       "label": "Style hero__content",
-      "default": "flex pt-[24px] border-t-[1px] border-[#121212]"
+      "default": "flex pt-4 border-t-[1px] border-brand-black md:pt-6 lg:align-center"
     },
     {
       "type": "textarea",
       "id": "tail-hero__image",
       "label": "Style hero__image",
-      "default": "h-64 w-64 object-cover basis-1/2 pr-[24px] border-r-[1px] border-[#121212]"
+      "default": "w-1/2 pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]"
     },
     {
       "type": "textarea",
       "id": "tail-hero__description",
       "label": "Style hero__description",
-      "default": "basis-2/2 pl-[24px] content-end text-desktop-caption"
+      "default": "w-1/2 pl-4 content-end text-mobile-small-description md:pl-6 md:text-desktop-caption"
     },
     {
       "type": "textarea",
       "id": "hero__right-col",
       "label": "Style hero__right-col",
-      "default": "w-full md:w-1/2 bg-red-300"
+      "default": "w-full lg:w-1/2 lg:h-screen lg:overflow-y-auto"
     }
   ],
   "blocks": [
@@ -165,37 +168,49 @@
           "type": "textarea",
           "id": "hero__row",
           "label": "Style hero__row",
-          "default": "flex items-stretch border-l-[1px] border-b-[1px] border-r-[1px]  border-[#121212]"
+          "default": "flex items-stretch border-[1px] border-brand-black group"
         },
         {
           "type": "textarea",
           "id": "hero__product",
           "label": "Style hero__product",
-          "default": "w-1/2 flex flex-col justify-between flex-grow border-[#121212]"
+          "default": "w-1/2 flex flex-col justify-between flex-grow border-brand-black p-3"
         },
         {
           "type": "textarea",
           "id": "hero__product-title",
           "label": "Style hero__product-title",
-          "default": "flex-none mt-auto text-center text-desktop-heading-3 font-medium"
+          "default": "flex-none mt-auto text-center text-mobile-heading-3 font-medium md:text-desktop-heading-3"
         },
         {
           "type": "textarea",
           "id": "hero__product-link",
           "label": "Style hero__product-link",
-          "default": "mt-auto text-center text-desktop-heading-6 font-semibold pb-2"
+          "default": "mt-auto text-center text-mobile-links font-semibold pb-2 gap-1 flex justify-center md:text-desktop-heading-6 items-center"
+        },
+        {
+          "type": "textarea",
+          "id": "hero__product-link-text",
+          "label": "Style hero__product-link-text",
+          "default": "font-bold inline-block hover:underline"
+        },
+        {
+          "type": "textarea",
+          "id": "hero__product-link-svg",
+          "label": "Style hero__product-link-svg",
+          "default": "flex items-center h-5 w-5 transition-transform duration-300 ease-in-out"
         },
         {
           "type": "textarea",
           "id": "hero__product-image",
           "label": "Style hero__product-image",
-          "default": "w-1/2 flex-grow object-cover aspect-1/1"
+          "default": "w-1/2 flex-grow object-cover border-brand-black aspect-[0.9375] md:aspect-square overflow-hidden"
         },
         {
           "type": "textarea",
           "id": "hero__product-img",
           "label": "Style hero__product-img",
-          "default": "w-full h-full object-cover"
+          "default": "w-full h-full object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110"
         }
       ]
     }
