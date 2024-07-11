@@ -1,11 +1,22 @@
 <nav class="navbar {{ section.settings.navbar_classes }}">
   <div class="navbar__container {{ section.settings.container_classes }}">
     <!-- Mobile menu button -->
-    <div class="md:hidden flex items-center">
-      <button id="mobile-menu-button" class="{{ section.settings.mobile_menu_button_classes }}">
-        {% render 'icon-hamburger' %}
-      </button>
+    <div class="md:hidden mobile_menu_button_container_classes {{ section.settings.mobile_menu_button_container_classes }}">
+        <div class="md:hidden flex items-center {{ section.settings.mobile_menu_button_classes }}">
+            <button id="mobile-menu-button" class="{{ section.settings.mobile_menu_svg_classes }}">
+                {% render 'icon-hamburger' %}
+            </button>
+        </div>
+
+        <div class="md:hidden flex items-center {{ section.settings.mobile_menu_button_classes }}">
+            <button id="cart-button" class="{{ section.settings.mobile_menu_svg_classes }}">
+                {% render 'icon-cart' %}
+            </button>
+        </div>
     </div>
+
+
+    
 
     <!-- Desktop menu -->
     <div class="hidden md:flex w-full justify-between">
@@ -41,6 +52,33 @@
   </div>
 </nav>
 
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var mobileMenuButton = document.getElementById('mobile-menu-button');
+    var mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+      var toggleMenu = function() {
+        mobileMenu.classList.toggle('hidden');
+      };
+
+      if (Shopify.designMode) {
+        // In design mode, re-add the event listener whenever the section is reloaded
+        document.addEventListener('shopify:section:load', function(event) {
+          if (event.target.contains(mobileMenuButton)) {
+            mobileMenuButton.addEventListener('click', toggleMenu);
+          }
+        });
+      }
+
+      // Always add the event listener initially
+      mobileMenuButton.addEventListener('click', toggleMenu);
+    }
+  });
+
+</script>
+
 {% schema %}
 {
   "name": "Navbar",
@@ -69,49 +107,65 @@
       "type": "textarea",
       "id": "navbar_classes",
       "label": "Navbar classes",
-      "default": "fixed w-full bg-red-200 z-10"
+      "default": "h-[48px] md:h-[83px] fixed w-full bg-red-200 z-10"
     },
     {
       "type": "textarea",
       "id": "container_classes",
       "label": "Container classes",
-      "default": "md:border-[1px] md:border-brand-black md:flex md:justify-between md:h-[83px] px-4 py-2 md:py-0"
+      "default": "border-y-[1px] md:border-[1px] border-brand-black flex justify-between h-full"
     },
     {
       "type": "textarea",
       "id": "navbar__menu_left",
       "label": "Left menu classes",
-      "default": "md:flex md:h-full md:w-1/2 md:pl-[1px]"
+      "default": "hidden md:flex h-full w-1/2 pl-[1px]"
     },
     {
       "type": "textarea",
       "id": "navbar__menu_right",
       "label": "Right menu classes",
-      "default": "md:flex md:h-full md:w-1/2 md:bg-red-300 md:justify-end md:pr-[1px]"
+      "default": "hidden md:flex h-full w-1/2 bg-red-300 justify-end pr-[1px]"
     },
     {
       "type": "textarea",
       "id": "left_menu_item_classes",
       "label": "Left menu item classes",
-      "default": "md:text-gray-600 md:hover:text-gray-900 md:border-brand-black md:border-r-[1px] md:flex md:items-center md:justify-center md:w-1/4"
+      "default": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1/4"
     },
     {
       "type": "textarea",
       "id": "right_menu_item_classes",
       "label": "Right menu item classes",
-      "default": "md:text-gray-600 md:hover:text-gray-900 md:border-brand-black md:border-l-[1px] md:flex md:items-center md:justify-center md:w-1/4"
+      "default": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1/4"
     },
     {
-      "type": "text",
+      "type": "header",
+      "content": "Mobile Tailwind Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_button_container_classes",
+      "label": "Mobile menu button container classes",
+      "default": "bg-red-100 flex  w-full justify-between"
+    },
+    {
+      "type": "textarea",
       "id": "mobile_menu_button_classes",
       "label": "Mobile menu button classes",
-      "default": "p-2 focus:outline-none"
+      "default": "focus:outline-none bg-red-400 border-x-[1px] border-brand-black w-1/6 flex justify-center"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_svg_classes",
+      "label": "Mobile menu SVG classes",
+      "default": "w-5 h-5 "
     },
     {
       "type": "textarea",
       "id": "mobile_menu_container_classes",
       "label": "Mobile menu container classes",
-      "default": "bg-red-200 px-2 pt-2 pb-4"
+      "default": "px-2 pt-2 pb-4 bg-white"
     },
     {
       "type": "textarea",
@@ -128,17 +182,3 @@
 }
 {% endschema %}
 
-<script>
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var mobileMenuButton = document.getElementById('mobile-menu-button');
-    var mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-  });
-
-</script>
