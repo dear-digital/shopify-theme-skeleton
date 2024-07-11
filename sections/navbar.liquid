@@ -1,53 +1,55 @@
-<nav class="navbar {{ section.settings.navbar_classes }}">
-  <div class="navbar__container {{ section.settings.container_classes }}">
-    <!-- Mobile menu button -->
-    <div class="md:hidden mobile_menu_button_container_classes {{ section.settings.mobile_menu_button_container_classes }}">
-        <div class="md:hidden flex items-center {{ section.settings.mobile_menu_button_classes }}">
-            <button id="mobile-menu-button" class="{{ section.settings.mobile_menu_svg_classes }}">
-                {% render 'icon-hamburger' %}
-            </button>
+<div class="navbar-wrapper {{ section.settings.navbar_wrapper }}">
+    <nav class="navbar {{ section.settings.navbar_classes }}">
+    <div class="navbar__container {{ section.settings.container_classes }}">
+        <!-- Mobile menu button -->
+        <div class="mobile_menu_button_container_classes {{ section.settings.mobile_menu_button_container_classes }}">
+            <div class="mobile_menu_button_classes {{ section.settings.mobile_menu_button_classes }}">
+                <button id="mobile-menu-button" class="{{ section.settings.mobile_menu_svg_classes }}">
+                    {% render 'icon-hamburger' %}
+                </button>
+            </div>
+
+            <div class="mobile_menu_button_classes {{ section.settings.mobile_menu_button_classes }}">
+                <button id="cart-button" class="{{ section.settings.mobile_menu_svg_classes }}">
+                    {% render 'icon-cart' %}
+                </button>
+            </div>
         </div>
 
-        <div class="md:hidden flex items-center {{ section.settings.mobile_menu_button_classes }}">
-            <button id="cart-button" class="{{ section.settings.mobile_menu_svg_classes }}">
-                {% render 'icon-cart' %}
-            </button>
+        <!-- Desktop menu -->
+        <div class="navbar__menu_desktop {{ section.settings.navbar__menu_desktop }}">
+        <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
+            {% for link in linklists[section.settings.menu].links %}
+            <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
+                {{ link.title }}
+            </a>
+            {% endfor %}
+        </div>
+        <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
+            {% for link in linklists[section.settings.right_menu].links %}
+            <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
+                {{ link.title }}
+            </a>
+            {% endfor %}
+        </div>
         </div>
     </div>
 
-    <!-- Desktop menu -->
-    <div class="navbar__menu_desktop {{ section.settings.navbar__menu_desktop }}">
-      <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
+    <!-- Mobile menu (hidden by default) -->
+    <div id="mobile-menu" class="mobile_menu_container_classes {{ section.settings.mobile_menu_container_classes }}">
         {% for link in linklists[section.settings.menu].links %}
-          <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
+        <a href="{{ link.url }}" class="{{ section.settings.mobile_menu_item_classes }}">
             {{ link.title }}
-          </a>
+        </a>
         {% endfor %}
-      </div>
-      <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
         {% for link in linklists[section.settings.right_menu].links %}
-          <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
+        <a href="{{ link.url }}" class="{{ section.settings.mobile_menu_item_classes }}">
             {{ link.title }}
-          </a>
+        </a>
         {% endfor %}
-      </div>
     </div>
-  </div>
-
-  <!-- Mobile menu (hidden by default) -->
-  <div id="mobile-menu" class="hidden md:hidden {{ section.settings.mobile_menu_container_classes }}">
-    {% for link in linklists[section.settings.menu].links %}
-      <a href="{{ link.url }}" class="{{ section.settings.mobile_menu_item_classes }}">
-        {{ link.title }}
-      </a>
-    {% endfor %}
-    {% for link in linklists[section.settings.right_menu].links %}
-      <a href="{{ link.url }}" class="{{ section.settings.mobile_menu_item_classes }}">
-        {{ link.title }}
-      </a>
-    {% endfor %}
-  </div>
-</nav>
+    </nav>
+</div>
 
 <script>
 
@@ -102,9 +104,15 @@
     },
     {
       "type": "textarea",
+      "id": "navbar_wrapper",
+      "label": "Navbar Wrapper",
+      "default": "relative"
+    },
+    {
+      "type": "textarea",
       "id": "navbar_classes",
       "label": "Navbar classes",
-      "default": "h-[48px] md:h-[83px] fixed w-full z-10 bg-white"
+      "default": "h-[48px] md:h-[83px] w-full z-10 bg-white"
     },
     {
       "type": "textarea",
@@ -150,13 +158,13 @@
       "type": "textarea",
       "id": "mobile_menu_button_container_classes",
       "label": "Mobile menu button container classes",
-      "default": "flex w-full justify-between"
+      "default": "flex w-full justify-between md:hidden "
     },
     {
       "type": "textarea",
       "id": "mobile_menu_button_classes",
       "label": "Mobile menu button classes",
-      "default": "border-x-[1px] border-brand-black w-1/6 flex justify-center"
+      "default": "border-x-[1px] border-brand-black w-1/6 flex items-center justify-center md:hidden"
     },
     {
       "type": "textarea",
@@ -168,7 +176,7 @@
       "type": "textarea",
       "id": "mobile_menu_container_classes",
       "label": "Mobile menu container classes",
-      "default": "pt-2 bg-white"
+      "default": "pt-2 bg-white hidden md:hidden"
     },
     {
       "type": "textarea",

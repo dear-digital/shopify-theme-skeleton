@@ -682,6 +682,10 @@ video {
   top: 5px;
 }
 
+.right-0 {
+  right: 0px;
+}
+
 .isolate {
   isolation: isolate;
 }
