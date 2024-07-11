@@ -130,11 +130,15 @@
 
 <script>
 
-  if(Shopify.designMode) {
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        var mobileMenu = document.getElementById('mobile-menu');
+  document.addEventListener('DOMContentLoaded', function() {
+    var mobileMenuButton = document.getElementById('mobile-menu-button');
+    var mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function() {
         mobileMenu.classList.toggle('hidden');
-    });
-  }
+      });
+    }
+  });
 
 </script>
