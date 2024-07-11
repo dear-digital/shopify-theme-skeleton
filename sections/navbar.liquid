@@ -15,11 +15,8 @@
         </div>
     </div>
 
-
-    
-
     <!-- Desktop menu -->
-    <div class="hidden md:flex w-full justify-between">
+    <div class="navbar__menu_desktop {{ section.settings.navbar__menu_desktop }}">
       <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
         {% for link in linklists[section.settings.menu].links %}
           <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
@@ -114,6 +111,12 @@
       "id": "container_classes",
       "label": "Container classes",
       "default": "border-y-[1px] md:border-[1px] border-brand-black flex justify-between h-full"
+    },
+    {
+      "type": "textarea",
+      "id": "navbar__menu_desktop",
+      "label": "Navbar Desktop Menu",
+      "default": "hidden md:flex w-full justify-between"
     },
     {
       "type": "textarea",
