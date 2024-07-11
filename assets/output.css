@@ -1066,6 +1066,10 @@ video {
   height: 100vh;
 }
 
+.max-h-0 {
+  max-height: 0px;
+}
+
 .w-1 {
   width: 0.25rem;
 }
@@ -1939,6 +1943,16 @@ video {
   padding-bottom: 2rem;
 }
 
+.py-\[20\%\] {
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+
+.py-\[2\%\] {
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -2104,6 +2118,11 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-mobile-heading-6 {
+  font-size: 16px;
+  line-height: 100%;
 }
 
 .font-bold {
@@ -2339,6 +2358,12 @@ video {
 
 .transition-transform {
   transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-all {
+  transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
