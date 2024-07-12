@@ -70,11 +70,10 @@
         "mobile_menu_button_classes": "border-x-[1px] border-brand-black aspect-square flex items-center justify-center lg:hidden",
         "mobile_menu_svg_classes": "w-5 h-5",
         "mobile_menu_container_classes": "fixed inset-y-0 left-0 w-full bg-white z-40 transition-all duration-300 ease-in-out transform -translate-x-full opacity-0 lg:hidden mt-[48px]",
-        "mobile_menu_content_classes": "h-[calc(100vh-48px)] md:h-[calc(100vh-56px)] lg:h-[calc(100vh-83px)] overflow-y-auto",
         "mobile_menu_item_classes": "block py-4 text-gray-600 hover:text-gray-900 border-b-[1px] border-brand-black pl-4 text-mobile-heading-6"
       }
     },
-    "navbar_bcJTR9": {
+    "navbar_cUVVmE": {
       "type": "navbar",
       "settings": {
         "menu": "main-menu",
@@ -91,7 +90,6 @@
         "mobile_menu_button_classes": "border-x-[1px] border-brand-black aspect-square flex items-center justify-center lg:hidden",
         "mobile_menu_svg_classes": "w-5 h-5",
         "mobile_menu_container_classes": "fixed inset-y-0 left-0 w-full bg-white z-40 transition-all duration-300 ease-in-out transform -translate-x-full opacity-0 lg:hidden mt-[48px] md:mt-[0px]",
-        "mobile_menu_content_classes": "h-[calc(100vh-48px)] md:h-[calc(100vh-56px)] lg:h-[calc(100vh-83px)] overflow-y-auto",
         "mobile_menu_item_classes": "block py-4 text-gray-600 hover:text-gray-900 border-b-[1px] border-brand-black pl-4 text-mobile-heading-6"
       }
     }
@@ -99,6 +97,6 @@
   "order": [
     "header",
     "navbar_Ugfjhe",
-    "navbar_bcJTR9"
+    "navbar_cUVVmE"
   ]
 }
