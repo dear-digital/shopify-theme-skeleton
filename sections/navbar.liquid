@@ -36,11 +36,13 @@
   </nav>
 
   <!-- Off-canvas menu -->
-  <div id="off-canvas-menu" class="off_canvas_menu_classes {{ section.settings.off_canvas_menu_classes }}">
-    <div class="off_canvas_menu_content {{ section.settings.off_canvas_menu_content_classes }}">
+  <div id="off-canvas-menu" class="off_canvas_menu_container_classes {{ section.settings.off_canvas_menu_container_classes }}">
+    <div class="off_canvas_menu_header_classes {{ section.settings.off_canvas_menu_header_classes }}">
       <button id="close-menu-button" class="{{ section.settings.close_menu_button_classes }}">
         {% render 'icon-close' %}
       </button>
+    </div>
+    <div class="off_canvas_menu_content_classes {{ section.settings.off_canvas_menu_content_classes }}">
       {% for link in linklists[section.settings.menu].links %}
         <a href="{{ link.url }}" class="{{ section.settings.off_canvas_menu_item_classes }}">
           {{ link.title }}
@@ -53,6 +55,7 @@
       {% endfor %}
     </div>
   </div>
+
 
   <!-- Overlay -->
   <div id="menu-overlay" class="menu_overlay_classes {{ section.settings.menu_overlay_classes }}"></div>
@@ -168,7 +171,7 @@
       "type": "textarea",
       "id": "menu_button_container_classes",
       "label": "Menu button container classes",
-      "default": "flex items-center justify-center aspect-square border-brand-black border-x-[1px] lg:hidden"
+      "default": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden"
     },
     {
       "type": "textarea",
@@ -180,7 +183,7 @@
       "type": "textarea",
       "id": "cart_button_classes",
       "label": "Cart button classes",
-      "default": "flex items-center justify-center aspect-square border-brand-black border-x-[1px] lg:hidden"
+      "default": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden"
     },
     {
       "type": "textarea",
@@ -190,33 +193,39 @@
     },
     {
       "type": "textarea",
-      "id": "off_canvas_menu_classes",
-      "label": "Off-canvas menu classes",
-      "default": "fixed inset-y-0 left-0 w-64 md:w-80 bg-white z-50 transition-transform duration-300 ease-in-out transform -translate-x-full"
+      "id": "off_canvas_menu_container_classes",
+      "label": "Off-canvas menu container classes",
+      "default": "fixed inset-y-0 left-0 w-full md:w-1/2 bg-white z-50 transition-transform duration-300 ease-in-out transform -translate-x-full lg:hidden"
+    },
+    {
+      "type": "textarea",
+      "id": "off_canvas_menu_header_classes",
+      "label": "Off-canvas menu header classes",
+      "default": "h-[48px] md:h-[56px] border-b border-brand-black flex items-center justify-end"
     },
     {
       "type": "textarea",
       "id": "off_canvas_menu_content_classes",
       "label": "Off-canvas menu content classes",
-      "default": "h-full overflow-y-auto pt-16"
+      "default": "h-full"
     },
     {
       "type": "textarea",
       "id": "close_menu_button_classes",
       "label": "Close menu button classes",
-      "default": "absolute top-4 right-4 p-2 w-5 h-5"
+      "default": "w-[48px] md:w-[56px] h-full flex items-center justify-center"
     },
     {
       "type": "textarea",
       "id": "off_canvas_menu_item_classes",
       "label": "Off-canvas menu item classes",
-      "default": "block py-4 px-6 text-gray-600 hover:text-gray-900 border-b border-gray-200"
+      "default": "block py-4 px-6 text-gray-600 hover:text-gray-900 border-b border-brand-black"
     },
     {
       "type": "textarea",
       "id": "menu_overlay_classes",
       "label": "Menu overlay classes",
-      "default": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none"
+      "default": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none lg:hidden"
     }
   ],
   "presets": [

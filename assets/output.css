@@ -1118,6 +1118,10 @@ video {
   height: 2rem;
 }
 
+.h-\[calc\(100\%-48px\)\] {
+  height: calc(100% - 48px);
+}
+
 .w-1 {
   width: 0.25rem;
 }
@@ -1631,6 +1635,11 @@ video {
   border-bottom-width: 1px;
 }
 
+.border-x {
+  border-left-width: 1px;
+  border-right-width: 1px;
+}
+
 .border-b-\[1px\] {
   border-bottom-width: 1px;
 }
@@ -1657,6 +1666,10 @@ video {
 
 .border-b {
   border-bottom-width: 1px;
+}
+
+.border-l {
+  border-left-width: 1px;
 }
 
 .border-solid {
@@ -3171,6 +3184,10 @@ video {
     height: calc(100vh - 56px);
   }
 
+  .md\:h-\[calc\(100\%-56px\)\] {
+    height: calc(100% - 56px);
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -3226,6 +3243,14 @@ video {
 
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-\[56px\] {
+    width: 56px;
+  }
+
+  .md\:w-1 {
+    width: 0.25rem;
   }
 
   .md\:max-w-lg {
@@ -3528,6 +3553,14 @@ video {
     height: calc(100vh - 83px);
   }
 
+  .lg\:h-\[83px\] {
+    height: 83px;
+  }
+
+  .lg\:h-\[calc\(100\%-83px\)\] {
+    height: calc(100% - 83px);
+  }
+
   .lg\:max-h-\[50vw\] {
     max-height: 50vw;
   }
@@ -3542,6 +3575,14 @@ video {
 
   .lg\:w-1\/4 {
     width: 25%;
+  }
+
+  .lg\:w-\[83px\] {
+    width: 83px;
+  }
+
+  .lg\:w-0 {
+    width: 0px;
   }
 
   .lg\:max-w-7xl {
@@ -3559,6 +3600,16 @@ video {
 
   .lg\:-translate-x-1\/2 {
     --tw-translate-x: -50%;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\:translate-x-0 {
+    --tw-translate-x: 0px;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\:-translate-x-0 {
+    --tw-translate-x: -0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
