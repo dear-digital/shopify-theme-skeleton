@@ -1,6 +1,22 @@
+{% assign has_social_icons = false %}
+{% if settings.social_facebook_link != blank or
+      settings.social_instagram_link != blank or
+      settings.social_youtube_link != blank or
+      settings.social_tiktok_link != blank or
+      settings.social_twitter_link != blank or
+      settings.social_pinterest_link != blank or
+      settings.social_snapchat_link != blank or
+      settings.social_tumblr_link != blank or
+      settings.social_vimeo_link != blank
+%}
+  {% assign has_social_icons = true %}
+{% endif %}
+
+
 <div class="navbar-wrapper {{ section.settings.navbar_wrapper }}">
   <nav class="navbar {{ section.settings.navbar_classes }}">
     <div class="navbar__container {{ section.settings.container_classes }}">
+
         <!-- Mobile and Laptop menu button -->
         <div class="menu_button_container_classes {{ section.settings.menu_button_container_classes }}">
           <button id="menu-button" class="{{ section.settings.menu_button_svg_classes }}">
@@ -20,14 +36,14 @@
         <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
             {% for link in linklists[section.settings.menu].links %}
             <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
-                {{ link.title }}
+              <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
             </a>
             {% endfor %}
         </div>
         <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
             {% for link in linklists[section.settings.right_menu].links %}
             <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
-                {{ link.title }}
+                <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
             </a>
             {% endfor %}
         </div>
@@ -53,6 +69,68 @@
           {{ link.title }}
         </a>
       {% endfor %}
+
+      <!-- More Menus -->
+      <div class="off_canvas_more_menu {{ section.settings.off_canvas_more_menu }}">
+        {% for link in linklists[section.settings.more_menu].links %}
+        <a href="{{ link.url }}" class="{{ section.settings.off_canvas_more_menu_item }}">
+          {{ link.title }}
+        </a>
+      {% endfor %}
+      </div>
+
+      <!-- Social Menu -->
+        {% if section.settings.show_social_media and has_social_icons %}
+        <div class="off_canvas_menu_social {{ section.settings.off_canvas_menu_social }}">
+          {%- assign svg_class = section.settings.off_canvas_menu_social_SVG -%}
+          {% if settings.social_facebook_link != blank %}
+            <a href="{{ settings.social_facebook_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Facebook">
+              {% render 'icon-social-facebook' class: svg_class  %}
+            </a>
+          {% endif %}
+          {% if settings.social_instagram_link != blank %}
+            <a href="{{ settings.social_instagram_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Instagram">
+              {% render 'icon-social-instagram' class: svg_class %}
+            </a>
+          {% endif %}
+          {% if settings.social_youtube_link != blank %}
+            <a href="{{ settings.social_youtube_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="YouTube">
+              {% render 'icon-social-youtube' class: svg_class %}
+            </a>
+          {% endif %}
+          {% if settings.social_tiktok_link != blank %}
+            <a href="{{ settings.social_tiktok_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="TikTok">
+              {% render 'icon-social-tiktok' class: svg_class %}
+            </a>
+          {% endif %}
+          {% if settings.social_twitter_link != blank %}
+            <a href="{{ settings.social_twitter_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Twitter">
+              {% render 'icon-social-twitter' class: svg_class %}
+            </a>
+          {% endif %}
+          {% if settings.social_pinterest_link != blank %}
+            <a href="{{ settings.social_pinterest_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Pinterest">
+              {% render 'icon-social-pinterest' class: svg_class %}
+            </a>
+          {% endif %}
+          {% if settings.social_snapchat_link != blank %}
+            <a href="{{ settings.social_snapchat_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Snapchat">
+              {% render 'icon-social-snapchat' class: svg_class %}
+            </a>
+          {% endif %}
+          {% if settings.social_tumblr_link != blank %}
+            <a href="{{ settings.social_tumblr_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Tumblr">
+              {% render 'icon-social-tumblr' class: svg_class %}
+            </a>
+          {% endif %}
+          {% if settings.social_vimeo_link != blank %}
+            <a href="{{ settings.social_vimeo_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Vimeo">
+              {% render 'icon-social-vimeo' class: svg_class %}
+            </a>
+          {% endif %}
+        </div>
+        {% endif %}
+      
     </div>
   </div>
 
@@ -112,6 +190,12 @@
       "default": "main-menu"
     },
     {
+      "type": "link_list",
+      "id": "more_menu",
+      "label": "More Menu",
+      "default": "main-menu"
+    },
+    {
       "type": "header",
       "content": "Tailwind Classes"
     },
@@ -155,13 +239,19 @@
       "type": "textarea",
       "id": "left_menu_item_classes",
       "label": "Left menu item classes",
-      "default": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1/4"
+      "default": "text-brand-black hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1/4"
     },
     {
       "type": "textarea",
       "id": "right_menu_item_classes",
       "label": "Right menu item classes",
-      "default": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1/4"
+      "default": "text-brand-black hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1/4"
+    },
+    {
+      "type": "textarea",
+      "id": "navbar__desktop_menu_item",
+      "label": "Desktop Menu item",
+      "default": "transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"
     },
     {
       "type": "header",
@@ -193,39 +283,79 @@
     },
     {
       "type": "textarea",
+      "id": "menu_overlay_classes",
+      "label": "Menu overlay classes",
+      "default": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none lg:hidden"
+    },
+    {
+      "type": "textarea",
       "id": "off_canvas_menu_container_classes",
       "label": "Off-canvas menu container classes",
-      "default": "fixed inset-y-0 left-0 w-full md:w-1/2 bg-white z-50 transition-transform duration-300 ease-in-out transform -translate-x-full lg:hidden"
+      "default": "fixed inset-y-0 left-0 w-full md:w-[384px] bg-white z-50 transition-transform duration-300 ease-in-out transform -translate-x-full lg:hidden border border-brand-black"
     },
     {
       "type": "textarea",
       "id": "off_canvas_menu_header_classes",
       "label": "Off-canvas menu header classes",
-      "default": "h-[48px] md:h-[56px] border-b border-brand-black flex items-center justify-end"
-    },
-    {
-      "type": "textarea",
-      "id": "off_canvas_menu_content_classes",
-      "label": "Off-canvas menu content classes",
-      "default": "h-full"
+      "default": "h-[47px] md:h-[55px] border-b border-brand-black flex items-center justify-start pl-6"
     },
     {
       "type": "textarea",
       "id": "close_menu_button_classes",
       "label": "Close menu button classes",
-      "default": "w-[48px] md:w-[56px] h-full flex items-center justify-center"
+      "default": "flex items-center w-[18.67px] h-[18.67px]"
+    },
+    {
+      "type": "textarea",
+      "id": "off_canvas_menu_content_classes",
+      "label": "Off-canvas menu content classes",
+      "default": "text-mobile-heading-5 md:text-desktop-heading-5 text-brand-black font-medium h-[calc(100%_-_47px)] md:h-[calc(100%_-_55px)] overflow-y-scroll"
     },
     {
       "type": "textarea",
       "id": "off_canvas_menu_item_classes",
       "label": "Off-canvas menu item classes",
-      "default": "block p-6 text-slate-800 hover:text-slate-900 border-b border-brand-black text-mobile-heading-5 md:text-desktop-heading-5"
+      "default": "block p-6 border-b border-brand-black hover:underline"
     },
     {
       "type": "textarea",
-      "id": "menu_overlay_classes",
-      "label": "Menu overlay classes",
-      "default": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none lg:hidden"
+      "id": "off_canvas_more_menu",
+      "label": "Off-canvas menu more div",
+      "default": "flex flex-col gap-4 border-b border-brand-black font-medium p-6 "
+    },
+    {
+      "type": "textarea",
+      "id": "off_canvas_more_menu_item",
+      "label": "Off-canvas menu more item",
+      "default": "text-mobile-links tracking-wide md:text-desktop-links hover:underline"
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_media",
+      "label": "Show social media in off-canvas menu",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "off_canvas_menu_social",
+      "label": "Off-canvas menu social div",
+      "default": "flex border-b border-brand-black font-medium p-6 justify-between"
+    },
+    {
+      "type": "textarea",
+      "id": "off_canvas_menu_social_item",
+      "label": "Off-canvas menu social item",
+      "default": "flex items-center justify-center"
+    },
+    {
+      "type": "textarea",
+      "id": "off_canvas_menu_social_SVG",
+      "label": "Off-canvas menu social SVG classes",
+      "default": "h-5 w-5"
     }
   ],
   "presets": [
@@ -235,4 +365,3 @@
   ]
 }
 {% endschema %}
-
