@@ -1,88 +1,79 @@
 {
   "sections": {
-    "dev_footer_caGft7": {
-      "type": "dev__footer",
+    "hero_HBfcL3": {
+      "type": "hero",
       "blocks": {
-        "text_JBjdR7": {
-          "type": "text",
+        "collection_TcQPDp": {
+          "type": "collection",
           "settings": {
-            "heading": "Subscription",
-            "subtext": "Remember to offer beautiful flowers from Kyiv LuxeBouquets Valentines Day, Mothers Day, Christmas... Reminds you 7 days before. No spam or sharing your address",
-            "input-placeholder": "Enter your email",
-            "button_text": "SUBSCRIBE",
-            "tw-footer__text": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] md:border-r-[1px] border-brand-black md:p-10 md:gap-6",
-            "tw-footer__heading": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5",
-            "tw-footer__subtext": "font-regular text-mobile-body text-brand-black md:text-desktop-body",
-            "tw-footer__newsletter": "flex flex-col gap-4",
-            "tw-footer__newsletter-input": "font-regular text-mobile-body text-brand-black w-full p-4 border-[1px] border-brand-black",
-            "tw-footer__button": "font-medium text-mobile-links text-center bg-brand-black text-white py-4 px-6 block mt-2 w-full",
-            "tw-footer__form-errors": "text-mobile-links text-brand-black p-2 flex gap-2 items-center w-full justify-center block font-medium",
-            "tw-footer__form-success": "font-medium text-mobile-links text-brand-black p-2 flex gap-2 items-center w-full justify-center",
-            "success_message": "Thank you for subscribing!"
+            "collection": "dried-flowers",
+            "text": "Shop now",
+            "reverse-image": false,
+            "hero__row": "flex items-stretch border-[1px] border-brand-black group",
+            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-brand-black p-3",
+            "hero__product-title": "flex-none mt-auto text-center text-mobile-heading-3 font-medium md:text-desktop-heading-3",
+            "hero__product-link": "mt-auto text-center text-mobile-links font-semibold pb-2 gap-1 flex justify-center md:text-desktop-heading-6 items-center",
+            "hero__product-link-text": "font-bold inline-block hover:underline",
+            "hero__product-link-svg": "flex items-center h-5 w-5 transition-transform duration-300 ease-in-out",
+            "hero__product-image": "w-1\/2 flex-grow object-cover border-brand-black aspect-[0.9375] md:aspect-square overflow-hidden",
+            "hero__product-img": "w-full h-full object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110"
           }
         },
-        "contact_us_rGVGQe": {
-          "type": "contact_us",
+        "collection_TKcKke": {
+          "type": "collection",
           "settings": {
-            "contact_us-heading": "Contact us",
-            "address_title": "Address",
-            "phone_title": "Phone",
-            "email_title": "Email",
-            "address": "1234 Main Street, Anytown, USA",
-            "phone": "+000000000000000",
-            "email": "fake@gmail.com",
-            "social-media-heading": "Follow us",
-            "show_social_media": true,
-            "tw-footer__contact-us": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] lg:border-r-[1px] border-brand-black md:p-10 md:gap-6",
-            "tw-footer__contact-us-title": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5",
-            "tw-footer__address-title": "font-regular text-mobile-caption text-brand-gray block",
-            "tw-footer__address": "font-medium text-mobile-links",
-            "tw-footer__phone-title": "font-regular text-mobile-caption text-brand-gray block",
-            "tw-footer__phone": "font-medium text-mobile-links",
-            "tw-footer__email-title": "font-regular text-mobile-caption text-brand-gray block",
-            "tw-footer__email": "font-medium text-mobile-links",
-            "tw-footer__social-media-title": "font-medium text-mobile-heading-5 text-brand-gray",
-            "tw-footer__social-media": "flex flex-row gap-4",
-            "tw-footer__social-media-link": "font-medium text-mobile-links"
+            "collection": "new-snowboards",
+            "text": "Shop now",
+            "reverse-image": true,
+            "hero__row": "flex items-stretch border-[1px] border-brand-black group",
+            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-brand-black p-3",
+            "hero__product-title": "flex-none mt-auto text-center text-mobile-heading-3 font-medium md:text-desktop-heading-3",
+            "hero__product-link": "mt-auto text-center text-mobile-links font-semibold pb-2 gap-1 flex justify-center md:text-desktop-heading-6 items-center",
+            "hero__product-link-text": "font-bold inline-block hover:underline",
+            "hero__product-link-svg": "flex items-center h-5 w-5 transition-transform duration-300 ease-in-out",
+            "hero__product-image": "w-1\/2 flex-grow object-cover border-brand-black aspect-[0.9375] md:aspect-square overflow-hidden",
+            "hero__product-img": "w-full h-full object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110"
           }
         },
-        "link_list_zc8e63": {
-          "type": "link_list",
+        "collection_YTKWqX": {
+          "type": "collection",
           "settings": {
-            "menu": "footer",
-            "tw-footer__link-list_style": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] md:border-b-0 md:border-r-[1px] border-brand-black lg:border-b-[1px] md:p-10 md:gap-6",
-            "tw-footer__title": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5",
-            "tw-footer__menu": "flex flex-col gap-2",
-            "tw-footer__menu-item": "font-medium text-mobile-links md:text-desktop-links",
-            "tw-footer__menu-link": ""
-          }
-        },
-        "image_PpRg4j": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/heroimage.jpg",
-            "image_link": "",
-            "image_alt": "",
-            "caption": "Image Caption",
-            "image_width": 200,
-            "tw-footer__image": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 lg:border-b-[1px] border-brand-black md:p-10 md:gap-6 items-center",
-            "tw-footer__image-link": "max-w-52",
-            "tw-footer__image-caption": "font-regular text-mobile-caption text-brand-gray block"
+            "collection": "dried-flowers",
+            "text": "Shop now",
+            "reverse-image": false,
+            "hero__row": "flex items-stretch border-[1px] border-brand-black group",
+            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-brand-black p-3",
+            "hero__product-title": "flex-none mt-auto text-center text-mobile-heading-3 font-medium md:text-desktop-heading-3",
+            "hero__product-link": "mt-auto text-center text-mobile-links font-semibold pb-2 gap-1 flex justify-center md:text-desktop-heading-6 items-center",
+            "hero__product-link-text": "font-bold inline-block hover:underline",
+            "hero__product-link-svg": "flex items-center h-5 w-5 transition-transform duration-300 ease-in-out",
+            "hero__product-image": "w-1\/2 flex-grow object-cover border-brand-black aspect-[0.9375] md:aspect-square overflow-hidden",
+            "hero__product-img": "w-full h-full object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110"
           }
         }
       },
       "block_order": [
-        "text_JBjdR7",
-        "contact_us_rGVGQe",
-        "link_list_zc8e63",
-        "image_PpRg4j"
+        "collection_TcQPDp",
+        "collection_TKcKke",
+        "collection_YTKWqX"
       ],
       "settings": {
-        "tw-footer__style": "flex flex-col border-t-[1px] border-brand-black md:grid md:grid-cols-2 lg:grid lg:grid-cols-4"
+        "hero-main": "Kyiv LuxeBouquets",
+        "hero-main-richtext": "<p>Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread Joy with Our Online Flower Delivery Service<\/p>",
+        "hero__description": "Experience the joy of giving with our modern floral studio. Order online and send fresh flowers, plants and gifts today.",
+        "hero": "flex-wrap lg:flex-nowrap lg:flex w-full justify-between items-start lg:items-stretch lg:h-screen",
+        "hero__left-col": "w-full lg:w-1\/2 px-4 py-10 md:p-20 lg:border-y-[1px] lg:border-brand-black lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden",
+        "hero__header": "flex flex-col lg:h-[50%] lg:justify-center",
+        "hero__title": "text-mobile-heading-1 font-semibold pb-4 md:pr-12 md:text-desktop-heading-1",
+        "hero__subtitle": "text-mobile-hero-caption pb-6 md:pb-[54px] md:text-desktop-hero-caption lg:pb-0",
+        "hero__content": "flex pt-4 border-t-[1px] border-brand-black md:pt-6 lg:align-center",
+        "tail-hero__image": "w-1\/2 pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]",
+        "tail-hero__description": "w-1\/2 pl-4 content-end text-mobile-small-description md:pl-6 md:text-desktop-caption",
+        "hero__right-col": "w-full lg:w-1\/2 lg:h-screen lg:overflow-y-auto"
       }
     }
   },
   "order": [
-    "dev_footer_caGft7"
+    "hero_HBfcL3"
   ]
 }

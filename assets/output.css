@@ -1200,6 +1200,10 @@ video {
   width: 100vw;
 }
 
+.w-1 {
+  width: 0.25rem;
+}
+
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -3331,6 +3335,10 @@ video {
 
   .lg\:w-1\/2 {
     width: 50%;
+  }
+
+  .lg\:w-1 {
+    width: 0.25rem;
   }
 
   .lg\:max-w-7xl {
