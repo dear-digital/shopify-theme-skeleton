@@ -52,7 +52,7 @@
         "mobile_menu_dropdown_link_classes": "ml-3 text-base font-medium text-gray-500"
       }
     },
-    "navbar_Gfh7nq": {
+    "navbar_DYbGiz": {
       "type": "navbar",
       "disabled": true,
       "settings": {
@@ -60,9 +60,9 @@
         "right_menu": "main-menu",
         "navbar_wrapper": "relative",
         "navbar_classes": "h-[48px] md:h-[56px] lg:[83px] w-full z-10 bg-white",
-        "container_classes": "border-y-[1px] lg:border-[1px] border-brand-black flex justify-between h-full",
+        "container_classes": "border-y-[1px] lg:border-x-[1px] border-brand-black flex justify-between h-full",
         "navbar__menu_desktop": "hidden lg:flex w-full justify-between",
-        "navbar__menu_left": "hidden lg:flex h-full w-1\/2 pl-[1px]",
+        "navbar__menu_left": "hidden lg:flex h-full w-1\/2 justify-start pl-[1px]",
         "navbar__menu_right": "hidden lg:flex h-full w-1\/2 justify-end pr-[1px]",
         "left_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1\/4",
         "right_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1\/4",
@@ -73,16 +73,16 @@
         "mobile_menu_item_classes": "block py-4 text-gray-600 hover:text-gray-900 border-b-[1px] border-brand-black pl-4 text-mobile-heading-6"
       }
     },
-    "navbar_QV6DWV": {
+    "navbar_kE8iQy": {
       "type": "navbar",
       "settings": {
         "menu": "main-menu",
         "right_menu": "right-menu",
         "navbar_wrapper": "relative",
         "navbar_classes": "h-[48px] md:h-[56px] lg:[83px] w-full z-10 bg-white",
-        "container_classes": "border-y-[1px] lg:border-[1px] border-brand-black flex justify-between h-full",
+        "container_classes": "border-y-[1px] lg:border-x-[1px] border-brand-black flex justify-between h-full",
         "navbar__menu_desktop": "hidden lg:flex w-full justify-between",
-        "navbar__menu_left": "hidden lg:flex h-full w-1\/2 justify-end pr-[1px]",
+        "navbar__menu_left": "hidden lg:flex h-full w-1\/2 justify-start pl-[1px]",
         "navbar__menu_right": "hidden lg:flex h-full w-1\/2 justify-end pr-[1px]",
         "left_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1\/4",
         "right_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1\/4",
@@ -96,7 +96,7 @@
   },
   "order": [
     "header",
-    "navbar_Gfh7nq",
-    "navbar_QV6DWV"
+    "navbar_DYbGiz",
+    "navbar_kE8iQy"
   ]
 }
