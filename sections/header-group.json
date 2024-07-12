@@ -66,14 +66,18 @@
         "navbar__menu_right": "hidden lg:flex h-full w-1\/2 justify-end pr-[1px]",
         "left_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1\/4",
         "right_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1\/4",
-        "mobile_menu_button_container_classes": "flex w-full justify-between lg:hidden",
-        "mobile_menu_button_classes": "border-x-[1px] border-brand-black aspect-square flex items-center justify-center lg:hidden",
-        "mobile_menu_svg_classes": "w-5 h-5",
-        "mobile_menu_container_classes": "fixed inset-y-0 left-0 w-full bg-white z-40 transition-all duration-300 ease-in-out transform -translate-x-full opacity-0 lg:hidden mt-[48px]",
-        "mobile_menu_item_classes": "block py-4 text-gray-600 hover:text-gray-900 border-b-[1px] border-brand-black pl-4 text-mobile-heading-6"
+        "menu_button_container_classes": "flex items-center justify-center",
+        "menu_button_svg_classes": "w-5 h-5",
+        "cart_button_classes": "flex items-center justify-center",
+        "cart_button_svg_classes": "w-5 h-5",
+        "off_canvas_menu_classes": "fixed inset-y-0 left-0 w-64 md:w-80 bg-white z-50 transition-transform duration-300 ease-in-out transform -translate-x-full",
+        "off_canvas_menu_content_classes": "h-full overflow-y-auto pt-16",
+        "close_menu_button_classes": "absolute top-4 right-4 p-2",
+        "off_canvas_menu_item_classes": "block py-4 px-6 text-gray-600 hover:text-gray-900 border-b border-gray-200",
+        "menu_overlay_classes": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none"
       }
     },
-    "navbar_cUVVmE": {
+    "navbar_9Fbfim": {
       "type": "navbar",
       "settings": {
         "menu": "main-menu",
@@ -86,17 +90,21 @@
         "navbar__menu_right": "hidden lg:flex h-full w-1\/2 justify-end pr-[1px]",
         "left_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1\/4",
         "right_menu_item_classes": "text-gray-600 hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1\/4",
-        "mobile_menu_button_container_classes": "flex w-full justify-between lg:hidden",
-        "mobile_menu_button_classes": "border-x-[1px] border-brand-black aspect-square flex items-center justify-center lg:hidden",
-        "mobile_menu_svg_classes": "w-5 h-5",
-        "mobile_menu_container_classes": "fixed inset-y-0 left-0 w-full bg-white z-40 transition-all duration-300 ease-in-out transform -translate-x-full opacity-0 lg:hidden mt-[48px] md:mt-[0px]",
-        "mobile_menu_item_classes": "block py-4 text-gray-600 hover:text-gray-900 border-b-[1px] border-brand-black pl-4 text-mobile-heading-6"
+        "menu_button_container_classes": "flex items-center justify-center aspect-square lg:hidden border-brand-black border-x-[1px]",
+        "menu_button_svg_classes": "w-5 h-5",
+        "cart_button_classes": "flex items-center justify-center aspect-square lg:hidden\nborder-brand-black border-x-[1px]",
+        "cart_button_svg_classes": "w-5 h-5",
+        "off_canvas_menu_classes": "fixed inset-y-0 left-0 w-64 md:w-80 bg-white z-50 transition-transform duration-300 ease-in-out transform -translate-x-full",
+        "off_canvas_menu_content_classes": "h-full overflow-y-auto",
+        "close_menu_button_classes": "absolute top-4 right-4 p-2 w-5 h-5",
+        "off_canvas_menu_item_classes": "block py-4 px-6 text-gray-600 hover:text-gray-900 border-b border-gray-200",
+        "menu_overlay_classes": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none"
       }
     }
   },
   "order": [
     "header",
     "navbar_Ugfjhe",
-    "navbar_cUVVmE"
+    "navbar_9Fbfim"
   ]
 }

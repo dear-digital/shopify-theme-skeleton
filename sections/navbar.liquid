@@ -1,20 +1,18 @@
 <div class="navbar-wrapper {{ section.settings.navbar_wrapper }}">
   <nav class="navbar {{ section.settings.navbar_classes }}">
     <div class="navbar__container {{ section.settings.container_classes }}">
-        <!-- Mobile menu button -->
-        <div class="mobile_menu_button_container_classes {{ section.settings.mobile_menu_button_container_classes }}">
-            <div class="mobile_menu_button_classes {{ section.settings.mobile_menu_button_classes }}">
-                <button id="mobile-menu-button" class="{{ section.settings.mobile_menu_svg_classes }}">
-                    <span id="hamburger-icon">{% render 'icon-hamburger' %}</span>
-                    <span id="close-icon" class="hidden">{% render 'icon-close' %}</span>
-                </button>
-            </div>
+        <!-- Mobile and Laptop menu button -->
+        <div class="menu_button_container_classes {{ section.settings.menu_button_container_classes }}">
+          <button id="menu-button" class="{{ section.settings.menu_button_svg_classes }}">
+            <span id="hamburger-icon">{% render 'icon-hamburger' %}</span>
+          </button>
+        </div>
 
-            <div class="mobile_menu_button_classes {{ section.settings.mobile_menu_button_classes }}">
-                <button id="cart-button" class="{{ section.settings.mobile_menu_svg_classes }}">
-                    {% render 'icon-cart' %}
-                </button>
-            </div>
+        <!-- Cart button -->
+        <div class="cart_button_classes {{ section.settings.cart_button_classes }}">
+          <button id="cart-button" class="{{ section.settings.cart_button_svg_classes }}">
+            {% render 'icon-cart' %}
+          </button>
         </div>
 
         <!-- Desktop menu -->
@@ -37,56 +35,53 @@
     </div>
   </nav>
 
-  <!-- Mobile menu (hidden by default) -->
-  <div id="mobile-menu" class="mobile_menu_container_classes {{ section.settings.mobile_menu_container_classes }}">
-        {% for link in linklists[section.settings.menu].links %}
-        <a href="{{ link.url }}" class="{{ section.settings.mobile_menu_item_classes }}">
-            {{ link.title }}
+  <!-- Off-canvas menu -->
+  <div id="off-canvas-menu" class="off_canvas_menu_classes {{ section.settings.off_canvas_menu_classes }}">
+    <div class="off_canvas_menu_content {{ section.settings.off_canvas_menu_content_classes }}">
+      <button id="close-menu-button" class="{{ section.settings.close_menu_button_classes }}">
+        {% render 'icon-close' %}
+      </button>
+      {% for link in linklists[section.settings.menu].links %}
+        <a href="{{ link.url }}" class="{{ section.settings.off_canvas_menu_item_classes }}">
+          {{ link.title }}
         </a>
-        {% endfor %}
-        {% for link in linklists[section.settings.right_menu].links %}
-        <a href="{{ link.url }}" class="{{ section.settings.mobile_menu_item_classes }}">
-            {{ link.title }}
+      {% endfor %}
+      {% for link in linklists[section.settings.right_menu].links %}
+        <a href="{{ link.url }}" class="{{ section.settings.off_canvas_menu_item_classes }}">
+          {{ link.title }}
         </a>
-        {% endfor %}
+      {% endfor %}
+    </div>
   </div>
+
+  <!-- Overlay -->
+  <div id="menu-overlay" class="menu_overlay_classes {{ section.settings.menu_overlay_classes }}"></div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var mobileMenuButton = document.getElementById('mobile-menu-button');
-    var mobileMenu = document.getElementById('mobile-menu');
+    var menuButton = document.getElementById('menu-button');
+    var closeMenuButton = document.getElementById('close-menu-button');
+    var offCanvasMenu = document.getElementById('off-canvas-menu');
+    var menuOverlay = document.getElementById('menu-overlay');
     var hamburgerIcon = document.getElementById('hamburger-icon');
-    var closeIcon = document.getElementById('close-icon');
-    var navbarWrapper = document.querySelector('.navbar-wrapper');
-    // var navbarClasses = document.querySelector('.navbar');
-    var body = document.body;
+    // var body = document.body;
 
-    if (mobileMenuButton && mobileMenu) {
-      var toggleMenu = function() {
-        mobileMenu.classList.toggle('-translate-x-full');
-        mobileMenu.classList.toggle('opacity-0');
-        hamburgerIcon.classList.toggle('hidden');
-        closeIcon.classList.toggle('hidden');
-        navbarWrapper.classList.toggle('mobile-menu-open');
-        // navbarClasses.classList.toggle('fixed');
-        body.classList.toggle('overflow-hidden');
-      };
+    function toggleMenu() {
+      offCanvasMenu.classList.toggle('translate-x-0');
+      menuOverlay.classList.toggle('opacity-0');
+      menuOverlay.classList.toggle('pointer-events-none');
+      // body.classList.toggle('overflow-hidden');
+    }
 
-      if (Shopify.designMode) {
-        document.addEventListener('shopify:section:load', function(event) {
-          if (event.target.contains(mobileMenuButton)) {
-            mobileMenuButton.addEventListener('click', toggleMenu);
-          }
-        });
-      }
+    menuButton.addEventListener('click', toggleMenu);
+    closeMenuButton.addEventListener('click', toggleMenu);
+    menuOverlay.addEventListener('click', toggleMenu);
 
-      mobileMenuButton.addEventListener('click', toggleMenu);
-
-      // Close menu when clicking outside
-      document.addEventListener('click', function(event) {
-        if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target) && !mobileMenu.classList.contains('-translate-x-full')) {
-          toggleMenu();
+    if (Shopify.designMode) {
+      document.addEventListener('shopify:section:load', function(event) {
+        if (event.target.contains(menuButton)) {
+          menuButton.addEventListener('click', toggleMenu);
         }
       });
     }
@@ -167,37 +162,61 @@
     },
     {
       "type": "header",
-      "content": "Mobile Tailwind Classes"
+      "content": "Mobile & Laptop Tailwind Classes"
     },
     {
       "type": "textarea",
-      "id": "mobile_menu_button_container_classes",
-      "label": "Mobile menu button container classes",
-      "default": "flex w-full justify-between lg:hidden"
+      "id": "menu_button_container_classes",
+      "label": "Menu button container classes",
+      "default": "flex items-center justify-center aspect-square border-brand-black border-x-[1px] lg:hidden"
     },
     {
       "type": "textarea",
-      "id": "mobile_menu_button_classes",
-      "label": "Mobile menu button classes",
-      "default": "border-x-[1px] border-brand-black aspect-square flex items-center justify-center lg:hidden"
+      "id": "menu_button_svg_classes",
+      "label": "Menu button SVG classes",
+      "default": "w-5 h-5"
     },
     {
       "type": "textarea",
-      "id": "mobile_menu_svg_classes",
-      "label": "Mobile menu SVG classes",
-      "default": "w-5 h-5 "
+      "id": "cart_button_classes",
+      "label": "Cart button classes",
+      "default": "flex items-center justify-center aspect-square border-brand-black border-x-[1px] lg:hidden"
     },
     {
       "type": "textarea",
-      "id": "mobile_menu_container_classes",
-      "label": "Mobile menu container classes",
-      "default": "fixed inset-y-0 left-0 w-full bg-white z-40 transition-all duration-300 ease-in-out transform -translate-x-full opacity-0 lg:hidden mt-[48px] md:mt-[0px]"
+      "id": "cart_button_svg_classes",
+      "label": "Cart button SVG classes",
+      "default": "w-5 h-5"
     },
     {
       "type": "textarea",
-      "id": "mobile_menu_item_classes",
-      "label": "Mobile menu item classes",
-      "default": "block py-4 text-gray-600 hover:text-gray-900 border-b-[1px] border-brand-black pl-4 text-mobile-heading-6"
+      "id": "off_canvas_menu_classes",
+      "label": "Off-canvas menu classes",
+      "default": "fixed inset-y-0 left-0 w-64 md:w-80 bg-white z-50 transition-transform duration-300 ease-in-out transform -translate-x-full"
+    },
+    {
+      "type": "textarea",
+      "id": "off_canvas_menu_content_classes",
+      "label": "Off-canvas menu content classes",
+      "default": "h-full overflow-y-auto pt-16"
+    },
+    {
+      "type": "textarea",
+      "id": "close_menu_button_classes",
+      "label": "Close menu button classes",
+      "default": "absolute top-4 right-4 p-2 w-5 h-5"
+    },
+    {
+      "type": "textarea",
+      "id": "off_canvas_menu_item_classes",
+      "label": "Off-canvas menu item classes",
+      "default": "block py-4 px-6 text-gray-600 hover:text-gray-900 border-b border-gray-200"
+    },
+    {
+      "type": "textarea",
+      "id": "menu_overlay_classes",
+      "label": "Menu overlay classes",
+      "default": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none"
     }
   ],
   "presets": [
