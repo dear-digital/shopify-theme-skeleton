@@ -104,6 +104,7 @@ module.exports = {
         uppercase: "uppercase",
       },
       screens: {
+        md: "768px", // tablet
         lg: "1440px", // large screen
       },
     },
