@@ -682,12 +682,32 @@ video {
   top: 5px;
 }
 
+.right-0 {
+  right: 0px;
+}
+
 .isolate {
   isolation: isolate;
 }
 
 .z-10 {
   z-index: 10;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+.z-0 {
+  z-index: 0;
 }
 
 .-m-3 {
@@ -942,6 +962,18 @@ video {
   margin-top: auto;
 }
 
+.mt-\[46px\] {
+  margin-top: 46px;
+}
+
+.mt-\[49px\] {
+  margin-top: 49px;
+}
+
+.mt-\[48px\] {
+  margin-top: 48px;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1060,6 +1092,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-\[calc\(100vh-48px\)\] {
+  height: calc(100vh - 48px);
 }
 
 .w-1 {
@@ -1247,6 +1283,16 @@ video {
 
 .-translate-y-1\/2 {
   --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-x-full {
+  --tw-translate-x: 100%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-x-full {
+  --tw-translate-x: -100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1464,6 +1510,10 @@ video {
 
 .overflow-x-auto {
   overflow-x: auto;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .truncate {
@@ -1979,6 +2029,14 @@ video {
   padding-top: 18px;
 }
 
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
+.pt-20 {
+  padding-top: 5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2259,6 +2317,10 @@ video {
   opacity: 0.5;
 }
 
+.opacity-0 {
+  opacity: 0;
+}
+
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
@@ -2308,6 +2370,12 @@ video {
 
 .transition-transform {
   transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-all {
+  transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -3023,6 +3091,10 @@ video {
     height: 56px;
   }
 
+  .md\:h-\[calc\(100vh-56px\)\] {
+    height: calc(100vh - 56px);
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -3374,6 +3446,10 @@ video {
 
   .lg\:h-screen {
     height: 100vh;
+  }
+
+  .lg\:h-\[calc\(100vh-83px\)\] {
+    height: calc(100vh - 83px);
   }
 
   .lg\:max-h-\[50vw\] {

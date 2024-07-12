@@ -1,11 +1,12 @@
 <div class="navbar-wrapper {{ section.settings.navbar_wrapper }}">
-    <nav class="navbar {{ section.settings.navbar_classes }}">
+  <nav class="navbar {{ section.settings.navbar_classes }}">
     <div class="navbar__container {{ section.settings.container_classes }}">
         <!-- Mobile menu button -->
         <div class="mobile_menu_button_container_classes {{ section.settings.mobile_menu_button_container_classes }}">
             <div class="mobile_menu_button_classes {{ section.settings.mobile_menu_button_classes }}">
                 <button id="mobile-menu-button" class="{{ section.settings.mobile_menu_svg_classes }}">
-                    {% render 'icon-hamburger' %}
+                    <span id="hamburger-icon">{% render 'icon-hamburger' %}</span>
+                    <span id="close-icon" class="hidden">{% render 'icon-close' %}</span>
                 </button>
             </div>
 
@@ -32,11 +33,13 @@
             </a>
             {% endfor %}
         </div>
-        </div>
+      </div>
     </div>
+  </nav>
 
-    <!-- Mobile menu (hidden by default) -->
-    <div id="mobile-menu" class="mobile_menu_container_classes {{ section.settings.mobile_menu_container_classes }}">
+  <!-- Mobile menu (hidden by default) -->
+  <div id="mobile-menu" class="mobile_menu_container_classes {{ section.settings.mobile_menu_container_classes }}">
+      <div class="mobile_menu_content {{ section.settings.mobile_menu_content_classes }}">
         {% for link in linklists[section.settings.menu].links %}
         <a href="{{ link.url }}" class="{{ section.settings.mobile_menu_item_classes }}">
             {{ link.title }}
@@ -47,23 +50,30 @@
             {{ link.title }}
         </a>
         {% endfor %}
-    </div>
-    </nav>
+      </div>
+  </div>
 </div>
 
 <script>
-
   document.addEventListener('DOMContentLoaded', function() {
     var mobileMenuButton = document.getElementById('mobile-menu-button');
     var mobileMenu = document.getElementById('mobile-menu');
+    var hamburgerIcon = document.getElementById('hamburger-icon');
+    var closeIcon = document.getElementById('close-icon');
+    var navbarWrapper = document.querySelector('.navbar-wrapper');
+    var navbarClasses = document.querySelector('.navbar');
 
     if (mobileMenuButton && mobileMenu) {
       var toggleMenu = function() {
-        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('-translate-x-full');
+        mobileMenu.classList.toggle('opacity-0');
+        hamburgerIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+        navbarWrapper.classList.toggle('mobile-menu-open');
+        navbarClasses.classList.toggle('fixed');
       };
 
       if (Shopify.designMode) {
-        // In design mode, re-add the event listener whenever the section is reloaded
         document.addEventListener('shopify:section:load', function(event) {
           if (event.target.contains(mobileMenuButton)) {
             mobileMenuButton.addEventListener('click', toggleMenu);
@@ -71,11 +81,16 @@
         });
       }
 
-      // Always add the event listener initially
       mobileMenuButton.addEventListener('click', toggleMenu);
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target) && !mobileMenu.classList.contains('-translate-x-full')) {
+          toggleMenu();
+        }
+      });
     }
   });
-
 </script>
 
 {% schema %}
@@ -176,7 +191,13 @@
       "type": "textarea",
       "id": "mobile_menu_container_classes",
       "label": "Mobile menu container classes",
-      "default": "pt-2 bg-white hidden lg:hidden"
+      "default": "fixed inset-y-0 left-0 w-full bg-white z-40 transition-all duration-300 ease-in-out transform -translate-x-full opacity-0 lg:hidden"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_menu_content_classes",
+      "label": "Mobile menu content classes",
+      "default": "h-[calc(100vh-48px)] md:h-[calc(100vh-56px)] lg:h-[calc(100vh-83px)] overflow-y-auto"
     },
     {
       "type": "textarea",
