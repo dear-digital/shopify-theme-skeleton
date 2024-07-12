@@ -68,13 +68,13 @@
     var offCanvasMenu = document.getElementById('off-canvas-menu');
     var menuOverlay = document.getElementById('menu-overlay');
     var hamburgerIcon = document.getElementById('hamburger-icon');
-    // var body = document.body;
+    var body = document.body;
 
     function toggleMenu() {
       offCanvasMenu.classList.toggle('translate-x-0');
       menuOverlay.classList.toggle('opacity-0');
       menuOverlay.classList.toggle('pointer-events-none');
-      // body.classList.toggle('overflow-hidden');
+      body.classList.toggle('overflow-hidden');
     }
 
     menuButton.addEventListener('click', toggleMenu);
