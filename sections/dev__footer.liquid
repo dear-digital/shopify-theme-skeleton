@@ -1,168 +1,451 @@
-<footer class="footer {{ section.settings.footer__main }}">
+{% assign has_social_icons = true %}
+{% if settings.social_facebook_link == blank
+  and settings.social_instagram_link == blank
+  and settings.social_youtube_link == blank
+  and settings.social_tiktok_link == blank
+  and settings.social_twitter_link == blank
+  and settings.social_pinterest_link == blank
+  and settings.social_snapchat_link == blank
+  and settings.social_tumblr_link == blank
+  and settings.social_vimeo_link == blank
+%}
+  {% assign has_social_icons = false %}
+{% endif %}
+
+<div class="footer {{ section.settings.tw-footer__style }}">
   {% for block in section.blocks %}
-    <div class="footer__section {{ block.settings.footer__section }}">
-      <input
-        type="checkbox"
-        id="footer-toggle-{{ forloop.index }}"
-        class="footer__toggle-checkbox {{ block.settings.footer__toggle-checkbox }}"
-      >
-      <label for="footer-toggle-{{ forloop.index }}" class="footer__heading {{ block.settings.footer__heading }}">
-        {{- block.settings.heading -}}
-      </label>
-      <ul class="footer__links-list {{ block.settings.footer__links-list_ul }} ">
-        {% for link in linklists[block.settings.menu].links %}
-          <li class="footer__link-item {{ block.settings.footer__links-list_li }}">
-            <a href="{{ link.url }}" class="footer__link {{ block.settings.footer__link }}">{{ link.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
+    {% if block.type == 'link_list' %}
+      <div class="footer__link-list {{ block.settings.tw-footer__link-list_style }}">
+        <h3 class="footer__title {{ block.settings.tw-footer__title }}">{{ block.settings.menu.title }}</h3>
+        <ul class="footer__menu {{ block.settings.tw-footer__menu }}">
+          {% for link in block.settings.menu.links %}
+            <li class="footer__menu-item {{ block.settings.tw-footer__menu-item }}">
+              <a href="{{ link.url }}" class="footer__menu-link {{ block.settings.tw-footer__menu-link }}">
+                {{- link.title -}}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% elsif block.type == 'contact_us' %}
+      <div class="contact-us {{ block.settings.tw-footer__contact-us }}">
+        <h3 class="contact-us__title {{ block.settings.tw-footer__contact-us-title }}">
+          {{ block.settings['contact_us-heading'] }}
+        </h3>
+        <p class="contact-us__address {{ block.settings.tw-footer__address }}">
+          <span class="contact-us__address-title {{ block.settings.tw-footer__address-title }}">
+            {{- block.settings.address_title -}}
+          </span>
+          {{- block.settings.address }}
+        </p>
+        <a href="tel:{{ block.settings.phone }}" class="contact-us__phone {{ block.settings.tw-footer__phone }}"
+          ><span class="contact-us__phone-title {{ block.settings.tw-footer__phone-title }}">
+            {{- block.settings.phone_title -}}
+          </span>
+          {{- block.settings.phone -}}
+        </a>
+        <a href="mailto:{{ block.settings.email }}" class="contact-us__email {{ block.settings.tw-footer__email }}"
+          ><span class="contact-us__email-title {{ block.settings.tw-footer__email-title }}">
+            {{- block.settings.email_title -}}
+          </span>
+          {{- block.settings.email -}}
+        </a>
+        {% if block.settings.show_social_media and has_social_icons %}
+          <h3 class="contact-us__social-media-title {{ block.settings.tw-footer__social-media-title }}">
+            {{ block.settings['social-media-heading'] }}
+          </h3>
+          <div class="contact-us__social-media {{ block.settings.tw-footer__social-media }}">
+            {%- render 'social-icons', class: 'footer__list-social' -%}
+          </div>
+        {% endif %}
+      </div>
+    {% elsif block.type == 'text' %}
+      <div class="text {{ block.settings.tw-footer__text }}">
+        <h3 class="text__heading {{ block.settings.tw-footer__heading }}">{{ block.settings.heading }}</h3>
+        <div class="text__subtext {{ block.settings.tw-footer__subtext }}">{{ block.settings.subtext }}</div>
+        <div {{ block.shopify_attributes }} class="{{ block.settings.tw-footer__newsletter }}">
+          {% form 'customer', class: 'newsletter-form' %}
+            <input
+              type="email"
+              name="contact[email]"
+              placeholder="{{ block.settings.input-placeholder }}"
+              class="newsletter-form__input {{ block.settings.tw-footer__newsletter-input }}"
+              required
+            >
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <button type="submit" class="newsletter-form__submit {{ block.settings.tw-footer__button }}">
+              {{- block.settings.button_text -}}
+            </button>
+            {% if form.errors %}
+              {% for error in form.errors %}
+                <p class="form-error {{ block.settings.tw-footer__form-errors }}">
+                  {% render 'icon-error', class: 'w-[20px] h-[20px]' %}
+                  {{ error }}
+                </p>
+              {% endfor %}
+            {% endif %}
+            {% if form.posted_successfully? %}
+              <p class="form-success {{ block.settings.tw-footer__form-success }}">
+                {% render 'icon-success', class: 'w-[20px] h-[20px]' %}
+                {{ block.settings.success_message | escape }}
+              </p>
+            {% endif %}
+          {% endform %}
+        </div>
+      </div>
+    {% elsif block.type == 'image' %}
+      <div class="image {{ block.settings.tw-footer__image }}">
+        <a href="{{ block.settings.image.url }}" class="image-link {{ block.settings.tw-footer__image-link }}">
+          {% if block.settings.image != blank %}
+            {%- assign image_size_2_x = block.settings.image_width | times: 2 | at_most: 5760 -%}
+            <div
+              class="footer-block__image-wrapper"
+              style="max-width: min(100%, {{ block.settings.image_width }}px);"
+            >
+              <img
+                srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2_x }} 2x"
+                src="{{ block.settings.image | image_url: width: 760 }}"
+                alt="{{ block.settings.image.alt | escape }}"
+                loading="lazy"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+              >
+            </div>
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+          {% endif %}
+        </a>
+        <p class="image-caption {{ block.settings.tw-footer__image-caption }}">
+          {{- block.settings.caption -}}
+        </p>
+      </div>
+    {% endif %}
   {% endfor %}
-  <div class="footer__section footer__section--newsletter {{ section.settings.footer__section--newsletter }}">
-    <p class="footer__title footer__title--common {{ section.settings.footer__title }}">
-      {{ section.settings.newsletter_heading }}
-    </p>
-    <form class="footer__form {{ section.settings.footer__form }}">
-      <input
-        type="email"
-        placeholder="{{ section.settings.email_placeholder }}"
-        class="footer__input {{ section.settings.footer__input }}"
-      >
-      <button type="submit" class="footer__button {{ section.settings.footer__button }}">
-        {{ section.settings.button_text }}
-      </button>
-    </form>
-  </div>
-</footer>
+</div>
 
 {% schema %}
 {
   "name": "Footer",
-  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "tw-footer__style",
+      "label": "Style footer",
+      "default": "flex flex-col border-t-[1px] border-brand-black md:grid md:grid-cols-2 lg:grid lg:grid-cols-4"
+    }
+  ],
   "blocks": [
     {
-      "type": "menu",
-      "name": "Menu item",
+      "type": "link_list",
+      "name": "Links",
       "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Footer Heading"
-        },
         {
           "type": "link_list",
           "id": "menu",
-          "label": "Menu"
-        },
-        {
-          "type": "header",
-          "content": "Tailwind Styling Classes"
+          "label": "Menu",
+          "default": "footer"
         },
         {
           "type": "textarea",
-          "id": "footer__section",
-          "label": "Style Footer Block Section",
-          "default": "w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 p-2 mr-4 mb-4"
+          "id": "tw-footer__link-list_style",
+          "label": "Style footer__link-list",
+          "default": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] md:border-b-0 md:border-r-[1px] border-brand-black lg:border-b-[1px] md:p-10 md:gap-6"
         },
         {
           "type": "textarea",
-          "id": "footer__heading",
-          "label": "Style Footer Heading",
-          "default": "text-2xl text-white font-semibold mb-5"
+          "id": "tw-footer__title",
+          "label": "Style footer__title",
+          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5"
         },
         {
           "type": "textarea",
-          "id": "footer__links-list_ul",
-          "label": "Style Footer List",
-          "default": "p-2"
+          "id": "tw-footer__menu",
+          "label": "Style footer__menu",
+          "default": "flex flex-col gap-2"
         },
         {
           "type": "textarea",
-          "id": "footer__links-list_li",
-          "label": "Style Footer List Items",
-          "default": "p-2"
+          "id": "tw-footer__menu-item",
+          "label": "Style footer__menu-item",
+          "default": "font-medium text-mobile-links md:text-desktop-links"
         },
         {
           "type": "textarea",
-          "id": "footer__link",
-          "label": "Style Footer Links",
-          "default": "m-2"
+          "id": "tw-footer__menu-link",
+          "label": "Style footer__menu-link"
+        }
+      ]
+    },
+    {
+      "type": "contact_us",
+      "name": "Contact us",
+      "settings": [
+        {
+          "type": "text",
+          "id": "contact_us-heading",
+          "label": "Heading",
+          "default": "Contact us"
+        },
+        {
+          "type": "text",
+          "id": "address_title",
+          "label": "Address title",
+          "default": "Address"
+        },
+        {
+          "type": "text",
+          "id": "phone_title",
+          "label": "Phone title",
+          "default": "Phone"
+        },
+        {
+          "type": "text",
+          "id": "email_title",
+          "label": "Email title",
+          "default": "Email"
+        },
+        {
+          "type": "text",
+          "id": "address",
+          "label": "Address",
+          "default": "1234 Main Street, Anytown, USA"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone",
+          "default": "+000000000000000"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email",
+          "default": "fake@gmail.com"
+        },
+        {
+          "type": "text",
+          "id": "social-media-heading",
+          "label": "Social media heading",
+          "default": "Follow us"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social_media",
+          "label": "Show social media",
+          "default": true,
+          "info": "Show social media icons in the footer"
         },
         {
           "type": "textarea",
-          "id": "footer__toggle-checkbox",
-          "label": "Style Footer Toggle Checkbox",
-          "default": "inline-block md:hidden"
+          "id": "tw-footer__contact-us",
+          "label": "Style contact-us",
+          "default": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] lg:border-r-[1px] border-brand-black md:p-10 md:gap-6"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__contact-us-title",
+          "label": "Style contact-us__title",
+          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__address-title",
+          "label": "Style contact-us__address-title",
+          "default": "font-regular text-mobile-caption text-brand-gray block"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__address",
+          "label": "Style contact-us__address",
+          "default": "font-medium text-mobile-links"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__phone-title",
+          "label": "Style contact-us__phone-title",
+          "default": "font-regular text-mobile-caption text-brand-gray block"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__phone",
+          "label": "Style contact-us__phone",
+          "default": "font-medium text-mobile-links"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__email-title",
+          "label": "Style contact-us__email-title",
+          "default": "font-regular text-mobile-caption text-brand-gray block"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__email",
+          "label": "Style contact-us__email",
+          "default": "font-medium text-mobile-links"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__social-media-title",
+          "label": "Style contact-us__social-media-title",
+          "default": "font-medium text-mobile-heading-5 text-brand-gray"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__social-media",
+          "label": "Style contact-us__social-media",
+          "default": "flex flex-row gap-4"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__social-media-link",
+          "label": "Style contact-us__social-media-link",
+          "default": "font-medium text-mobile-links"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Subscription"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "subtext",
+          "label": "Subtext",
+          "default": "Remember to offer beautiful flowers from Kyiv LuxeBouquets Valentines Day, Mothers Day, Christmas... Reminds you 7 days before. No spam or sharing your address"
+        },
+        {
+          "type": "text",
+          "id": "input-placeholder",
+          "label": "Input placeholder",
+          "default": "Enter your email"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "SUBSCRIBE"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__text",
+          "label": "Style text",
+          "default": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] md:border-r-[1px] border-brand-black md:p-10 md:gap-6"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__heading",
+          "label": "Style text__heading",
+          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__subtext",
+          "label": "Style text__subtext",
+          "default": "font-regular text-mobile-body text-brand-black md:text-desktop-body"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__newsletter",
+          "label": "Style newsletter",
+          "default": "flex flex-col gap-4"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__newsletter-input",
+          "label": "Style newsletter-input",
+          "default": "font-regular text-mobile-body text-brand-black w-full p-4 border-[1px] border-brand-black"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__button",
+          "label": "Style button",
+          "default": "font-medium text-mobile-links text-center bg-brand-black text-white py-4 px-6 block mt-2 w-full"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__form-errors",
+          "label": "Style form-errors",
+          "default": "text-mobile-links text-brand-black p-2 flex gap-2 items-center w-full justify-center block font-medium"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__form-success",
+          "label": "Style form-success",
+          "default": "font-medium text-mobile-links text-brand-black p-2 flex gap-2 items-center w-full justify-center"
+        },
+        {
+          "type": "text",
+          "id": "success_message",
+          "label": "Success message",
+          "default": "Thank you for subscribing!"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image link"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 550,
+          "step": 5,
+          "unit": "px",
+          "label": "Image width",
+          "default": 200
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__image",
+          "label": "Style image",
+          "default": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 lg:border-b-[1px] border-brand-black md:p-10 md:gap-6 items-center"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__image-link",
+          "label": "Style image-link",
+          "default": "max-w-52",
+          "info": "Note: Image is wrapped in a link tag. This style will be applied to the link tag."
+        },
+        {
+          "type": "textarea",
+          "id": "tw-footer__image-caption",
+          "label": "Style image-caption",
+          "default": "font-regular text-mobile-caption text-brand-gray block"
         }
       ]
     }
   ],
-  "settings": [
-    {
-      "type": "text",
-      "id": "newsletter_heading",
-      "label": "Newsletter Heading",
-      "default": "Join the club"
-    },
-    {
-      "type": "text",
-      "id": "email_placeholder",
-      "label": "Email Placeholder",
-      "default": "Your email"
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button Text",
-      "default": "Subscribe"
-    },
-    {
-      "type": "header",
-      "content": "Tailwind Styling Classes"
-    },
-    {
-      "type": "textarea",
-      "id": "footer__main",
-      "label": "Style Footer Section",
-      "default": "dark:bg-gray-800 dark:text-white p-8 flex flex-wrap justify-content-between border"
-    },
-    {
-      "type": "textarea",
-      "id": "footer__section--newsletter",
-      "label": "Style Footer Section Newsletter",
-      "default": " p-2 "
-    },
-    {
-      "type": "textarea",
-      "id": "footer__title",
-      "label": "Style Footer Title",
-      "default": "text-2xl font-semibold mb-5 uppercase tracking-wide md:text-center"
-    },
-    {
-      "type": "textarea",
-      "id": "footer__form",
-      "label": "Style Footer Form",
-      "default": "flex gap-4 "
-    },
-    {
-      "type": "textarea",
-      "id": "footer__input",
-      "label": "Style Footer Input",
-      "default": "p-4 border dark:border-none rounded flex-grow-1 text-black"
-    },
-    {
-      "type": "textarea",
-      "id": "footer__button",
-      "label": "Style Footer Button",
-      "default": "py-1 px-2 block mx-auto md:py-3 md:px-5 md:w-full text-sm font-medium text-center bg-blue-600 text-white rounded-lg border cursor-pointer bg-blue-700 border-primary-600 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Footer",
-      "category": "Footer"
-    }
-  ]
+  "presets": [{ "name": "Footer" }],
+  "enabled_on": {
+    "groups": ["footer"]
+  }
 }
 {% endschema %}
