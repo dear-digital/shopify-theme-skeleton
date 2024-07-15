@@ -1,0 +1,47 @@
+{
+  "sections": {
+    "contact-us": {
+      "type": "contact-us",
+      "settings": {
+        "heading_text": "To Contact Us",
+        "subheading_text": "We will call you back",
+        "phone_placeholder": "+000 XX XXX XX XX",
+        "button_text": "Book a Call",
+        "success_message": "Thank you for contacting us! We'll get back to you soon.",
+        "phone_heading": "Phone",
+        "phone_1": "+000000000000",
+        "phone_2": "+000000000000",
+        "address_heading": "Address",
+        "address_1": "OPENING HOURS: 8 TO 11 P.M.",
+        "address_2": "15\/4 Khreshchatyk Street, Kyiv",
+        "social_heading": "Follow us",
+        "container": "flex flex-col-reverse lg:flex-row w-full",
+        "left_container": "w-full lg:w-1\/2",
+        "form_container": "py-10 px-4",
+        "heading": "text-mobile-heading-2 lg:text-3xl font-bold mb-2",
+        "subheading": "text-sm lg:text-base mb-4",
+        "form": "flex flex-col gap-4",
+        "input": "w-full p-2 border border-gray-300 rounded",
+        "submit_button": "w-full p-2 bg-black text-white font-semibold rounded hover:bg-gray-800 transition-colors duration-300",
+        "form_error": "text-red-500 text-sm mt-2",
+        "form_success": "text-green-500 text-sm mt-2",
+        "info_container": "flex flex-col lg:flex-row gap-8",
+        "info_column": "flex-1",
+        "info_heading": "text-lg font-semibold mb-2",
+        "info_text": "text-sm mb-1",
+        "right_container": "w-full lg:w-1\/2 border border-gray-200 border-t-0 lg:border-t lg:border-l-0",
+        "image_container": "h-64 lg:h-auto",
+        "image_class": "w-full h-full object-cover",
+        "placeholder_image_class": "w-full h-full object-cover bg-gray-200",
+        "social_container": "lg:p-8",
+        "social_heading_class": "text-mobile-heading-3 font-medium px-4 pt-4 pb-2",
+        "social_icons": "flex gap-8 px-4 pt-2 pb-4 border-b border-brand-black",
+        "social_icon": "text-brand-black hover:text-black transition-colors duration-300",
+        "social_icon_svg": "w-5 h-5"
+      }
+    }
+  },
+  "order": [
+    "contact-us"
+  ]
+}

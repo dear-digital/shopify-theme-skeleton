@@ -1,0 +1,340 @@
+<div class="{{ section.settings.container }}">
+  <div class="{{ section.settings.left_container }}">
+    <div class="{{ section.settings.top_block }}">
+      <h2 class="{{ section.settings.heading }}">{{ section.settings.heading_text }}</h2>
+      <div class="{{ section.settings.form_block }}"> 
+            {% form 'contact', class: section.settings.form %}
+            <p class="{{ section.settings.subheading }}">{{ section.settings.subheading_text }}</p>
+
+            <div class="{{ section.settings.input_button_block }}">
+                    <input
+                type="tel"
+                name="contact[phone]"
+                placeholder="{{ section.settings.phone_placeholder }}"
+                class="{{ section.settings.input }}"
+                required
+                >
+                <button type="submit" class="{{ section.settings.submit_button }}">
+                {{ section.settings.button_text }}
+                </button>
+                {% if form.errors %}
+                {% for error in form.errors %}
+                    <p class="{{ section.settings.form_error }}">
+                    {% render 'icon-error' %}
+                    {{ error }}
+                    </p>
+                {% endfor %}
+                {% endif %}
+                {% if form.posted_successfully? %}
+                <p class="{{ section.settings.form_success }}">
+                    {% render 'icon-success' %}
+                    {{ section.settings.success_message | escape }}
+                </p>
+                {% endif %}
+            </div>
+        {% endform %}
+      </div>
+    </div>
+    <div class="{{ section.settings.info_container }}">
+      <div class="{{ section.settings.info_column }}">
+        <h3 class="{{ section.settings.info_heading }}">{{ section.settings.phone_heading }}</h3>
+        <p class="{{ section.settings.info_text }}">{{ section.settings.phone_1 }}</p>
+        <p class="{{ section.settings.info_text }}">{{ section.settings.phone_2 }}</p>
+      </div>
+      <div class="{{ section.settings.info_column }}">
+        <h3 class="{{ section.settings.info_heading }}">{{ section.settings.address_heading }}</h3>
+        <p class="{{ section.settings.info_text }}">{{ section.settings.address_1 }}</p>
+        <p class="{{ section.settings.info_text }}">{{ section.settings.address_2 }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="{{ section.settings.right_container }}">
+    <div class="{{ section.settings.image_container }}">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1000 | image_tag:
+          loading: 'lazy',
+          width: section.settings.image.width,
+          height: section.settings.image.height,
+          class: section.settings.image_class
+        }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: section.settings.placeholder_image_class }}
+      {% endif %}
+    </div>
+    <div class="{{ section.settings.social_container }}">
+      <h3 class="{{ section.settings.social_heading_class }}">{{ section.settings.social_heading }}</h3>
+      <div class="{{ section.settings.social_icons }}">
+        {%- assign svg_class = section.settings.social_icon_svg -%}
+        {% if settings.social_instagram_link != blank %}
+          <a href="{{ settings.social_instagram_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Instagram">
+            {% render 'icon-social-instagram' class: svg_class  %}
+          </a>
+        {% endif %}
+        {% if settings.social_pinterest_link != blank %}
+          <a href="{{ settings.social_pinterest_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Pinterest">
+            {% render 'icon-social-pinterest' class: svg_class %}
+          </a>
+        {% endif %}
+        {% if settings.social_facebook_link != blank %}
+          <a href="{{ settings.social_facebook_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Facebook">
+            {% render 'icon-social-facebook' class: svg_class %}
+          </a>
+        {% endif %}
+        {% if settings.social_twitter_link != blank %}
+          <a href="{{ settings.social_twitter_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Twitter">
+            {% render 'icon-social-twitter' class: svg_class %}
+          </a>
+        {% endif %}
+        {% if settings.social_tiktok_link != blank %}
+          <a href="{{ settings.social_tiktok_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="TikTok">
+            {% render 'icon-social-tiktok' class: svg_class %}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Us",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading",
+      "default": "To Contact Us"
+    },
+    {
+      "type": "text",
+      "id": "subheading_text",
+      "label": "Subheading",
+      "default": "We will call you back"
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Phone Input Placeholder",
+      "default": "+000 XX XXX XX XX"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Submit Button Text",
+      "default": "Book a Call"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Thank you for contacting us! We'll get back to you soon."
+    },
+    {
+      "type": "text",
+      "id": "phone_heading",
+      "label": "Phone Section Heading",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "phone_1",
+      "label": "Phone Number 1",
+      "default": "+000000000000"
+    },
+    {
+      "type": "text",
+      "id": "phone_2",
+      "label": "Phone Number 2",
+      "default": "+000000000000"
+    },
+    {
+      "type": "text",
+      "id": "address_heading",
+      "label": "Address Section Heading",
+      "default": "Address"
+    },
+    {
+      "type": "text",
+      "id": "address_1",
+      "label": "Address Line 1",
+      "default": "OPENING HOURS: 8 TO 11 P.M."
+    },
+    {
+      "type": "text",
+      "id": "address_2",
+      "label": "Address Line 2",
+      "default": "15/4 Khreshchatyk Street, Kyiv"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Contact Image"
+    },
+    {
+      "type": "text",
+      "id": "social_heading",
+      "label": "Social Media Heading",
+      "default": "Follow us"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Classes"
+    },
+    {
+      "type": "text",
+      "id": "container",
+      "label": "Container Classes",
+      "default": "flex flex-col-reverse lg:flex-row w-full"
+    },
+    {
+      "type": "text",
+      "id": "left_container",
+      "label": "Left Container Classes",
+      "default": "w-full lg:w-1/2"
+    },
+    {
+      "type": "text",
+      "id": "top_block",
+      "label": "Left Container Top Block Container Classes",
+      "default": "py-10 px-4"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Classes",
+      "default": "text-mobile-heading-2 lg:text-3xl font-bold mb-2"
+    },
+    {
+      "type": "text",
+      "id": "form_block",
+      "label": "Left Container Form Block Container Classes",
+      "default": "text-black"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading Classes",
+      "default": "text-sm lg:text-base mb-4"
+    },
+    {
+      "type": "text",
+      "id": "form",
+      "label": "Form Classes",
+      "default": "flex flex-col gap-4"
+    },
+    {
+      "type": "text",
+      "id": "input_button_block",
+      "label": "Input and Button Div Classes",
+      "default": "text-black"
+    },
+    {
+      "type": "text",
+      "id": "input",
+      "label": "Input Classes",
+      "default": "w-full p-2 border border-gray-300 rounded"
+    },
+    {
+      "type": "text",
+      "id": "submit_button",
+      "label": "Submit Button Classes",
+      "default": "w-full p-2 bg-black text-white font-semibold rounded hover:bg-gray-800 transition-colors duration-300"
+    },
+    {
+      "type": "text",
+      "id": "form_error",
+      "label": "Form Error Classes",
+      "default": "text-red-500 text-sm mt-2"
+    },
+    {
+      "type": "text",
+      "id": "form_success",
+      "label": "Form Success Classes",
+      "default": "text-green-500 text-sm mt-2"
+    },
+    {
+      "type": "text",
+      "id": "info_container",
+      "label": "Info Container Classes",
+      "default": "flex flex-col lg:flex-row gap-8"
+    },
+    {
+      "type": "text",
+      "id": "info_column",
+      "label": "Info Column Classes",
+      "default": "flex-1"
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Info Heading Classes",
+      "default": "text-lg font-semibold mb-2"
+    },
+    {
+      "type": "text",
+      "id": "info_text",
+      "label": "Info Text Classes",
+      "default": "text-sm mb-1"
+    },
+    {
+      "type": "text",
+      "id": "right_container",
+      "label": "Right Container Classes",
+      "default": "w-full lg:w-1/2 border border-gray-200 border-t-0 lg:border-t lg:border-l-0"
+    },
+    {
+      "type": "text",
+      "id": "image_container",
+      "label": "Image Container Classes",
+      "default": "h-64 lg:h-auto"
+    },
+    {
+      "type": "text",
+      "id": "image_class",
+      "label": "Image Classes",
+      "default": "w-full h-full object-cover"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_image_class",
+      "label": "Placeholder Image Classes",
+      "default": "w-full h-full object-cover bg-gray-200"
+    },
+    {
+      "type": "text",
+      "id": "social_container",
+      "label": "Social Container Classes",
+      "default": "p-4 lg:p-8 border-t border-gray-200"
+    },
+    {
+      "type": "text",
+      "id": "social_heading_class",
+      "label": "Social Heading Classes",
+      "default": "text-lg font-semibold mb-4"
+    },
+    {
+      "type": "text",
+      "id": "social_icons",
+      "label": "Social Icons Container Classes",
+      "default": "flex gap-4"
+    },
+    {
+      "type": "text",
+      "id": "social_icon",
+      "label": "Social Icon Classes",
+      "default": "text-gray-600 hover:text-black transition-colors duration-300"
+    },
+    {
+      "type": "text",
+      "id": "social_icon_svg",
+      "label": "Social Icon SVG Classes",
+      "default": "w-5 h-5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Us"
+    }
+  ]
+}
+{% endschema %}
