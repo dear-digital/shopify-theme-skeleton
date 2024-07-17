@@ -93,7 +93,7 @@
         "bottom_block_second_column_SVG": "w-7 h-7",
         "bottom_block_second_column_address_2": "md:text-desktop-heading-6 font-semibold",
         "right_container": "w-full md:w-1\/2 border-brand-black md:border-l h-full bg-red-300 md:flex md:flex-col",
-        "image_container": "w-full bg-gray-200 md:flex md:flex-col flex-grow",
+        "image_container": "w-full bg-gray-200 md:flex md:flex-col  h-[80%] flex-grow",
         "image_class": "object-cover w-full h-full",
         "placeholder_image_class": "w-full h-full object-cover",
         "social_container": "flex w-full",
