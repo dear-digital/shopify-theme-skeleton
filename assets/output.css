@@ -1421,6 +1421,10 @@ video {
   gap: 0.25rem;
 }
 
+.gap-16 {
+  gap: 4rem;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -1597,6 +1601,11 @@ video {
 }
 
 .border-x {
+  border-left-width: 1px;
+  border-right-width: 1px;
+}
+
+.border-x-\[1px\] {
   border-left-width: 1px;
   border-right-width: 1px;
 }
@@ -2127,6 +2136,11 @@ video {
   line-height: 140%;
 }
 
+.text-mobile-button {
+  font-size: 14px;
+  line-height: 100%;
+}
+
 .text-mobile-caption {
   font-size: 14px;
   line-height: 120%;
@@ -2134,6 +2148,11 @@ video {
 
 .text-mobile-heading-1 {
   font-size: 40px;
+  line-height: 120%;
+}
+
+.text-mobile-heading-2 {
+  font-size: 34px;
   line-height: 120%;
 }
 
@@ -2154,6 +2173,11 @@ video {
 
 .text-mobile-links {
   font-size: 14px;
+  line-height: 120%;
+}
+
+.text-mobile-overline {
+  font-size: 12px;
   line-height: 120%;
 }
 
@@ -2474,10 +2498,6 @@ video {
 
 .duration-1000 {
   transition-duration: 1000ms;
-}
-
-.duration-200 {
-  transition-duration: 200ms;
 }
 
 .duration-300 {
@@ -3217,6 +3237,10 @@ video {
     aspect-ratio: 1.1875;
   }
 
+  .md\:aspect-\[1\.536\] {
+    aspect-ratio: 1.536;
+  }
+
   .md\:aspect-square {
     aspect-ratio: 1 / 1;
   }
@@ -3386,6 +3410,14 @@ video {
     border-radius: 20px;
   }
 
+  .md\:border-0 {
+    border-width: 0px;
+  }
+
+  .md\:border-\[1px\] {
+    border-width: 1px;
+  }
+
   .md\:border-b-0 {
     border-bottom-width: 0px;
   }
@@ -3418,6 +3450,11 @@ video {
     padding: 2rem;
   }
 
+  .md\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .md\:px-3 {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -3438,9 +3475,19 @@ video {
     padding-right: 1.25rem;
   }
 
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
   .md\:px-\[40px\] {
     padding-left: 40px;
     padding-right: 40px;
+  }
+
+  .md\:py-0 {
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 
   .md\:py-1 {
@@ -3461,6 +3508,11 @@ video {
   .md\:py-3\.5 {
     padding-top: 0.875rem;
     padding-bottom: 0.875rem;
+  }
+
+  .md\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .md\:py-\[20px\] {
@@ -3500,6 +3552,10 @@ video {
     padding-top: 1.5rem;
   }
 
+  .md\:text-center {
+    text-align: center;
+  }
+
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -3530,6 +3586,11 @@ video {
     line-height: 140%;
   }
 
+  .md\:text-desktop-button {
+    font-size: 16px;
+    line-height: 120%;
+  }
+
   .md\:text-desktop-caption {
     font-size: 14px;
     line-height: 120%;
@@ -3537,6 +3598,11 @@ video {
 
   .md\:text-desktop-heading-1 {
     font-size: 67px;
+    line-height: 120%;
+  }
+
+  .md\:text-desktop-heading-2 {
+    font-size: 50px;
     line-height: 120%;
   }
 
@@ -3565,9 +3631,19 @@ video {
     line-height: 120%;
   }
 
+  .md\:text-desktop-overline {
+    font-size: 14px;
+    line-height: 120%;
+  }
+
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-mobile-subtitle {
+    font-size: 18px;
+    line-height: 140%;
   }
 
   .md\:text-sm {
@@ -3660,6 +3736,10 @@ video {
     display: none;
   }
 
+  .lg\:aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+
   .lg\:h-80 {
     height: 20rem;
   }
@@ -3746,6 +3826,10 @@ video {
     flex-wrap: nowrap;
   }
 
+  .lg\:items-center {
+    align-items: center;
+  }
+
   .lg\:items-stretch {
     align-items: stretch;
   }
@@ -3829,6 +3913,11 @@ video {
     padding-bottom: 4rem;
   }
 
+  .lg\:py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
   .lg\:pb-0 {
     padding-bottom: 0px;
   }
@@ -3868,51 +3957,13 @@ video {
     margin-top: 1.25rem;
   }
 
-  .\32xl\:flex {
-    display: flex;
-  }
-
-  .\32xl\:h-\[50\%\] {
-    height: 50%;
-  }
-
-  .\32xl\:w-\[50\%\] {
-    width: 50%;
-  }
-
-  .\32xl\:flex-nowrap {
-    flex-wrap: nowrap;
-  }
-
-  .\32xl\:items-stretch {
-    align-items: stretch;
-  }
-
-  .\32xl\:justify-center {
-    justify-content: center;
-  }
-
   .\32xl\:gap-0 {
     gap: 0px;
-  }
-
-  .\32xl\:border-y-\[1px\] {
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-  }
-
-  .\32xl\:border-brand-black {
-    --tw-border-opacity: 1;
-    border-color: rgb(18 18 18 / var(--tw-border-opacity));
   }
 
   .\32xl\:px-20 {
     padding-left: 5rem;
     padding-right: 5rem;
-  }
-
-  .\32xl\:pb-0 {
-    padding-bottom: 0px;
   }
 }
 

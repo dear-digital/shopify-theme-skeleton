@@ -1,0 +1,184 @@
+<div class="our-service {{ section.settings.tw-our-service }}">
+  <h3 class="our-service__title {{ section.settings.tw-our-service__title }}">
+    {{ section.settings.our_service_title }}
+  </h3>
+</div>
+<div class="service {{ section.settings.tw-service }}">
+  <div class="service__left-col {{ section.settings.tw-service__left-col }}">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: '600' | image_tag: class: section.settings['tw-service__image'] }}
+    {% else %}
+      <div class="service__image {{ section.settings.tw-service__image }}">
+        {{ 'collection-1' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="service__right-col {{ section.settings.tw-service__right-col }}">
+    <div class="service__content {{ section.settings.tw-service__content }}">
+      <div class="service__text-content {{ section.settings.tw-service__text-content }}">
+        <div class="service__title {{ section.settings.tw-service__title }}">
+          {{ section.settings.title }}
+        </div>
+        <div class="service__heading-paragraph {{ section.settings.tw-service__heading-paragraph }}">
+          <div class="service__heading {{ section.settings.tw-service__heading }}">{{ section.settings.heading }}</div>
+          <div class="service__paragraph {{ section.settings.tw-service__paragraph }}">
+            {{ section.settings.paragraph }}
+          </div>
+        </div>
+      </div>
+      <div class="service__button {{ section.settings.tw-service__button }}">
+        <a
+          href="{{ section.settings.button_link }}"
+          class="service__link {{ section.settings.tw-service__link-button }}"
+        >
+          {{- section.settings.button_text -}}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Service",
+  "settings": [
+    {
+      "type": "text",
+      "id": "our_service_title",
+      "label": "Our Service Title",
+      "default": "Our Service"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "SERVICE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Flower Subscriptions"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Paragraph",
+      "default": "Experience the convenience and savings of regular flower deliveries with our flexible subscription service - up to 30% more profitable than one-time purchases."
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SUBSCRIBE NOW"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind CSS",
+      "info": "Apply Tailwind CSS classes to the elements of this section separated by a space."
+    },
+    {
+      "type": "textarea",
+      "id": "tw-our-service",
+      "label": "Style tw-our-service",
+      "default": "py-10 px-4 md:p-20 md:text-center lg:py-20 lg:px-2.5 border-[1px] border-brand-black"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-our-service__title",
+      "label": "Style tw-our-service__title",
+      "default": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service",
+      "label": "Style tw-service",
+      "default": "lg:flex lg:justify-center lg:items-center border-b-[1px] border-x-[1px] border-brand-black"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__left-col",
+      "label": "Style tw-service__left-col",
+      "default": "lg:w-1/2"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__image",
+      "label": "Style tw-service__image",
+      "default": "w-full object-cover object-center md:aspect-[1.536] lg:aspect-square border-b-[1px] lg:border-r-[1px] lg:border-b-0 border-brand-black"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__right-col",
+      "label": "Style tw-service__right-col",
+      "default": "px-4 py-10 text-center md:p-20 lg:w-1/2"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__content",
+      "label": "Style tw-service__content",
+      "default": "flex flex-col gap-16"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__text-content",
+      "label": "Style tw-service__text-content",
+      "default": "flex flex-col gap-6"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__title",
+      "label": "Style tw-service__title",
+      "default": "font-medium text-mobile-overline md:text-desktop-overline"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__heading-paragraph",
+      "label": "Style tw-service__heading-paragraph",
+      "default": "flex flex-col gap-4"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__heading",
+      "label": "Style tw-service__heading",
+      "default": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__paragraph",
+      "label": "Style tw-service__paragraph",
+      "default": "font-regular text-mobile-body md:text-mobile-subtitle md:font-medium"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__button",
+      "label": "Style tw-service__button",
+      "default": "py-4 px-6 border-[1px] border-brand-black md:py-0 md:px-0 md:border-0"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-service__link-button",
+      "label": "Style tw-service__link-button",
+      "default": "md:py-4 md:px-6 md:border-[1px] border-brand-black font-medium text-mobile-button md:text-desktop-button"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header"]
+  }
+}
+{% endschema %}
