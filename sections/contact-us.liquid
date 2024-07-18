@@ -41,11 +41,11 @@
         <div class="{{ section.settings.bottom_block_first_column_info_text_div }}">
           {%- assign svg_class = section.settings.bottom_block_first_column_info_text_icon_SVG -%}
           <div class="{{ section.settings.bottom_block_first_column_info_text_icon_div }}">
-            <span> {% render 'icon-social-facebook' class: svg_class %} </span>
+            <span> {% render 'icon-call' class: svg_class %} </span>
             <div class="{{ section.settings.info_text }}">{{ section.settings.phone_1 }} </div>
           </div>
           <div class="{{ section.settings.bottom_block_first_column_info_text_icon_div }}">
-            {% render 'icon-social-facebook' class: svg_class %}
+            {% render 'icon-call' class: svg_class %}
             <p class="{{ section.settings.info_text }}">{{ section.settings.phone_2 }}</p>
           </div>
         </div>
@@ -59,7 +59,7 @@
           </div>
           
           <div class="{{ section.settings.bottom_block_second_column_address_map_icon_div }}">
-            {% render 'icon-social-facebook' class: map_svg_class %}
+            {% render 'icon-location' class: map_svg_class %}
             <p class="{{ section.settings.bottom_block_second_column_address_2 }}">{{ section.settings.address_2 }}</p>
           </div>
         </div>      
@@ -103,9 +103,9 @@
             {% render 'icon-social-twitter' class: svg_class %}
           </a>
         {% endif %}
-        {% if settings.social_tiktok_link != blank %}
-          <a href="{{ settings.social_tiktok_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="TikTok">
-            {% render 'icon-social-tiktok' class: svg_class %}
+        {% if settings.social_vimeo_link != blank %}
+          <a href="{{ settings.social_vimeo_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Vimeo">
+            {% render 'icon-social-vimeo' class: svg_class %}
           </a>
         {% endif %}
       </div>
@@ -208,49 +208,49 @@
       "type": "textarea",
       "id": "left_container",
       "label": "Left Container Classes",
-      "default": "w-full lg:w-1/2 lg:h-full"
+      "default": "w-full lg:w-1/2 h-[702px] md:h-[768px] lg:h-full flex flex-col"
     },
     {
       "type": "textarea",
       "id": "top_block",
       "label": "Left Container Top Block Container Classes",
-      "default": "py-10 px-4 lg:p-20 lg:flex lg:flex-col lg:gap-6 lg:h-1/2"
+      "default": "py-10 px-4 md:p-20 md:flex md:flex-col md:gap-6 border-brand-black md:h-1/2"
     },
     {
       "type": "textarea",
       "id": "heading",
       "label": "Heading Classes",
-      "default": "text-mobile-heading-2 lg:text-desktop-heading-2 font-semibold"
+      "default": "text-mobile-heading-2 md:text-desktop-heading-2 font-semibold"
     },
     {
       "type": "textarea",
       "id": "form_block",
       "label": "Left Container Form Block Container Classes",
-      "default": "lg:flex lg:flex-col lg:gap-4"
+      "default": "flex flex-col gap-4"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading Classes",
-      "default": "lg:text-desktop-hero-caption font-medium",
+      "default": "text-mobile-subtitle md:text-desktop-hero-caption font-medium",
     },
     {
       "type": "textarea",
       "id": "input_button_block",
       "label": "Input and Button Div Classes",
-      "default": "lg:flex lg:gap-4 lg:h-[56px]"
+      "default": "flex flex-col md:flex-row gap-4 md:h-[56px]"
     },
     {
       "type": "textarea",
       "id": "input",
       "label": "Input Classes",
-      "default": "w-full p-2 border border-gray-300 text-brand-black outline-none"
+      "default": "w-full p-2 border border-brand-light-gray text-brand-black outline-none h-[48px] md:h-full"
     },
     {
       "type": "textarea",
       "id": "submit_button",
       "label": "Submit Button Classes",
-      "default": "w-full bg-brand-black text-white font-medium hover:text-slate-200 transition-colors duration-300 lg:px-6 lg:pt-4 lg:pb-[14px] lg:text-desktop-button uppercase tracking-[0.03em]"
+      "default": "h-[48px] md:h-full w-full bg-brand-black text-white font-medium hover:text-slate-100 transition-colors duration-300 md:px-6 md:pt-4 md:pb-[14px] text-mobile-button md:text-desktop-button uppercase tracking-[0.03em]"
     },
     {
       "type": "textarea",
@@ -274,25 +274,25 @@
       "type": "textarea",
       "id": "bottom_block",
       "label": "Left Container Bottom Block Classes",
-      "default": "flex flex-col lg:flex-row lg:h-1/2"
+      "default": "flex flex-col md:flex-row md:h-1/2 flex-grow"
     },
      {
       "type": "textarea",
       "id": "info_heading",
       "label": "Info Heading Classes for both columns",
-      "default": "lg:text-desktop-heading-3 font-medium border-brand-black lg:border-b lg:py-4 lg:px-[10px] lg:text-center"
+      "default": "text-mobile-heading-3 md:text-desktop-heading-3 font-medium border-brand-black py-4 px-4 md:px-[10px] md:text-center border-b "
     },
     {
       "type": "textarea",
       "id": "bottom_block_first_column",
       "label": "Bottom Block First Column Classes",
-      "default": "lg:w-1/2 lg:border-brand-black lg:border lg:flex lg:flex-col"
+      "default": "md:w-1/2 border-brand-black border flex flex-col"
     },
     {
       "type": "textarea",
       "id": "bottom_block_first_column_info_text_div",
       "label": "Bottom Block First Column Info Text Div",
-      "default": "lg:flex lg:flex-col lg:items-center lg:justify-center lg:flex-grow lg:gap-6"
+      "default": "flex flex-col py-10 px-4 gap-4 md:items-center md:justify-center md:flex-grow md:p-[10px] md:gap-6 lg:p-6"
     },
     {
       "type": "textarea",
@@ -304,31 +304,31 @@
       "type": "textarea",
       "id": "bottom_block_first_column_info_text_icon_SVG",
       "label": "Bottom Block First Column SVG Classes",
-      "default": "w-6 h-6"
+      "default": "w-4 h-4 md:w-5 md:h-5"
     },
     {
       "type": "textarea",
       "id": "info_text",
       "label": "Info Text Classes",
-      "default": "lg:text-desktop-heading-6 font-semibold"
+      "default": "text-desktop-links md:text-desktop-heading-6 font-semibold flex items-center"
     },
     {
       "type": "textarea",
       "id": "bottom_block_second_column",
       "label": "Bottom Block Second Column Classes",
-      "default": "lg:w-1/2 lg:border-brand-black lg:border lg:border-x-0 lg:flex lg:flex-col"
+      "default": "md:w-1/2 border-brand-black border border-t-0 md:border-t md:border-l-0 lg:border-x-0 flex flex-col h-full"
     },
     {
       "type": "textarea",
       "id": "bottom_block_second_column_address_map_div",
       "label": "Bottom Block Second Column Address Map Div",
-      "default": "lg:p-6 lg:flex lg:flex-col items-center gap-[22px] justify-center lg:flex-grow"
+      "default": "px-4 py-10 md:p-[10px] lg:p-6 flex flex-col md:items-center gap-2 md:gap-6 justify-center flex-grow"
     },
     {
       "type": "textarea",
       "id": "bottom_block_second_column_address_1",
       "label": "Bottom Block Address 1",
-      "default": "lg:text-desktop-caption uppercase font-medium"
+      "default": "text-mobile-caption-small  md:text-desktop-caption uppercase font-medium"
     },
     {
       "type": "textarea",
@@ -340,7 +340,7 @@
       "type": "textarea",
       "id": "bottom_block_second_column_SVG",
       "label": "Bottom Block Address 2 SVG Classes",
-      "default": "w-7 h-7"
+      "default": "w-5 h-5 md:w-6 md:h-6"
     },
     {
       "type": "textarea",
@@ -352,13 +352,13 @@
       "type": "textarea",
       "id": "right_container",
       "label": "Right Container Classes",
-      "default": "w-full lg:w-1/2 border-brand-black lg:border-l h-full lg:flex lg:flex-col"
+      "default": "w-full lg:w-1/2 border-brand-black h-[500px] md:h-[580px] lg:h-full  flex flex-col lg:border-l "
     },
     {
       "type": "textarea",
       "id": "image_container",
       "label": "Image Container Classes",
-      "default": "w-full lg:flex lg:flex-col  h-[80%] flex-grow"
+      "default": "w-full flex flex-col flex-grow h-[80%] "
     },
     {
       "type": "textarea",
@@ -376,19 +376,19 @@
       "type": "textarea",
       "id": "social_container",
       "label": "Social Container Classes",
-      "default": "flex w-full"
+      "default": "flex w-full flex-col md:flex-row"
     },
     {
       "type": "textarea",
       "id": "social_heading_class",
       "label": "Social Heading Classes",
-      "default": "text-mobile-heading-3 font-medium px-4 pt-4 pb-2 lg:text-desktop-heading-3 lg:px-10 lg:py-4 lg:w-1/2 lg:text-center border-brand-black lg:border lg:border-x-0"
+      "default": "text-mobile-heading-3 font-medium px-4 pt-4 pb-2 md:text-desktop-heading-3 md:px-10 md:py-4 md:w-1/2 md:text-center border-brand-black md:border md:border-r-0 lg:border-x-0"
     },
     {
       "type": "textarea",
       "id": "social_icons",
       "label": "Social Icons Container Classes",
-      "default": "flex gap-8 px-4 pt-2 pb-4 border-b border-brand-black  lg:px-10 lg:py-4 lg:w-1/2 justify-center items-center lg:border lg:border-r-0"
+      "default": "flex gap-8 px-4 pt-2 pb-4 border-b border-brand-black  md:px-10 md:py-4 md:w-1/2 md:justify-center items-center md:border lg:border-r-0"
     },
     {
       "type": "textarea",
