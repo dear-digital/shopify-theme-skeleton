@@ -1,155 +1,41 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
-    "hero_ydY9tK": {
-      "type": "hero",
-      "blocks": {
-        "collection_TnDJWK": {
-          "type": "collection",
-          "settings": {
-            "collection": "new-snowboards",
-            "text": "Shop now",
-            "reverse-image": true,
-            "hero__row": "flex items-stretch  border-[1px] border-brand-black",
-            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-brand-black p-3",
-            "hero__product-title": "flex-none mt-auto text-center text-mobile-heading-3 font-medium md:text-desktop-heading-3",
-            "hero__product-link": "mt-auto text-center text-mobile-links font-semibold pb-2 gap-1 flex justify-center md:text-desktop-heading-6",
-            "hero__product-link-text": "font-bold inline-block hover:underline",
-            "hero__product-link-svg": "flex items-center h-5 w-5 transition-transform duration-300 ease-in-out",
-            "hero__product-image": "w-1\/2 flex-grow object-cover border-brand-black aspect-[0.9375] md:aspect-square",
-            "hero__product-img": "w-full h-full object-cover"
-          }
-        },
-        "collection_km7wLd": {
-          "type": "collection",
-          "settings": {
-            "collection": "dried-flowers",
-            "text": "Shop now",
-            "reverse-image": false,
-            "hero__row": "flex items-stretch  border-l-[1px] border-b-[1px] border-r-[1px] border-brand-black",
-            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-brand-black p-3",
-            "hero__product-title": "flex-none mt-auto text-center text-mobile-heading-3 font-medium md:text-desktop-heading-3",
-            "hero__product-link": "mt-auto text-center text-mobile-links font-semibold pb-2 gap-1 flex justify-center md:text-desktop-heading-6",
-            "hero__product-link-text": "font-bold inline-block hover:underline",
-            "hero__product-link-svg": "flex items-center h-5 w-5 transition-transform duration-300 ease-in-out",
-            "hero__product-image": "w-1\/2 flex-grow object-cover border-brand-black aspect-[0.9375] md:aspect-square",
-            "hero__product-img": "w-full h-full object-cover"
-          }
-        }
-      },
-      "block_order": [
-        "collection_TnDJWK",
-        "collection_km7wLd"
-      ],
-      "disabled": true,
+    "dev_service_LDAbFY": {
+      "type": "dev__service",
       "settings": {
-        "hero-main": "Kyiv LuxeBouquets",
-        "hero-main-richtext": "<p>Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread Joy with Our <strong>Online Flower Delivery Service<\/strong><\/p>",
-        "hero__image": "shopify:\/\/shop_images\/heroimage.jpg",
-        "hero__description": "Experience the joy of giving with our modern floral studio. Order online and send fresh flowers, plants and gifts today.",
-        "hero": "flex-wrap 2xl:flex-nowrap 2xl:flex w-full justify-between items-start 2xl:items-stretch",
-        "hero__left-col": "w-full 2xl:w-[50%] px-4 py-10 md:p-20 2xl:border-y-[1px] 2xl:border-brand-black",
-        "hero__header": "flex flex-col 2xl:h-[50%] 2xl:justify-center",
-        "hero__title": "text-mobile-heading-1 font-semibold pb-4 md:pr-12 md:text-desktop-heading-1",
-        "hero__subtitle": "text-mobile-hero-caption pb-6 md:pb-[54px] md:text-desktop-hero-caption 2xl:pb-0",
-        "hero__content": "flex pt-4 border-t-[1px] border-brand-black md:pt-6 2xl:align-center",
-        "tail-hero__image": "w-1\/2 pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]",
-        "tail-hero__description": "w-1\/2 pl-4 content-end text-mobile-small-description md:pl-6 md:text-desktop-caption",
-        "hero__right-col": "w-full 2xl:w-[50%]"
-      }
-    },
-    "hero_P8Y8XG": {
-      "type": "hero",
-      "blocks": {
-        "collection_XKYUrA": {
-          "type": "collection",
-          "settings": {
-            "collection": "dried-flowers",
-            "text": "Shop now",
-            "reverse-image": false,
-            "hero__row": "flex items-stretch border-[1px] border-brand-black group lg:border-t-0",
-            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-brand-black p-3",
-            "hero__product-title": "flex-none mt-auto text-center text-mobile-heading-3 font-medium md:text-desktop-heading-3",
-            "hero__product-link": "mt-auto text-center text-mobile-links font-semibold pb-2 gap-1 flex justify-center md:text-desktop-heading-6 items-center",
-            "hero__product-link-text": "font-bold inline-block hover:underline",
-            "hero__product-link-svg": "flex items-center h-5 w-5 transition-transform duration-300 ease-in-out",
-            "hero__product-image": "w-1\/2 flex-grow object-cover border-brand-black aspect-[0.9375] md:aspect-square overflow-hidden",
-            "hero__product-img": "w-full h-full object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110"
-          }
-        },
-        "collection_Aamz4h": {
-          "type": "collection",
-          "settings": {
-            "collection": "new-snowboards",
-            "text": "Shop now",
-            "reverse-image": true,
-            "hero__row": "flex items-stretch border-[1px] border-brand-black group lg:border-t-0",
-            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-brand-black p-3",
-            "hero__product-title": "flex-none mt-auto text-center text-mobile-heading-3 font-medium md:text-desktop-heading-3",
-            "hero__product-link": "mt-auto text-center text-mobile-links font-semibold pb-2 gap-1 flex justify-center md:text-desktop-heading-6 items-center",
-            "hero__product-link-text": "font-bold inline-block hover:underline",
-            "hero__product-link-svg": "flex items-center h-5 w-5 transition-transform duration-300 ease-in-out",
-            "hero__product-image": "w-1\/2 flex-grow object-cover border-brand-black aspect-[0.9375] md:aspect-square overflow-hidden",
-            "hero__product-img": "w-full h-full object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110"
-          }
-        },
-        "collection_pRcddV": {
-          "type": "collection",
-          "settings": {
-            "collection": "dried-flowers",
-            "text": "Shop now",
-            "reverse-image": false,
-            "hero__row": "flex items-stretch border-[1px] border-brand-black group lg:border-t-0",
-            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-brand-black p-3",
-            "hero__product-title": "flex-none mt-auto text-center text-mobile-heading-3 font-medium md:text-desktop-heading-3",
-            "hero__product-link": "mt-auto text-center text-mobile-links font-semibold pb-2 gap-1 flex justify-center md:text-desktop-heading-6 items-center",
-            "hero__product-link-text": "font-bold inline-block hover:underline",
-            "hero__product-link-svg": "flex items-center h-5 w-5 transition-transform duration-300 ease-in-out",
-            "hero__product-image": "w-1\/2 flex-grow object-cover border-brand-black aspect-[0.9375] md:aspect-square overflow-hidden",
-            "hero__product-img": "w-full h-full object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110"
-          }
-        },
-        "collection_rCgLkK": {
-          "type": "collection",
-          "settings": {
-            "collection": "new-snowboards",
-            "text": "Shop now",
-            "reverse-image": true,
-            "hero__row": "flex items-stretch border-[1px] border-brand-black group lg:border-t-0",
-            "hero__product": "w-1\/2 flex flex-col justify-between flex-grow border-brand-black p-3",
-            "hero__product-title": "flex-none mt-auto text-center text-mobile-heading-3 font-medium md:text-desktop-heading-3",
-            "hero__product-link": "mt-auto text-center text-mobile-links font-semibold pb-2 gap-1 flex justify-center md:text-desktop-heading-6 items-center",
-            "hero__product-link-text": "font-bold inline-block hover:underline",
-            "hero__product-link-svg": "flex items-center h-5 w-5 transition-transform duration-300 ease-in-out",
-            "hero__product-image": "w-1\/2 flex-grow object-cover border-brand-black aspect-[0.9375] md:aspect-square overflow-hidden",
-            "hero__product-img": "w-full h-full object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110"
-          }
-        }
-      },
-      "block_order": [
-        "collection_XKYUrA",
-        "collection_Aamz4h",
-        "collection_pRcddV",
-        "collection_rCgLkK"
-      ],
-      "settings": {
-        "hero-main": "Kyiv LuxeBouquets",
-        "hero-main-richtext": "<p>Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread Joy with Our Online Flower Delivery Service<\/p>",
-        "hero__image": "shopify:\/\/shop_images\/438514729_438477438544536_3915812211024408095_n_828d93fa-95b3-47d5-8e06-78c39556ff07.jpg",
-        "hero__description": "Experience the joy of giving with our modern floral studio. Order online and send fresh flowers, plants and gifts today.",
-        "hero": "flex-wrap lg:flex-nowrap lg:flex w-full justify-between items-start lg:items-stretch lg:max-h-[50vw] lg:overflow-auto lg:hide-scrollbar",
-        "hero__left-col": "w-full lg:w-1\/2 px-4 py-10 md:p-20 lg:border-b-[1px] lg:border-brand-black lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden",
-        "hero__header": "flex flex-col lg:h-[50%] lg:justify-center",
-        "hero__title": "text-mobile-heading-1 font-semibold pb-4 md:pr-12 md:text-desktop-heading-1",
-        "hero__subtitle": "text-mobile-hero-caption pb-6 md:pb-[54px] md:text-desktop-hero-caption lg:pb-0",
-        "hero__content": "flex pt-4 border-t-[1px] border-brand-black md:pt-6 lg:align-center",
-        "tail-hero__image": "w-1\/2 pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]",
-        "tail-hero__description": "w-1\/2 pl-4 content-end text-mobile-small-description md:pl-6 md:text-desktop-caption",
-        "hero__right-col": "w-full lg:w-1\/2 lg:h-screen lg:max-h-[50vw]"
+        "our_service_title": "Our Service",
+        "title": "SERVICE",
+        "heading": "Flower Subscriptions",
+        "paragraph": "Experience the convenience and savings of regular flower deliveries with our flexible subscription service - up to 30% more profitable than one-time purchases.",
+        "button_link": "",
+        "button_text": "SUBSCRIBE NOW",
+        "tw-our-service": "py-10 px-4 md:p-20 md:text-center lg:py-20 lg:px-2.5 border-[1px] border-brand-black",
+        "tw-our-service__title": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2",
+        "tw-service": "lg:flex lg:justify-center lg:items-center border-b-[1px] border-x-[1px] border-brand-black",
+        "tw-service__left-col": "lg:w-1\/2",
+        "tw-service__image": "w-full object-cover object-center md:aspect-[1.536] lg:aspect-square border-b-[1px] lg:border-r-[1px] lg:border-b-0 border-brand-black",
+        "tw-service__right-col": "px-4 py-10 text-center md:p-20 lg:w-1\/2",
+        "tw-service__content": "flex flex-col gap-16",
+        "tw-service__text-content": "flex flex-col gap-6",
+        "tw-service__title": "font-medium text-mobile-overline md:text-desktop-overline",
+        "tw-service__heading-paragraph": "flex flex-col gap-4",
+        "tw-service__heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2",
+        "tw-service__paragraph": "font-regular text-mobile-body md:text-mobile-subtitle md:font-medium",
+        "tw-service__button": "py-4 px-6 border-[1px] border-brand-black md:py-0 md:px-0 md:border-0",
+        "tw-service__link-button": "md:py-4 md:px-6 md:border-[1px] border-brand-black font-medium text-mobile-button md:text-desktop-button"
       }
     }
   },
   "order": [
-    "hero_ydY9tK",
-    "hero_P8Y8XG"
+    "dev_service_LDAbFY"
   ]
 }
