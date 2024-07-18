@@ -3711,6 +3711,22 @@ video {
     height: 100vh;
   }
 
+  .lg\:h-1\/2 {
+    height: 50%;
+  }
+
+  .lg\:h-\[56px\] {
+    height: 56px;
+  }
+
+  .lg\:h-\[720px\] {
+    height: 720px;
+  }
+
+  .lg\:h-full {
+    height: 100%;
+  }
+
   .lg\:max-h-\[50vw\] {
     max-height: 50vw;
   }
@@ -3729,6 +3745,10 @@ video {
 
   .lg\:flex-1 {
     flex: 1 1 0%;
+  }
+
+  .lg\:flex-grow {
+    flex-grow: 1;
   }
 
   .lg\:-translate-x-1 {
@@ -3773,8 +3793,20 @@ video {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
+  .lg\:flex-col {
+    flex-direction: column;
+  }
+
   .lg\:flex-nowrap {
     flex-wrap: nowrap;
+  }
+
+  .lg\:items-center {
+    align-items: center;
   }
 
   .lg\:items-stretch {
@@ -3789,6 +3821,14 @@ video {
     gap: 3rem;
   }
 
+  .lg\:gap-4 {
+    gap: 1rem;
+  }
+
+  .lg\:gap-6 {
+    gap: 1.5rem;
+  }
+
   .lg\:overflow-auto {
     overflow: auto;
   }
@@ -3797,9 +3837,18 @@ video {
     overflow: hidden;
   }
 
+  .lg\:border {
+    border-width: 1px;
+  }
+
   .lg\:border-x-\[1px\] {
     border-left-width: 1px;
     border-right-width: 1px;
+  }
+
+  .lg\:border-x-0 {
+    border-left-width: 0px;
+    border-right-width: 0px;
   }
 
   .lg\:border-b-\[1px\] {
@@ -3814,9 +3863,29 @@ video {
     border-top-width: 0px;
   }
 
+  .lg\:border-b {
+    border-bottom-width: 1px;
+  }
+
+  .lg\:border-l {
+    border-left-width: 1px;
+  }
+
+  .lg\:border-r-0 {
+    border-right-width: 0px;
+  }
+
   .lg\:border-brand-black {
     --tw-border-opacity: 1;
     border-color: rgb(18 18 18 / var(--tw-border-opacity));
+  }
+
+  .lg\:p-20 {
+    padding: 5rem;
+  }
+
+  .lg\:p-6 {
+    padding: 1.5rem;
   }
 
   .lg\:px-6 {
@@ -3834,8 +3903,65 @@ video {
     padding-bottom: 4rem;
   }
 
+  .lg\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .lg\:px-\[10px\] {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .lg\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
   .lg\:pb-0 {
     padding-bottom: 0px;
+  }
+
+  .lg\:pb-\[14px\] {
+    padding-bottom: 14px;
+  }
+
+  .lg\:pt-4 {
+    padding-top: 1rem;
+  }
+
+  .lg\:text-center {
+    text-align: center;
+  }
+
+  .lg\:text-desktop-button {
+    font-size: 16px;
+    line-height: 120%;
+  }
+
+  .lg\:text-desktop-caption {
+    font-size: 14px;
+    line-height: 120%;
+  }
+
+  .lg\:text-desktop-heading-2 {
+    font-size: 50px;
+    line-height: 120%;
+  }
+
+  .lg\:text-desktop-heading-3 {
+    font-size: 38px;
+    line-height: 120%;
+  }
+
+  .lg\:text-desktop-heading-6 {
+    font-size: 16px;
+    line-height: 120%;
+  }
+
+  .lg\:text-desktop-hero-caption {
+    font-size: 18px;
+    line-height: 140%;
   }
 
   .lg\:hide-scrollbar {
