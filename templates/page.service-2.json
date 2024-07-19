@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "service_section_2_MTdHVp": {
+      "type": "service-section-2",
+      "settings": {
+        "service_2__container_text_content_small_header": "Service",
+        "service_2__container_text_content_heading_paragraph_div_header": "Wedding & Event Decor",
+        "service_2__container_text_content_heading_paragraph_div_para": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
+        "service_2__container_button_label": "Inquire Now",
+        "service_2__container_button_link": "",
+        "service_2__container": "text-black",
+        "service_2__container_text_content": "text-black",
+        "service_2__container_text_content_small_header_classes": "text-black",
+        "service_2__container_text_content_heading_paragraph_div": "text-black",
+        "service_2__container_text_content_heading_paragraph_div_header_classes": "text-brand-black text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
+        "service_2__container_text_content_heading_paragraph_div_para_classes": "flex flex-col gap-6",
+        "service_2__container_button_div": "flex items-start justify-center mt-16 md:inline-block",
+        "service_2__container_button_classes": "text-brand-black uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-brand-black pt-4 pb-[14px] px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
+      }
+    }
+  },
+  "order": [
+    "service_section_2_MTdHVp"
+  ]
+}
