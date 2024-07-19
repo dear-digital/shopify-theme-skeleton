@@ -1,67 +1,79 @@
-name: Shopify Theme Management
+# name: Shopify Theme Management
+
+# on:
+#   pull_request:
+#     types: [opened, synchronize, closed]
+
+# jobs:
+#   manage-theme:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v4.1.7
+
+#       - name: Debug API Authentication
+#         run: |
+#           echo "Testing API connection..."
+#           response=$(curl -sS -o /dev/null -w "%{http_code}" -X GET "https://${{ secrets.SHOP_STORE }}/admin/api/2024-10/shop.json" \
+#             -H "Content-Type: application/json" \
+#             -H "X-Shopify-Access-Token: ${{ secrets.SHOP_PASSWORD }}")
+#           echo "API Response Code: $response"
+#           if [ "$response" = "200" ]; then
+#             echo "API connection successful"
+#           else
+#             echo "API connection failed"
+#             exit 1
+#           fi
+#         env:
+#           SHOP_STORE: ${{ secrets.SHOP_STORE }}
+#           SHOP_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+
+#       - name: Deploy PR-specific Shopify theme
+#         if: github.event.action != 'closed'
+#         uses: matthew-petrie/shopify-theme-actions@1.2.2
+#         with:
+#           ACTION: "DEPLOYMENT_PREVIEW"
+#           SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+#           SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+#           SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
+#           SHOPIFY_THEME_DIRECTORY: "."
+#           SHOPIFY_ALLOW_LIVE_THEME_DEPLOYMENT: false
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+#       - name: Remove PR-specific Shopify theme
+#         if: github.event.action == 'closed'
+#         uses: matthew-petrie/shopify-theme-actions@1.2.2
+#         with:
+#           ACTION: "REMOVE_DEPLOYMENT_PREVIEW_THEME"
+#           SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+#           SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+#           SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           SHOPIFY_THEME_DIRECTORY: "."
+
+#       - name: Debug Action Output
+#         run: |
+#           echo "GitHub event name: ${{ github.event_name }}"
+#           echo "GitHub event action: ${{ github.event.action }}"
+#           echo "PR number: ${{ github.event.pull_request.number }}"
+
+run-name: Create Theme Preview
+
+permissions:
+  pull-requests: write
 
 on:
-  pull_request:
-    types: [opened, synchronize, closed]
-
+  issue_comment:
+    types: [created]
 jobs:
-  manage-theme:
+  deploy:
+    name: Preview
     runs-on: ubuntu-latest
+    if: contains(github.event.comment.body, '!preview')
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4.1.7
-
-      - name: Verify Secret Values
-        run: |
-          echo "Calculating hashes of secrets..."
-          echo "SHOP_STORE hash: $(echo -n $SHOP_STORE | sha256sum)"
-          echo "SHOP_PASSWORD hash: $(echo -n $SHOP_PASSWORD | sha256sum)"
-        env:
-          SHOP_STORE: ${{ secrets.SHOP_STORE }}
-          SHOP_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
-
-      - name: Debug API Authentication
-        run: |
-          echo "Testing API connection..."
-          response=$(curl -sS -o /dev/null -w "%{http_code}" -X GET "https://${{ secrets.SHOP_STORE }}/admin/api/2024-10/shop.json" \
-            -H "Content-Type: application/json" \
-            -H "X-Shopify-Access-Token: ${{ secrets.SHOP_PASSWORD }}")
-          echo "API Response Code: $response"
-          if [ "$response" = "200" ]; then
-            echo "API connection successful"
-          else
-            echo "API connection failed"
-            exit 1
-          fi
-        env:
-          SHOP_STORE: ${{ secrets.SHOP_STORE }}
-          SHOP_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
-
-      - name: Deploy PR-specific Shopify theme
-        if: github.event.action != 'closed'
-        uses: matthew-petrie/shopify-theme-actions@1.2.2
+      - uses: Brand-Boosting-GmbH/shopify-theme-preview@v1.2.1
         with:
-          ACTION: "DEPLOYMENT_PREVIEW"
-          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
-          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
-          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
-          SHOPIFY_THEME_DIRECTORY: "."
-          SHOPIFY_ALLOW_LIVE_THEME_DEPLOYMENT: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Remove PR-specific Shopify theme
-        if: github.event.action == 'closed'
-        uses: matthew-petrie/shopify-theme-actions@1.2.2
-        with:
-          ACTION: "REMOVE_DEPLOYMENT_PREVIEW_THEME"
-          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
-          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
-          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SHOPIFY_THEME_DIRECTORY: "."
-
-      - name: Debug Action Output
-        run: |
-          echo "GitHub event name: ${{ github.event_name }}"
-          echo "GitHub event action: ${{ github.event.action }}"
-          echo "PR number: ${{ github.event.pull_request.number }}"
+          shopify_flag_store: ${{ secrets.SHOP_STORE }}
+          shopify_cli_theme_token: ${{ secrets.SHOP_ACCESS_TOKEN}}
+          build_step: "npm i && npm run build"
+          dir: "."
