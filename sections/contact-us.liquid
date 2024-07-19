@@ -2,72 +2,18 @@
   <div class="{{ section.settings.left_container }}">
     <div class="{{ section.settings.top_block }}">
       <h2 class="{{ section.settings.heading }}">{{ section.settings.heading_text }}</h2>
-      {% comment %} {% form 'contact', class: section.settings.form %}
-        <div class="{{ section.settings.form_block }}"> 
-          <p class="{{ section.settings.subheading }}">{{ section.settings.subheading_text }}</p>
-
-          <div class="{{ section.settings.input_button_block }}">
-            <input
-              type="tel"
-              name="contact[phone]"
-              placeholder="{{ section.settings.phone_placeholder }}"
-              class="{{ section.settings.input }}"
-              required
-            >
-            <input type="hidden" name="contact[tags]" value="phone-contact">
-            <button type="submit" name="commit" class="{{ section.settings.submit_button }}">
-              {{ section.settings.button_text }}
-            </button>
-          </div>
+    
+      <div class="{{ section.settings.form_block }}"> 
+        <p class="{{ section.settings.subheading }}">{{ section.settings.subheading_text }}</p>
+        <div class="{{ section.settings.book_call_button_block }}">
+          <!-- Calendly link widget begin -->
+          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+          <a href="" class="{{ section.settings.submit_button }}" onclick="Calendly.initPopupWidget({url: '{{ section.settings.calendly_url }}'});return false;">{{ section.settings.button_text }}</a>
+          <!-- Calendly link widget end -->
         </div>
-        {% if form.errors %}
-          {% for error in form.errors %}
-            <p class="{{ section.settings.form_error }}">
-              {% render 'icon-error' %}
-              {{ error }}
-            </p>
-          {% endfor %}
-        {% endif %}
-        {% if form.posted_successfully? %}
-          <p class="{{ section.settings.form_success }}">
-            {% render 'icon-success' %}
-            {{ section.settings.success_message | escape }}
-          </p>
-        {% endif %}
-      {% endform %} {% endcomment %}
-      {% form 'contact', class: section.settings.form %}
-        <div class="{{ section.settings.form_block }}"> 
-          <p class="{{ section.settings.subheading }}">{{ section.settings.subheading_text }}</p>
-          <div class="{{ section.settings.input_button_block }}">
-            <input
-              type="tel"
-              id="ContactFormPhone"
-              name="contact[phone]"
-              placeholder="{{ section.settings.phone_placeholder }}"
-              class="{{ section.settings.input }}"
-              required
-            >
-            <input type="hidden" name="contact[email]" value="phone@example.com">
-            <button type="submit" class="{{ section.settings.submit_button }}">
-              {{ section.settings.button_text }}
-            </button>
-          </div>
-        </div>
-        {% if form.errors %}
-          {% for error in form.errors %}
-            <p class="{{ section.settings.form_error }}">
-              {% render 'icon-error' %}
-              {{ error }}
-            </p>
-          {% endfor %}
-        {% endif %}
-        {% if form.posted_successfully? %}
-          <p class="{{ section.settings.form_success }}">
-            {% render 'icon-success' %}
-            {{ section.settings.success_message | escape }}
-          </p>
-        {% endif %}
-      {% endform %}
+      </div>
+        
     </div>
     <div class="{{ section.settings.bottom_block }}">
       <div class="{{ section.settings.bottom_block_first_column }}">
@@ -161,25 +107,19 @@
       "type": "inline_richtext",
       "id": "subheading_text",
       "label": "Subheading",
-      "default": "We will call you back"
+      "default": "schedule an appointment with us now"
     },
     {
-      "type": "text",
-      "id": "phone_placeholder",
-      "label": "Phone Input Placeholder",
-      "default": "+000 XX XXX XX XX"
+      "type": "url",
+      "id": "calendly_url",
+      "label": "Calendly URL",
+      "info": "Use https://calendly.com/test123/15min"
     },
     {
       "type": "text",
       "id": "button_text",
-      "label": "Submit Button Text",
+      "label": "Book Call Button Text",
       "default": "Book a Call"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "success_message",
-      "label": "Success Message",
-      "default": "Thank you for contacting us! We'll get back to you soon."
     },
     {
       "type": "text",
@@ -248,7 +188,7 @@
       "type": "textarea",
       "id": "top_block",
       "label": "Left Container Top Block Container Classes",
-      "default": "py-10 px-4 md:p-20 md:flex md:flex-col md:gap-6 border-brand-black md:h-1/2"
+      "default": "py-10 px-4 md:p-20 flex flex-col gap-6 border-brand-black md:h-1/2"
     },
     {
       "type": "textarea",
@@ -266,43 +206,19 @@
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading Classes",
-      "default": "text-mobile-subtitle md:text-desktop-hero-caption font-medium",
+      "default": "text-mobile-subtitle md:text-desktop-hero-caption font-medium capitalize",
     },
     {
       "type": "textarea",
-      "id": "input_button_block",
-      "label": "Input and Button Div Classes",
-      "default": "flex flex-col md:flex-row gap-4 md:h-[56px]"
-    },
-    {
-      "type": "textarea",
-      "id": "input",
-      "label": "Input Classes",
-      "default": "w-full p-2 border border-brand-light-gray text-brand-black outline-none h-[48px] md:h-full"
+      "id": "book_call_button_block",
+      "label": "Book Call Button Div Classes",
+      "default": "flex flex-col md:flex-row gap-4 h-[40px] md:h-[56px] "
     },
     {
       "type": "textarea",
       "id": "submit_button",
       "label": "Submit Button Classes",
-      "default": "h-[48px] md:h-full w-full bg-brand-black text-white font-medium hover:text-slate-100 transition-colors duration-300 md:px-6 md:pt-4 md:pb-[14px] text-mobile-button md:text-desktop-button uppercase tracking-[0.03em]"
-    },
-    {
-      "type": "textarea",
-      "id": "form",
-      "label": "Form Classes",
-      "default": "text-black"
-    },
-    {
-      "type": "textarea",
-      "id": "form_error",
-      "label": "Form Error Classes",
-      "default": "text-red-500 text-sm mt-2"
-    },
-    {
-      "type": "textarea",
-      "id": "form_success",
-      "label": "Form Success Classes",
-      "default": "text-green-500 text-sm mt-2"
+      "default": "flex items-center justify-center md:w-fit h-full bg-brand-black text-white font-medium hover:text-slate-100 transition-colors duration-300 md:px-6 md:pt-4 md:pb-[14px] text-mobile-button md:text-desktop-button uppercase  tracking-[0.03em] "
     },
     {
       "type": "textarea",

@@ -5,7 +5,7 @@
       "settings": {
         "heading_text": "To Contact Us",
         "subheading_text": "We will call you back",
-        "phone_placeholder": "+000 XX XXX XX XX",
+        "calendly_url": "https:\/\/calendly.com\/test123\/15min",
         "button_text": "Book a Call",
         "success_message": "Thank you for contacting us! We'll get back to you soon.",
         "phone_heading": "Phone",
@@ -21,8 +21,6 @@
         "heading": "text-mobile-heading-2 md:text-desktop-heading-2 font-semibold",
         "form_block": "flex flex-col gap-4",
         "subheading": "text-mobile-subtitle md:text-desktop-hero-caption font-medium",
-        "input_button_block": "flex flex-col md:flex-row gap-4 md:h-[56px]",
-        "input": "w-full p-2 border border-brand-light-gray text-brand-black outline-none h-[48px] md:h-full",
         "submit_button": "h-[48px] md:h-full w-full bg-brand-black text-white font-medium hover:text-slate-100 transition-colors duration-300 md:px-6 md:pt-4 md:pb-[14px] text-mobile-button md:text-desktop-button uppercase tracking-[0.03em]",
         "form": "bg-red-200 flex flex-col",
         "form_error": "text-red-500 text-sm mt-2",
