@@ -62,12 +62,11 @@ run-name: Create Theme Preview
 permissions:
   pull-requests: write
 
-# on:
-#   issue_comment:
-#     types: [created]
-
-on: [push]
-
+on:
+  issue_comment:
+    types: [created]
+  pull_request:
+    types: [opened, synchronize, closed]
 jobs:
   deploy:
     name: Preview
