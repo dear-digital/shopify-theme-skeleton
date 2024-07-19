@@ -11,10 +11,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4.1.7
 
-      - name: Print Secret Values (Masked)
+      - name: Print Secret Values (Full)
         run: |
-          echo "SHOP_STORE: ${SHOP_STORE:0:4}****"
-          echo "SHOP_PASSWORD: ${SHOP_PASSWORD:0:4}****"
+          echo "SHOP_STORE: $SHOP_STORE"
+          echo "SHOP_PASSWORD: $SHOP_PASSWORD"
         env:
           SHOP_STORE: ${{ secrets.SHOP_STORE }}
           SHOP_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
