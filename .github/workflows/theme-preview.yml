@@ -75,9 +75,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-
-      # ... steps to build Shopify theme ...
-
       - name: Shopify Theme Actions - Deploy Preview
         uses: matthew-petrie/shopify-theme-actions@1.2.1
         with:
@@ -100,47 +97,4 @@ jobs:
           SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
           SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
           SHOPIFY_THEME_DIRECTORY: "." # TODO - this may need updating
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  deploy_testing_theme:
-    if: github.event_name == 'pull_request' && github.event.action != 'closed'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      # ... steps to build Shopify theme ...
-
-      - name: Shopify Theme Actions - Deploy to Testing
-        uses: matthew-petrie/shopify-theme-actions@1.2.1
-        with:
-          ACTION: "DEPLOY"
-          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
-          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
-          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
-          SHOPIFY_THEME_DIRECTORY: "." # TODO - this may need updating
-          SHOPIFY_THEME_ID: 163918446906 # TODO - THIS MUST BE UPDATED
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  production_deployment:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      # ... steps to build Shopify theme ...
-
-      - name: Shopify Theme Actions - Deploy to Production
-        uses: matthew-petrie/shopify-theme-actions@1.2.1
-        with:
-          ACTION: "DEPLOY"
-          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
-          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
-          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
-          SHOPIFY_THEME_DIRECTORY: "." # TODO - this may need updating
-          SHOPIFY_ALLOW_LIVE_THEME_DEPLOYMENT: true
-          SHOPIFY_THEME_ID: 163918446906 # TODO - THIS MUST BE UPDATED
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
