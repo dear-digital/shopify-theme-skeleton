@@ -31,8 +31,8 @@ jobs:
           SHOP_STORE: ${{ secrets.SHOP_STORE }}
           SHOP_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
 
-      - name: Deploy PR-specific Shopify theme
-        if: github.event.action != 'closed'
+      - name: Deploy branch-specific or PR-specific Shopify theme
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
         uses: matthew-petrie/shopify-theme-actions@1.2.2
         with:
           ACTION: "DEPLOYMENT_PREVIEW"
@@ -44,7 +44,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Remove PR-specific Shopify theme
-        if: github.event.action == 'closed'
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        with:
+          ACTION: "REMOVE_DEPLOYMENT_PREVIEW_THEME"
+          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SHOPIFY_THEME_DIRECTORY: "."
+
+      - name: Remove branch-specific Shopify theme
+        if: github.event_name == 'push' && github.event.deleted
         uses: matthew-petrie/shopify-theme-actions@1.2.2
         with:
           ACTION: "REMOVE_DEPLOYMENT_PREVIEW_THEME"
@@ -58,4 +69,4 @@ jobs:
         run: |
           echo "GitHub event name: ${{ github.event_name }}"
           echo "GitHub event action: ${{ github.event.action }}"
-          echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "Branch or PR: ${{ github.ref }}"
