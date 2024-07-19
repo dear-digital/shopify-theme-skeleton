@@ -79,7 +79,7 @@ jobs:
       # ... steps to build Shopify theme ...
 
       - name: Shopify Theme Actions - Deploy Preview
-        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        uses: matthew-petrie/shopify-theme-actions@1.2.1
         with:
           ACTION: "DEPLOYMENT_PREVIEW"
           SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
@@ -93,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Shopify Theme Actions - Remove Preview
-        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        uses: matthew-petrie/shopify-theme-actions@1.2.1
         with:
           ACTION: "REMOVE_DEPLOYMENT_PREVIEW_THEME"
           SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
@@ -113,7 +113,7 @@ jobs:
       # ... steps to build Shopify theme ...
 
       - name: Shopify Theme Actions - Deploy to Testing
-        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        uses: matthew-petrie/shopify-theme-actions@1.2.1
         with:
           ACTION: "DEPLOY"
           SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
@@ -134,7 +134,7 @@ jobs:
       # ... steps to build Shopify theme ...
 
       - name: Shopify Theme Actions - Deploy to Production
-        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        uses: matthew-petrie/shopify-theme-actions@1.2.1
         with:
           ACTION: "DEPLOY"
           SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
