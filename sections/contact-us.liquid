@@ -6,15 +6,15 @@
       <div class="{{ section.settings.form_block }}"> 
         <p class="{{ section.settings.subheading }}">{{ section.settings.subheading_text }}</p>
         <div class="{{ section.settings.book_call_button_block }}">
-          {% if section.settings.calendly_url != blank %}
-            <!-- Calendly link widget begin -->
-            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-            <a href="" class="{{ section.settings.submit_button }}" onclick="Calendly.initPopupWidget({url: '{{ section.settings.calendly_url }}'});return false;">{{ section.settings.button_text }}</a>
-            <!-- Calendly link widget end -->
-          {% else %}
-            <p class="{{ section.settings.calendly_error }}"> Enter Calendly URL to enable button here</p>
-          {% endif %}
+          <!-- Calendly link widget begin -->
+
+          {% # theme-check-disable %}
+          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+          {% # theme-check-enable %}
+          
+          <a href="" class="{{ section.settings.submit_button }}" onclick="Calendly.initPopupWidget({url: '{{ section.settings.calendly_url }}'});return false;">{{ section.settings.button_text }}</a>
+          <!-- Calendly link widget end -->
         </div>
       </div>
         
@@ -223,12 +223,6 @@
       "id": "submit_button",
       "label": "Submit Button Classes",
       "default": "flex items-center justify-center md:w-fit h-full bg-brand-black text-white font-medium hover:text-slate-100 transition-colors duration-300 md:px-6 md:pt-4 md:pb-[14px] text-mobile-button md:text-desktop-button uppercase  tracking-[0.03em] "
-    },
-    {
-      "type": "textarea",
-      "id": "calendly_error",
-      "label": "Calendly Error Classes",
-      "default": "text-red-500"
     },
     {
       "type": "textarea",
