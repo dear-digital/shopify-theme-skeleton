@@ -83,6 +83,7 @@ jobs:
           SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
           SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
           SHOPIFY_THEME_DIRECTORY: "." # TODO - this may need updating
+          SHOPIFY_ALLOW_LIVE_THEME_DEPLOYMENT: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   remove_deployment_preview_theme:
