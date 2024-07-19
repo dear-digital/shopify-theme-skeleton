@@ -1,9 +1,6 @@
 name: Shopify Theme Management
 
 on:
-  push:
-    branches:
-      - "*"
   pull_request:
     types: [opened, synchronize, closed]
 
