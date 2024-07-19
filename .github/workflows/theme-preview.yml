@@ -18,7 +18,7 @@ jobs:
       - name: Debug API Authentication
         run: |
           echo "Testing API connection..."
-          response=$(curl -sS -o /dev/null -w "%{http_code}" -X GET "https://${{ secrets.SHOP_STORE }}/admin/api/2023-10/shop.json" \
+          response=$(curl -sS -o /dev/null -w "%{http_code}" -X GET "https://${{ secrets.SHOP_STORE }}/admin/api/2024-10/shop.json" \
             -H "Content-Type: application/json" \
             -H "X-Shopify-Access-Token: ${{ secrets.SHOP_PASSWORD }}")
           echo "API Response Code: $response"
