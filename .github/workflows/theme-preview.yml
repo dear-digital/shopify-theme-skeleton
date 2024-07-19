@@ -57,25 +57,90 @@
 #           echo "GitHub event action: ${{ github.event.action }}"
 #           echo "PR number: ${{ github.event.pull_request.number }}"
 
-run-name: Create Theme Preview
-
-permissions:
-  pull-requests: write
+# ------------------
+name: Shopify Theme Deployment Workflow
 
 on:
-  issue_comment:
-    types: [created]
   pull_request:
     types: [opened, synchronize, closed]
+  push:
+    branches:
+      - main
+
 jobs:
-  deploy:
-    name: Preview
+  deploy_pull_request_preview_theme:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
     runs-on: ubuntu-latest
-    if: contains(github.event.comment.body, '!preview')
     steps:
-      - uses: Brand-Boosting-GmbH/shopify-theme-preview@v1.2.1
+      - uses: actions/checkout@v4
         with:
-          shopify_flag_store: ${{ secrets.SHOP_STORE }}
-          shopify_cli_theme_token: ${{ secrets.SHOP_ACCESS_TOKEN}}
-          build_step: "npm i && npm run build"
-          dir: "."
+          ref: ${{ github.head_ref }}
+
+      # ... steps to build Shopify theme ...
+
+      - name: Shopify Theme Actions - Deploy Preview
+        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        with:
+          ACTION: "DEPLOYMENT_PREVIEW"
+          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
+          SHOPIFY_THEME_DIRECTORY: "." # TODO - this may need updating
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  remove_deployment_preview_theme:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Shopify Theme Actions - Remove Preview
+        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        with:
+          ACTION: "REMOVE_DEPLOYMENT_PREVIEW_THEME"
+          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
+          SHOPIFY_THEME_DIRECTORY: "." # TODO - this may need updating
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy_testing_theme:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      # ... steps to build Shopify theme ...
+
+      - name: Shopify Theme Actions - Deploy to Testing
+        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        with:
+          ACTION: "DEPLOY"
+          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
+          SHOPIFY_THEME_DIRECTORY: "." # TODO - this may need updating
+          SHOPIFY_THEME_ID: 163918446906 # TODO - THIS MUST BE UPDATED
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  production_deployment:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      # ... steps to build Shopify theme ...
+
+      - name: Shopify Theme Actions - Deploy to Production
+        uses: matthew-petrie/shopify-theme-actions@1.2.2
+        with:
+          ACTION: "DEPLOY"
+          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
+          SHOPIFY_THEME_DIRECTORY: "." # TODO - this may need updating
+          SHOPIFY_ALLOW_LIVE_THEME_DEPLOYMENT: false
+          SHOPIFY_THEME_ID: 163918446906 # TODO - THIS MUST BE UPDATED
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
