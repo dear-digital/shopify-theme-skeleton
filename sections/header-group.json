@@ -1,12 +1,3 @@
-/*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
 {
   "name": "Header Group",
   "type": "header",
@@ -60,78 +51,9 @@
         "mobile_menu_dropdown_inner_classes": "-m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50",
         "mobile_menu_dropdown_link_classes": "ml-3 text-base font-medium text-gray-500"
       }
-    },
-    "navbar_gNbYxG": {
-      "type": "navbar",
-      "disabled": true,
-      "settings": {
-        "menu": "main-menu",
-        "right_menu": "right-menu",
-        "more_menu": "more-menu",
-        "navbar_wrapper": "relative",
-        "navbar_classes": "h-[48px] md:h-[56px] lg:[83px] w-full z-10 bg-white",
-        "container_classes": "border-y-[1px] lg:border-x-[1px] border-brand-black flex justify-between h-full",
-        "navbar__menu_desktop": "hidden lg:flex w-full justify-between",
-        "navbar__menu_left": "hidden lg:flex h-full w-1\/2 justify-start pl-[1px]",
-        "navbar__menu_right": "hidden lg:flex h-full w-1\/2 justify-end pr-[1px]",
-        "left_menu_item_classes": "text-brand-black hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1\/4",
-        "right_menu_item_classes": "text-brand-black hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1\/4",
-        "navbar__desktop_menu_item": "transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-200",
-        "menu_button_container_classes": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden",
-        "menu_button_svg_classes": "w-5 h-5",
-        "cart_button_classes": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden",
-        "cart_button_svg_classes": "w-5 h-5",
-        "menu_overlay_classes": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none lg:hidden",
-        "off_canvas_menu_container_classes": "fixed inset-y-0 left-0 w-full md:w-[384px] bg-white z-50 transition-transform duration-300 ease-in-out transform -translate-x-full lg:hidden border border-brand-black",
-        "off_canvas_menu_header_classes": "h-[47px] md:h-[55px] border-b border-brand-black flex items-center justify-start pl-6",
-        "close_menu_button_classes": "flex items-center w-[18.67px] h-[18.67px]",
-        "off_canvas_menu_content_classes": "text-mobile-heading-5 md:text-desktop-heading-5 text-brand-black font-medium h-[calc(100%_-_47px)] md:h-[calc(100%_-_55px)] overflow-y-scroll",
-        "off_canvas_menu_item_classes": "block p-6 border-b border-brand-black hover:underline",
-        "off_canvas_more_menu": "flex flex-col gap-4 border-b border-brand-black font-medium p-6",
-        "off_canvas_more_menu_item": "text-mobile-links tracking-wide md:text-desktop-links hover:underline",
-        "show_social_media": true,
-        "off_canvas_menu_social": "flex border-b border-brand-black font-medium p-6 justify-between",
-        "off_canvas_menu_social_item": "flex items-center justify-center",
-        "off_canvas_menu_social_SVG": "h-5 w-5"
-      }
-    },
-    "navbar_6VQw7f": {
-      "type": "navbar",
-      "settings": {
-        "menu": "main-menu",
-        "right_menu": "right-menu",
-        "more_menu": "more-menu",
-        "navbar_wrapper": "relative",
-        "navbar_classes": "h-[48px] md:h-[56px] lg:[83px] w-full z-10 bg-white",
-        "container_classes": "border-y-[1px] lg:border-x-[1px] border-brand-black flex justify-between h-full",
-        "navbar__menu_desktop": "hidden lg:flex w-full justify-between",
-        "navbar__menu_left": "hidden lg:flex h-full w-1\/2 justify-start pl-[1px]",
-        "navbar__menu_right": "hidden lg:flex h-full w-1\/2 justify-end pr-[1px]",
-        "left_menu_item_classes": "text-brand-black hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1\/4",
-        "right_menu_item_classes": "text-brand-black hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1\/4",
-        "navbar__desktop_menu_item": "transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300",
-        "menu_button_container_classes": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden",
-        "menu_button_svg_classes": "w-5 h-5",
-        "cart_button_classes": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden",
-        "cart_button_svg_classes": "w-5 h-5",
-        "menu_overlay_classes": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none lg:hidden",
-        "off_canvas_menu_container_classes": "fixed inset-y-0 left-0 w-full md:w-[384px] bg-white z-50 transition-transform duration-300 ease-in-out transform -translate-x-full lg:hidden border border-brand-black",
-        "off_canvas_menu_header_classes": "h-[47px] md:h-[55px] border-b border-brand-black flex items-center justify-start pl-6",
-        "close_menu_button_classes": "flex items-center w-[18.67px] h-[18.67px]",
-        "off_canvas_menu_content_classes": "text-mobile-heading-5 md:text-desktop-heading-5 text-brand-black font-medium h-[calc(100%_-_47px)] md:h-[calc(100%_-_55px)] overflow-y-scroll",
-        "off_canvas_menu_item_classes": "block p-6 border-b border-brand-black hover:underline",
-        "off_canvas_more_menu": "flex flex-col gap-4 border-b border-brand-black font-medium p-6",
-        "off_canvas_more_menu_item": "text-mobile-links tracking-wide md:text-desktop-links hover:underline",
-        "show_social_media": true,
-        "off_canvas_menu_social": "flex border-b border-brand-black font-medium p-6 justify-between",
-        "off_canvas_menu_social_item": "flex items-center justify-center",
-        "off_canvas_menu_social_SVG": "h-5 w-5"
-      }
     }
   },
   "order": [
-    "header",
-    "navbar_gNbYxG",
-    "navbar_6VQw7f"
+    "header"
   ]
 }
