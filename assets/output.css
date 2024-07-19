@@ -1824,6 +1824,14 @@ video {
   --tw-bg-opacity: 0.8;
 }
 
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-center {
+  background-position: center;
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;

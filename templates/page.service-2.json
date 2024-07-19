@@ -3,12 +3,13 @@
     "service_section_2_MTdHVp": {
       "type": "service-section-2",
       "settings": {
+        "service_2_background_image": "shopify:\/\/shop_images\/438441980_401917486106086_8299613698005126307_n_9bf7b180-2dc3-4014-bcea-0d51bd2550fd.jpg",
         "service_2__container_text_content_small_header": "Service",
         "service_2__container_text_content_heading_paragraph_div_header": "Wedding & Event Decor",
         "service_2__container_text_content_heading_paragraph_div_para": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
         "service_2__container_button_label": "Inquire Now",
         "service_2__container_button_link": "",
-        "service_2__container": "text-black",
+        "service_2__container": "relative bg-cover bg-center",
         "service_2__container_text_content": "text-black",
         "service_2__container_text_content_small_header_classes": "text-black",
         "service_2__container_text_content_heading_paragraph_div": "text-black",
