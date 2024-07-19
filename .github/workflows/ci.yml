@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.7
       - name: Theme Check
-        uses: shopify/theme-check-action@v2
+        uses: shopify/theme-check-action@v2.1.2
         with:
           theme_root: "."
           token: ${{ github.token }}
