@@ -1090,6 +1090,10 @@ video {
   height: 100vh;
 }
 
+.h-\[416px\] {
+  height: 416px;
+}
+
 .w-1 {
   width: 0.25rem;
 }
