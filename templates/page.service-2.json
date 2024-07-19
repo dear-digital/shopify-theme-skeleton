@@ -26,23 +26,23 @@
     "service_section_2_tPURBA": {
       "type": "service-section-2",
       "settings": {
-        "service_2_background_image": "shopify:\/\/shop_images\/438558421_1186887409389748_5814496462648866946_n_9fa6b090-8be9-458b-bf54-37f0ba267d0f.jpg",
+        "service_2_background_image": "shopify:\/\/shop_images\/438485199_1641395356397903_6581066814332980522_n_e0d34c23-0d4c-4a29-823f-5950d8720483.jpg",
         "service_2__container_text_content_small_header": "Service",
         "service_2__container_text_content_heading_paragraph_div_header": "Wedding & Event Decor",
         "service_2__container_text_content_heading_paragraph_div_para": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
         "service_2__container_button_label": "Inquire Now",
         "service_2__container_button_link": "",
         "service_2__container": "relative",
-        "service_2__container_image_classes": "w-full h-full object-cover",
+        "service_2__container_image_classes": "absolute inset-0 w-full h-full object-cover",
         "service_2__container_overlay": "absolute inset-0 bg-black bg-opacity-50",
-        "service_2__container_content": "relative z-10 p-8",
-        "service_2__container_text_content": "text-black",
-        "service_2__container_text_content_small_header_classes": "text-black",
-        "service_2__container_text_content_heading_paragraph_div": "text-black",
-        "service_2__container_text_content_heading_paragraph_div_header_classes": "text-brand-black text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
-        "service_2__container_text_content_heading_paragraph_div_para_classes": "flex flex-col gap-6",
-        "service_2__container_button_div": "flex items-start justify-center mt-16 md:inline-block",
-        "service_2__container_button_classes": "text-brand-black uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-brand-black pt-4 pb-[14px] px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
+        "service_2__container_content": "relative z-10 py-10 px-4 flex flex-col\ngap-16",
+        "service_2__container_text_content": "flex flex-col gap-6 text-center",
+        "service_2__container_text_content_small_header_classes": "text-mobile-caption-small uppercase text-white font-medium",
+        "service_2__container_text_content_heading_paragraph_div": "flex flex-col gap-4 border-brand-black border",
+        "service_2__container_text_content_heading_paragraph_div_header_classes": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
+        "service_2__container_text_content_heading_paragraph_div_para_classes": "text-mobile-body text-white",
+        "service_2__container_button_div": "flex items-start justify-center md:inline-block",
+        "service_2__container_button_classes": "text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-brand-black pt-4 pb-[14px] px-4 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
       }
     }
   },
