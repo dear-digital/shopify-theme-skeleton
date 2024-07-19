@@ -35,44 +35,39 @@
           </p>
         {% endif %}
       {% endform %} {% endcomment %}
-      {% if customer %}
-        {% form 'customer_address', customer.new_address, class: section.settings.form %}
-          <div class="{{ section.settings.form_block }}"> 
-            <p class="{{ section.settings.subheading }}">{{ section.settings.subheading_text }}</p>
-
-            <div class="{{ section.settings.input_button_block }}">
-              <input
-                type="tel"
-                id="AddressPhone_{{ form.id }}"
-                name="address[phone]"
-                value="{{ form.phone }}"
-                placeholder="{{ section.settings.phone_placeholder }}"
-                class="{{ section.settings.input }}"
-                required
-              >
-              <button type="submit" name="commit" class="{{ section.settings.submit_button }}">
-                {{ section.settings.button_text }}
-              </button>
-            </div>
+      {% form 'contact', class: section.settings.form %}
+        <div class="{{ section.settings.form_block }}"> 
+          <p class="{{ section.settings.subheading }}">{{ section.settings.subheading_text }}</p>
+          <div class="{{ section.settings.input_button_block }}">
+            <input
+              type="tel"
+              id="ContactFormPhone"
+              name="contact[phone]"
+              placeholder="{{ section.settings.phone_placeholder }}"
+              class="{{ section.settings.input }}"
+              required
+            >
+            <input type="hidden" name="contact[email]" value="phone@example.com">
+            <button type="submit" class="{{ section.settings.submit_button }}">
+              {{ section.settings.button_text }}
+            </button>
           </div>
-          {% if form.errors %}
-            {% for error in form.errors %}
-              <p class="{{ section.settings.form_error }}">
-                {% render 'icon-error' %}
-                {{ error }}
-              </p>
-            {% endfor %}
-          {% endif %}
-          {% if form.posted_successfully? %}
-            <p class="{{ section.settings.form_success }}">
-              {% render 'icon-success' %}
-              {{ section.settings.success_message | escape }}
+        </div>
+        {% if form.errors %}
+          {% for error in form.errors %}
+            <p class="{{ section.settings.form_error }}">
+              {% render 'icon-error' %}
+              {{ error }}
             </p>
-          {% endif %}
-        {% endform %}
-      {% else %}
-        <p>{{ 'customer.login_required' | t }}</p>
-      {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if form.posted_successfully? %}
+          <p class="{{ section.settings.form_success }}">
+            {% render 'icon-success' %}
+            {{ section.settings.success_message | escape }}
+          </p>
+        {% endif %}
+      {% endform %}
     </div>
     <div class="{{ section.settings.bottom_block }}">
       <div class="{{ section.settings.bottom_block_first_column }}">
