@@ -9,7 +9,7 @@
         "service_2__container_text_content_heading_paragraph_div_para": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
         "service_2__container_button_label": "Inquire Now",
         "service_2__container_button_link": "",
-        "service_2__container": "relative bg-cover bg-center",
+        "service_2__container": "relative bg-center bg-cover",
         "service_2__container_text_content": "text-black",
         "service_2__container_text_content_small_header_classes": "text-black",
         "service_2__container_text_content_heading_paragraph_div": "text-black",
