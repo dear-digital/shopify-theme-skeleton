@@ -3342,6 +3342,10 @@ video {
     align-items: flex-end;
   }
 
+  .md\:items-center {
+    align-items: center;
+  }
+
   .md\:gap-4 {
     gap: 1rem;
   }
@@ -3604,6 +3608,11 @@ video {
     line-height: 1.75rem;
   }
 
+  .md\:text-mobile-caption {
+    font-size: 14px;
+    line-height: 120%;
+  }
+
   .md\:font-medium {
     font-weight: 500;
   }
@@ -3683,6 +3692,10 @@ video {
 
   .lg\:h-screen {
     height: 100vh;
+  }
+
+  .lg\:h-\[720px\] {
+    height: 720px;
   }
 
   .lg\:max-h-\[50vw\] {
