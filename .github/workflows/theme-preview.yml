@@ -11,15 +11,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4.1.7
 
-      - name: Create temporary script for debugging secrets
+      - name: Verify Secret Values
         run: |
-          echo "#!/bin/bash" > debug_secrets.sh
-          echo "echo SHOP_STORE: \${SHOP_STORE}" >> debug_secrets.sh
-          echo "echo SHOP_PASSWORD: \${SHOP_PASSWORD}" >> debug_secrets.sh
-          chmod +x debug_secrets.sh
-
-      - name: Print Secret Values (Full)
-        run: ./debug_secrets.sh
+          echo "Calculating hashes of secrets..."
+          echo "SHOP_STORE hash: $(echo -n $SHOP_STORE | sha256sum)"
+          echo "SHOP_PASSWORD hash: $(echo -n $SHOP_PASSWORD | sha256sum)"
         env:
           SHOP_STORE: ${{ secrets.SHOP_STORE }}
           SHOP_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
