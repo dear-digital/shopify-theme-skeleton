@@ -141,6 +141,6 @@ jobs:
           SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
           SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
           SHOPIFY_THEME_DIRECTORY: "." # TODO - this may need updating
-          SHOPIFY_ALLOW_LIVE_THEME_DEPLOYMENT: false
+          SHOPIFY_ALLOW_LIVE_THEME_DEPLOYMENT: true
           SHOPIFY_THEME_ID: 163918446906 # TODO - THIS MUST BE UPDATED
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
