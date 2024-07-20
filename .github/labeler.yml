@@ -1,0 +1,74 @@
+theme:
+  - "layout/**/*"
+  - "templates/**/*"
+  - "sections/**/*"
+  - "snippets/**/*"
+
+assets:
+  - "assets/**/*"
+
+locales:
+  - "locales/**/*"
+
+config:
+  - "config/**/*"
+  - "config/settings_data.json"
+  - "config/settings_schema.json"
+
+styles:
+  - "**/*.css"
+  - "src/tailwind.css"
+  - "tailwind.config.js"
+
+scripts:
+  - "**/*.js"
+  - "assets/global.js"
+
+liquid:
+  - "**/*.liquid"
+
+documentation:
+  - "**/*.md"
+  - "LICENSE"
+  - "README.md"
+  - "CODE_OF_CONDUCT.md"
+  - "CONTRIBUTING.md"
+  - "SECURITY.md"
+  - "release-notes.md"
+  - "rewards.md"
+  - "documentation/**/*"
+
+ci:
+  - ".github/**/*"
+
+package:
+  - "package.json"
+  - "package-lock.json"
+
+ignore-files:
+  - ".gitignore"
+  - ".shopifyignore"
+
+templates:
+  - "templates/**/*.json"
+
+customers:
+  - "templates/customers/**/*"
+
+sections:
+  - "sections/**/*"
+
+snippets:
+  - "snippets/**/*"
+
+icons:
+  - "snippets/icon-*.liquid"
+
+extras:
+  - "extras/**/*"
+
+python:
+  - "**/*.py"
+
+json:
+  - "**/*.json"
