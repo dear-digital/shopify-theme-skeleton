@@ -1,0 +1,32 @@
+<div class="cart-header">
+  <h2>Your Cart</h2>
+  <button id="close-cart-button" class="{{ section.settings.close_cart_button_classes }}">
+    {% render 'icon-close' class: svg_class %}
+  </button>
+</div>
+
+<div class="cart-content">
+    <div>
+        <p>Your cart is currently empty.</p> 
+    </div>
+</div>
+
+<div class="cart-footer">
+  <!-- Add cart totals, checkout button, etc. -->
+</div>
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  // ... existing code ...
+
+  var closeCartButton = document.getElementById('close-cart-button');
+
+  closeCartButton.addEventListener('click', closeAll);
+
+  // ... existing code ...
+});
+
+
+</script>
