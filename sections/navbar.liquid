@@ -161,6 +161,7 @@
       body.classList.toggle('overflow-hidden');
       // Close cart if open
       cartSlideOut.classList.remove('translate-x-0');
+      console.log("toggleMenu Button Clicked")
     }
 
     function toggleCart() {
@@ -170,19 +171,22 @@
       body.classList.toggle('overflow-hidden');
       // Close menu if open
       offCanvasMenu.classList.remove('translate-x-0');
+      console.log("toggleCart Button Clicked")
     }
 
-    function closeAll() {
+    // Make closeAll function global
+    window.closeAll = function() {
       offCanvasMenu.classList.remove('translate-x-0');
       cartSlideOut.classList.remove('translate-x-0');
       menuOverlay.classList.add('opacity-0', 'pointer-events-none');
       body.classList.remove('overflow-hidden');
+      console.log("Button Clicked")
     }
 
     menuButton.addEventListener('click', toggleMenu);
-    closeMenuButton.addEventListener('click', closeAll);
+    closeMenuButton.addEventListener('click', window.closeAll);
     cartButton.addEventListener('click', toggleCart);
-    menuOverlay.addEventListener('click', closeAll);
+    menuOverlay.addEventListener('click', window.closeAll);
 
     if (Shopify.designMode) {
       document.addEventListener('shopify:section:load', function(event) {

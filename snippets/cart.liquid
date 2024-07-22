@@ -23,7 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var closeCartButton = document.getElementById('close-cart-button');
 
-  closeCartButton.addEventListener('click', closeAll);
+  closeCartButton.addEventListener('click', window.closeAll);
+  closeCartButton.addEventListener('click', checkButtonClick);
+
+  function checkButtonClick() {
+    console.log('check button');
+  }   
 
   // ... existing code ...
 });
