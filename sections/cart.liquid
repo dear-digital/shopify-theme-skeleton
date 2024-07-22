@@ -1,6 +1,121 @@
+<div id="cart-slide-out" class="{{ section.settings.cart_container_classes }}">
+
+  {% comment %} Cart Header {% endcomment %}
+  <div class="{{ section.settings.cart_header_classes }}">
+    <h2 class="{{ section.settings.cart_title_classes }}">{{ section.settings.cart_title }}</h2>
+    <button id="close-cart-button" class="{{ section.settings.close_cart_button_classes }}">
+      {% render 'icon-social-facebook' class: "w-10 h-10" %}
+    </button>
+  </div>
+  
+  <div class="{{ section.settings.cart_content_classes }}">
+
+    {% comment %} Added Product Block {% endcomment %}
+    <div class="{{ section.settings.cart_content_added_product_class }}"> 
+      
+      {% assign image_classes = section.settings.cart_item_image_classes %}
+      {% if section.settings.cart_item_image != blank %}
+          {{
+          section.settings.cart_item_image
+          | image_url: width: 300
+          | image_tag: 
+              class: image_classes,
+              alt: section.settings.cart_item_image.alt | default: 'Image for Cart item'
+
+          }}
+      {% endif %}
+
+      <div class="{{ section.settings.cart_content_added_product_class_main_info_button_div }}">
+          <div class="{{ section.settings.cart_content_added_product_class_main_info_button_label_price_div }}">
+              <h4 class="{{ section.settings.cart_content_product_name_classes }}"> 
+                {{ section.settings.cart_content_product_name }} Product Name
+              </h4>
+
+              <h4 class="{{ section.settings.cart_content_product_quantity_classes }}"> 
+                {{ section.settings.cart_content_product_quantity }}
+              </h4>
+
+              <h4 class="{{ section.settings.cart_content_product_price_classes }}"> 
+                {{ section.settings.cart_content_product_price }}
+              </h4>
+          </div>
+          <div class="{{ section.settings.cart_content_added_product_class_main_info_button_remove_button_div }}">
+            <button class="{{ section.settings.cart_item_remove_button }}">
+                <a href="{{ section.settings.cart_item_remove_button_link }}">
+                            {{- section.settings.cart_item_remove_button_label | escape -}}
+                </a>
+            </button>
+          </div>
+      </div>
+    
+    </div>
+
+    {% comment %} Subtotal Block {% endcomment %}
+    <div class="{{ section.settings.cart_content_subtotal_div }}">
+      <div class="{{ section.settings.cart_content_subtotal_div_content }}">
+        <h4 class="{{ section.settings.cart_content_subtotal_div_content_label_classes }}"> 
+          {{ section.settings.cart_content_subtotal_div_content_label }}
+        </h4>
+
+        <h4 class="{{ section.settings.cart_content_subtotal_div_content_total_price_classes }}"> 
+          {{ section.settings.cart_content_subtotal_div_content_total_price }}
+        </h4>
+      </div>  
+    </div>
+
+    {% comment %} Textarea Block {% endcomment %}
+    <div class="{{ section.settings.cart_content_textarea_div }}">
+      <div class="{{ section.settings.cart_content_textarea_div_content }}">
+        <div class="{{ section.settings.cart_content_textarea_div_content_message_classes }}"> 
+          {{ section.settings.cart_content_textarea_div_content_message }}
+        </div>
+      </div>  
+    </div>
+
+    {% comment %} Delivery Message Block {% endcomment %}
+    <div class="{{ section.settings.cart_content_delivery_message_div }}">
+      <div class="{{ section.settings.cart_content_delivery_message_div_content }}">
+        <div class="{{ section.settings.cart_content_delivery_message_classes }}"> 
+          {{ section.settings.cart_content_delivery_message }}
+        </div>
+      </div>  
+    </div>
+
+    {% comment %} Checkout Button Block {% endcomment %}
+    <div class="{{ section.settings.cart_content_checkout_button_div }}">
+      Checkout Button
+      <button class="{{ section.settings.cart_content_checkout_button }}">
+          <a href="{{ section.settings.cart_content_checkout_button_link }}">
+                      {{- section.settings.cart_content_checkout_button_label | escape -}}
+          </a>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  var closeCartButton = document.getElementById('close-cart-button');
+
+  function closeCart() {
+    if (window.navbarFunctions && typeof window.navbarFunctions.closeAll === 'function') {
+      window.navbarFunctions.closeAll();
+    } else {
+      console.error('closeAll function not found');
+    }
+    console.log('Close cart button clicked');
+  }
+
+  closeCartButton.addEventListener('click', closeCart);
+});
+
+
+</script>
+
 {% schema %}
 {
-  "name": "Cart Settings",
+  "name": "Cart",
   "settings": [
     {
         "type": "inline_richtext",
