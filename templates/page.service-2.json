@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "service_section_2_MCig4L": {
+      "type": "service-section-2",
+      "settings": {
+        "service_2_background_image": "shopify:\/\/shop_images\/438486393_813662443989352_6566823081766376948_n_8eaac1ac-7b71-471c-bca8-6487792fa855.jpg",
+        "service_2__container_text_content_small_header": "Service",
+        "service_2__container_text_content_heading_paragraph_div_header": "Wedding & Event Decor",
+        "service_2__container_text_content_heading_paragraph_div_para": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
+        "service_2__container_button_label": "Inquire Now",
+        "service_2__container_button_link": "",
+        "service_2__container": "relative h-[416px] md:h-[500px] lg:h-[720px] flex items-center justify-center",
+        "service_2__container_image_classes": "absolute inset-0 w-full h-full object-cover",
+        "service_2__container_overlay": "absolute inset-0 bg-black bg-opacity-50",
+        "service_2__container_content": "relative z-10 flex flex-col gap-16 py-10 px-4 md:p-20 md:items-center",
+        "service_2__container_text_content": "flex flex-col gap-6 text-center",
+        "service_2__container_text_content_small_header_classes": "text-mobile-caption-small md:text-mobile-caption uppercase text-white font-medium",
+        "service_2__container_text_content_heading_paragraph_div": "flex flex-col gap-4",
+        "service_2__container_text_content_heading_paragraph_div_header_classes": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
+        "service_2__container_text_content_heading_paragraph_div_para_classes": "text-mobile-body text-white md:text-desktop-hero-caption",
+        "service_2__container_button_div": "flex items-start justify-center md:inline-block",
+        "service_2__container_button_classes": "text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-brand-black pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
+      }
+    }
+  },
+  "order": [
+    "service_section_2_MCig4L"
+  ]
+}
