@@ -1,0 +1,111 @@
+<div class="collection {{ section.settings.tw-collection }}">
+  <div class="collection__left-col {{ section.settings.tw-collection__left-col }}">
+    <div class="collection__image {{ section.settings.tw-collection__image_wrappper }}">
+      {% if collection.image != blank %}
+        {{
+          collection.image
+          | image_url: width: 1200, height: 1200, crop: 'center'
+          | image_tag: class: section.settings['tw-collection__image']
+        }}
+      {% endif %}
+    </div>
+    <div class="collection__heading {{ section.settings.tw-collection__heading }}">
+      {{ collection.title }}
+    </div>
+  </div>
+  <div class="collection__right-col {{ section.settings.tw-collection__right-col }}">
+    {% for product in collection.products %}
+      <div class="collection__card {{ section.settings.tw-collection__card }}">
+        <div class="collection__product-featured-image">
+          {{
+            product.featured_image
+            | image_url: width: 1200, height: 1200, crop: 'center'
+            | image_tag: class: section.settings['tw-collection__product-featured-image']
+          }}
+        </div>
+        <div class="collection__product-description {{ section.settings.tw-collection__product-description }}">
+          <h3 class="collection__product-title {{ section.settings.tw-collection__product-title }}">
+            {{ product.title }}
+          </h3>
+          <p class="collection__product-price {{ section.settings.tw-collection__product-price }}">
+            <span>{{ section.settings['product_price-text'] }}</span> {{ product.price | money }}
+          </p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "product_price-text",
+      "label": "Product price text",
+      "default": "Price"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection",
+      "label": "Style tw-collection"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection__left-col",
+      "label": "Style tw-collection__left-col"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection__featured-image_wrappper",
+      "label": "Style tw-collection__image_wrappper"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection__image",
+      "label": "Style tw-collection__image"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection__heading",
+      "label": "Style tw-collection__heading"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection__right-col",
+      "label": "Style tw-collection__right-col"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection__card",
+      "label": "Style tw-collection__card"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection__product-featured-image",
+      "label": "Style tw-collection__product-featured-image"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection__product-description",
+      "label": "Style tw-collection__product-description"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection__product-title",
+      "label": "Style tw-collection__product-title"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-collection__product-price",
+      "label": "Style tw-collection__product-price"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection"
+    }
+  ]
+}
+{% endschema %}
