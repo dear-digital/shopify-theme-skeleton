@@ -2480,10 +2480,6 @@ video {
   transition-duration: 1000ms;
 }
 
-.duration-200 {
-  transition-duration: 200ms;
-}
-
 .duration-300 {
   transition-duration: 300ms;
 }
@@ -3784,6 +3780,10 @@ video {
     gap: 3rem;
   }
 
+  .lg\:gap-4 {
+    gap: 1rem;
+  }
+
   .lg\:overflow-auto {
     overflow: auto;
   }
@@ -3803,6 +3803,10 @@ video {
 
   .lg\:border-b-\[1px\] {
     border-bottom-width: 1px;
+  }
+
+  .lg\:border-l-\[1px\] {
+    border-left-width: 1px;
   }
 
   .lg\:border-r-0 {
