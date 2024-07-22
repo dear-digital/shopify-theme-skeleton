@@ -136,7 +136,11 @@
 
   <!-- Cart slide-out -->
   <div id="cart-slide-out" class="cart_slide_out_classes {{ section.settings.cart_slide_out_classes }}">
-    {% render 'cart', svg_class: section.settings.menu_button_svg_classes %}
+    {% 
+      render 'cart', 
+      svg_class: section.settings.menu_button_svg_classes,
+      cart_settings: global_cart_settings
+    %}
   </div>
 
   <!-- Overlay -->
@@ -198,6 +202,14 @@
       document.addEventListener('shopify:section:load', function(event) { 
         if (event.target.contains(menuButton)) {
           menuButton.addEventListener('click', toggleMenu);
+        }
+      });
+    }
+
+    if (Shopify.designMode) {
+      document.addEventListener('shopify:section:load', function(event) { 
+        if (event.target.contains(cartButton)) {
+          cartButton.addEventListener('click', toggleCart);
         }
       });
     }

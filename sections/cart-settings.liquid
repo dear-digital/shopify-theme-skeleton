@@ -3,122 +3,245 @@
   "name": "Cart Settings",
   "settings": [
     {
-      "type": "text",
-      "id": "cart_title",
-      "label": "Cart Title",
-      "default": "Your Cart"
+        "type": "inline_richtext",
+        "id": "cart_title",
+        "label": "Cart Title",
+        "default": "Your Cart"
     },
     {
-      "type": "text",
-      "id": "cart_empty_message",
-      "label": "Empty Cart Message",
-      "default": "Your cart is empty"
+        "type": "image_picker",
+        "id": "cart_item_image",
+        "label": "Cart Product Image"
     },
     {
-      "type": "text",
-      "id": "checkout_button_text",
-      "label": "Checkout Button Text",
-      "default": "Checkout"
+        "type": "inline_richtext",
+        "id": "cart_content_product_name",
+        "label": "Cart Product Name",
+        "default": "Rosy Delight"
     },
     {
-      "type": "header",
-      "content": "Tailwind Classes"
+        "type": "text",
+        "id": "cart_content_product_quantity",
+        "label": "Cart Product Quantity",
+        "default": "Quantity (1)"
     },
     {
-      "type": "textarea",
-      "id": "cart_container_classes",
-      "label": "Cart Container Classes",
-      "default": "fixed inset-y-0 right-0 w-full md:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50"
+        "type": "text",
+        "id": "cart_content_product_price",
+        "label": "Cart Product Price",
+        "default": "$100"
     },
     {
-      "type": "textarea",
-      "id": "cart_header_classes",
-      "label": "Cart Header Classes",
-      "default": "flex justify-between items-center p-4 border-b border-gray-200"
+        "type": "text",
+        "id": "cart_item_remove_button_label",
+        "label": "Remove Button Label",
+        "default": "Remove"
     },
     {
-      "type": "textarea",
-      "id": "cart_title_classes",
-      "label": "Cart Title Classes",
-      "default": "text-lg font-semibold"
+        "type": "url",
+        "id": "cart_item_remove_button_link",
+        "label": "Button Link"
     },
     {
-      "type": "textarea",
-      "id": "close_cart_button_classes",
-      "label": "Close Cart Button Classes",
-      "default": "text-gray-500 hover:text-gray-700"
+        "type": "inline_richtext",
+        "id": "cart_content_subtotal_div_content_label",
+        "label": "Subtotal Label",
+        "default": "Subtotal"
     },
     {
-      "type": "textarea",
-      "id": "cart_content_classes",
-      "label": "Cart Content Classes",
-      "default": "p-4 overflow-y-auto max-h-[calc(100vh-200px)]"
+        "type": "text",
+        "id": "cart_content_subtotal_div_content_total_price",
+        "label": "Subtotal Price",
+        "default": "$100.00"
     },
     {
-      "type": "textarea",
-      "id": "cart_item_classes",
-      "label": "Cart Item Classes",
-      "default": "flex items-center mb-4 pb-4 border-b border-gray-200"
+        "type": "richtext",
+        "id": "cart_content_textarea_div_content_message",
+        "label": "Gift Message",
+        "default": "<p> Gift Message </p>"
     },
     {
-      "type": "textarea",
-      "id": "cart_item_image_classes",
-      "label": "Cart Item Image Classes",
-      "default": "w-16 h-16 object-cover mr-4"
+        "type": "richtext",
+        "id": "cart_content_delivery_message",
+        "label": "Delivery Message",
+        "default": "<p> Shipping & taxes calculated at checkout Free standard shipping within Kyiv </p>"
     },
     {
-      "type": "textarea",
-      "id": "cart_item_details_classes",
-      "label": "Cart Item Details Classes",
-      "default": "flex-grow"
+        "type": "text",
+        "id": "cart_content_checkout_button_label",
+        "label": "Checkout Button Label",
+        "default": "Check out"
     },
     {
-      "type": "textarea",
-      "id": "cart_item_title_classes",
-      "label": "Cart Item Title Classes",
-      "default": "text-sm font-semibold"
+        "type": "url",
+        "id": "cart_content_checkout_button_link",
+        "label": "Checkout Button Link"
     },
     {
-      "type": "textarea",
-      "id": "cart_item_variant_classes",
-      "label": "Cart Item Variant Classes",
-      "default": "text-xs text-gray-500"
+        "type": "header",
+        "content": "Tailwind Classes"
     },
     {
-      "type": "textarea",
-      "id": "cart_item_price_classes",
-      "label": "Cart Item Price Classes",
-      "default": "text-sm"
+        "type": "textarea",
+        "id": "cart_container_classes",
+        "label": "Cart Container Classes",
+        "default": "fixed inset-y-0 right-0 w-full md:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50"
     },
     {
-      "type": "textarea",
-      "id": "cart_item_quantity_classes",
-      "label": "Cart Item Quantity Classes",
-      "default": "text-sm"
+        "type": "textarea",
+        "id": "cart_header_classes",
+        "label": "Cart Header Classes",
+        "default": "text-black"
     },
     {
-      "type": "textarea",
-      "id": "cart_empty_message_classes",
-      "label": "Empty Cart Message Classes",
-      "default": "text-center text-gray-500"
+        "type": "textarea",
+        "id": "cart_title_classes",
+        "label": "Cart Title Classes",
+        "default": "text-black"
     },
     {
-      "type": "textarea",
-      "id": "cart_footer_classes",
-      "label": "Cart Footer Classes",
-      "default": "p-4 border-t border-gray-200"
+        "type": "textarea",
+        "id": "close_cart_button_classes",
+        "label": "Close Cart Button Classes",
+        "default": "text-black"
     },
     {
-      "type": "textarea",
-      "id": "cart_total_classes",
-      "label": "Cart Total Classes",
-      "default": "text-lg font-semibold mb-4"
+        "type": "textarea",
+        "id": "cart_content_classes",
+        "label": "Cart Content Classes",
+        "default": "text-black"
     },
     {
-      "type": "textarea",
-      "id": "checkout_button_classes",
-      "label": "Checkout Button Classes",
-      "default": "w-full bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition-colors duration-200"
+        "type": "textarea",
+        "id": "cart_content_added_product_class",
+        "label": "Cart Content Added Product Class",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_item_image_classes",
+        "label": "Cart Item Image Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_added_product_class_main_info_button_div",
+        "label": "Added Product Class Main Info Button Div",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_added_product_class_main_info_button_label_price_div",
+        "label": "Added Product Class Main Info Button Label Price Div",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_product_name_classes",
+        "label": "Product Name Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_product_quantity_classes",
+        "label": "Product Quantity Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_product_price_classes",
+        "label": "Product Price Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_added_product_class_main_info_button_remove_button_div",
+        "label": "Added Product Class Main Info Button Remove Button Div",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_item_remove_button",
+        "label": "Cart Item Remove Button Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_subtotal_div",
+        "label": "Cart Content Subtotal Div",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_subtotal_div_content",
+        "label": "Cart Content Subtotal Div Content",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_subtotal_div_content_label_classes",
+        "label": "Cart Content Subtotal Div Content Label Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_subtotal_div_content_total_price_classes",
+        "label": "Cart Content Subtotal Div Content Total Price Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_textarea_div",
+        "label": "Cart Content Textarea Div",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_textarea_div_content",
+        "label": "Cart Content Textarea Div Content",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_textarea_div_content_message_classes",
+        "label": "Textarea Div Content Message Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_delivery_message_div",
+        "label": "Cart Content Delivery Message Div",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_delivery_message_div_content",
+        "label": "Cart Content Delivery Message Div Content",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_delivery_message_classes",
+        "label": "Cart Content Delivery Message Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_checkout_button_div",
+        "label": "Cart Content Checkout Button Div",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_checkout_button",
+        "label": "Cart Content Checkout Button Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "checkout_button_classes",
+        "label": "Checkout Button Classes",
+        "default": "w-full bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition-colors duration-200"
     }
   ],
   "presets": [
