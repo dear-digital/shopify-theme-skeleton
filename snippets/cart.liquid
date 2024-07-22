@@ -1,20 +1,44 @@
-<div class="cart-header">
-  <h2>Your Cart</h2>
-  <button id="close-cart-button" class="{{ section.settings.close_cart_button_classes }}">
-    {% render 'icon-close' class: svg_class %}
-  </button>
-</div>
+{% assign cart_settings = section.settings.cart_drawer_settings %}
 
-<div class="cart-content">
-    <div>
-        <p>Your cart is currently empty.</p> 
-    </div>
+<div id="cart-slide-out" class="{{ cart_settings.cart_container_classes }}">
+  <div class="{{ cart_settings.cart_header_classes }}">
+    <h2 class="{{ cart_settings.cart_title_classes }}">{{ cart_settings.cart_title }}</h2>
+    <button id="close-cart-button" class="{{ cart_settings.close_cart_button_classes }}">
+      {% render 'icon-close' class: svg_class %}
+    </button>
+  </div>
+  
+  <div class="{{ cart_settings.cart_content_classes }}">
+    {% if cart.item_count > 0 %}
+      {% for item in cart.items %}
+        <div class="{{ cart_settings.cart_item_classes }}">
+          {% assign image_classes = cart_settings.cart_item_image_classes %}
+          {% if item.image != blank %}
+              {{ item.image | image_url: width: 100 | image_tag: 
+                  class: image_classes,
+                  alt: item.title | default: 'Cart item image'
+              }}
+          {% endif %}
+          <div class="{{ cart_settings.cart_item_details_classes }}">
+            <h3 class="{{ cart_settings.cart_item_title_classes }}">{{ item.product.title }}</h3>
+            <p class="{{ cart_settings.cart_item_variant_classes }}">{{ item.variant.title }}</p>
+            <p class="{{ cart_settings.cart_item_price_classes }}">{{ item.price | money }}</p>
+            <p class="{{ cart_settings.cart_item_quantity_classes }}">Quantity: {{ item.quantity }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="{{ cart_settings.cart_empty_message_classes }}">{{ cart_settings.cart_empty_message }}</p>
+    {% endif %}
+  </div>
+  
+  <div class="{{ cart_settings.cart_footer_classes }}">
+    <p class="{{ cart_settings.cart_total_classes }}">Total: {{ cart.total_price | money }}</p>
+    <button class="{{ cart_settings.checkout_button_classes }}">
+      <a href="{{ routes.cart_url }}">{{ cart_settings.checkout_button_text }}</a>
+    </button>
+  </div>
 </div>
-
-<div class="cart-footer">
-  <!-- Add cart totals, checkout button, etc. -->
-</div>
-
 
 <script>
 
@@ -35,3 +59,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </script>
+
