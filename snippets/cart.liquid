@@ -19,18 +19,18 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
-  // ... existing code ...
-
   var closeCartButton = document.getElementById('close-cart-button');
 
-  closeCartButton.addEventListener('click', window.closeAll);
-  closeCartButton.addEventListener('click', checkButtonClick);
+  function closeCart() {
+    if (window.navbarFunctions && typeof window.navbarFunctions.closeAll === 'function') {
+      window.navbarFunctions.closeAll();
+    } else {
+      console.error('closeAll function not found');
+    }
+    console.log('Close cart button clicked');
+  }
 
-  function checkButtonClick() {
-    console.log('check button');
-  }   
-
-  // ... existing code ...
+  closeCartButton.addEventListener('click', closeCart);
 });
 
 

@@ -144,6 +144,10 @@
 </div>
 
 <script>
+
+  window.navbarFunctions = {};
+
+
   document.addEventListener('DOMContentLoaded', function() {
     var menuButton = document.getElementById('menu-button');
     var closeMenuButton = document.getElementById('close-menu-button');
@@ -171,25 +175,25 @@
       body.classList.toggle('overflow-hidden');
       // Close menu if open
       offCanvasMenu.classList.remove('translate-x-0');
-      console.log("toggleCart Button Clicked")
+      console.log("toggleCartButton Clicked")
     }
 
     // Make closeAll function global
-    window.closeAll = function() {
+    window.navbarFunctions.closeAll = function() {
       offCanvasMenu.classList.remove('translate-x-0');
       cartSlideOut.classList.remove('translate-x-0');
       menuOverlay.classList.add('opacity-0', 'pointer-events-none');
       body.classList.remove('overflow-hidden');
-      console.log("Button Clicked")
+      console.log("Close All Function Triggered");
     }
 
     menuButton.addEventListener('click', toggleMenu);
-    closeMenuButton.addEventListener('click', window.closeAll);
+    closeMenuButton.addEventListener('click', window.navbarFunctions.closeAll);
     cartButton.addEventListener('click', toggleCart);
-    menuOverlay.addEventListener('click', window.closeAll);
+    menuOverlay.addEventListener('click', window.navbarFunctions.closeAll);
 
     if (Shopify.designMode) {
-      document.addEventListener('shopify:section:load', function(event) {
+      document.addEventListener('shopify:section:load', function(event) { 
         if (event.target.contains(menuButton)) {
           menuButton.addEventListener('click', toggleMenu);
         }
