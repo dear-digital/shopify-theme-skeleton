@@ -135,8 +135,9 @@
   </div>
 
   <!-- Floating Cart Button for Desktop -->
-  <button id="floating-cart-button" class="{{ section.settings.floating_cart_button_classes }}">
-    {% render 'icon-cart' %}
+  <button id="floating-cart-button" class="{{ section.settings.floating_cart_button_classes }}"> 
+    {% assign svg_class = section.settings.floating_cart_button_svg %}
+    {% render 'icon-shopping-cart' class: svg_class %}
   </button>
 
   <!-- Overlay -->
@@ -290,6 +291,22 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": "text-brand-black hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1/4"
     },
     {
+      "type": "header",
+      "content": "Desktop Floating Cart Button"
+    },
+    {
+      "type": "textarea",
+      "id": "floating_cart_button_classes",
+      "label": "Floating Cart Button Classes",
+      "default": "fixed right-3 top-16 z-50 px-5 py-5 bg-brand-black text-white rounded-full shadow-lg hidden lg:flex items-center justify-center hover:bg-gray-800 transition-colors duration-200" 
+    },
+    {
+      "type": "textarea",
+      "id": "floating_cart_button_svg",
+      "label": "Floating Cart Button SVG",
+      "default": "w-6 h-6"
+    },
+    {
       "type": "textarea",
       "id": "navbar__desktop_menu_item",
       "label": "Desktop Menu item",
@@ -404,16 +421,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "off_canvas_menu_social_SVG",
       "label": "Off-canvas menu social SVG classes",
       "default": "h-5 w-5"
-    },
-    {
-      "type": "header",
-      "content": "Desktop Floating Cart Button"
-    },
-    {
-      "type": "textarea",
-      "id": "floating_cart_button_classes",
-      "label": "Floating Cart Button Classes",
-      "default": "fixed right-4 bottom-4 z-50 p-3 bg-brand-black text-white rounded-full shadow-lg hidden lg:flex items-center justify-center hover:bg-gray-800 transition-colors duration-200"
     }
   ],
   "presets": [

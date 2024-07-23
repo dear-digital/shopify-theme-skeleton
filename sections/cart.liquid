@@ -72,9 +72,7 @@
         <textarea 
           class="{{ section.settings.cart_content_textarea_div_content_message_classes }}" 
           placeholder="{{ section.settings.cart_content_textarea_div_content_message }}"
-        >
-                
-        </textarea>
+        ></textarea>
         
       </div>  
     </div>
@@ -202,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       "type": "textarea",
       "id": "cart_content_textarea_div_content_message",
-      "label": "Gift Message",
+      "label": "Gift Message Placeholder",
       "default": "Gift Message"
     },
     {
@@ -230,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "type": "textarea",
         "id": "cart_overlay_classes",
         "label": "Cart Overlay Classes",
-        "default": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none hidden lg:block"
+        "default": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none block"
     },
     {
         "type": "textarea",
@@ -242,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "type": "textarea",
         "id": "cart_header_classes",
         "label": "Cart Header Classes",
-        "default": "px-6 py-3 flex justify-between items-center h-[48px] border-brand-black border-b md:px-10 md:py-4 lg:py-[26px]"
+        "default": "px-6 py-3 flex justify-between items-center h-[48px] md:h-[56px] border-brand-black border-b md:px-10 md:py-4 lg:py-[26px]"
     },
     {
         "type": "textarea",
@@ -362,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "type": "textarea",
         "id": "cart_content_textarea_div_content_message_classes",
         "label": "Textarea Div Content Message Classes",
-        "default": "w-full border border-gray-300 text-mobile-body h-full overflow-y-auto"
+        "default": "w-full border border-gray-300 text-mobile-body h-full overflow-y-auto p-2 outline-none"
     },
     {
         "type": "textarea",
