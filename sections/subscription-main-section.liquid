@@ -1,60 +1,178 @@
 {% comment %} subscription-main-section.liquid {% endcomment %}
- 
-<section class="subscription_main_section">
-    <div class="subscription_main_section__image">
-        
-        
+
+<section class="{{section.settings.subscription_main_section}}">
+    <div class="{{section.settings.subscription_main_section__image}}">
+        {% if section.settings.image != blank %}
+            {{ section.settings.image 
+                | image_url: width: 1500 
+                | image_tag: class: section.settings.subscription_main_section__image_classes
+            }}
+        {% else %}
+            {{ 'image' | placeholder_svg_tag: class: section.settings.subscription_main_section__image_classes }}
+        {% endif %}
     </div>
-    <div class="subscription_main_section__right_column">
-        <div class="right_column__content_div">
-            <h2 class="content_div__header_classes">
-                Subscription Main Section
+    <div class="{{section.settings.subscription_main_section__right_column}}">
+        <div class="{{section.settings.right_column__content_div}}">
+            <h2 class="{{section.settings.content_div__header_classes}}">
+                {{ section.settings.main_title }}
             </h2>
-            <div class="content_div__content">
-                <div class="content_div__content_subtitle_para_div">
-                    <h3 class="content_div__content_subtitle_classes">
-                        Subtitle
-                    </h3>
-                    <h4 class="content_div__content_paragraph_classes">
-                        Paragraph
-                    </h4>
-                </div>   
-
-                <div class="content_div__content_subtitle_para_div">
-                    <h3 class="content_div__content_subtitle_classes">
-                        Subtitle
-                    </h3>
-                    <h4 class="content_div__content_paragraph_classes">
-                        Paragraph
-                    </h4>
-                </div>   
-
-                <div class="content_div__content_subtitle_para_div">
-                    <h3 class="content_div__content_subtitle_classes">
-                        Subtitle
-                    </h3>
-                    <h4 class="content_div__content_paragraph_classes">
-                        Paragraph
-                    </h4>
-                </div>   
-                
-            
+            <div class="{{section.settings.content_div__content}}">
+                {% for block in section.blocks %}
+                    {% if block.type == 'content_block' %}
+                        <div class="{{block.settings.content_div__content_subtitle_para_div}}">
+                            <h3 class="{{block.settings.content_div__content_subtitle_classes}}">
+                                {{ block.settings.subtitle }}
+                            </h3>
+                            <h4 class="{{block.settings.content_div__content_paragraph_classes}}">
+                                {{ block.settings.paragraph }}
+                            </h4>
+                        </div>   
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
 
-        <button class="right_column__button">
-        
-        
+        <button class="{{ section.settings.right_column__button }}">
+            <a href="{{ section.settings.right_column__button_link }}">
+                        {{- section.settings.right_column__button_label | escape -}}
+            </a>
         </button>
+
     </div>
 </section>
-
 
 {% schema %}
 {
     "name": "Subscription Main Section",
-    "settings": [],
-    "presets": [],
-    "blocks": []
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Main Image"
+        },
+        {
+            "type": "text",
+            "id": "main_title",
+            "label": "Main Title",
+            "default": "Subscription Main Section"
+        },
+        {
+            "type": "textarea",
+            "id": "right_column__button_label",
+            "label": "Button Label",
+            "default": "Subscribe Now"
+        },
+        {
+            "type": "url",
+            "id": "right_column__button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "header",
+            "content": "Tailwind styling classes"
+        },
+        {
+            "type": "textarea",
+            "id": "subscription_main_section",
+            "label": "Section Container Classes",
+            "default": "text-black"
+        },
+        {
+            "type": "textarea",
+            "id": "subscription_main_section__image",
+            "label": "Image Container Classes",
+            "default": "w-full h-auto"
+        },
+        {
+            "type": "textarea",
+            "id": "subscription_main_section__image_classes",
+            "label": "Image Classes",
+            "default": "w-full h-auto object-cover"
+        },
+        {
+            "type": "textarea",
+            "id": "subscription_main_section__right_column",
+            "label": "Right Column Classes",
+            "default": "p-4"
+        },
+        {
+            "type": "textarea",
+            "id": "right_column__content_div",
+            "label": "Content Div Classes",
+            "default": "mb-4"
+        },
+        {
+            "type": "textarea",
+            "id": "content_div__header_classes",
+            "label": "Header Classes",
+            "default": "text-2xl font-bold mb-2"
+        },
+        {
+            "type": "textarea",
+            "id": "content_div__content",
+            "label": "Content Container Classes",
+            "default": "space-y-4"
+        },
+        {
+            "type": "textarea",
+            "id": "right_column__button",
+            "label": "Button Classes",
+            "default": "bg-blue-500 text-white px-4 py-2 rounded"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "content_block",
+            "name": "Content Block",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "subtitle",
+                    "label": "Subtitle",
+                    "default": "Subtitle"
+                },
+                {
+                    "type": "textarea",
+                    "id": "paragraph",
+                    "label": "Paragraph",
+                    "default": "Paragraph content goes here"
+                },
+                {
+                    "type": "textarea",
+                    "id": "content_div__content_subtitle_para_div",
+                    "label": "Subtitle/Paragraph Container Classes",
+                    "default": "mb-2"
+                },
+                {
+                    "type": "textarea",
+                    "id": "content_div__content_subtitle_classes",
+                    "label": "Subtitle Classes",
+                    "default": "text-xl font-semibold"
+                },
+                {
+                    "type": "textarea",
+                    "id": "content_div__content_paragraph_classes",
+                    "label": "Paragraph Classes",
+                    "default": "text-gray-600"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Subscription Main Section",
+            "blocks": [
+                {
+                    "type": "content_block"
+                },
+                {
+                    "type": "content_block"
+                },
+                {
+                    "type": "content_block"
+                }
+            ]
+        }
+    ]
 }
 {% endschema %}
