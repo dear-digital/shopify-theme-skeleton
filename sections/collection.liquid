@@ -8,30 +8,32 @@
           | image_tag: class: section.settings['tw-collection__image']
         }}
       {% endif %}
-    </div>
-    <div class="collection__heading {{ section.settings.tw-collection__heading }}">
-      {{ collection.title }}
+      <div class="collection__heading {{ section.settings.tw-collection__heading }}">
+        {{ collection.title }}
+      </div>
     </div>
   </div>
   <div class="collection__right-col {{ section.settings.tw-collection__right-col }}">
     {% for product in collection.products %}
-      <div class="collection__card {{ section.settings.tw-collection__card }}">
-        <div class="collection__product-featured-image">
-          {{
-            product.featured_image
-            | image_url: width: 1200, height: 1200, crop: 'center'
-            | image_tag: class: section.settings['tw-collection__product-featured-image']
-          }}
+      <a href="{{ product.url }}">
+        <div class="collection__card {{ section.settings.tw-collection__card }}">
+          <div class="collection__product-featured-image">
+            {{
+              product.featured_image
+              | image_url: width: 1200, height: 1200, crop: 'center'
+              | image_tag: class: section.settings['tw-collection__product-featured-image']
+            }}
+          </div>
+          <div class="collection__product-description {{ section.settings.tw-collection__product-description }}">
+            <h3 class="collection__product-title {{ section.settings.tw-collection__product-title }}">
+              {{ product.title }}
+            </h3>
+            <p class="collection__product-price {{ section.settings.tw-collection__product-price }}">
+              <span>{{ section.settings['product_price-text'] }}</span> {{ product.price | money }}
+            </p>
+          </div>
         </div>
-        <div class="collection__product-description {{ section.settings.tw-collection__product-description }}">
-          <h3 class="collection__product-title {{ section.settings.tw-collection__product-title }}">
-            {{ product.title }}
-          </h3>
-          <p class="collection__product-price {{ section.settings.tw-collection__product-price }}">
-            <span>{{ section.settings['product_price-text'] }}</span> {{ product.price | money }}
-          </p>
-        </div>
-      </div>
+      </a>
     {% endfor %}
   </div>
 </div>
@@ -49,57 +51,68 @@
     {
       "type": "textarea",
       "id": "tw-collection",
-      "label": "Style tw-collection"
+      "label": "Style tw-collection",
+      "default": "lg:grid lg:grid-cols-2"
     },
     {
       "type": "textarea",
       "id": "tw-collection__left-col",
-      "label": "Style tw-collection__left-col"
+      "label": "Style tw-collection__left-col",
+      "default": "relative border-[1px] border-brand-black -m-py"
     },
     {
       "type": "textarea",
-      "id": "tw-collection__featured-image_wrappper",
-      "label": "Style tw-collection__image_wrappper"
+      "id": "tw-collection__image_wrappper",
+      "label": "Style tw-collection__image_wrappper",
+      "default": "relative lg:sticky lg:top-0"
     },
     {
       "type": "textarea",
       "id": "tw-collection__image",
-      "label": "Style tw-collection__image"
+      "label": "Style tw-collection__image",
+      "default": "aspect-[0.9] md:aspect-[1.5] lg:aspect-square w-full object-cover brightness-75"
     },
     {
       "type": "textarea",
       "id": "tw-collection__heading",
-      "label": "Style tw-collection__heading"
+      "label": "Style tw-collection__heading",
+      "default": "absolute inset-0 flex items-center justify-center font-semibold text-mobile-heading-1 text-white md:text-desktop-heading-1"
     },
     {
       "type": "textarea",
       "id": "tw-collection__right-col",
-      "label": "Style tw-collection__right-col"
+      "label": "Style tw-collection__right-col",
+      "default": "grid grid-cols-1 md:grid-cols-2"
     },
     {
       "type": "textarea",
       "id": "tw-collection__card",
-      "label": "Style tw-collection__card"
+      "label": "Style tw-collection__card",
+      "default": "relative border-[1px] border-brand-black -m-py"
     },
     {
       "type": "textarea",
       "id": "tw-collection__product-featured-image",
-      "label": "Style tw-collection__product-featured-image"
+      "label": "Style tw-collection__product-featured-image",
+      "default": "aspect-square w-full object-cover"
     },
     {
       "type": "textarea",
       "id": "tw-collection__product-description",
-      "label": "Style tw-collection__product-description"
+      "label": "Style tw-collection__product-description",
+      "default": "absolute inset-0 flex flex-col gap-1 items-center justify-end mb-3 md:mb-6"
     },
     {
       "type": "textarea",
       "id": "tw-collection__product-title",
-      "label": "Style tw-collection__product-title"
+      "label": "Style tw-collection__product-title",
+      "default": "font-medium text-mobile-heading-6 md:text-desktop-heading-6"
     },
     {
       "type": "textarea",
       "id": "tw-collection__product-price",
-      "label": "Style tw-collection__product-price"
+      "label": "Style tw-collection__product-price",
+      "default": "font-medium text-mobile-caption text-brand-gray"
     }
   ],
   "presets": [
