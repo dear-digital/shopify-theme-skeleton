@@ -1,3 +1,5 @@
+{% comment %} cart.liquid {% endcomment %}
+
 <div  id="cart-drawer" class="{{ section.settings.cart_container_classes }}">
 
   {% comment %} Cart Header {% endcomment %}
@@ -110,6 +112,7 @@ class CartDrawer {
     this.overlay = document.getElementById('cart-overlay');
     this.openButton = document.getElementById('cart-button');
     this.closeButton = document.getElementById('close-cart-button');
+    this.desktopOpenButtons = document.querySelectorAll('[data-action="open-cart"]');
     this.bindEvents();
   }
 
@@ -117,6 +120,12 @@ class CartDrawer {
     this.openButton.addEventListener('click', () => this.toggle());
     this.closeButton.addEventListener('click', () => this.close());
     this.overlay.addEventListener('click', () => this.close());
+    this.desktopOpenButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        this.toggle();
+      });
+    });
   }
 
   open() {

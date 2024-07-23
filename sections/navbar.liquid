@@ -1,3 +1,5 @@
+{% comment %} navbar.liquid {% endcomment %}
+
 {% assign has_social_icons = false %}
 {% if settings.social_facebook_link != blank or
       settings.social_instagram_link != blank or
@@ -42,8 +44,10 @@
         </div>
         <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
             {% for link in linklists[section.settings.right_menu].links %}
-            <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
-                <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
+            <a href="{{ link.url }}" 
+              class="navbar__menu-item {{ section.settings.right_menu_item_classes }}"
+              {% if link.title == 'Cart' %} data-action="open-cart" {% endif %}>
+              <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
             </a>
             {% endfor %}
         </div>
@@ -65,7 +69,9 @@
         </a>
       {% endfor %}
       {% for link in linklists[section.settings.right_menu].links %}
-        <a href="{{ link.url }}" class="{{ section.settings.off_canvas_menu_item_classes }}">
+        <a href="{{ link.url }}" 
+          class="{{ section.settings.off_canvas_menu_item_classes }}"
+          {% if link.title == 'Cart' %} data-action="open-cart" {% endif %}>
           {{ link.title }}
         </a>
       {% endfor %}
@@ -134,12 +140,6 @@
     </div>
   </div>
 
-  <!-- Floating Cart Button for Desktop -->
-  <button id="floating-cart-button" class="{{ section.settings.floating_cart_button_classes }}"> 
-    {% assign svg_class = section.settings.floating_cart_button_svg %}
-    {% render 'icon-shopping-cart' class: svg_class %}
-  </button>
-
   <!-- Overlay -->
   <div id="menu-overlay" class="menu_overlay_classes {{ section.settings.menu_overlay_classes }}"></div>
 </div>
@@ -152,7 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeMenuButton = document.getElementById('close-menu-button');
     const offCanvasMenu = document.getElementById('off-canvas-menu');
     const menuOverlay = document.getElementById('menu-overlay');
-    const floatingCartButton = document.getElementById('floating-cart-button');
     const body = document.body;
 
     function toggleMenu() {
@@ -177,19 +176,14 @@ document.addEventListener('DOMContentLoaded', function() {
     closeMenuButton.addEventListener('click', closeMenu);
     menuOverlay.addEventListener('click', closeMenu);
 
-    if (floatingCartButton) {
-      floatingCartButton.addEventListener('click', () => {
-        if (window.cartDrawer) {
-          window.cartDrawer.open();
-        }
-      });
-    }
-
     // Shopify editor events
     if (Shopify.designMode) {
       document.addEventListener('shopify:section:load', function(event) { 
         if (event.target.contains(menuButton)) {
           menuButton.addEventListener('click', toggleMenu);
+        }
+        if (window.cartDrawer) {
+          window.cartDrawer.bindEvents();
         }
       });
     }
@@ -275,22 +269,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "right_menu_item_classes",
       "label": "Right menu item classes",
       "default": "text-brand-black hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1/4"
-    },
-    {
-      "type": "header",
-      "content": "Desktop Floating Cart Button"
-    },
-    {
-      "type": "textarea",
-      "id": "floating_cart_button_classes",
-      "label": "Floating Cart Button Classes",
-      "default": "fixed right-3 top-16 z-50 px-5 py-5 bg-brand-black text-white rounded-full shadow-lg hidden lg:flex items-center justify-center hover:bg-gray-800 transition-colors duration-200" 
-    },
-    {
-      "type": "textarea",
-      "id": "floating_cart_button_svg",
-      "label": "Floating Cart Button SVG",
-      "default": "w-6 h-6"
     },
     {
       "type": "textarea",
