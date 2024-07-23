@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeMenuButton = document.getElementById('close-menu-button');
     const offCanvasMenu = document.getElementById('off-canvas-menu');
     const menuOverlay = document.getElementById('menu-overlay');
+    const mobileCartButtons = document.querySelectorAll('#off-canvas-menu [data-action="open-cart"]');
     const body = document.body;
 
     function toggleMenu() {
@@ -172,9 +173,23 @@ document.addEventListener('DOMContentLoaded', function() {
       // console.log("Menu Closed New");
     }
 
+    function handleMobileCartClick(event) {
+        event.preventDefault();
+        closeMenu();
+        setTimeout(() => {
+            if (window.cartDrawer) {
+                window.cartDrawer.open();
+            }
+        }, 300); // Adjust this delay as needed to match your menu closing animation
+    }
+
     menuButton.addEventListener('click', toggleMenu);
     closeMenuButton.addEventListener('click', closeMenu);
     menuOverlay.addEventListener('click', closeMenu);
+
+    mobileCartButtons.forEach(button => {
+        button.addEventListener('click', handleMobileCartClick);
+    });
 
     // Shopify editor events
     if (Shopify.designMode) {
@@ -185,6 +200,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.cartDrawer) {
           window.cartDrawer.bindEvents();
         }
+        const newMobileCartButtons = event.target.querySelectorAll('#off-canvas-menu [data-action="open-cart"]');
+        newMobileCartButtons.forEach(button => {
+            button.addEventListener('click', handleMobileCartClick);
+        });
       });
     }
 });
