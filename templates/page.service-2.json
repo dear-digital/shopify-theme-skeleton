@@ -1,70 +1,29 @@
-/*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
 {
   "sections": {
-    "about_us_GYTzzQ": {
-      "type": "about-us",
+    "service_section_2_MCig4L": {
+      "type": "service-section-2",
       "settings": {
-        "about_us__container_left_heading": "About Us",
-        "about_us__container_right_small_header": "Our Story",
-        "about_us__container_right_sub_header": "Kyiv LuxeBouquets",
-        "about_us__container_right_description": "<p>We are a modern local floral studio, which specializes in the design and delivery of unique bouquets. We have the best florists who carefully select each look, our studio cooperates directly with farms for growing different flowers, so we always have fresh flowers, which are collected by our florists in exquisite bouquets. We have a collection of fresh bouquets, collections of dried bouquets, house plants, as well as fragrant candles from luxury brands to create the perfect atmosphere. Make someone's day amazing by sending flowers, plants and gifts the same or next day. Ordering flowers online has never been easier.<\/p>",
-        "about_us__container_right_button_label": "Learn More",
-        "about_us__container_right_button_link": "",
-        "about_us__container": "flex flex-col lg:flex-row w-full",
-        "about_us__container_left": "w-full px-4 py-10 border-brand-black border border-t-0 gap-4 md:p-20 lg:border-r-0",
-        "about_us__container_left_heading_div_classes": "lg:sticky lg:top-[5.56vw]",
-        "about_us__container_left_heading_classes": "text-brand-black text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
-        "about_us__container_right": "w-full px-4 py-10 border-brand-black border border-t-0 md:p-20 lg:border-r-0 lg:border-l-1",
-        "about_us__container_right_content": "flex flex-col gap-6",
-        "about_us__container_right_small_header_classes": "uppercase text-brand-black text-mobile-overline font-medium md:text-desktop-overline",
-        "about_us__container_right_sub_header_classes": "text-brand-black text-mobile-heading-3 font-medium md:text-desktop-heading-3",
-        "about_us__container_right_description_classes": "text-mobile-body font-regular opacity-90",
-        "about_us__container_right_button_div": "flex items-start justify-center mt-16 md:inline-block",
-        "about_us__container_right_button_classes": "text-brand-black uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-brand-black pt-4 pb-[14px] px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
-      }
-    },
-    "dev_contact_form_GkbeLk": {
-      "type": "dev__contact-form",
-      "settings": {
-        "contact_title": "Contact Us",
-        "send_button_text": "Send Message",
-        "contact": "w-full dark:bg-gray-900 dark:text-white py-10 text-center mx-auto",
-        "contact__style--title": "text-2xl md:text-4xl font-bold",
-        "contact__style--form": "mt-5 md:mt-7 w-full mx-auto px-6 md:w-3\/5",
-        "contact__form_styles": "flex flex-col items-center",
-        "contact__1st-row": "flex justify-between gap-2 w-full",
-        "contact__style--input": "w-full px-2 py-1 text-sm md:text-base border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
-        "contact__style--textarea": "w-full px-2 py-1 text-sm md:text-base border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
-        "contact__submit-button": "py-1 px-2 block mx-auto md:py-3 md:px-5 md:w-full text-sm font-medium text-center bg-blue-600 text-white rounded-md border cursor-pointer bg-primary-700 border-primary-600 hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-      }
-    },
-    "dev_contact_form_EzpBjb": {
-      "type": "dev__contact-form",
-      "settings": {
-        "contact_title": "Contact Us",
-        "send_button_text": "Send Message",
-        "contact": "w-full dark:bg-gray-900 dark:text-white py-10 text-center mx-auto",
-        "contact__style--title": "text-2xl md:text-4xl font-bold",
-        "contact__style--form": "mt-5 md:mt-7 w-full mx-auto px-6 md:w-3\/5",
-        "contact__form_styles": "flex flex-col items-center",
-        "contact__1st-row": "flex justify-between gap-2 w-full",
-        "contact__style--input": "w-full px-2 py-1 text-sm md:text-base border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
-        "contact__style--textarea": "w-full px-2 py-1 text-sm md:text-base border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
-        "contact__submit-button": "py-1 px-2 block mx-auto md:py-3 md:px-5 md:w-full text-sm font-medium text-center bg-blue-600 text-white rounded-md border cursor-pointer bg-primary-700 border-primary-600 hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+        "service_2_background_image": "shopify:\/\/shop_images\/438486393_813662443989352_6566823081766376948_n_8eaac1ac-7b71-471c-bca8-6487792fa855.jpg",
+        "service_2__container_text_content_small_header": "Service",
+        "service_2__container_text_content_heading_paragraph_div_header": "Wedding & Event Decor",
+        "service_2__container_text_content_heading_paragraph_div_para": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
+        "service_2__container_button_label": "Inquire Now",
+        "service_2__container_button_link": "",
+        "service_2__container": "relative h-[416px] md:h-[500px] lg:h-[720px] flex items-center justify-center",
+        "service_2__container_image_classes": "absolute inset-0 w-full h-full object-cover",
+        "service_2__container_overlay": "absolute inset-0 bg-black bg-opacity-50",
+        "service_2__container_content": "relative z-10 flex flex-col gap-16 py-10 px-4 md:p-20 md:items-center",
+        "service_2__container_text_content": "flex flex-col gap-6 text-center",
+        "service_2__container_text_content_small_header_classes": "text-mobile-caption-small md:text-mobile-caption uppercase text-white font-medium",
+        "service_2__container_text_content_heading_paragraph_div": "flex flex-col gap-4",
+        "service_2__container_text_content_heading_paragraph_div_header_classes": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
+        "service_2__container_text_content_heading_paragraph_div_para_classes": "text-mobile-body text-white md:text-desktop-hero-caption",
+        "service_2__container_button_div": "flex items-start justify-center md:inline-block",
+        "service_2__container_button_classes": "text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-brand-black pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
       }
     }
   },
   "order": [
-    "about_us_GYTzzQ",
-    "dev_contact_form_GkbeLk",
-    "dev_contact_form_EzpBjb"
+    "service_section_2_MCig4L"
   ]
 }

@@ -2,38 +2,38 @@ name: Build Tailwind CSS
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v4
+      - name: Check out code
+        uses: actions/checkout@v4.1.7
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18' # Specify the Node.js version
+      - name: Set up Node.js
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version: "18" # Specify the Node.js version
 
-    - name: Install Dependencies
-      run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Build Tailwind CSS
-      run: npx tailwindcss -i ./src/tailwind.css -o ./assets/output.css
+      - name: Build Tailwind CSS
+        run: npx tailwindcss -i ./src/tailwind.css -o ./assets/output.css
 
-    - name: Commit files
-      run: |
-        git config user.email "mihir@deardigital.com"
-        git config user.name "mihir-bombay-studio"
-        if git diff --quiet; then
-          echo "No changes to commit"
-          exit 0
-        else
-          git add -f ./assets/output.css
-          git commit -m "Automated Tailwind CSS build"
-          git push
-        fi        
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit files
+        run: |
+          git config user.email "mihir@deardigital.com"
+          git config user.name "mihir-bombay-studio"
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          else
+            git add -f ./assets/output.css
+            git commit -m "Automated Tailwind CSS build"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
