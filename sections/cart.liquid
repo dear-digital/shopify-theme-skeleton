@@ -4,7 +4,8 @@
   <div class="{{ section.settings.cart_header_classes }}">
     <h2 class="{{ section.settings.cart_title_classes }}">{{ section.settings.cart_title }}</h2>
     <button id="close-cart-button" class="{{ section.settings.close_cart_button_classes }}">
-      {% render 'icon-social-facebook' class: "w-10 h-10" %}
+      {% assign svg_class = section.settings.cart_close_button_svg %}
+      {% render 'icon-close' class: svg_class %}
     </button>
   </div>
   
@@ -15,20 +16,22 @@
       
       {% assign image_classes = section.settings.cart_item_image_classes %}
       {% if section.settings.cart_item_image != blank %}
-          {{
-          section.settings.cart_item_image
-          | image_url: width: 300
-          | image_tag: 
-              class: image_classes,
-              alt: section.settings.cart_item_image.alt | default: 'Image for Cart item'
+      {{
+      section.settings.cart_item_image
+      | image_url: width: 300
+      | image_tag: 
+          class: image_classes,
+          alt: section.settings.cart_item_image.alt | default: 'Image for Cart item'
 
-          }}
+      }}
+      {% else %}
+        {{ 'collection-1' | placeholder_svg_tag: "w-[160px] aspect-square object-cover border-brand-black border" }}
       {% endif %}
 
       <div class="{{ section.settings.cart_content_added_product_class_main_info_button_div }}">
           <div class="{{ section.settings.cart_content_added_product_class_main_info_button_label_price_div }}">
               <h4 class="{{ section.settings.cart_content_product_name_classes }}"> 
-                {{ section.settings.cart_content_product_name }} Product Name
+                {{ section.settings.cart_content_product_name }}
               </h4>
 
               <h4 class="{{ section.settings.cart_content_product_quantity_classes }}"> 
@@ -66,9 +69,13 @@
     {% comment %} Textarea Block {% endcomment %}
     <div class="{{ section.settings.cart_content_textarea_div }}">
       <div class="{{ section.settings.cart_content_textarea_div_content }}">
-        <div class="{{ section.settings.cart_content_textarea_div_content_message_classes }}"> 
-          {{ section.settings.cart_content_textarea_div_content_message }}
-        </div>
+        <textarea 
+          class="{{ section.settings.cart_content_textarea_div_content_message_classes }}" 
+          placeholder="{{ section.settings.cart_content_textarea_div_content_message }}"
+        >
+                
+        </textarea>
+        
       </div>  
     </div>
 
@@ -83,7 +90,6 @@
 
     {% comment %} Checkout Button Block {% endcomment %}
     <div class="{{ section.settings.cart_content_checkout_button_div }}">
-      Checkout Button
       <button class="{{ section.settings.cart_content_checkout_button }}">
           <a href="{{ section.settings.cart_content_checkout_button_link }}">
                       {{- section.settings.cart_content_checkout_button_label | escape -}}
@@ -91,38 +97,48 @@
       </button>
     </div>
   </div>
+
 </div>
 
+{% comment %} Cart Overlay {% endcomment %}
+<div id="cart-overlay" class="{{ section.settings.cart_overlay_classes }}"></div>
+
 <script>
-  
+
 class CartDrawer {
-    constructor() {
-      this.drawer = document.getElementById('cart-drawer');
-      this.openButton = document.getElementById('cart-button');
-      this.closeButton = document.getElementById('close-cart-button');
-      this.bindEvents();
-    }
-
-    bindEvents() {
-      this.openButton.addEventListener('click', () => this.open());
-      this.closeButton.addEventListener('click', () => this.close());
-    }
-
-    open() {
-      this.drawer.classList.remove('translate-x-full');
-      document.body.classList.add('overflow-hidden');
-    }
-
-    close() {
-      this.drawer.classList.add('translate-x-full');
-      document.body.classList.remove('overflow-hidden');
-    }
+  constructor() {
+    this.drawer = document.getElementById('cart-drawer');
+    this.overlay = document.getElementById('cart-overlay');
+    this.openButton = document.getElementById('cart-button');
+    this.closeButton = document.getElementById('close-cart-button');
+    this.bindEvents();
   }
 
-  // Initialize the cart drawer when the DOM is loaded
-  document.addEventListener('DOMContentLoaded', () => {
-    new CartDrawer();
-  });
+  bindEvents() {
+    this.openButton.addEventListener('click', () => this.open());
+    this.closeButton.addEventListener('click', () => this.close());
+    this.overlay.addEventListener('click', () => this.close());
+  }
+
+  open() {
+    this.drawer.classList.remove('translate-x-full');
+    this.overlay.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.classList.add('overflow-hidden');
+    console.log("Cart Drawer Opened");
+  }
+
+  close() {
+    this.drawer.classList.add('translate-x-full');
+    this.overlay.classList.add('opacity-0', 'pointer-events-none');
+    document.body.classList.remove('overflow-hidden');
+    console.log("Cart Drawer Closed");
+  }
+}
+
+// Initialize the cart drawer when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new CartDrawer();
+});
 
 
 </script>
@@ -135,7 +151,7 @@ class CartDrawer {
         "type": "inline_richtext",
         "id": "cart_title",
         "label": "Cart Title",
-        "default": "Your Cart"
+        "default": "Shopping Cart"
     },
     {
         "type": "image_picker",
@@ -184,16 +200,16 @@ class CartDrawer {
         "default": "$100.00"
     },
     {
-        "type": "richtext",
-        "id": "cart_content_textarea_div_content_message",
-        "label": "Gift Message",
-        "default": "<p> Gift Message </p>"
+      "type": "textarea",
+      "id": "cart_content_textarea_div_content_message",
+      "label": "Gift Message",
+      "default": "Gift Message"
     },
     {
         "type": "richtext",
         "id": "cart_content_delivery_message",
         "label": "Delivery Message",
-        "default": "<p> Shipping & taxes calculated at checkout Free standard shipping within Kyiv </p>"
+        "default": "<p>Shipping & taxes calculated at checkout Free standard shipping within Kyiv </p>"
     },
     {
         "type": "text",
@@ -212,9 +228,18 @@ class CartDrawer {
     },
     {
         "type": "textarea",
+        "id": "cart_overlay_classes",
+        "label": "Cart Overlay Classes",
+        "default": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none hidden lg:block"
+    },
+    {
+        "type": "textarea",
         "id": "cart_container_classes",
         "label": "Cart Container Classes",
-        "default": "fixed inset-y-0 right-0 w-full md:w-[384px] bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full"
+        "default": "fixed inset-y-0 right-0 w-full lg:w-1/2 bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full flex flex-col"
+        // fixed inset-y-0 right-0 w-full lg:w-1/2 bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full
+        // new fixed inset-y-0 right-0 w-full lg:w-1/2 bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full lg:translate-x-0 flex flex-col
+        // Old V2 fixed inset-y-0 right-0 w-full lg:w-1/2 bg-white z-50 transition-transform duration-300 ease-in-out transform flex flex-col
         // fixed inset-y-0 right-0 w-full md:w-[384px] bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full
         // Old: fixed inset-y-0 right-0 w-full md:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50
     },
@@ -222,13 +247,13 @@ class CartDrawer {
         "type": "textarea",
         "id": "cart_header_classes",
         "label": "Cart Header Classes",
-        "default": "text-black"
+        "default": "px-6 py-3 flex justify-between items-center h-[48px] border-brand-black border-b md:px-10 md:py-4 lg:py-[26px]"
     },
     {
         "type": "textarea",
         "id": "cart_title_classes",
         "label": "Cart Title Classes",
-        "default": "text-black"
+        "default": "text-mobile-heading-6 font-medium md:text-desktop-heading-6"
     },
     {
         "type": "textarea",
@@ -238,111 +263,117 @@ class CartDrawer {
     },
     {
         "type": "textarea",
+        "id": "cart_close_button_svg",
+        "label": "Close Cart Button SVG",
+        "default": "w-3 h-3 md:w-4 md:h-4"
+    },
+    {
+        "type": "textarea",
         "id": "cart_content_classes",
         "label": "Cart Content Classes",
-        "default": "text-black"
+        "default": "flex flex-col h-full"
     },
     {
         "type": "textarea",
         "id": "cart_content_added_product_class",
         "label": "Cart Content Added Product Class",
-        "default": "text-black"
+        "default": "px-4 py-6 flex flex-col gap-4 border-brand-black border-b md:p-10 md:flex-row md:justify-between"
     },
     {
         "type": "textarea",
         "id": "cart_item_image_classes",
         "label": "Cart Item Image Classes",
-        "default": "text-black"
+        "default": "w-[160px] aspect-square object-cover border-brand-black border"
     },
     {
         "type": "textarea",
         "id": "cart_content_added_product_class_main_info_button_div",
         "label": "Added Product Class Main Info Button Div",
-        "default": "text-black"
+        "default": "flex justify-between items-end md:items-center md:w-full"
     },
     {
         "type": "textarea",
         "id": "cart_content_added_product_class_main_info_button_label_price_div",
         "label": "Added Product Class Main Info Button Label Price Div",
-        "default": "text-black"
+        "default": "flex flex-col gap-2"
     },
     {
         "type": "textarea",
         "id": "cart_content_product_name_classes",
         "label": "Product Name Classes",
-        "default": "text-black"
+        "default": "text-mobile-subtitle font-medium"
     },
     {
         "type": "textarea",
         "id": "cart_content_product_quantity_classes",
         "label": "Product Quantity Classes",
-        "default": "text-black"
+        "default": "text-mobile-body"
     },
     {
         "type": "textarea",
         "id": "cart_content_product_price_classes",
         "label": "Product Price Classes",
-        "default": "text-black"
+        "default": "text-mobile-subtitle font-medium"
     },
     {
         "type": "textarea",
         "id": "cart_content_added_product_class_main_info_button_remove_button_div",
         "label": "Added Product Class Main Info Button Remove Button Div",
-        "default": "text-black"
+        "default": "text-mobile-links font-semibold tracking-[0.025em] md:text-desktop-button"
     },
     {
         "type": "textarea",
         "id": "cart_item_remove_button",
         "label": "Cart Item Remove Button Classes",
-        "default": "text-black"
+        "default": "text-brand-gray"
     },
     {
         "type": "textarea",
         "id": "cart_content_subtotal_div",
         "label": "Cart Content Subtotal Div",
-        "default": "text-black"
+        "default": "px-4 py-6 border-brand-black border-b md:p-10"
     },
     {
         "type": "textarea",
         "id": "cart_content_subtotal_div_content",
         "label": "Cart Content Subtotal Div Content",
-        "default": "text-black"
+        "default": "flex justify-between"
     },
     {
         "type": "textarea",
         "id": "cart_content_subtotal_div_content_label_classes",
         "label": "Cart Content Subtotal Div Content Label Classes",
-        "default": "text-black"
+        "default": "text-mobile-subtitle font-medium "
     },
     {
         "type": "textarea",
         "id": "cart_content_subtotal_div_content_total_price_classes",
         "label": "Cart Content Subtotal Div Content Total Price Classes",
-        "default": "text-black"
+        "default": "text-mobile-subtitle font-medium md:text-desktop-heading-5"
     },
     {
         "type": "textarea",
         "id": "cart_content_textarea_div",
         "label": "Cart Content Textarea Div",
-        "default": "text-black"
+        "default": "px-4 py-6 border-brand-black border-b flex-grow md:p-10"
     },
     {
         "type": "textarea",
         "id": "cart_content_textarea_div_content",
         "label": "Cart Content Textarea Div Content",
-        "default": "text-black"
+        "default": "h-full"
     },
     {
         "type": "textarea",
         "id": "cart_content_textarea_div_content_message_classes",
         "label": "Textarea Div Content Message Classes",
-        "default": "text-black"
+        "default": "w-full border border-gray-300 text-mobile-body h-full overflow-y-auto"
     },
     {
         "type": "textarea",
         "id": "cart_content_delivery_message_div",
         "label": "Cart Content Delivery Message Div",
-        "default": "text-black"
+        "default": "px-4 py-10 border-brand-black border-b md:p-10"
     },
     {
         "type": "textarea",
@@ -354,30 +385,24 @@ class CartDrawer {
         "type": "textarea",
         "id": "cart_content_delivery_message_classes",
         "label": "Cart Content Delivery Message Classes",
-        "default": "text-black"
+        "default": "text-mobile-caption text-center"
     },
     {
         "type": "textarea",
         "id": "cart_content_checkout_button_div",
         "label": "Cart Content Checkout Button Div",
-        "default": "text-black"
+        "default": "w-full font-medium"
     },
     {
         "type": "textarea",
         "id": "cart_content_checkout_button",
         "label": "Cart Content Checkout Button Classes",
-        "default": "text-black"
+        "default": "text-mobile-button uppercase w-full h-full bg-brand-black text-white hover:bg-gray-800 transition-colors duration-200 px-6 pt-4 pb-[14px] tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em]"
     },
-    {
-        "type": "textarea",
-        "id": "checkout_button_classes",
-        "label": "Checkout Button Classes",
-        "default": "w-full bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition-colors duration-200"
-    }
   ],
   "presets": [
     {
-      "name": "Cart Settings"
+      "name": "Cart"
     }   
   ]
 }
