@@ -1,4 +1,4 @@
-<div id="cart-slide-out" class="{{ section.settings.cart_container_classes }}">
+<div  id="cart-drawer" class="{{ section.settings.cart_container_classes }}">
 
   {% comment %} Cart Header {% endcomment %}
   <div class="{{ section.settings.cart_header_classes }}">
@@ -94,21 +94,35 @@
 </div>
 
 <script>
-
-document.addEventListener('DOMContentLoaded', function() {
-  var closeCartButton = document.getElementById('close-cart-button');
-
-  function closeCart() {
-    if (window.navbarFunctions && typeof window.navbarFunctions.closeAll === 'function') {
-      window.navbarFunctions.closeAll();
-    } else {
-      console.error('closeAll function not found');
+  
+class CartDrawer {
+    constructor() {
+      this.drawer = document.getElementById('cart-drawer');
+      this.openButton = document.getElementById('cart-button');
+      this.closeButton = document.getElementById('close-cart-button');
+      this.bindEvents();
     }
-    console.log('Close cart button clicked');
+
+    bindEvents() {
+      this.openButton.addEventListener('click', () => this.open());
+      this.closeButton.addEventListener('click', () => this.close());
+    }
+
+    open() {
+      this.drawer.classList.remove('translate-x-full');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    close() {
+      this.drawer.classList.add('translate-x-full');
+      document.body.classList.remove('overflow-hidden');
+    }
   }
 
-  closeCartButton.addEventListener('click', closeCart);
-});
+  // Initialize the cart drawer when the DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new CartDrawer();
+  });
 
 
 </script>
@@ -200,7 +214,9 @@ document.addEventListener('DOMContentLoaded', function() {
         "type": "textarea",
         "id": "cart_container_classes",
         "label": "Cart Container Classes",
-        "default": "fixed inset-y-0 right-0 w-full md:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50"
+        "default": "fixed inset-y-0 right-0 w-full md:w-[384px] bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full"
+        // fixed inset-y-0 right-0 w-full md:w-[384px] bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full
+        // Old: fixed inset-y-0 right-0 w-full md:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50
     },
     {
         "type": "textarea",
