@@ -20,9 +20,9 @@
     "social_youtube_link": "https:\/\/www.google.com\/",
     "social_twitter_link": "https:\/\/www.google.com\/",
     "social_snapchat_link": "https:\/\/www.google.com\/",
-    "social_pinterest_link": "",
+    "social_pinterest_link": "https:\/\/www.google.com\/",
     "social_tumblr_link": "",
-    "social_vimeo_link": "",
+    "social_vimeo_link": "https:\/\/www.google.com\/",
     "predictive_search_enabled": true,
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
@@ -127,6 +127,22 @@
     "content_for_index": [
 
     ],
+    "blocks": {
+      "1768834845299682660": {
+        "type": "shopify:\/\/apps\/subscriptions\/blocks\/app-embed-block\/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
+        "disabled": false,
+        "settings": {
+          "color_text_title": "#6D7175",
+          "color_text_body": "#6D7175",
+          "dividers_color": "#8F8D8D",
+          "bacgkround_color": "#FFFFFF",
+          "border_thickness": 1,
+          "border_radius": 0,
+          "supporting_text_title": "Purchase options",
+          "subscription_policy_url": ""
+        }
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
