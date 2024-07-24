@@ -1,0 +1,64 @@
+{
+  "sections": {
+    "subscription_main_section_MxEtWV": {
+      "type": "subscription-main-section",
+      "blocks": {
+        "content_block_cAFNEX": {
+          "type": "content_block",
+          "settings": {
+            "subtitle": "For Yourself",
+            "paragraph": "<p>The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!<\/p>",
+            "content_div__content_subtitle_para_div": "space-y-2",
+            "content_div__content_subtitle_classes": "text-mobile-heading-6 font-medium md:text-desktop-links",
+            "content_div__content_paragraph_classes": "pl-[1.5em]",
+            "content_div__content_paragraph_list_classes": "text-mobile-body list-disc list-outside"
+          }
+        },
+        "content_block_HELarU": {
+          "type": "content_block",
+          "settings": {
+            "subtitle": "As a Gift",
+            "paragraph": "<p>Simply provide us with their address and let us take care of the rest, delivering beautiful blooms straight to their doorstep at the frequency and duration of your choosing.<\/p>",
+            "content_div__content_subtitle_para_div": "space-y-2",
+            "content_div__content_subtitle_classes": "text-mobile-heading-6 font-medium md:text-desktop-links",
+            "content_div__content_paragraph_classes": "pl-[1.5em]",
+            "content_div__content_paragraph_list_classes": "text-mobile-body list-disc list-outside"
+          }
+        },
+        "content_block_CyjB7r": {
+          "type": "content_block",
+          "settings": {
+            "subtitle": "For Business",
+            "paragraph": "<p>Is a great way to create a pleasant atmosphere and leave a good impression on your guests and customers. Fresh floral arrangements will improve the aesthetic image of your business, and our service guarantees timely replacement without extra care or effort on your part.<\/p>",
+            "content_div__content_subtitle_para_div": "space-y-2",
+            "content_div__content_subtitle_classes": "text-mobile-heading-6 font-medium md:text-desktop-links",
+            "content_div__content_paragraph_classes": "pl-[1.5em]",
+            "content_div__content_paragraph_list_classes": "text-mobile-body list-disc list-outside"
+          }
+        }
+      },
+      "block_order": [
+        "content_block_cAFNEX",
+        "content_block_HELarU",
+        "content_block_CyjB7r"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Dawn_sDelight.png",
+        "main_title": "Flower Subscription",
+        "right_column__button_label": "Explore Plans",
+        "right_column__button_link": "",
+        "subscription_main_section": "flex flex-col lg:flex-row lg:h-[720px]",
+        "subscription_main_section__image": "w-full lg:w-1\/2 h-[420px] md:h-[500px ] lg:h-full",
+        "subscription_main_section__image_classes": "w-full h-full object-cover",
+        "subscription_main_section__right_column": "px-4 py-10 flex flex-col gap-12 lg:w-1\/2 md:p-20 lg:h-full lg:justify-center",
+        "right_column__content_div": "flex flex-col gap-4 lg:gap-6",
+        "content_div__header_classes": "text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
+        "content_div__content": "space-y-6",
+        "right_column__button": "px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em] font-medium h-[48px] hover:text-white hover:bg-brand-black transition ease-in 500 md:h-[56px] lg:w-fit"
+      }
+    }
+  },
+  "order": [
+    "subscription_main_section_MxEtWV"
+  ]
+}
