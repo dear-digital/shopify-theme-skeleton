@@ -42,6 +42,7 @@
         "content_block_aNRHdd",
         "content_block_NB8ray"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify:\/\/shop_images\/RusticCharm.png",
         "main_title": "Flower Subscription",
@@ -96,6 +97,7 @@
         "benefit_block_eAkYWc",
         "benefit_block_EanMTy"
       ],
+      "disabled": true,
       "settings": {
         "main_heading": "How does it work?",
         "tw-why-choose-us": "flex flex-col lg:flex-row border-[1px] border-brand-black",
@@ -106,6 +108,7 @@
     },
     "contact_us_ywyehz": {
       "type": "contact-us",
+      "disabled": true,
       "settings": {
         "heading_text": "To Contact Us",
         "subheading_text": "schedule an appointment with us now",
@@ -149,11 +152,131 @@
         "social_icon": "text-brand-black hover:text-black transition-colors duration-300",
         "social_icon_svg": "w-6 h-6"
       }
+    },
+    "dev_collapsible_content_nfHGh9": {
+      "type": "dev__collapsible-content",
+      "blocks": {
+        "block_yGWMK8": {
+          "type": "block",
+          "settings": {
+            "title": "What is a SAAS platform?",
+            "content": "SAAS platform is a cloud-based software service that allows users to access and use a variety of tools and functionality.",
+            "collapsible_block_container": "py-5",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center font-medium cursor-pointer list-none",
+            "collapsible_title": "",
+            "collapsible_icon": "transition group-open:rotate-180",
+            "collapsible_content": "text-neutral-600 mt-3 group-open:animate-fadeIn"
+          }
+        },
+        "block_FAAMBN": {
+          "type": "block",
+          "settings": {
+            "title": "What is a SAAS platform?",
+            "content": "SAAS platform is a cloud-based software service that allows users to access and use a variety of tools and functionality.",
+            "collapsible_block_container": "py-5",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center font-medium cursor-pointer list-none",
+            "collapsible_title": "",
+            "collapsible_icon": "transition group-open:rotate-180",
+            "collapsible_content": "text-neutral-600 mt-3 group-open:animate-fadeIn"
+          }
+        },
+        "block_zjXyAf": {
+          "type": "block",
+          "settings": {
+            "title": "What is a SAAS platform?",
+            "content": "SAAS platform is a cloud-based software service that allows users to access and use a variety of tools and functionality.",
+            "collapsible_block_container": "py-5",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center font-medium cursor-pointer list-none",
+            "collapsible_title": "",
+            "collapsible_icon": "transition group-open:rotate-180",
+            "collapsible_content": "text-neutral-600 mt-3 group-open:animate-fadeIn"
+          }
+        }
+      },
+      "block_order": [
+        "block_yGWMK8",
+        "block_FAAMBN",
+        "block_zjXyAf"
+      ],
+      "disabled": true,
+      "settings": {
+        "main_heading": "Subscription FAQ",
+        "sub_heading": "",
+        "main_container": "mx-auto bg-brand-extra-light py-10",
+        "main_content_container": "flex flex-col items-center bg-red-200 px-6",
+        "collapsible_main_heading": "font-bold text-2xl md:text-5xl mt-5 tracking-tight",
+        "collapsible_sub_heading": "text-neutral-500 text-lg md:text-xl mt-3",
+        "collapsible_grid": "grid divide-y divide-neutral-200 max-w-xl mx-auto mt-8"
+      }
+    },
+    "subscription_faq_section_qwa9Bh": {
+      "type": "subscription-faq-section",
+      "blocks": {
+        "block_maharJ": {
+          "type": "block",
+          "settings": {
+            "title": "How often will I get a new bouquet?",
+            "content": "Our subscriptions allow you to select a delivery frequency that best suits your needs - either weekly, bi-weekly, or monthly. You can also choose the number of deliveries for your subscription. Choose any combination that works for you!",
+            "collapsible_block_container": "py-4 bg-red-300 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer",
+            "collapsible_title": "text-mobile-heading-6 font-medium  md:text-desktop-heading-5 lg:text-desktop-heading-4",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3   text-mobile-body"
+          }
+        },
+        "block_HhXATp": {
+          "type": "block",
+          "settings": {
+            "title": "Can i send subscription like as a gift ?",
+            "content": "SAAS platform is a cloud-based software service that allows users to access and use a variety of tools and functionality.",
+            "collapsible_block_container": "py-5",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center font-medium cursor-pointer list-none",
+            "collapsible_title": "",
+            "collapsible_icon": "transition group-open:rotate-180",
+            "collapsible_icon_SVG": "w-3 h-3",
+            "collapsible_content": "text-neutral-600 mt-3 group-open:animate-fadeIn"
+          }
+        },
+        "block_pHwQCF": {
+          "type": "block",
+          "settings": {
+            "title": "What day will the subscription bouquet come?",
+            "content": "SAAS platform is a cloud-based software service that allows users to access and use a variety of tools and functionality.",
+            "collapsible_block_container": "py-5 bg-red-500",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center font-medium cursor-pointer list-none",
+            "collapsible_title": "",
+            "collapsible_icon": "transition group-open:rotate-180",
+            "collapsible_icon_SVG": "w-3 h-3",
+            "collapsible_content": "text-neutral-600 mt-3 group-open:animate-fadeIn"
+          }
+        }
+      },
+      "block_order": [
+        "block_maharJ",
+        "block_HhXATp",
+        "block_pHwQCF"
+      ],
+      "settings": {
+        "main_heading": "Subscription FAQ",
+        "main_container": "mx-auto bg-brand-extra-light py-10 md:px-10 md:py-20 lg:p-20 flex justify-center",
+        "main_content_container": "px-6 py-10 space-y-6 border-brand-black border-y md:border-x md:p-10 md:space-y-10 md:w-full lg:p-20 lg:w-[864px]",
+        "collapsible_main_heading": "text-mobile-heading-2 md:text-desktop-heading-2 text-center font-semibold",
+        "collapsible_grid": "mx-auto"
+      }
     }
   },
   "order": [
     "subscription_main_section_iKXFGR",
     "dev_why_choose_us_PLNqyE",
-    "contact_us_ywyehz"
+    "contact_us_ywyehz",
+    "dev_collapsible_content_nfHGh9",
+    "subscription_faq_section_qwa9Bh"
   ]
 }
