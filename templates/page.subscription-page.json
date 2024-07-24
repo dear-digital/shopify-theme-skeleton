@@ -263,10 +263,130 @@
         "block_HhXATp",
         "block_pHwQCF"
       ],
+      "disabled": true,
       "settings": {
         "main_heading": "Subscription FAQ",
         "main_container": "mx-auto bg-brand-extra-light py-10 md:px-10 md:py-20 lg:p-20 flex justify-center",
         "main_content_container": "px-6 py-10 space-y-6 border-brand-black border-y md:border-x md:p-10 md:space-y-10 md:w-full lg:p-20 lg:w-[864px]",
+        "collapsible_main_heading": "text-mobile-heading-2 md:text-desktop-heading-2 text-center font-semibold",
+        "collapsible_grid": "mx-auto"
+      }
+    },
+    "subscription_faq_section_3RjngG": {
+      "type": "subscription-faq-section",
+      "blocks": {
+        "block_PFNELk": {
+          "type": "block",
+          "settings": {
+            "title": "How often will I get a new bouquet?",
+            "content": "The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_8y6g64": {
+          "type": "block",
+          "settings": {
+            "title": "Can i send subscription like as a gift ?",
+            "content": "Absolutely ! This is the most convenient way to show your feelings, subscribe to the address to whom you want to deliver bouquets and we will please that person with beautiful bouquets",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_WqNbDF": {
+          "type": "block",
+          "settings": {
+            "title": "Can I choose which bouquet I get ?",
+            "content": "Each subscription option is carefully selected by our specialists. Our florists select the best and freshest varieties for delivery that surprise and delight every time; thus, the current subscription offer does not allow you to choose a different bouquet for each delivery or to receive the entire subscription with one particular bouquet. Each bouquet will be individual and made according to your chosen plan - classic, seasonal or luxury bouquets",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_jXtxHR": {
+          "type": "block",
+          "settings": {
+            "title": "Can I change the shipping address ?",
+            "content": "Yes, you can! After you create an account, you can log in and adjust your settings to pause the next delivery and let us know the next best delivery date.",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_n4EHkx": {
+          "type": "block",
+          "settings": {
+            "title": "What day will the subscription bouquet come?",
+            "content": "Depending on the day you first choose for your flower delivery, we will deliver on that day for all future deliveries. So if you get your flowers on Thursday every other week, you will get another flower delivery two weeks later on Thursday.",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_WRnafD": {
+          "type": "block",
+          "settings": {
+            "title": "Can I suspend my subscription to flowers ?",
+            "content": "Yes, you can! After you create an account, you can log in and adjust your settings to pause the next delivery and let us know the next best delivery date.",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_B9G9yN": {
+          "type": "block",
+          "settings": {
+            "title": "Lorem Ipsum",
+            "content": "Yes, you can! After you create an account, you can log in and adjust your settings to pause the next delivery and let us know the next best delivery date.",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        }
+      },
+      "block_order": [
+        "block_PFNELk",
+        "block_8y6g64",
+        "block_WqNbDF",
+        "block_jXtxHR",
+        "block_n4EHkx",
+        "block_WRnafD",
+        "block_B9G9yN"
+      ],
+      "settings": {
+        "main_heading": "Subscription FAQ",
+        "main_container": "mx-auto bg-brand-extra-light py-10 md:px-10 md:py-20 lg:p-20 flex justify-center",
+        "main_content_container": "bg-white px-6 py-10 space-y-6 border-brand-black border-y md:border-x md:p-10 md:space-y-10 md:w-full lg:p-20 lg:w-[864px]",
         "collapsible_main_heading": "text-mobile-heading-2 md:text-desktop-heading-2 text-center font-semibold",
         "collapsible_grid": "mx-auto"
       }
@@ -277,6 +397,7 @@
     "dev_why_choose_us_PLNqyE",
     "contact_us_ywyehz",
     "dev_collapsible_content_nfHGh9",
-    "subscription_faq_section_qwa9Bh"
+    "subscription_faq_section_qwa9Bh",
+    "subscription_faq_section_3RjngG"
   ]
 }
