@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const body = document.body;
 
   function toggleMenu() {
-    offCanvasMenu.classList.toggle("translate-x-0");
+    offCanvasMenu.classList.remove("-translate-x-full");
     menuOverlay.classList.toggle("opacity-0");
     menuOverlay.classList.toggle("pointer-events-none");
     body.classList.toggle("overflow-hidden");
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function closeMenu() {
-    offCanvasMenu.classList.remove("translate-x-0");
+    offCanvasMenu.classList.add("-translate-x-full");
     menuOverlay.classList.add("opacity-0", "pointer-events-none");
     body.classList.remove("overflow-hidden");
     // console.log("Menu Closed New");
