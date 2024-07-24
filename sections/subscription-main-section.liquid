@@ -21,7 +21,8 @@
                     {% if block.type == 'content_block' %}
                         <div class="{{block.settings.content_div__content_subtitle_para_div}}">
                             <h3 class="{{block.settings.content_div__content_subtitle_classes}}">
-                                {{ block.settings.subtitle }}
+                                {% comment %} named as 'title' instead of 'subtitle' to see dynamic naming of presets in theme editor after adding blocks :( {% endcomment %}
+                                {{ block.settings.title }}
                             </h3>
                             
                             <ul class="{{block.settings.content_div__content_paragraph_classes}}">
@@ -131,7 +132,7 @@
             "settings": [
                 {
                     "type": "text",
-                    "id": "subtitle",
+                    "id": "title",
                     "label": "Subtitle",
                     "default": "For Yourself"
                 },
@@ -175,21 +176,21 @@
                 {
                     "type": "content_block",
                     "settings": {
-                        "subtitle": "For Yourself",
+                        "title": "For Yourself",
                         "paragraph": "<p>The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!</p>"
                     }
                 },
                 {
                     "type": "content_block",
                     "settings": {
-                        "subtitle": "As a Gift",
+                        "title": "As a Gift",
                         "paragraph": "<p>Simply provide us with their address and let us take care of the rest, delivering beautiful blooms straight to their doorstep at the frequency and duration of your choosing.</p>"
                     }
                 },
                 {
                     "type": "content_block",
                     "settings": {
-                        "subtitle": "For Business",
+                        "title": "For Business",
                         "paragraph": "<p>Is a great way to create a pleasant atmosphere and leave a good impression on your guests and customers. Fresh floral arrangements will improve the aesthetic image of your business, and our service guarantees timely replacement without extra care or effort on your part.</p>"
                     }
                 }
