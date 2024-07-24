@@ -1,12 +1,12 @@
 {
   "sections": {
-    "subscription_main_section_MxEtWV": {
+    "subscription_main_section_iKXFGR": {
       "type": "subscription-main-section",
       "blocks": {
-        "content_block_cAFNEX": {
+        "content_block_UqKRyM": {
           "type": "content_block",
           "settings": {
-            "subtitle": "For Yourself",
+            "title": "For Yourself",
             "paragraph": "<p>The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!<\/p>",
             "content_div__content_subtitle_para_div": "space-y-2",
             "content_div__content_subtitle_classes": "text-mobile-heading-6 font-medium md:text-desktop-links",
@@ -14,10 +14,10 @@
             "content_div__content_paragraph_list_classes": "text-mobile-body list-disc list-outside"
           }
         },
-        "content_block_HELarU": {
+        "content_block_aNRHdd": {
           "type": "content_block",
           "settings": {
-            "subtitle": "As a Gift",
+            "title": "As a Gift",
             "paragraph": "<p>Simply provide us with their address and let us take care of the rest, delivering beautiful blooms straight to their doorstep at the frequency and duration of your choosing.<\/p>",
             "content_div__content_subtitle_para_div": "space-y-2",
             "content_div__content_subtitle_classes": "text-mobile-heading-6 font-medium md:text-desktop-links",
@@ -25,10 +25,10 @@
             "content_div__content_paragraph_list_classes": "text-mobile-body list-disc list-outside"
           }
         },
-        "content_block_CyjB7r": {
+        "content_block_NB8ray": {
           "type": "content_block",
           "settings": {
-            "subtitle": "For Business",
+            "title": "For Business",
             "paragraph": "<p>Is a great way to create a pleasant atmosphere and leave a good impression on your guests and customers. Fresh floral arrangements will improve the aesthetic image of your business, and our service guarantees timely replacement without extra care or effort on your part.<\/p>",
             "content_div__content_subtitle_para_div": "space-y-2",
             "content_div__content_subtitle_classes": "text-mobile-heading-6 font-medium md:text-desktop-links",
@@ -38,12 +38,12 @@
         }
       },
       "block_order": [
-        "content_block_cAFNEX",
-        "content_block_HELarU",
-        "content_block_CyjB7r"
+        "content_block_UqKRyM",
+        "content_block_aNRHdd",
+        "content_block_NB8ray"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/Dawn_sDelight.png",
+        "image": "shopify:\/\/shop_images\/RusticCharm.png",
         "main_title": "Flower Subscription",
         "right_column__button_label": "Explore Plans",
         "right_column__button_link": "",
@@ -152,7 +152,7 @@
     }
   },
   "order": [
-    "subscription_main_section_MxEtWV",
+    "subscription_main_section_iKXFGR",
     "dev_why_choose_us_PLNqyE",
     "contact_us_ywyehz"
   ]
