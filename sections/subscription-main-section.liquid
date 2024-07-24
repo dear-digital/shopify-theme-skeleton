@@ -23,13 +23,13 @@
                             <h3 class="{{block.settings.content_div__content_subtitle_classes}}">
                                 {{ block.settings.subtitle }}
                             </h3>
-                            <div class="{{block.settings.content_div__content_paragraph_classes}}" > 
-                                <ul class="{{block.settings.content_div__content_paragraph_list_classes}}">
-                                    <li>
-                                        {{ block.settings.paragraph }}
-                                    </li>
-                                </ul>
-                            </div>
+                            
+                            <ul class="{{block.settings.content_div__content_paragraph_classes}}">
+                                <li class="{{block.settings.content_div__content_paragraph_list_classes}}">
+                                    {{ block.settings.paragraph }}
+                                </li>
+                            </ul>
+                           
                         </div>   
                     {% endif %}
                 {% endfor %}
@@ -157,7 +157,7 @@
                     "type": "textarea",
                     "id": "content_div__content_paragraph_classes",
                     "label": "Paragraph Classes",
-                    "default": "text-mobile-body bg-red-400 overflow-hidden pl-[1.25em]"
+                    "default": "text-mobile-body bg-red-400 overflow-hidden pl-[1.5em]"
                 },
                 {
                     "type": "textarea",
