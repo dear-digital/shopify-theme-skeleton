@@ -1,0 +1,366 @@
+<div class="{{ section.settings.container }}">
+  <div class="{{ section.settings.left_container }}">
+    <div class="{{ section.settings.top_block }}">
+      <h2 class="{{ section.settings.heading }}">{{ section.settings.heading_text }}</h2>
+    
+      <div class="{{ section.settings.form_block }}"> 
+        <p class="{{ section.settings.subheading }}">{{ section.settings.subheading_text }}</p>
+        <div class="{{ section.settings.book_call_button_block }}">
+          <!-- Calendly link widget begin -->
+
+          {% # theme-check-disable %}
+          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+          {% # theme-check-enable %}
+
+          <a href="" class="{{ section.settings.submit_button }}" onclick="Calendly.initPopupWidget({url: '{{ section.settings.calendly_url }}'});return false;">{{ section.settings.button_text }}</a>
+          <!-- Calendly link widget end -->
+        </div>
+      </div>
+        
+    </div>
+    <div class="{{ section.settings.bottom_block }}">
+      <div class="{{ section.settings.bottom_block_first_column }}">
+        <h3 class="{{ section.settings.info_heading }}">{{ section.settings.phone_heading }}</h3>
+        <div class="{{ section.settings.bottom_block_first_column_info_text_div }}">
+          {%- assign svg_class = section.settings.bottom_block_first_column_info_text_icon_SVG -%}
+          <div class="{{ section.settings.bottom_block_first_column_info_text_icon_div }}">
+            <span> {% render 'icon-call' class: svg_class %} </span>
+            <div class="{{ section.settings.info_text }}">{{ section.settings.phone_1 }} </div>
+          </div>
+          <div class="{{ section.settings.bottom_block_first_column_info_text_icon_div }}">
+            {% render 'icon-call' class: svg_class %}
+            <p class="{{ section.settings.info_text }}">{{ section.settings.phone_2 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="{{ section.settings.bottom_block_second_column }}">
+        <h3 class="{{ section.settings.info_heading }}">{{ section.settings.address_heading }}</h3>
+        <div class="{{ section.settings.bottom_block_second_column_address_map_div }}">
+          {%- assign map_svg_class = section.settings.bottom_block_second_column_SVG -%}
+          <div class="{{ section.settings.bottom_block_second_column_address_map_icon_div }}">
+            <p class="{{ section.settings.bottom_block_second_column_address_1 }}">{{ section.settings.address_1 }} </p>
+          </div>
+          
+          <div class="{{ section.settings.bottom_block_second_column_address_map_icon_div }}">
+            {% render 'icon-location' class: map_svg_class %}
+            <p class="{{ section.settings.bottom_block_second_column_address_2 }}">{{ section.settings.address_2 }}</p>
+          </div>
+        </div>      
+      </div>
+    </div>
+  </div>
+  <div class="{{ section.settings.right_container }}">
+    <div class="{{ section.settings.image_container }}">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1000 | image_tag:
+          loading: 'lazy',
+          width: section.settings.image.width,
+          height: section.settings.image.height,
+          class: section.settings.image_class
+        }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: section.settings.placeholder_image_class }}
+      {% endif %}
+    </div>
+    <div class="{{ section.settings.social_container }}">
+      <h3 class="{{ section.settings.social_heading_class }}">{{ section.settings.social_heading }}</h3>
+      <div class="{{ section.settings.social_icons }}">
+        {%- assign svg_class = section.settings.social_icon_svg -%}
+        {% if settings.social_instagram_link != blank %}
+          <a href="{{ settings.social_instagram_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Instagram">
+            {% render 'icon-social-instagram' class: svg_class  %}
+          </a>
+        {% endif %}
+        {% if settings.social_pinterest_link != blank %}
+          <a href="{{ settings.social_pinterest_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Pinterest">
+            {% render 'icon-social-pinterest' class: svg_class %}
+          </a>
+        {% endif %}
+        {% if settings.social_facebook_link != blank %}
+          <a href="{{ settings.social_facebook_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Facebook">
+            {% render 'icon-social-facebook' class: svg_class %}
+          </a>
+        {% endif %}
+        {% if settings.social_twitter_link != blank %}
+          <a href="{{ settings.social_twitter_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Twitter">
+            {% render 'icon-social-twitter' class: svg_class %}
+          </a>
+        {% endif %}
+        {% if settings.social_vimeo_link != blank %}
+          <a href="{{ settings.social_vimeo_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Vimeo">
+            {% render 'icon-social-vimeo' class: svg_class %}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Us",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading_text",
+      "label": "Heading",
+      "default": "To Contact Us"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading_text",
+      "label": "Subheading",
+      "default": "schedule an appointment with us now"
+    },
+    {
+      "type": "url",
+      "id": "calendly_url",
+      "label": "Calendly URL",
+      "info": "Use https://calendly.com/test123/15min"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Book Call Button Text",
+      "default": "Book a Call"
+    },
+    {
+      "type": "text",
+      "id": "phone_heading",
+      "label": "Phone Section Heading",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "phone_1",
+      "label": "Phone Number 1",
+      "default": "+000000000000"
+    },
+    {
+      "type": "text",
+      "id": "phone_2",
+      "label": "Phone Number 2",
+      "default": "+000000000000"
+    },
+    {
+      "type": "text",
+      "id": "address_heading",
+      "label": "Address Section Heading",
+      "default": "Address"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "address_1",
+      "label": "Address Line 1",
+      "default": "OPENING HOURS: 8 TO 11 P.M."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "address_2",
+      "label": "Address Line 2",
+      "default": "15/4, Kyiv"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Select image for Right Container"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "social_heading",
+      "label": "Social Media Heading",
+      "default": "Follow us"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "container",
+      "label": "Container Classes",
+      "default": "flex flex-col-reverse lg:flex-row w-full lg:h-[720px]"
+    },
+    {
+      "type": "textarea",
+      "id": "left_container",
+      "label": "Left Container Classes",
+      "default": "w-full lg:w-1/2 h-[702px] md:h-[768px] lg:h-full flex flex-col"
+    },
+    {
+      "type": "textarea",
+      "id": "top_block",
+      "label": "Left Container Top Block Container Classes",
+      "default": "py-10 px-4 md:p-20 flex flex-col gap-6 border-brand-black md:h-1/2"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading Classes",
+      "default": "text-mobile-heading-2 md:text-desktop-heading-2 font-semibold"
+    },
+    {
+      "type": "textarea",
+      "id": "form_block",
+      "label": "Left Container Form Block Container Classes",
+      "default": "flex flex-col gap-4"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading Classes",
+      "default": "text-mobile-subtitle md:text-desktop-hero-caption font-medium capitalize",
+    },
+    {
+      "type": "textarea",
+      "id": "book_call_button_block",
+      "label": "Book Call Button Div Classes",
+      "default": "flex flex-col md:flex-row gap-4 h-[40px] md:h-[56px] "
+    },
+    {
+      "type": "textarea",
+      "id": "submit_button",
+      "label": "Submit Button Classes",
+      "default": "flex items-center justify-center md:w-fit h-full bg-brand-black text-white font-medium hover:text-slate-100 transition-colors duration-300 md:px-6 md:pt-4 md:pb-[14px] text-mobile-button md:text-desktop-button uppercase  tracking-[0.03em] "
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block",
+      "label": "Left Container Bottom Block Classes",
+      "default": "flex flex-col md:flex-row md:h-1/2 flex-grow"
+    },
+     {
+      "type": "textarea",
+      "id": "info_heading",
+      "label": "Info Heading Classes for both columns",
+      "default": "text-mobile-heading-3 md:text-desktop-heading-3 font-medium border-brand-black py-4 px-4 md:px-[10px] md:text-center border-b "
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block_first_column",
+      "label": "Bottom Block First Column Classes",
+      "default": "md:w-1/2 border-brand-black border flex flex-col"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block_first_column_info_text_div",
+      "label": "Bottom Block First Column Info Text Div",
+      "default": "flex flex-col py-10 px-4 gap-4 md:items-center md:justify-center md:flex-grow md:p-[10px] md:gap-6 lg:p-6"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block_first_column_info_text_icon_div",
+      "label": "Bottom Block First Column Info Text Icon Div",
+      "default": "flex gap-2"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block_first_column_info_text_icon_SVG",
+      "label": "Bottom Block First Column SVG Classes",
+      "default": "w-4 h-4 md:w-5 md:h-5"
+    },
+    {
+      "type": "textarea",
+      "id": "info_text",
+      "label": "Info Text Classes",
+      "default": "text-desktop-links md:text-desktop-heading-6 font-semibold flex items-center"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block_second_column",
+      "label": "Bottom Block Second Column Classes",
+      "default": "md:w-1/2 border-brand-black border border-t-0 md:border-t md:border-l-0 lg:border-x-0 flex flex-col h-full"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block_second_column_address_map_div",
+      "label": "Bottom Block Second Column Address Map Div",
+      "default": "px-4 py-10 md:p-[10px] lg:p-6 flex flex-col md:items-center gap-2 md:gap-6 justify-center flex-grow"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block_second_column_address_1",
+      "label": "Bottom Block Address 1",
+      "default": "text-mobile-caption-small  md:text-desktop-caption uppercase font-medium"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block_second_column_address_map_icon_div",
+      "label": "Bottom Block Address Map Icon Div",
+      "default": "flex gap-2 items-center"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block_second_column_SVG",
+      "label": "Bottom Block Address 2 SVG Classes",
+      "default": "w-5 h-5 md:w-6 md:h-6"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_block_second_column_address_2",
+      "label": "Bottom Block Address 2",
+      "default": "lg:text-desktop-heading-6 font-semibold"
+    },
+    {
+      "type": "textarea",
+      "id": "right_container",
+      "label": "Right Container Classes",
+      "default": "w-full lg:w-1/2 border-brand-black h-[500px] md:h-[580px] lg:h-full  flex flex-col lg:border-l "
+    },
+    {
+      "type": "textarea",
+      "id": "image_container",
+      "label": "Image Container Classes",
+      "default": "w-full flex flex-col flex-grow h-[80%] "
+    },
+    {
+      "type": "textarea",
+      "id": "image_class",
+      "label": "Image Classes",
+      "default": "object-cover w-full h-full"
+    },
+    {
+      "type": "textarea",
+      "id": "placeholder_image_class",
+      "label": "Placeholder Image Classes",
+      "default": "w-full h-full object-cover bg-gray-200"
+    },
+    {
+      "type": "textarea",
+      "id": "social_container",
+      "label": "Social Container Classes",
+      "default": "flex w-full flex-col md:flex-row"
+    },
+    {
+      "type": "textarea",
+      "id": "social_heading_class",
+      "label": "Social Heading Classes",
+      "default": "text-mobile-heading-3 font-medium px-4 pt-4 pb-2 md:text-desktop-heading-3 md:px-10 md:py-4 md:w-1/2 md:text-center border-brand-black md:border md:border-r-0 lg:border-x-0"
+    },
+    {
+      "type": "textarea",
+      "id": "social_icons",
+      "label": "Social Icons Container Classes",
+      "default": "flex gap-8 px-4 pt-2 pb-4 border-b border-brand-black  md:px-10 md:py-4 md:w-1/2 md:justify-center items-center md:border lg:border-r-0"
+    },
+    {
+      "type": "textarea",
+      "id": "social_icon",
+      "label": "Social Icon Classes",
+      "default": "text-brand-black hover:text-black transition-colors duration-300"
+    },
+    {
+      "type": "textarea",
+      "id": "social_icon_svg",
+      "label": "Social Icon SVG Classes",
+      "default": "w-6 h-6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Us"
+    }
+  ]
+}
+{% endschema %}
