@@ -23,9 +23,13 @@
                             <h3 class="{{block.settings.content_div__content_subtitle_classes}}">
                                 {{ block.settings.subtitle }}
                             </h3>
-                            <h4 class="{{block.settings.content_div__content_paragraph_classes}}">
-                                {{ block.settings.paragraph }}
-                            </h4>
+                            <div class="{{block.settings.content_div__content_paragraph_classes}}" > 
+                                <ul class="{{block.settings.content_div__content_paragraph_list_classes}}">
+                                    <li>
+                                        {{ block.settings.paragraph }}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>   
                     {% endif %}
                 {% endfor %}
@@ -54,13 +58,13 @@
             "type": "text",
             "id": "main_title",
             "label": "Main Title",
-            "default": "Subscription Main Section"
+            "default": "Flower Subscription"
         },
         {
             "type": "textarea",
             "id": "right_column__button_label",
             "label": "Button Label",
-            "default": "Subscribe Now"
+            "default": "Explore Plans"
         },
         {
             "type": "url",
@@ -81,43 +85,43 @@
             "type": "textarea",
             "id": "subscription_main_section__image",
             "label": "Image Container Classes",
-            "default": "w-full h-auto"
+            "default": "w-full h-[420px]"
         },
         {
             "type": "textarea",
             "id": "subscription_main_section__image_classes",
             "label": "Image Classes",
-            "default": "w-full h-auto object-cover"
+            "default": "w-full h-full object-cover"
         },
         {
             "type": "textarea",
             "id": "subscription_main_section__right_column",
             "label": "Right Column Classes",
-            "default": "p-4"
+            "default": "px-4 py-10 flex flex-col gap-12"
         },
         {
             "type": "textarea",
             "id": "right_column__content_div",
             "label": "Content Div Classes",
-            "default": "mb-4"
+            "default": "flex flex-col gap-4"
         },
         {
             "type": "textarea",
             "id": "content_div__header_classes",
             "label": "Header Classes",
-            "default": "text-2xl font-bold mb-2"
+            "default": "text-mobile-heading-2 font-semibold"
         },
         {
             "type": "textarea",
             "id": "content_div__content",
             "label": "Content Container Classes",
-            "default": "space-y-4"
+            "default": "space-y-6"
         },
         {
             "type": "textarea",
             "id": "right_column__button",
             "label": "Button Classes",
-            "default": "bg-blue-500 text-white px-4 py-2 rounded"
+            "default": "px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase tracking-[0.025rem] font-medium h-[48px] hover:text-white hover:bg-brand-black transition ease-in 500"
         }
     ],
     "blocks": [
@@ -129,31 +133,37 @@
                     "type": "text",
                     "id": "subtitle",
                     "label": "Subtitle",
-                    "default": "Subtitle"
+                    "default": "For Yourself"
                 },
                 {
                     "type": "textarea",
                     "id": "paragraph",
                     "label": "Paragraph",
-                    "default": "Paragraph content goes here"
+                    "default": "The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!"
                 },
                 {
                     "type": "textarea",
                     "id": "content_div__content_subtitle_para_div",
                     "label": "Subtitle/Paragraph Container Classes",
-                    "default": "mb-2"
+                    "default": "bg-red-300"
                 },
                 {
                     "type": "textarea",
                     "id": "content_div__content_subtitle_classes",
                     "label": "Subtitle Classes",
-                    "default": "text-xl font-semibold"
+                    "default": "text-mobile-heading-6 font-medium"
                 },
                 {
                     "type": "textarea",
                     "id": "content_div__content_paragraph_classes",
                     "label": "Paragraph Classes",
-                    "default": "text-gray-600"
+                    "default": "text-mobile-body bg-red-400 overflow-hidden pl-[1.25em]"
+                },
+                {
+                    "type": "textarea",
+                    "id": "content_div__content_paragraph_list_classes",
+                    "label": "Paragraph List Classes",
+                    "default": "text-mobile-body bg-red-500 list-disc list-outside"
                 }
             ]
         }
