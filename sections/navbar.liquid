@@ -44,9 +44,16 @@
         </div>
         <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
             {% for link in linklists[section.settings.right_menu].links %}
+            {% assign is_cart = false %}
+            {% assign lowercase_title = link.title | downcase %}
+            {% if settings.cart_identifier == 'url' and link.url contains '/cart' %}
+                {% assign is_cart = true %}
+            {% elsif settings.cart_identifier == 'title' and lowercase_title contains 'cart' %}
+                {% assign is_cart = true %}
+            {% endif %}
             <a href="{{ link.url }}" 
               class="navbar__menu-item {{ section.settings.right_menu_item_classes }}"
-              {% if link.url contains '/cart' %} data-action="open-cart" {% endif %}>
+              {% if is_cart %} data-action="open-cart" {% endif %}>
               <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
             </a>
             {% endfor %}
@@ -69,9 +76,16 @@
         </a>
       {% endfor %}
       {% for link in linklists[section.settings.right_menu].links %}
+        {% assign is_cart = false %}
+        {% assign lowercase_title = link.title | downcase %}
+        {% if settings.cart_identifier == 'url' and link.url contains '/cart' %}
+            {% assign is_cart = true %}
+        {% elsif settings.cart_identifier == 'title' and lowercase_title contains 'cart' %}
+            {% assign is_cart = true %}
+        {% endif %}
         <a href="{{ link.url }}" 
           class="{{ section.settings.off_canvas_menu_item_classes }}"
-          {% if link.url contains '/cart' %} data-action="open-cart" {% endif %}>
+          {% if is_cart %} data-action="open-cart" {% endif %}>
           {{ link.title }}
         </a>
       {% endfor %}

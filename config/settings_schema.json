@@ -348,7 +348,28 @@
     ]
   },
   {
-    "name": "Cart",
+     "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_identifier",
+        "label": "Identify cart link by",
+        "options": [
+          {
+            "value": "url",
+            "label": "URL contains '/cart'"
+          },
+          {
+            "value": "title",
+            "label": "Title contains 'cart'"
+          }
+        ],
+        "default": "url"
+      }
+    ]
+  },
+  {
+    "name": "Cart Dawn",
     "settings": [
       {
         "type": "select",
