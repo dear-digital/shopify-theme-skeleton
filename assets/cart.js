@@ -1,8 +1,10 @@
+// cart.js
+
 class CartDrawer {
   constructor() {
     this.drawer = document.getElementById("cart-drawer");
     this.overlay = document.getElementById("cart-overlay");
-    this.closeButton = document.getElementById("close-cart-button");
+    this.closeCartButton = document.getElementById("close-cart-button");
     this.openCart = document.querySelectorAll(
       '[data-action="open-cart"]'
     );
@@ -10,8 +12,8 @@ class CartDrawer {
   }
 
   bindEvents() {
-    if (this.closeButton) {
-      this.closeButton.addEventListener("click", () => this.close());
+    if (this.closeCartButton) {
+      this.closeCartButton.addEventListener("click", () => this.close());
     }
 
     if (this.overlay) {
@@ -22,7 +24,7 @@ class CartDrawer {
       button.addEventListener("click", (event) => {
         event.preventDefault();
         this.toggle();
-        console.log("Open for Desktop 3");
+        // console.log("Open for Desktop 3");
       });
     });
   }
@@ -31,7 +33,7 @@ class CartDrawer {
     this.drawer.classList.remove("translate-x-full");
     this.overlay.classList.remove("opacity-0", "pointer-events-none");
     document.body.classList.add("overflow-hidden");
-    console.log("Cart Drawer Opened New");
+    // console.log("Cart Drawer Opened New");
   }
 
   isOpen() {
@@ -42,7 +44,7 @@ class CartDrawer {
     this.drawer.classList.add("translate-x-full");
     this.overlay.classList.add("opacity-0", "pointer-events-none");
     document.body.classList.remove("overflow-hidden");
-    console.log("Cart Drawer Closed New");
+    // console.log("Cart Drawer Closed New");
   }
 
   toggle() {
