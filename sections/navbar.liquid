@@ -26,45 +26,49 @@
           </button>
         </div>
 
-              <!-- Mobile Cart button -->
-        <div class="cart_button_classes {{ section.settings.cart_button_classes }}">
-          <button id="cart-button" class="{{ section.settings.cart_button_svg_classes }}">
-            {% render 'icon-cart' %}
-          </button>
-        </div>
+        <!--  Mobile Cart Button -->
+        <!-- 'open-cart' is the data action in JS of cart.js to Open Cart -->
+        <a 
+          href="{{ routes.cart_url }}" 
+          class="{{ section.settings.mobile_cart_button_classes }}" 
+          {% if settings.cart_type == 'drawer' %} data-action="open-cart" {% endif %}
+        >
+            {% render 'icon-cart' class: section.settings.cart_button_svg_classes %}
+        </a>
 
         <!-- Desktop menu -->
         <div class="navbar__menu_desktop {{ section.settings.navbar__menu_desktop }}">
-        <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
-            {% for link in linklists[section.settings.menu].links %}
-            <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
-              <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
-            </a>
-            {% endfor %}
-        </div>
-        <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
-            {% for link in linklists[section.settings.right_menu].links %}
-            
-            <a href="{{ link.url }}" 
-              class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
-              <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
-            </a>
-            {% endfor %}
+          <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
+              {% for link in linklists[section.settings.menu].links %}
+              <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
+                <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
+              </a>
+              {% endfor %}
+          </div>
+          <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
+              {% for link in linklists[section.settings.right_menu].links %}
+              
+              <a href="{{ link.url }}" 
+                class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
+                <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
+              </a>
+              {% endfor %}
 
-            {% comment %} Desktop Cart Button {% endcomment %}
-            <a 
-              href="{{ routes.cart_url }}" 
-              class="navbar__menu-item {{ section.settings.right_menu_item_classes }}" 
-              {% if settings.cart_type == 'drawer' %} data-action="open-cart" {% endif %}
-            >
-                <span class="navbar__desktop_menu_item {{ section.settings.desktop_cart_button_classes }}">
-                  {% render 'icon-cart' class: section.settings.desktop_cart_button_link_SVG %}
-                  {{ section.settings.desktop_cart_button_label }}
-                
-                </span>
-            </a>
-           
-        </div>
+              {% comment %} Desktop Cart Button {% endcomment %}
+              <!-- 'open-cart' is the data action in JS of cart.js to Open Cart -->
+              <a 
+                href="{{ routes.cart_url }}" 
+                class="navbar__menu-item {{ section.settings.right_menu_item_classes }}" 
+                {% if settings.cart_type == 'drawer' %} data-action="open-cart" {% endif %}
+              >
+                  <span class="navbar__desktop_menu_item {{ section.settings.desktop_cart_button_classes }}">
+                    {% render 'icon-cart' class: section.settings.desktop_cart_button_link_SVG %}
+                    {{ section.settings.desktop_cart_button_label }}
+                  
+                  </span>
+              </a>
+            
+          </div>
       </div>
     </div>
   </nav>
@@ -83,16 +87,9 @@
         </a>
       {% endfor %}
       {% for link in linklists[section.settings.right_menu].links %}
-        {% assign is_cart = false %}
-        {% assign lowercase_title = link.title | downcase %}
-        {% if settings.cart_identifier == 'url' and link.url contains '/cart' %}
-            {% assign is_cart = true %}
-        {% elsif settings.cart_identifier == 'title' and lowercase_title contains 'cart' %}
-            {% assign is_cart = true %}
-        {% endif %}
         <a href="{{ link.url }}" 
           class="{{ section.settings.off_canvas_menu_item_classes }}"
-          {% if is_cart %} data-action="open-cart" {% endif %}>
+        >
           {{ link.title }}
         </a>
       {% endfor %}
@@ -293,9 +290,9 @@
     },
     {
       "type": "textarea",
-      "id": "cart_button_classes",
-      "label": "Cart button classes",
-      "default": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden"
+      "id": "mobile_cart_button_classes",
+      "label": "Mobile Cart button classes",
+      "default": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden bg-red-200"
     },
     {
       "type": "textarea",

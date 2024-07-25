@@ -2,26 +2,14 @@ class CartDrawer {
   constructor() {
     this.drawer = document.getElementById("cart-drawer");
     this.overlay = document.getElementById("cart-overlay");
-    this.openButton = document.getElementById("cart-button");
-    this.openDesktopCart = document.getElementById("desktop-cart-button");
     this.closeButton = document.getElementById("close-cart-button");
-    this.desktopOpenButtons = document.querySelectorAll(
-      '.navbar__menu_desktop [data-action="open-cart"]'
+    this.openCart = document.querySelectorAll(
+      '[data-action="open-cart"]'
     );
     this.bindEvents();
   }
 
   bindEvents() {
-    if (this.openButton) {
-      this.openButton.addEventListener("click", () => this.toggle());
-    }
-    if (this.openDesktopCart) {
-      this.openDesktopCart.addEventListener("click", (event) => {
-        event.preventDefault();
-        this.toggle();
-      });
-    }
-
     if (this.closeButton) {
       this.closeButton.addEventListener("click", () => this.close());
     }
@@ -30,10 +18,11 @@ class CartDrawer {
       this.overlay.addEventListener("click", () => this.close());
     }
     
-    this.desktopOpenButtons.forEach((button) => {
+    this.openCart.forEach((button) => {
       button.addEventListener("click", (event) => {
         event.preventDefault();
         this.toggle();
+        console.log("Open for Desktop 3");
       });
     });
   }
@@ -42,7 +31,7 @@ class CartDrawer {
     this.drawer.classList.remove("translate-x-full");
     this.overlay.classList.remove("opacity-0", "pointer-events-none");
     document.body.classList.add("overflow-hidden");
-    // console.log("Cart Drawer Opened New");
+    console.log("Cart Drawer Opened New");
   }
 
   isOpen() {
@@ -53,7 +42,7 @@ class CartDrawer {
     this.drawer.classList.add("translate-x-full");
     this.overlay.classList.add("opacity-0", "pointer-events-none");
     document.body.classList.remove("overflow-hidden");
-    // console.log("Cart Drawer Closed New");
+    console.log("Cart Drawer Closed New");
   }
 
   toggle() {

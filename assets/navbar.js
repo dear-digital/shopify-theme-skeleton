@@ -16,14 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.cartDrawer && window.cartDrawer.isOpen()) {
       window.cartDrawer.close();
     }
-    // console.log("Menu Toggle New");
+    console.log("Menu Toggle New");
   }
 
   function closeMenu() {
     offCanvasMenu.classList.add("-translate-x-full");
     menuOverlay.classList.add("opacity-0", "pointer-events-none");
     body.classList.remove("overflow-hidden");
-    // console.log("Menu Closed New");
+    console.log("Menu Closed New");
   }
 
   function handleMobileCartClick(event) {
