@@ -1,0 +1,375 @@
+ <!-- cart.liquid -->
+
+<div  id="cart-drawer" class="{{ section.settings.cart_container_classes }}">
+  
+  {% comment %} Cart Header {% endcomment %}
+  <div class="{{ section.settings.cart_header_classes }}">
+    <h2 class="{{ section.settings.cart_title_classes }}">{{ section.settings.cart_title }}</h2>
+    <button id="close-cart-button" class="{{ section.settings.close_cart_button_classes }}">
+      {% assign svg_class = section.settings.cart_close_button_svg %}
+      {% render 'icon-close' class: svg_class %}
+    </button>
+  </div>
+  
+  <div class="{{ section.settings.cart_content_classes }}">
+
+    {% comment %} Added Product Block {% endcomment %}
+    <div class="{{ section.settings.cart_content_added_product_class }}"> 
+      
+      {% assign image_classes = section.settings.cart_item_image_classes %}
+      {% if section.settings.cart_item_image != blank %}
+      {{
+      section.settings.cart_item_image
+      | image_url: width: 300
+      | image_tag: 
+          class: image_classes,
+          alt: section.settings.cart_item_image.alt | default: 'Image for Cart item'
+
+      }}
+      {% else %}
+        {{ 'collection-1' | placeholder_svg_tag: "w-[160px] aspect-square object-cover border-brand-black border" }}
+      {% endif %}
+
+      <div class="{{ section.settings.cart_content_added_product_class_main_info_button_div }}">
+          <div class="{{ section.settings.cart_content_added_product_class_main_info_button_label_price_div }}">
+              <h4 class="{{ section.settings.cart_content_product_name_classes }}"> 
+                {{ section.settings.cart_content_product_name }}
+              </h4>
+
+              <h4 class="{{ section.settings.cart_content_product_quantity_classes }}"> 
+                {{ section.settings.cart_content_product_quantity }}
+              </h4>
+
+              <h4 class="{{ section.settings.cart_content_product_price_classes }}"> 
+                {{ section.settings.cart_content_product_price }}
+              </h4>
+          </div>
+          <div class="{{ section.settings.cart_content_added_product_class_main_info_button_remove_button_div }}">
+            <a 
+              href="{{ section.settings.cart_item_remove_button_link }}"
+              class="{{ section.settings.cart_item_remove_button }}"
+            >
+                {{- section.settings.cart_item_remove_button_label | escape -}}
+            </a>
+         
+          </div>
+      </div>
+    
+    </div>
+
+    {% comment %} Subtotal Block {% endcomment %}
+    <div class="{{ section.settings.cart_content_subtotal_div }}">
+      <div class="{{ section.settings.cart_content_subtotal_div_content }}">
+        <h4 class="{{ section.settings.cart_content_subtotal_div_content_label_classes }}"> 
+          {{ section.settings.cart_content_subtotal_div_content_label }}
+        </h4>
+
+        <h4 class="{{ section.settings.cart_content_subtotal_div_content_total_price_classes }}"> 
+          {{ section.settings.cart_content_subtotal_div_content_total_price }}
+        </h4>
+      </div>  
+    </div>
+
+    {% comment %} Textarea Block {% endcomment %}
+    <div class="{{ section.settings.cart_content_textarea_div }}">
+      <div class="{{ section.settings.cart_content_textarea_div_content }}">
+        <textarea 
+          class="{{ section.settings.cart_content_textarea_div_content_message_classes }}" 
+          placeholder="{{ section.settings.cart_content_textarea_div_content_message }}"
+        ></textarea>
+        
+      </div>  
+    </div>
+
+    {% comment %} Delivery Message Block {% endcomment %}
+    <div class="{{ section.settings.cart_content_delivery_message_div }}">
+      <div class="{{ section.settings.cart_content_delivery_message_div_content }}">
+        <div class="{{ section.settings.cart_content_delivery_message_classes }}"> 
+          {{ section.settings.cart_content_delivery_message }}
+        </div>
+      </div>  
+    </div>
+
+    {% comment %} Checkout Button Block {% endcomment %}
+    <div class="{{ section.settings.cart_content_checkout_button_div }}">
+      <a 
+        class="{{ section.settings.cart_content_checkout_button_classes }}"
+        href="{{ section.settings.cart_content_checkout_button_link }}"
+      >
+          {{- section.settings.cart_content_checkout_button_label | escape -}}
+      </a>
+    </div>
+    
+  </div>
+
+</div>
+
+{% comment %} Cart Overlay {% endcomment %}
+<div id="cart-overlay" class="{{ section.settings.cart_overlay_classes }}"></div>
+
+
+<!-- Include Cart JavaScript -->
+<script src="{{ 'cart.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+    {
+        "type": "inline_richtext",
+        "id": "cart_title",
+        "label": "Cart Title",
+        "default": "Shopping Cart"
+    },
+    {
+        "type": "image_picker",
+        "id": "cart_item_image",
+        "label": "Cart Product Image"
+    },
+    {
+        "type": "inline_richtext",
+        "id": "cart_content_product_name",
+        "label": "Cart Product Name",
+        "default": "Rosy Delight"
+    },
+    {
+        "type": "text",
+        "id": "cart_content_product_quantity",
+        "label": "Cart Product Quantity",
+        "default": "Quantity (1)"
+    },
+    {
+        "type": "text",
+        "id": "cart_content_product_price",
+        "label": "Cart Product Price",
+        "default": "$100"
+    },
+    {
+        "type": "text",
+        "id": "cart_item_remove_button_label",
+        "label": "Remove Button Label",
+        "default": "Remove"
+    },
+    {
+        "type": "url",
+        "id": "cart_item_remove_button_link",
+        "label": "Button Link"
+    },
+    {
+        "type": "inline_richtext",
+        "id": "cart_content_subtotal_div_content_label",
+        "label": "Subtotal Label",
+        "default": "Subtotal"
+    },
+    {
+        "type": "text",
+        "id": "cart_content_subtotal_div_content_total_price",
+        "label": "Subtotal Price",
+        "default": "$100.00"
+    },
+    {
+      "type": "textarea",
+      "id": "cart_content_textarea_div_content_message",
+      "label": "Gift Message Placeholder",
+      "default": "Gift Message"
+    },
+    {
+        "type": "richtext",
+        "id": "cart_content_delivery_message",
+        "label": "Delivery Message",
+        "default": "<p>Shipping & taxes calculated at checkout Free standard shipping within Kyiv </p>"
+    },
+    {
+        "type": "text",
+        "id": "cart_content_checkout_button_label",
+        "label": "Checkout Button Label",
+        "default": "Check out"
+    },
+    {
+        "type": "url",
+        "id": "cart_content_checkout_button_link",
+        "label": "Checkout Button Link"
+    },
+    {
+        "type": "header",
+        "content": "Tailwind Classes"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_overlay_classes",
+        "label": "Cart Overlay Classes",
+        "default": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none block"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_container_classes",
+        "label": "Cart Container Classes",
+        "default": "fixed inset-y-0 right-0 w-full lg:w-1/2 bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full flex flex-col overflow-y-auto"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_header_classes",
+        "label": "Cart Header Classes",
+        "default": "px-6 py-3 flex justify-between items-center h-[48px] md:h-[56px] border-brand-black border-b md:px-10 md:py-4 lg:py-[26px]"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_title_classes",
+        "label": "Cart Title Classes",
+        "default": "text-mobile-heading-6 font-medium md:text-desktop-heading-6"
+    },
+    {
+        "type": "textarea",
+        "id": "close_cart_button_classes",
+        "label": "Close Cart Button Classes",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_close_button_svg",
+        "label": "Close Cart Button SVG",
+        "default": "w-3 h-3 md:w-4 md:h-4"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_classes",
+        "label": "Cart Content Classes",
+        "default": "flex flex-col h-full"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_added_product_class",
+        "label": "Cart Content Added Product Class",
+        "default": "px-4 py-6 flex flex-col gap-4 border-brand-black border-b md:p-10 md:flex-row md:justify-between"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_item_image_classes",
+        "label": "Cart Item Image Classes",
+        "default": "w-[160px] aspect-square object-cover border-brand-black border"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_added_product_class_main_info_button_div",
+        "label": "Added Product Class Main Info Button Div",
+        "default": "flex justify-between items-end md:items-center md:w-full"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_added_product_class_main_info_button_label_price_div",
+        "label": "Added Product Class Main Info Button Label Price Div",
+        "default": "flex flex-col gap-2"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_product_name_classes",
+        "label": "Product Name Classes",
+        "default": "text-mobile-subtitle font-medium"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_product_quantity_classes",
+        "label": "Product Quantity Classes",
+        "default": "text-mobile-body"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_product_price_classes",
+        "label": "Product Price Classes",
+        "default": "text-mobile-subtitle font-medium"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_added_product_class_main_info_button_remove_button_div",
+        "label": "Added Product Class Main Info Button Remove Button Div",
+        "default": "text-mobile-links font-semibold tracking-[0.025em] md:text-desktop-button"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_item_remove_button",
+        "label": "Cart Item Remove Button Classes",
+        "default": "text-brand-gray"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_subtotal_div",
+        "label": "Cart Content Subtotal Div",
+        "default": "px-4 py-6 border-brand-black border-b md:p-10"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_subtotal_div_content",
+        "label": "Cart Content Subtotal Div Content",
+        "default": "flex justify-between"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_subtotal_div_content_label_classes",
+        "label": "Cart Content Subtotal Div Content Label Classes",
+        "default": "text-mobile-subtitle font-medium "
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_subtotal_div_content_total_price_classes",
+        "label": "Cart Content Subtotal Div Content Total Price Classes",
+        "default": "text-mobile-subtitle font-medium md:text-desktop-heading-5"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_textarea_div",
+        "label": "Cart Content Textarea Div",
+        "default": "px-4 py-6 border-brand-black border-b flex-grow md:p-10"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_textarea_div_content",
+        "label": "Cart Content Textarea Div Content",
+        "default": "h-full"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_textarea_div_content_message_classes",
+        "label": "Textarea Div Content Message Classes",
+        "default": "w-full border border-gray-300 text-mobile-body h-full overflow-y-auto p-2 outline-none"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_delivery_message_div",
+        "label": "Cart Content Delivery Message Div",
+        "default": "px-4 py-10 border-brand-black border-b md:p-10"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_delivery_message_div_content",
+        "label": "Cart Content Delivery Message Div Content",
+        "default": "text-black"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_delivery_message_classes",
+        "label": "Cart Content Delivery Message Classes",
+        "default": "text-mobile-caption text-center"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_checkout_button_div",
+        "label": "Cart Content Checkout Button Div",
+        "default": "w-full font-medium"
+    },
+    {
+        "type": "textarea",
+        "id": "cart_content_checkout_button_classes",
+        "label": "Cart Content Checkout Button Classes",
+        "default": "block text-center text-mobile-button uppercase w-full h-full bg-brand-black text-white hover:bg-gray-800 transition-colors duration-200 px-6 pt-4 pb-[14px] tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em]"
+    },
+  ],
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "presets": [
+    {
+      "name": "Cart"
+    }   
+  ]
+}
+{% endschema %}

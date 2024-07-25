@@ -1,12 +1,3 @@
-/*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
 {
   "current": {
     "heading_font": "poppins_n6",
@@ -27,12 +18,13 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": true,
-    "cart_type": "notification",
+    "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": false,
     "cart_drawer_collection": "",
     "tailwind_config": "tailwind.config = {\n    \n  theme: {\n    extend: {\n      colors: {\n        brand: {\n          white: {\n            DEFAULT: \"#FFFFFF\",\n            rgb: \"rgb(255, 255, 255)\",\n            hsl: \"hsl(0, 0%, 100%)\",\n          },\n          \"extra-light\": {\n            DEFAULT: \"#F5F5F7\",\n            rgb: \"rgb(245, 245, 247)\",\n            hsl: \"hsl(240, 11%, 96%)\",\n          },\n          \"light-gray\": {\n            DEFAULT: \"#D2D2D7\",\n            rgb: \"rgb(210, 210, 215)\",\n            hsl: \"hsl(240, 6%, 83%)\",\n          },\n          gray: {\n            DEFAULT: \"#808080\",\n            rgb: \"rgb(128, 128, 128)\",\n            hsl: \"hsl(0, 0%, 50%)\",\n          },\n          \"dark-gray\": {\n            DEFAULT: \"#424245\",\n            rgb: \"rgb(66, 66, 69)\",\n            hsl: \"hsl(240, 2%, 26%)\",\n          },\n          black: {\n            DEFAULT: \"#121212\",\n            rgb: \"rgb(18, 18, 18)\",\n            hsl: \"hsl(0, 0%, 7%)\",\n          },\n        },\n        status: {\n          success: {\n            DEFAULT: \"#32936F\",\n            rgb: \"rgb(50, 147, 111)\",\n            hsl: \"hsl(158, 49%, 39%)\",\n          },\n          error: {\n            DEFAULT: \"#F55F56\",\n            rgb: \"rgb(245, 95, 86)\",\n            hsl: \"hsl(3, 89%, 65%)\",\n          },\n        },\n      },\n      fontSize: {\n        \/\/ Desktop Typography\n        \"desktop-heading-1\": [\"67px\", \"120%\"],\n        \"desktop-heading-2\": [\"50px\", \"120%\"],\n        \"desktop-heading-3\": [\"38px\", \"120%\"],\n        \"desktop-heading-4\": [\"28px\", \"120%\"],\n        \"desktop-heading-5\": [\"21px\", \"120%\"],\n        \"desktop-heading-6\": [\"16px\", \"120%\"],\n        \"desktop-subtitle\": [\"18px\", \"120%\"],\n        \"desktop-body\": [\"16px\", \"140%\"],\n        \"desktop-button\": [\"16px\", \"120%\"],\n        \"desktop-links\": [\"16px\", \"120%\"],\n        \"desktop-overline\": [\"14px\", \"120%\"],\n        \"desktop-caption\": [\"14px\", \"120%\"],\n        \"desktop-hero-caption\": [\"18px\", \"140%\"],\n        \"desktop-caption-small\": [\"12px\", \"120%\"],\n\n        \/\/ Mobile Typography\n        \"mobile-heading-1\": [\"40px\", \"120%\"],\n        \"mobile-heading-2\": [\"34px\", \"120%\"],\n        \"mobile-heading-3\": [\"26px\", \"120%\"],\n        \"mobile-heading-4\": [\"22px\", \"120%\"],\n        \"mobile-heading-5\": [\"18px\", \"120%\"],\n        \"mobile-heading-6\": [\"16px\", \"100%\"],\n        \"mobile-subtitle\": [\"18px\", \"140%\"],\n        \"mobile-body\": [\"16px\", \"140%\"],\n        \"mobile-button\": [\"14px\", \"100%\"],\n        \"mobile-links\": [\"14px\", \"120%\"],\n        \"mobile-overline\": [\"12px\", \"120%\"],\n        \"mobile-caption\": [\"14px\", \"120%\"],\n        \"mobile-hero-caption\": [\"14px\", \"140%\"],\n        \"mobile-caption-small\": [\"12px\", \"120%\"],\n        \"mobile-small-description\": [\"11px\", \"120%\"],\n      },\n      fontFamily: {\n        bodyFont: [\"var(--body-font)\", \"sans-serif\"],\n        headingFont: [\"var(--heading-font)\", \"sans-serif\"],\n      },\n      fontWeight: {\n        semibold: 600,\n        medium: 500,\n        regular: 400,\n      },\n      textTransform: {\n        uppercase: \"uppercase\",\n      },\n      screens: {\n         md: \"768px\",\n        lg: \"1440px\",\n      },\n    },\n  },\n  }",
     "tailwind_css": "@layer utilities {.pause { animation-play-state: paused;}\n.hide-scrollbar {\n  -ms-overflow-style: none;\n  scrollbar-width: none;\n}\n.hide-scrollbar::-webkit-scrollbar {\n  display: none;\n}}",
+    "cart_identifier": "title",
     "social_tiktok_link": "",
     "logo_width": 90,
     "type_header_font": "assistant_n4",
@@ -124,6 +116,52 @@
     "badge_corner_radius": 40,
     "sale_badge_color_scheme": "scheme-5",
     "sold_out_badge_color_scheme": "scheme-3",
+    "sections": {
+      "cart": {
+        "type": "cart",
+        "settings": {
+          "cart_title": "Shopping Cart",
+          "cart_content_product_name": "Rosy Delight",
+          "cart_content_product_quantity": "Quantity (1)",
+          "cart_content_product_price": "$100",
+          "cart_item_remove_button_label": "Remove",
+          "cart_item_remove_button_link": "",
+          "cart_content_subtotal_div_content_label": "Subtotal",
+          "cart_content_subtotal_div_content_total_price": "$100.00",
+          "cart_content_textarea_div_content_message": "Gift Message",
+          "cart_content_delivery_message": "<p>Shipping & taxes calculated at checkout Free standard shipping within Kyiv <\/p>",
+          "cart_content_checkout_button_label": "Check out",
+          "cart_content_checkout_button_link": "",
+          "cart_overlay_classes": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none block",
+          "cart_container_classes": "fixed inset-y-0 right-0 w-full lg:w-1\/2 bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full flex flex-col",
+          "cart_header_classes": "px-6 py-3 flex justify-between items-center h-[48px] md:h-[56px] border-brand-black border-b md:px-10 md:py-4 lg:py-[26px]",
+          "cart_title_classes": "text-mobile-heading-6 font-medium md:text-desktop-heading-6",
+          "close_cart_button_classes": "text-black",
+          "cart_close_button_svg": "w-3 h-3 md:w-4 md:h-4",
+          "cart_content_classes": "flex flex-col h-full",
+          "cart_content_added_product_class": "px-4 py-6 flex flex-col gap-4 border-brand-black border-b md:p-10 md:flex-row md:justify-between",
+          "cart_item_image_classes": "w-[160px] aspect-square object-cover border-brand-black border",
+          "cart_content_added_product_class_main_info_button_div": "flex justify-between items-end md:items-center md:w-full",
+          "cart_content_added_product_class_main_info_button_label_price_div": "flex flex-col gap-2",
+          "cart_content_product_name_classes": "text-mobile-subtitle font-medium",
+          "cart_content_product_quantity_classes": "text-mobile-body",
+          "cart_content_product_price_classes": "text-mobile-subtitle font-medium",
+          "cart_content_added_product_class_main_info_button_remove_button_div": "text-mobile-links font-semibold tracking-[0.025em] md:text-desktop-button",
+          "cart_item_remove_button": "text-brand-gray",
+          "cart_content_subtotal_div": "px-4 py-6 border-brand-black border-b md:p-10",
+          "cart_content_subtotal_div_content": "flex justify-between",
+          "cart_content_subtotal_div_content_label_classes": "text-mobile-subtitle font-medium",
+          "cart_content_subtotal_div_content_total_price_classes": "text-mobile-subtitle font-medium md:text-desktop-heading-5",
+          "cart_content_textarea_div": "px-4 py-6 border-brand-black border-b flex-grow md:p-10",
+          "cart_content_textarea_div_content": "h-full",
+          "cart_content_textarea_div_content_message_classes": "w-full border border-gray-300 text-mobile-body h-full overflow-y-auto p-2 outline-none",
+          "cart_content_delivery_message_div": "px-4 py-10 border-brand-black border-b md:p-10",
+          "cart_content_delivery_message_div_content": "text-black",
+          "cart_content_delivery_message_classes": "text-mobile-caption text-center",
+          "cart_content_checkout_button_div": "w-full font-medium"
+        }
+      }
+    },
     "content_for_index": [
 
     ],

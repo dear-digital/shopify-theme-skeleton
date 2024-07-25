@@ -1,38 +1,232 @@
-/*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
 {
   "sections": {
-    "service_section_2_MCig4L": {
-      "type": "service-section-2",
+    "subscription_main_section_iKXFGR": {
+      "type": "subscription-main-section",
+      "blocks": {
+        "content_block_UqKRyM": {
+          "type": "content_block",
+          "settings": {
+            "title": "For Yourself",
+            "paragraph": "<p>The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!<\/p>",
+            "content_div__content_subtitle_para_div": "space-y-2",
+            "content_div__content_subtitle_classes": "text-mobile-heading-6 font-medium md:text-desktop-links",
+            "content_div__content_paragraph_classes": "pl-[1.5em]",
+            "content_div__content_paragraph_list_classes": "text-mobile-body list-disc list-outside"
+          }
+        },
+        "content_block_aNRHdd": {
+          "type": "content_block",
+          "settings": {
+            "title": "As a Gift",
+            "paragraph": "<p>Simply provide us with their address and let us take care of the rest, delivering beautiful blooms straight to their doorstep at the frequency and duration of your choosing.<\/p>",
+            "content_div__content_subtitle_para_div": "space-y-2",
+            "content_div__content_subtitle_classes": "text-mobile-heading-6 font-medium md:text-desktop-links",
+            "content_div__content_paragraph_classes": "pl-[1.5em]",
+            "content_div__content_paragraph_list_classes": "text-mobile-body list-disc list-outside"
+          }
+        },
+        "content_block_NB8ray": {
+          "type": "content_block",
+          "settings": {
+            "title": "For Business",
+            "paragraph": "<p>Is a great way to create a pleasant atmosphere and leave a good impression on your guests and customers. Fresh floral arrangements will improve the aesthetic image of your business, and our service guarantees timely replacement without extra care or effort on your part.<\/p>",
+            "content_div__content_subtitle_para_div": "space-y-2",
+            "content_div__content_subtitle_classes": "text-mobile-heading-6 font-medium md:text-desktop-links",
+            "content_div__content_paragraph_classes": "pl-[1.5em]",
+            "content_div__content_paragraph_list_classes": "text-mobile-body list-disc list-outside"
+          }
+        }
+      },
+      "block_order": [
+        "content_block_UqKRyM",
+        "content_block_aNRHdd",
+        "content_block_NB8ray"
+      ],
       "settings": {
-        "service_2_background_image": "shopify:\/\/shop_images\/438486393_813662443989352_6566823081766376948_n_8eaac1ac-7b71-471c-bca8-6487792fa855.jpg",
-        "service_2__container_text_content_small_header": "Service",
-        "service_2__container_text_content_heading_paragraph_div_header": "Wedding & Event Decor",
-        "service_2__container_text_content_heading_paragraph_div_para": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
-        "service_2__container_button_label": "Inquire Now",
-        "service_2__container_button_link": "",
-        "service_2__container": "relative h-[416px] md:h-[500px] lg:h-[720px] flex items-center justify-center",
-        "service_2__container_image_classes": "absolute inset-0 w-full h-full object-cover",
-        "service_2__container_overlay": "absolute inset-0 bg-black bg-opacity-50",
-        "service_2__container_content": "relative z-10 flex flex-col gap-16 py-10 px-4 md:p-20 md:items-center",
-        "service_2__container_text_content": "flex flex-col gap-6 text-center",
-        "service_2__container_text_content_small_header_classes": "text-mobile-caption-small md:text-mobile-caption uppercase text-white font-medium",
-        "service_2__container_text_content_heading_paragraph_div": "flex flex-col gap-4",
-        "service_2__container_text_content_heading_paragraph_div_header_classes": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
-        "service_2__container_text_content_heading_paragraph_div_para_classes": "text-mobile-body text-white md:text-desktop-hero-caption",
-        "service_2__container_button_div": "flex items-start justify-center md:inline-block",
-        "service_2__container_button_classes": "text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-brand-black pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
+        "image": "shopify:\/\/shop_images\/RusticCharm.png",
+        "main_title": "Flower Subscription",
+        "right_column__button_label": "Explore Plans",
+        "right_column__button_link": "",
+        "subscription_main_section": "flex flex-col lg:flex-row lg:h-[720px]",
+        "subscription_main_section__image": "w-full lg:w-1\/2 h-[420px] md:h-[500px ] lg:h-full",
+        "subscription_main_section__image_classes": "w-full h-full object-cover",
+        "subscription_main_section__right_column": "px-4 py-10 flex flex-col gap-12 lg:w-1\/2 md:p-20 border-brand-black  lg:h-full lg:justify-center lg:border-l",
+        "right_column__content_div": "flex flex-col gap-4 lg:gap-6",
+        "content_div__header_classes": "text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
+        "content_div__content": "space-y-6",
+        "right_column__button": "px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em] font-medium h-[48px] hover:text-white hover:bg-brand-black transition ease-in 500 md:h-[56px] lg:w-fit"
+      }
+    },
+    "dev_why_choose_us_PLNqyE": {
+      "type": "dev__why-choose-us",
+      "blocks": {
+        "benefit_block_D4idxX": {
+          "type": "benefit-block",
+          "settings": {
+            "title": "Choose a plan",
+            "text": "Select the subscription plan that suits you best from our three bouquet designs: classic, seasonal, and deluxe. Each plan comes with a designer vase, free delivery, and a discount of up to 30%. Our seasonal and deluxe plans also include a luxurious scented candle to enhance the ambiance.",
+            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] lg:border-l-[1px] border-brand-black",
+            "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
+            "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
+          }
+        },
+        "benefit_block_eAkYWc": {
+          "type": "benefit-block",
+          "settings": {
+            "title": "Frequency and Duration",
+            "text": "Choose delivery frequency: once a week, every two weeks, or once a month. Then, select your subscription duration from 3 to 12 months. Enjoy savings with a longer subscription. We understand that every customer has different needs, and we aim to provide flexible subscription options that cater to your specific preferences.",
+            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] lg:border-l-[1px] border-brand-black",
+            "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
+            "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
+          }
+        },
+        "benefit_block_EanMTy": {
+          "type": "benefit-block",
+          "settings": {
+            "title": "Pay once",
+            "text": "After entering your contact and delivery information and paying for your subscription, you can sit back and relax, knowing that you have secured a regular supply of fresh, stunning flowers for yourself or your loved ones",
+            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] lg:border-l-[1px] border-brand-black",
+            "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
+            "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_block_D4idxX",
+        "benefit_block_eAkYWc",
+        "benefit_block_EanMTy"
+      ],
+      "settings": {
+        "main_heading": "How does it work?",
+        "tw-why-choose-us": "flex flex-col lg:flex-row border-[1px] border-brand-black",
+        "tw-section__left-col": "py-10 px-4 gap-4 lg:w-1\/2 md:p-20 lg:gap-4 border-b-[1px] border-brand-black",
+        "tw-section__main-heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg: sticky lg:top-[5.56vw]",
+        "tw-section__right-col": "lg:w-1\/2"
+      }
+    },
+    "subscription_faq_section_3RjngG": {
+      "type": "subscription-faq-section",
+      "blocks": {
+        "block_PFNELk": {
+          "type": "block",
+          "settings": {
+            "title": "How often will I get a new bouquet?",
+            "content": "The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_8y6g64": {
+          "type": "block",
+          "settings": {
+            "title": "Can i send subscription like as a gift ?",
+            "content": "Absolutely ! This is the most convenient way to show your feelings, subscribe to the address to whom you want to deliver bouquets and we will please that person with beautiful bouquets",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_WqNbDF": {
+          "type": "block",
+          "settings": {
+            "title": "Can I choose which bouquet I get ?",
+            "content": "Each subscription option is carefully selected by our specialists. Our florists select the best and freshest varieties for delivery that surprise and delight every time; thus, the current subscription offer does not allow you to choose a different bouquet for each delivery or to receive the entire subscription with one particular bouquet. Each bouquet will be individual and made according to your chosen plan - classic, seasonal or luxury bouquets",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_jXtxHR": {
+          "type": "block",
+          "settings": {
+            "title": "Can I change the shipping address ?",
+            "content": "Yes, you can! After you create an account, you can log in and adjust your settings to pause the next delivery and let us know the next best delivery date.",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_n4EHkx": {
+          "type": "block",
+          "settings": {
+            "title": "What day will the subscription bouquet come?",
+            "content": "Depending on the day you first choose for your flower delivery, we will deliver on that day for all future deliveries. So if you get your flowers on Thursday every other week, you will get another flower delivery two weeks later on Thursday.",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_WRnafD": {
+          "type": "block",
+          "settings": {
+            "title": "Can I suspend my subscription to flowers ?",
+            "content": "Yes, you can! After you create an account, you can log in and adjust your settings to pause the next delivery and let us know the next best delivery date.",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        },
+        "block_B9G9yN": {
+          "type": "block",
+          "settings": {
+            "title": "Lorem Ipsum",
+            "content": "Yes, you can! After you create an account, you can log in and adjust your settings to pause the next delivery and let us know the next best delivery date.",
+            "collapsible_block_container": "py-4 border-brand-black border-b",
+            "collapsible_details": "group",
+            "collapsible_summary": "flex justify-between items-center cursor-pointer gap-6",
+            "collapsible_title": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular",
+            "collapsible_icon": "transition duration-200 group-open:rotate-[-90deg]",
+            "collapsible_icon_SVG": "w-3 h-3 md:w-4 md:h-4",
+            "collapsible_content": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6"
+          }
+        }
+      },
+      "block_order": [
+        "block_PFNELk",
+        "block_8y6g64",
+        "block_WqNbDF",
+        "block_jXtxHR",
+        "block_n4EHkx",
+        "block_WRnafD",
+        "block_B9G9yN"
+      ],
+      "settings": {
+        "main_heading": "Subscription FAQ",
+        "main_container": "mx-auto bg-brand-extra-light py-10 md:px-10 md:py-20 lg:p-20 flex justify-center",
+        "main_content_container": "bg-white px-6 py-10 space-y-6 border-brand-black border-y md:border-x md:p-10 md:space-y-10 md:w-full lg:p-20 lg:w-[864px]",
+        "collapsible_main_heading": "text-mobile-heading-2 md:text-desktop-heading-2 text-center font-semibold",
+        "collapsible_grid": "mx-auto"
       }
     }
   },
   "order": [
-    "service_section_2_MCig4L"
+    "subscription_main_section_iKXFGR",
+    "dev_why_choose_us_PLNqyE",
+    "subscription_faq_section_3RjngG"
   ]
 }

@@ -1,0 +1,122 @@
+<div class="collection {{ section.settings.tw-collection }}">
+  <div class="collection__left-col {{ section.settings.tw-collection__left-col }}">
+    {% if collection.image %}
+      {{
+        collection.image
+        | image_url: width: 2400, crop: 'center'
+        | image_tag: class: section.settings['tw-collection__image'], sizes: '(min-width: 1200px) 1200px, 100vw'
+      }}
+      <div class="collection__image-overlay {{ section.settings.tw-collection__image-overlay }}"></div>
+    {% endif %}
+    {% if collection.title %}
+      <h2 class="collection__heading {{ section.settings.tw-collection__heading }}">{{ collection.title }}</h2>
+    {% endif %}
+  </div>
+  <div class="collection__right-col {{ section.settings.tw-collection__right-col }}">
+    {% if collection.products %}
+      {% for product in collection.products %}
+        <div class="collection__card {{ section.settings.tw-collection__card }}">
+          <a href="{{ product.url }}">
+            {% if product.featured_image %}
+              {{
+                product.featured_image
+                | image_url: width: 2400, crop: 'center'
+                | image_tag: class: section.settings['tw-collection__product-featured-image']
+              }}
+            {% endif %}
+            <div class="collection__product-description {{ section.settings.tw-collection__product-description }}">
+              {% if product.title %}
+                <h3 class="collection__product-title {{ section.settings.tw-collection__product-title }}">
+                  {{ product.title }}
+                </h3>
+              {% endif %}
+              {% if product.price %}
+                <p class="collection__product-price {{ section.settings.tw-collection__product-price }}">
+                  <span class="collection__product-price-text {{ section.settings.tw-collection__product-price-text }}">
+                    {{- section.settings['collection__product-price-text'] -}}
+                  </span>
+                  &nbsp;{{ product.price | money }}
+                </p>
+              {% endif %}
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "text", "id": "collection__product-price-text", "label": "Product price text", "default": "Price" },
+    { "type": "text", "id": "tw-collection", "label": "Style tw-collection", "default": "lg:flex lg:overflow-hidden" },
+    {
+      "type": "text",
+      "id": "tw-collection__left-col",
+      "label": "Style tw-collection__left-col",
+      "default": "lg:w-1/2 aspect-square relative border-[1px] border-brand-black overflow-hidden"
+    },
+    {
+      "type": "text",
+      "id": "tw-collection__image",
+      "label": "Style tw-collection__image",
+      "default": "h-full w-full object-cover"
+    },
+    {
+      "type": "text",
+      "id": "tw-collection__image-overlay",
+      "label": "Style tw-collection__image-overlay",
+      "default": "absolute inset-0 bg-black opacity-25"
+    },
+    {
+      "type": "text",
+      "id": "tw-collection__heading",
+      "label": "Style tw-collection__heading",
+      "default": "w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-semibold text-[12vw] md:text-[8.7vw] lg:text-[4.65vw] leading-[140%] z-10"
+    },
+    {
+      "type": "text",
+      "id": "tw-collection__right-col",
+      "label": "Style tw-collection__right-col",
+      "default": "flex flex-wrap lg:w-1/2 lg:aspect-square lg:overflow-auto lg:scrollbar-hide border-x-[1px] border-brand-black md:border-x-0"
+    },
+    {
+      "type": "text",
+      "id": "tw-collection__card",
+      "label": "Style tw-collection__card",
+      "default": "aspect-square relative md:w-1/2 md:h-1/2 cursor-pointer border-b-[1px] border-brand-black md:border-x-[1px]"
+    },
+    {
+      "type": "text",
+      "id": "tw-collection__product-featured-image",
+      "label": "Style tw-collection__product-featured-image",
+      "default": "h-full object-cover"
+    },
+    {
+      "type": "text",
+      "id": "tw-collection__product-description",
+      "label": "Style tw-collection__product-description",
+      "default": "w-full absolute bottom-3 text-brand-black flex flex-col justify-center items-center gap-1"
+    },
+    {
+      "type": "text",
+      "id": "tw-collection__product-title",
+      "label": "Style tw-collection__product-title",
+      "default": "leading-[120%] tracking-[.03vw] font-medium text-[4.3vw] md:text-[2.1vw] lg:text-[1.19vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-collection__product-price",
+      "label": "Style tw-collection__product-price",
+      "default": "leading-[120%] tracking-[.03vw] font-medium text-[3.7vw] md:text-[1.8vw] lg:text-[.98vw]"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection"
+    }
+  ]
+}
+{% endschema %}
