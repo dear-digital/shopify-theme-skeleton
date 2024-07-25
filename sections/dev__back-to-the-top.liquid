@@ -1,30 +1,30 @@
-<section class="back-to-top_section_classes {{ section.settings.back-to-top_section_classes }}">
+<section class="back-to-top-section-classes {{ section.settings.back-to-top_section_classes }}">
   <a
     id="BackToTop"
     href="#"
     title="Back to the top"
-    class="back-to-top_classes {{ section.settings.back-to-top_classes }}"
+    class="back-to-top-classes {{ section.settings.back-to-top_classes }}"
   >
     {% render 'arrow' %}
   </a>
 </section>
 
 <style>
-  .back-to-top_classes {
+  .back-to-top-classes {
     transition: opacity 0.3s;
     opacity: 1;
   }
-  
-  .back-to-top_classes.show {
+
+  .back-to-top-classes.show {
     opacity: 1;
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var goTopBtn = document.querySelector('.back-to-top_classes');
+    var goTopBtn = document.querySelector('.back-to-top-classes');
     if (!goTopBtn) return; // Check if button exists
-  
+
     function trackScroll() {
       var scrolled = window.pageYOffset;
       var coords = 300;
@@ -34,7 +34,7 @@
         goTopBtn.classList.remove('show');
       }
     }
-  
+
     function backToTop() {
       if (window.pageYOffset > 0) {
         window.scrollBy(0, -80);
@@ -43,7 +43,7 @@
         goTopBtn.classList.remove('show'); // Ensure it's hidden after reaching the top
       }
     }
-  
+
     window.addEventListener('scroll', trackScroll); // Consider debouncing this
     goTopBtn.addEventListener('click', backToTop);
   });
