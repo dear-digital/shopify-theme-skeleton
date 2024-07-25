@@ -352,19 +352,19 @@
     "settings": [
       {
         "type": "select",
-        "id": "cart_identifier",
-        "label": "Identify cart link by",
+        "id": "cart_type",
+        "label": "Select Cart type",
         "options": [
           {
-            "value": "url",
-            "label": "URL contains '/cart'"
+            "value": "drawer",
+            "label": "Drawer"
           },
           {
-            "value": "title",
-            "label": "Title contains 'cart'"
-          }
+            "value": "page",
+            "label": "Page"
+          },
         ],
-        "default": "url"
+        "default": "drawer"
       }
     ]
   },
@@ -373,7 +373,7 @@
     "settings": [
       {
         "type": "select",
-        "id": "cart_type",
+        "id": "cart_type_dawn",
         "options": [
           {
             "value": "drawer",
