@@ -1,11 +1,17 @@
+{% if section.settings.main_heading != blank or section.blocks.size > 0 %}
+{% endif %}
 <div class="collapsible-content {{ section.settings.main_container }}">
   <div class="collapsible-content__main-container {{ section.settings.main_content_container }}">
-    <h2 class="collapsible-content__main-heading {{ section.settings.collapsible_main_heading }}">
-      {{ section.settings.main_heading }}
-    </h2>
-  
+    {% if section.settings.main_heading != blank %}
+      <h2 class="collapsible-content__main-heading {{ section.settings.collapsible_main_heading }}">
+        {{ section.settings.main_heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
     <div class="collapsible-content__grid {{ section.settings.collapsible_grid }}">
         {% for block in section.blocks %}
+        {% if block.settings.title != blank and block.settings.content != blank %}         
         <div class="collapsible-content__block-container {{ block.settings.collapsible_block_container }}">
             <details class="collapsible-content__details {{ block.settings.collapsible_details }}">
             <summary class="collapsible-content__summary {{ block.settings.collapsible_summary }}">
@@ -21,8 +27,10 @@
             </p>
             </details>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
+    {% endif %}
   </div>
 </div>
 
