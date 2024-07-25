@@ -1,0 +1,175 @@
+<!-- subscription-plan-selection.liquid -->
+<!-- -->
+
+<div class="{{ section.settings.subscription_plan_selection__container}}">
+    
+    <!-- Left Column -->
+    <div class="subscription_plan_selection__container_left_column">
+        {% if section.settings.left_column_image != blank %}
+            {{ section.settings.image 
+                | image_url: width: 1500 
+                | image_tag: class: section.settings.left_column_image_classes
+            }}
+        {% else %}
+            {{ 'image' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-200' }}
+        {% endif %}
+    </div>
+
+    <!-- Right Column -->
+    <div class="subscription_plan_selection__container_right_column">
+
+        <!-- State 1 -->
+        <div class="right_column__state_1">
+            
+            <h4 class="state_1__sub_header_classes">
+            {{ section.settings.state_1__sub_header }}
+            </h4>
+            <div class="state_1__main_info_div">
+
+                <h4 class="main_info_div__header">
+            
+                </h4>
+
+                <div class="main_info_div__paragraph">
+                
+                </div>
+            </div>
+            <div class="state_1__plans">
+                <div class="plan_content">
+                    <!-- Plan Image -->
+                    {% if block.settings.plan_content_image != blank %}
+                        {{ block.settings.plan_content 
+                            | image_url: width: 1500 
+                            | image_tag: class: block.settings.plan_content_image_classes
+                        }}
+                    {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-200' }}
+                    {% endif %}
+
+                    <!-- Plan Terms -->
+                    <div class="plan_content__terms">
+                        {% comment %} There can be many plans and their styles are same, so create a block for plans and initially in eed three plans {% endcomment %}
+                        <h4 class="term__header">
+                
+                        </h4>
+                        <div class="term__points">
+                            {% comment %} Each plan can have different number of points, so do we need other block if yes than add {% endcomment %}
+                            <ul>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- State 2 -->
+        <div class="right_column__state_2">
+            <div class="state_2__main_info">
+                <div class="state_2__main_info_header">
+                
+                </div>
+                <div class="state_2__main_info_paragraph">
+                
+                </div>
+            </div>
+
+            <div class="state_2__frequency_buttons_div">
+                {% comment %} Check can we create a blocks for it? otherwise add 3 buttons {% endcomment %}
+                
+            </div>
+        
+        </div>
+
+        <!-- State 3 -->
+        <div class="right_column__state_3">
+            <div class="state_3__main_info">
+                <div class="state_3__main_info_header">
+                
+                </div>
+                <div class="state_3__main_info_paragraph">
+                
+                </div>
+            </div>
+            <div class="state_3__input_steppers">
+                {% comment %} Here an increment and decrement buttons with value in betweem i need {% endcomment %}
+            </div>
+        </div>
+        
+
+        <!-- Checkout Button -->
+        <div class="{{ section.settings.right_column__checkout_button_div }}">
+            <a 
+                href="{{ section.settings.right_column__checkout_button_link }}"
+                class="{{ section.settings.right_column__checkout_button }}"
+            >
+                {{- section.settings.right_column__checkout_button_label | escape -}}
+            </a>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+
+{
+  "name": "Subscription FAQ Content",
+  "class": "collapsible-content",
+  "settings": [
+    {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Main Image"
+    },
+    {
+        "type": "text",
+        "id": "state_1__sub_header",
+        "label": "State 1 Sub Header",
+        "default": "State 1 Sub Header"
+    },
+    // ...
+    // remaining schemas
+    // ...
+    {
+        "type": "textarea",
+        "id": "right_column__checkout_button_label",
+        "label": "Checkout Button Label",
+        "default": "Checkout"
+    },
+    {
+        "type": "url",
+        "id": "right_column__checkout_button_link",
+        "label": "Checkout Button Link"
+    },
+    // I need styling for all after this header, i will give for eg
+    {
+        "type": "header",
+        "content": "Tailwind styling classes"
+    },
+    {
+        "type": "textarea",
+        "id": "subscription_plan_selection__container",
+        "label": "subscription plan Container",
+        "default": "text-black"
+    },
+    // ...
+    // remaining schemas
+    // ...
+    {
+        "type": "textarea",
+        "id": "right_column__checkout_button_div",
+        "label": "Checkout Button Div",
+        "default": "flex justify-center"
+    },
+    {
+        "type": "textarea",
+        "id": "right_column__checkout_button",
+        "label": "Checkout Button",
+        "default": "bg-brand-primary text-white py-2 px-4 rounded-md"
+    }
+
+  ]
+
+}
+
+{% endschema %}
+
