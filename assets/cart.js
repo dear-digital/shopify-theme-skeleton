@@ -3,6 +3,7 @@
 // Immediately Invoked Function Expression (IIFE)
 // Prevents the constants from conflicting with other scripts
 (function(){
+
   const TRANSLATE_X_FULL = "translate-x-full";
   const OPACITY_0 = "opacity-0";
   const POINTER_EVENTS_NONE = "pointer-events-none";
@@ -55,7 +56,6 @@
         this.drawer.classList.remove(TRANSLATE_X_FULL);
         this.overlay.classList.remove(OPACITY_0, POINTER_EVENTS_NONE);
         document.body.classList.add(OVERFLOW_HIDDEN);
-        console.log("Cart Opened");
       } catch (error) {
         console.error("Error opening cart:", error);
       }
@@ -70,7 +70,6 @@
         this.drawer.classList.add(TRANSLATE_X_FULL);
         this.overlay.classList.add(OPACITY_0, POINTER_EVENTS_NONE);
         document.body.classList.remove(OVERFLOW_HIDDEN);
-        console.log("Cart Closed");
       } catch (error) {
         console.error("Error closing cart:", error);
       }

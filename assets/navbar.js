@@ -41,7 +41,6 @@
         toggleOverlay();
         toggleBodyScroll();
         closeCartIfOpen();
-        console.log("Menu Opened");
       } catch (error) {
         console.error("Error toggling menu:", error);
       }
@@ -52,7 +51,6 @@
         offCanvasMenu.classList.add(MINUS_TRANSLATE_X_FULL);
         menuOverlay.classList.add(OPACITY_0, POINTER_EVENTS_NONE);
         body.classList.remove(OVERFLOW_HIDDEN);
-        console.log("Menu Closed");
       } catch (error) {
         console.error("Error closing menu:", error);
       }
