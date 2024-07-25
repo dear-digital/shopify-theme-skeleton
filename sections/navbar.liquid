@@ -18,14 +18,14 @@
     <div class="navbar__container {{ section.settings.container_classes }}">
 
         <!-- Mobile and Laptop menu button -->
-        <div class="menu_button_container_classes {{ section.settings.menu_button_container_classes }}">
+        <div class="menu-button-container-classes {{ section.settings.menu_button_container_classes }}">
           <button id="menu-button" class="{{ section.settings.menu_button_svg_classes }}">
             <span id="hamburger-icon">{% render 'icon-hamburger' %}</span>
           </button>
         </div>
 
         <!-- Cart button -->
-        <div class="cart_button_classes {{ section.settings.cart_button_classes }}">
+        <div class="cart-button-classes {{ section.settings.cart_button_classes }}">
           <button id="cart-button" class="{{ section.settings.cart_button_svg_classes }}">
             {% render 'icon-cart' %}
           </button>
@@ -58,7 +58,7 @@
         {% render 'icon-close' %}
       </button>
     </div>
-    <div class="off_canvas_menu_content_classes {{ section.settings.off_canvas_menu_content_classes }}">
+    <div class="off-canvas-menu-content-classes {{ section.settings.off_canvas_menu_content_classes }}">
       {% for link in linklists[section.settings.menu].links %}
         <a href="{{ link.url }}" class="{{ section.settings.off_canvas_menu_item_classes }}">
           {{ link.title }}
@@ -71,7 +71,7 @@
       {% endfor %}
 
       <!-- More Menus -->
-      <div class="off_canvas_more_menu {{ section.settings.off_canvas_more_menu }}">
+      <div class="off-canvas-more-menu {{ section.settings.off_canvas_more_menu }}">
         {% for link in linklists[section.settings.more_menu].links %}
         <a href="{{ link.url }}" class="{{ section.settings.off_canvas_more_menu_item }}">
           {{ link.title }}
@@ -81,7 +81,7 @@
 
       <!-- Social Menu -->
         {% if section.settings.show_social_media and has_social_icons %}
-        <div class="off_canvas_menu_social {{ section.settings.off_canvas_menu_social }}">
+        <div class="off-canvas-menu-social {{ section.settings.off_canvas_menu_social }}">
           {%- assign svg_class = section.settings.off_canvas_menu_social_SVG -%}
           {% if settings.social_facebook_link != blank %}
             <a href="{{ settings.social_facebook_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Facebook">
@@ -358,10 +358,8 @@
       "default": "h-5 w-5"
     }
   ],
-  "presets": [
-    {
-      "name": "Navbar"
-    }
-  ]
+  "enabled_on": {
+    "groups": ["header"]
+  }
 }
 {% endschema %}
