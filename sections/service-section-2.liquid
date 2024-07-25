@@ -18,27 +18,35 @@
     {% comment %} Container Content {% endcomment %}
     <div class=" {{ section.settings.service_2__container_content }}"> 
         <div class="{{ section.settings.service_2__container_text_content }}"> 
+            {% if section.settings.service_2__container_text_content_small_header != blank %}
             <h3 class="{{ section.settings.service_2__container_text_content_small_header_classes }}"> 
                 {{ section.settings.service_2__container_text_content_small_header }}
             </h3>
+            {% endif %}     
 
+            {% if section.settings.service_2__container_text_content_heading_paragraph_div_para != blank or section.settings.service_2__container_text_content_heading_paragraph_div_header != blank %}
             <div class="{{ section.settings.service_2__container_text_content_heading_paragraph_div }}">
+                {% if section.settings.service_2__container_text_content_heading_paragraph_div_header != blank %}
                 <h2 class="{{ section.settings.service_2__container_text_content_heading_paragraph_div_header_classes }}">
                     {{ section.settings.service_2__container_text_content_heading_paragraph_div_header }}
                 </h2>
+                {% endif %}
+                {% if section.settings.service_2__container_text_content_heading_paragraph_div_para != blank %}
                 <div class="{{ section.settings.service_2__container_text_content_heading_paragraph_div_para_classes }}">
                     {{ section.settings.service_2__container_text_content_heading_paragraph_div_para }}
                 </div>
+                {% endif %}     
             </div>
+            {% endif %}     
         </div>
 
+        {% if section.settings.service_2__container_button_label != blank %}
         <div class="{{ section.settings.service_2__container_button_div }}">
-            <button class="{{ section.settings.service_2__container_button_classes }}">
-                <a href="{{ section.settings.service_2__container_button_link }}">
-                            {{- section.settings.service_2__container_button_label | escape -}}
+                <a href="{{ section.settings.service_2__container_button_link }}" class="{{ section.settings.service_2__container_button_classes }}">
+                    {{- section.settings.service_2__container_button_label | escape -}}
                 </a>
-            </button>
         </div>
+        {% endif %}
     </div>
 </div>
 
