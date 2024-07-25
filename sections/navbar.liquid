@@ -52,26 +52,19 @@
             {% endfor %}
 
             {% comment %} Desktop Cart Button {% endcomment %}
-            <div class="{{ section.settings.desktop_cart_button_classes }}">
-              {% assign is_cart = false %}
-              {% assign lowercase_title = section.settings.desktop_cart_button_label | downcase %}
-              {% if settings.cart_identifier == 'url' and section.settings.desktop_cart_button_link contains '/cart' %}
-                  {% assign is_cart = true %}
-              {% elsif settings.cart_identifier == 'title' and lowercase_title contains 'cart' %}
-                  {% assign is_cart = true %}
-              {% endif %}
-              <a 
-                id="desktop-cart-button" 
-                href="{{ section.settings.desktop_cart_button_link }}" 
-                class="{{ section.settings.desktop_cart_button_link_classes }}" 
-                {% if is_cart %} data-action="open-cart" {% endif %}
-               
-              >
-                  
+            <a 
+              href="{{ routes.cart_url }}" 
+              class="navbar__menu-item {{ section.settings.right_menu_item_classes }}" 
+              id="desktop-cart-button"
+              {% if is_cart %} data-action="open-cart" {% endif %}
+            >
+                <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}">
                   {% render 'icon-cart' class: section.settings.desktop_cart_button_link_SVG %}
                   {{ section.settings.desktop_cart_button_label }}
-              </a>
-            </div>
+                
+                </span>
+            </a>
+           
         </div>
       </div>
     </div>
@@ -270,12 +263,6 @@
       "id": "navbar__desktop_menu_item",
       "label": "Desktop Menu item",
       "default": "transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"
-    },
-    {
-      "type": "textarea",
-      "id": "desktop_cart_button_classes",
-      "label": "Desktop Cart button classes",
-      "default": "flex items-center justify-center border-brand-black border-l w-1/5"
     },
     {
       "type": "textarea",
