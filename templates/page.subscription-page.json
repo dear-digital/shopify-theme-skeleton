@@ -50,7 +50,7 @@
         "subscription_main_section": "flex flex-col lg:flex-row lg:h-[720px]",
         "subscription_main_section__image": "w-full lg:w-1\/2 h-[420px] md:h-[500px ] lg:h-full",
         "subscription_main_section__image_classes": "w-full h-full object-cover",
-        "subscription_main_section__right_column": "px-4 py-10 flex flex-col gap-12 lg:w-1\/2 md:p-20 lg:h-full lg:justify-center",
+        "subscription_main_section__right_column": "px-4 py-10 flex flex-col gap-12 lg:w-1\/2 md:p-20 border-brand-black  lg:h-full lg:justify-center lg:border-l",
         "right_column__content_div": "flex flex-col gap-4 lg:gap-6",
         "content_div__header_classes": "text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
         "content_div__content": "space-y-6",
