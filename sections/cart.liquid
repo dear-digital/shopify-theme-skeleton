@@ -45,11 +45,13 @@
               </h4>
           </div>
           <div class="{{ section.settings.cart_content_added_product_class_main_info_button_remove_button_div }}">
-            <button class="{{ section.settings.cart_item_remove_button }}">
-                <a href="{{ section.settings.cart_item_remove_button_link }}">
-                            {{- section.settings.cart_item_remove_button_label | escape -}}
-                </a>
-            </button>
+            <a 
+              href="{{ section.settings.cart_item_remove_button_link }}"
+              class="{{ section.settings.cart_item_remove_button }}"
+            >
+                {{- section.settings.cart_item_remove_button_label | escape -}}
+            </a>
+         
           </div>
       </div>
     
@@ -90,12 +92,14 @@
 
     {% comment %} Checkout Button Block {% endcomment %}
     <div class="{{ section.settings.cart_content_checkout_button_div }}">
-      <button class="{{ section.settings.cart_content_checkout_button }}">
-          <a href="{{ section.settings.cart_content_checkout_button_link }}">
-                      {{- section.settings.cart_content_checkout_button_label | escape -}}
-          </a>
-      </button>
+      <a 
+        class="{{ section.settings.cart_content_checkout_button_classes }}"
+        href="{{ section.settings.cart_content_checkout_button_link }}"
+      >
+          {{- section.settings.cart_content_checkout_button_label | escape -}}
+      </a>
     </div>
+    
   </div>
 
 </div>
@@ -200,7 +204,7 @@
         "type": "textarea",
         "id": "cart_container_classes",
         "label": "Cart Container Classes",
-        "default": "fixed inset-y-0 right-0 w-full lg:w-1/2 bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full flex flex-col"
+        "default": "fixed inset-y-0 right-0 w-full lg:w-1/2 bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full flex flex-col overflow-y-auto"
     },
     {
         "type": "textarea",
@@ -354,9 +358,9 @@
     },
     {
         "type": "textarea",
-        "id": "cart_content_checkout_button",
+        "id": "cart_content_checkout_button_classes",
         "label": "Cart Content Checkout Button Classes",
-        "default": "text-mobile-button uppercase w-full h-full bg-brand-black text-white hover:bg-gray-800 transition-colors duration-200 px-6 pt-4 pb-[14px] tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em]"
+        "default": "block text-center text-mobile-button uppercase w-full h-full bg-brand-black text-white hover:bg-gray-800 transition-colors duration-200 px-6 pt-4 pb-[14px] tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em]"
     },
   ],
   "presets": [
