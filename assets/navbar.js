@@ -1,47 +1,81 @@
 // navbar.js
-// All Cart functions are operated in cart.js
 
-document.addEventListener("DOMContentLoaded", function () {
+// Immediately Invoked Function Expression (IIFE)
+// Prevents the constants from conflicting with other scripts
+(function(){
 
-  const menuButton = document.getElementById("menu-button");
-  const closeMenuButton = document.getElementById("close-menu-button");
-  const offCanvasMenu = document.getElementById("off-canvas-menu");
-  const menuOverlay = document.getElementById("menu-overlay");
-  const body = document.body;
+  const MINUS_TRANSLATE_X_FULL = "-translate-x-full";
+  const OPACITY_0 = "opacity-0";
+  const POINTER_EVENTS_NONE = "pointer-events-none";
+  const OVERFLOW_HIDDEN = "overflow-hidden";
 
-  function toggleMenu() {
-    offCanvasMenu.classList.remove("-translate-x-full");
-    menuOverlay.classList.toggle("opacity-0");
-    menuOverlay.classList.toggle("pointer-events-none");
-    body.classList.toggle("overflow-hidden");
-    if (window.cartDrawer && window.cartDrawer.isOpen()) {
-      window.cartDrawer.close();
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuButton = document.getElementById("menu-button");
+    const closeMenuButton = document.getElementById("close-menu-button");
+    const offCanvasMenu = document.getElementById("off-canvas-menu");
+    const menuOverlay = document.getElementById("menu-overlay");
+    const body = document.body;
+
+    function toggleMenuVisibility() {
+      offCanvasMenu.classList.toggle(MINUS_TRANSLATE_X_FULL);
     }
-    // console.log("Menu Toggle New");
-  }
 
-  function closeMenu() {
-    offCanvasMenu.classList.add("-translate-x-full");
-    menuOverlay.classList.add("opacity-0", "pointer-events-none");
-    body.classList.remove("overflow-hidden");
-    // console.log("Menu Closed New");
-  }
+    function toggleOverlay() {
+      menuOverlay.classList.toggle(OPACITY_0);
+      menuOverlay.classList.toggle(POINTER_EVENTS_NONE);
+    }
 
-  menuButton.addEventListener("click", toggleMenu);
-  closeMenuButton.addEventListener("click", closeMenu);
-  menuOverlay.addEventListener("click", closeMenu);
+    function toggleBodyScroll() {
+      body.classList.toggle(OVERFLOW_HIDDEN);
+    }
 
-  // Shopify editor events
-  if (Shopify.designMode) {
-    document.addEventListener("shopify:section:load", function (event) {
-
-      if (event.target.contains(menuButton)) {
-        menuButton.addEventListener("click", toggleMenu);
+    function closeCartIfOpen() {
+      if (window.cartDrawer && window.cartDrawer.checkIfCartOpen()) {
+        window.cartDrawer.closeCart();
       }
+    }
 
-      if (window.cartDrawer) {
-        window.cartDrawer.bindEvents();
+    function toggleMenu() {
+      try {
+        toggleMenuVisibility();
+        toggleOverlay();
+        toggleBodyScroll();
+        closeCartIfOpen();
+        console.log("Menu Opened");
+      } catch (error) {
+        console.error("Error toggling menu:", error);
       }
-    });
-  }
-});
+    }
+
+    function closeMenu() {
+      try {
+        offCanvasMenu.classList.add(MINUS_TRANSLATE_X_FULL);
+        menuOverlay.classList.add(OPACITY_0, POINTER_EVENTS_NONE);
+        body.classList.remove(OVERFLOW_HIDDEN);
+        console.log("Menu Closed");
+      } catch (error) {
+        console.error("Error closing menu:", error);
+      }
+    }
+
+    menuButton.addEventListener("click", toggleMenu);
+    closeMenuButton.addEventListener("click", closeMenu);
+    menuOverlay.addEventListener("click", closeMenu);
+
+    if (Shopify.designMode) {
+      document.addEventListener("shopify:section:load", function (event) {
+        try {
+          if (event.target.contains(menuButton)) {
+            menuButton.addEventListener("click", toggleMenu);
+          }
+
+          if (window.cartDrawer) {
+            window.cartDrawer.bindEvents();
+          }
+        } catch (error) {
+          console.error("Error in Shopify editor event:", error);
+        }
+      });
+    }
+  });
+})();

@@ -1,62 +1,95 @@
 // cart.js
 
-class CartDrawer {
-  constructor() {
-    this.drawer = document.getElementById("cart-drawer");
-    this.overlay = document.getElementById("cart-overlay");
-    this.closeCartButton = document.getElementById("close-cart-button");
-    this.openCart = document.querySelectorAll(
-      '[data-action="open-cart"]'
-    );
-    this.bindEvents();
-  }
+// Immediately Invoked Function Expression (IIFE)
+// Prevents the constants from conflicting with other scripts
+(function(){
+  const TRANSLATE_X_FULL = "translate-x-full";
+  const OPACITY_0 = "opacity-0";
+  const POINTER_EVENTS_NONE = "pointer-events-none";
+  const OVERFLOW_HIDDEN = "overflow-hidden";
 
-  bindEvents() {
-    if (this.closeCartButton) {
-      this.closeCartButton.addEventListener("click", () => this.close());
+  class CartDrawer {
+    constructor() {
+      this.drawer = document.getElementById("cart-drawer");
+      this.overlay = document.getElementById("cart-overlay");
+      this.closeCartButton = document.getElementById("close-cart-button");
+      this.openCartButtons = document.querySelectorAll(
+        '[data-action="open-cart"]'
+      );
+      this.bindEvents();
     }
 
-    if (this.overlay) {
-      this.overlay.addEventListener("click", () => this.close());
+    bindEvents() {
+      this.attachCloseButtonEvent();
+      this.attachOverlayEvent();
+      this.attachOpenCartEvents();
     }
-    
-    this.openCart.forEach((button) => {
-      button.addEventListener("click", (event) => {
-        event.preventDefault();
-        this.toggle();
-        // console.log("Open for Desktop 3");
+
+    attachCloseButtonEvent() {
+      if (this.closeCartButton) {
+        this.closeCartButton.addEventListener("click", () => this.closeCart());
+      }
+    }
+
+    attachOverlayEvent() {
+      if (this.overlay) {
+        this.overlay.addEventListener("click", () => this.closeCart());
+      }
+    }
+
+    attachOpenCartEvents() {
+      this.openCartButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          try {
+            event.preventDefault();
+            this.toggleCart();
+          } catch (error) {
+            console.error("Error toggling cart:", error);
+          }
+        });
       });
-    });
-  }
+    }
 
-  open() {
-    this.drawer.classList.remove("translate-x-full");
-    this.overlay.classList.remove("opacity-0", "pointer-events-none");
-    document.body.classList.add("overflow-hidden");
-    // console.log("Cart Drawer Opened New");
-  }
+    openCart() {
+      try {
+        this.drawer.classList.remove(TRANSLATE_X_FULL);
+        this.overlay.classList.remove(OPACITY_0, POINTER_EVENTS_NONE);
+        document.body.classList.add(OVERFLOW_HIDDEN);
+        console.log("Cart Opened");
+      } catch (error) {
+        console.error("Error opening cart:", error);
+      }
+    }
 
-  isOpen() {
-    return !this.drawer.classList.contains("translate-x-full");
-  }
+    checkIfCartOpen() {
+      return !this.drawer.classList.contains(TRANSLATE_X_FULL);
+    }
 
-  close() {
-    this.drawer.classList.add("translate-x-full");
-    this.overlay.classList.add("opacity-0", "pointer-events-none");
-    document.body.classList.remove("overflow-hidden");
-    // console.log("Cart Drawer Closed New");
-  }
+    closeCart() {
+      try {
+        this.drawer.classList.add(TRANSLATE_X_FULL);
+        this.overlay.classList.add(OPACITY_0, POINTER_EVENTS_NONE);
+        document.body.classList.remove(OVERFLOW_HIDDEN);
+        console.log("Cart Closed");
+      } catch (error) {
+        console.error("Error closing cart:", error);
+      }
+    }
 
-  toggle() {
-    if (this.drawer.classList.contains("translate-x-full")) {
-      this.open();
-    } else {
-      this.close();
+    toggleCart() {
+      if (this.checkIfCartOpen()) {
+        this.closeCart();
+      } else {
+        this.openCart();
+      }
     }
   }
-}
 
-// Initialize the cart drawer when the DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
-  window.cartDrawer = new CartDrawer();
-});
+  document.addEventListener("DOMContentLoaded", () => {
+    try {
+      window.cartDrawer = new CartDrawer();
+    } catch (error) {
+      console.error("Error initializing CartDrawer:", error);
+    }
+  });
+})();
