@@ -1,15 +1,21 @@
-<div class="card__main {{ section.settings.card__main }}">
-  <div class="card__main__div {{ section.settings.card__main__div }} ">
-    <h2 class="card__main__title {{ section.settings.card__main__title }} ">{{ section.settings.section_title }}</h2>
-    <p class="card__main__subtitle {{ section.settings.card__main__subtitle }} ">
-      {{ section.settings.section_subtitle }}
-    </p>
+<div class="card-main {{ section.settings.card__main }}">
+  {%- if section.settings.section_title != blank or section.settings.section_subtitle != blank -%}
+  <div class="card-main-div {{ section.settings.card__main__div }} ">
+    {%- if section.settings.section_title != blank -%}
+      <h2 class="card-main-title {{ section.settings.card__main__title }} ">{{ section.settings.section_title }}</h2>
+    {%- endif -%}
+    {%- if section.settings.section_subtitle != blank -%}
+      <p class="card-main-subtitle {{ section.settings.card__main__subtitle }} ">
+        {{ section.settings.section_subtitle }}
+      </p>
+    {%- endif -%}
   </div>
-  <div class="card__block_div {{ section.settings.card__main__block_div }}">
+  {%- endif -%}
+  <div class="card-block-div {{ section.settings.card__main__block_div }}">
     {% for block in section.blocks %}
-      <div class="card__block_maindiv {{ block.settings.card__block_maindiv }} ">
+      <div class="card-block-maindiv {{ block.settings.card__block_maindiv }} ">
         {% if block.settings.card_link != blank and block.settings.card_image != blank %}
-          <a href="{{ block.settings.card_link }}" class="card__link {{ block.settings.card_link_style }}">
+          <a href="{{ block.settings.card_link }}" class="card-link {{ block.settings.card_link_style }}">
             {%- assign image_width = section.settings.image_width -%}
             {%- assign image_height = section.settings.image_height -%}
             {%- assign card_image_styles = section.settings.card_image_styles -%}
@@ -21,13 +27,21 @@
           </a>
         {% endif %}
         <div class="{{ block.settings.card__block_style }}">
-          <h3 class="{{ block.settings.card__block_title_style }}">
-            {{ block.settings.card__block_title }}
-          </h3>
-          <span class="{{ block.settings.card__block_subtitle_style }}">{{ block.settings.card__block_subtitle }}</span>
-          <p class="{{ block.settings.card__block_description_style }}">
-            {{ block.settings.card__block_description }}
-          </p>
+          {%- if block.settings.card__block_title != blank -%}
+            <h3 class="{{ block.settings.card__block_title_style }}">
+              {{ block.settings.card__block_title }}
+            </h3>
+          {%- endif -%}
+          {%- if block.settings.card__block_subtitle != blank -%}
+            <span class="{{ block.settings.card__block_subtitle_style }}">
+              {{- block.settings.card__block_subtitle -}}
+            </span>
+          {%- endif -%}
+          {%- if block.settings.card__block_description != blank -%}
+            <p class="{{ block.settings.card__block_description_style }}">
+              {{ block.settings.card__block_description }}
+            </p>
+          {%- endif -%}
           <ul class=" {{ block.settings.card__block_ul }}">
             <li>
               {% if block.settings.card__block_facebook != blank %}
@@ -36,7 +50,6 @@
                 </a>
               {% endif %}
             </li>
-
             <li>
               {% if block.settings.card__block_twitter != blank %}
                 <a href="{{ block.settings.card__block_twitter }}" class="{{ block.settings.card__block_ul_links }}">
