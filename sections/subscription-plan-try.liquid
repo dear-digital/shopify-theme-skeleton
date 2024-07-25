@@ -1,0 +1,502 @@
+{% comment %} subscription-plan-selection.liquid {% endcomment %}
+
+<div class="{{ section.settings.subscription_plan_selection__container }}">
+  {% comment %} Left Column {% endcomment %}
+  <div class="{{ section.settings.left_column_classes }}">
+    {% if section.settings.left_column_image != blank %}
+      {{ section.settings.left_column_image | image_url: width: 1500 | image_tag: class: section.settings.left_column_image_classes, alt: section.settings.left_column_image.alt | default: 'Subscription Plan' }}
+    {% else %}
+      {{ 'image' | placeholder_svg_tag:  section.settings.left_column_image_classes }}
+    {% endif %}
+  </div>
+
+  {% comment %} Right Column {% endcomment %}
+  <div class="{{ section.settings.right_column_classes }}">
+    {% comment %} State 1 {% endcomment %}
+    <div class="{{ section.settings.state_1_classes }}" id="state1">
+      <h4 class="{{ section.settings.state_1__sub_header_classes }}">
+        {{ section.settings.state_1__sub_header }}
+      </h4>
+      <div class="{{ section.settings.state_1__main_info_div_classes }}">
+        <h4 class="{{ section.settings.main_info_div__header_classes }}">
+          {{ section.settings.main_info_div__header }}
+        </h4>
+        <div class="{{ section.settings.main_info_div__paragraph_classes }}">
+          {{ section.settings.main_info_div__paragraph }}
+        </div>
+      </div>
+      <div class="{{ section.settings.state_1__plans_classes }}">
+        {% for block in section.blocks %}
+          {% if block.type == 'plan' %}
+            <div class="{{ block.settings.plan_content_classes }}" {{ block.shopify_attributes }}>
+              {% if block.settings.plan_content_image != blank %}
+                {{ block.settings.plan_content_image | image_url: width: 300 | image_tag: class: block.settings.plan_content_image_classes, alt: block.settings.plan_content_image.alt | default: block.settings.plan_name }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: class: block.settings.plan_content_image_classes }}
+              {% endif %}
+              <div class="{{ block.settings.plan_content__terms_classes }}">
+                <h4 class="{{ block.settings.term__header_classes }}">{{ block.settings.plan_name }}</h4>
+                <ul class="{{ block.settings.term__points_classes }}">
+                  {% for i in (1..5) %}
+                    {% assign point_key = 'point_' | append: i %}
+                    {% if block.settings[point_key] != blank %}
+                      <li>{{ block.settings[point_key] }}</li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% comment %} State 2 {% endcomment %}
+    <div class="{{ section.settings.state_2_classes }}" id="state2">
+      <div class="{{ section.settings.state_2__main_info_classes }}">
+        <h4 class="{{ section.settings.state_2__main_info_header_classes }}">
+          {{ section.settings.state_2__main_info_header }}
+        </h4>
+        <div class="{{ section.settings.state_2__main_info_paragraph_classes }}">
+          {{ section.settings.state_2__main_info_paragraph }}
+        </div>
+      </div>
+      <div class="{{ section.settings.state_2__frequency_buttons_div_classes }}">
+        {% for block in section.blocks %}
+          {% if block.type == 'frequency' %}
+            <button class="{{ block.settings.frequency_button_classes }}" data-frequency="{{ block.settings.frequency_value }}" {{ block.shopify_attributes }}>
+              {{ block.settings.frequency_label }}
+            </button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% comment %} State 3 {% endcomment %}
+    <div class="{{ section.settings.state_3_classes }}" id="state3">
+      <div class="{{ section.settings.state_3__main_info_classes }}">
+        <h4 class="{{ section.settings.state_3__main_info_header_classes }}">
+          {{ section.settings.state_3__main_info_header }}
+        </h4>
+        <div class="{{ section.settings.state_3__main_info_paragraph_classes }}">
+          {{ section.settings.state_3__main_info_paragraph }}
+        </div>
+      </div>
+      <div class="{{ section.settings.state_3__input_steppers_classes }}">
+        <button class="decrement {{ section.settings.stepper_button_classes }}">-</button>
+        <input type="number" value="1" min="1" max="10" class="{{ section.settings.stepper_input_classes }}">
+        <button class="increment {{ section.settings.stepper_button_classes }}">+</button>
+      </div>
+    </div>
+
+    {% comment %} Checkout Button {% endcomment %}
+    <div class="{{ section.settings.right_column__checkout_button_div }}">
+      <a href="{{ section.settings.right_column__checkout_button_link }}"
+         class="{{ section.settings.right_column__checkout_button }}">
+        {{- section.settings.right_column__checkout_button_label | escape -}}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Plan Selection Try",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "left_column_image",
+      "label": "Left Column Image"
+    },
+    {
+      "type": "text",
+      "id": "state_1__sub_header",
+      "label": "State 1 Sub Header",
+      "default": "Select Your Plan"
+    },
+    {
+      "type": "text",
+      "id": "main_info_div__header",
+      "label": "Main Info Header",
+      "default": "Choose Your Subscription"
+    },
+    {
+      "type": "richtext",
+      "id": "main_info_div__paragraph",
+      "label": "Main Info Paragraph",
+      "default": "<p>Select the perfect plan for your flower needs.</p>"
+    },
+    {
+      "type": "text",
+      "id": "state_2__main_info_header",
+      "label": "State 2 Header",
+      "default": "Choose Delivery Frequency"
+    },
+    {
+      "type": "richtext",
+      "id": "state_2__main_info_paragraph",
+      "label": "State 2 Paragraph",
+      "default": "<p>How often would you like your flowers delivered?</p>"
+    },
+    {
+      "type": "text",
+      "id": "state_3__main_info_header",
+      "label": "State 3 Header",
+      "default": "Number of Deliveries"
+    },
+    {
+      "type": "richtext",
+      "id": "state_3__main_info_paragraph",
+      "label": "State 3 Paragraph",
+      "default": "<p>Choose how many deliveries you'd like in your subscription.</p>"
+    },
+    {
+      "type": "text",
+      "id": "right_column__checkout_button_label",
+      "label": "Checkout Button Label",
+      "default": "Proceed to Checkout"
+    },
+    {
+      "type": "url",
+      "id": "right_column__checkout_button_link",
+      "label": "Checkout Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind styling classes"
+    },
+    {
+      "type": "textarea",
+      "id": "subscription_plan_selection__container",
+      "label": "Container Classes",
+      "default": "flex flex-col lg:flex-row"
+    },
+    {
+      "type": "textarea",
+      "id": "left_column_classes",
+      "label": "Left Column Classes",
+      "default": "w-full lg:w-1/2"
+    },
+    {
+      "type": "textarea",
+      "id": "left_column_image_classes",
+      "label": "Left Column Image Classes",
+      "default": "w-full h-full object-cover"
+    },
+    {
+      "type": "textarea",
+      "id": "right_column_classes",
+      "label": "Right Column Classes",
+      "default": "w-full lg:w-1/2 p-6"
+    },
+    {
+      "type": "textarea",
+      "id": "state_1_classes",
+      "label": "State 1 Classes",
+      "default": "space-y-6"
+    },
+    {
+      "type": "textarea",
+      "id": "state_1__sub_header_classes",
+      "label": "State 1 Sub Header Classes",
+      "default": "text-2xl font-semibold"
+    },
+    {
+      "type": "textarea",
+      "id": "state_1__main_info_div_classes",
+      "label": "State 1 Main Info Div Classes",
+      "default": "space-y-2"
+    },
+    {
+      "type": "textarea",
+      "id": "main_info_div__header_classes",
+      "label": "Main Info Header Classes",
+      "default": "text-xl font-medium"
+    },
+    {
+      "type": "textarea",
+      "id": "main_info_div__paragraph_classes",
+      "label": "Main Info Paragraph Classes",
+      "default": "text-gray-600"
+    },
+    {
+      "type": "textarea",
+      "id": "state_1__plans_classes",
+      "label": "State 1 Plans Classes",
+      "default": "grid grid-cols-1 md:grid-cols-3 gap-4"
+    },
+    {
+      "type": "textarea",
+      "id": "state_2_classes",
+      "label": "State 2 Classes",
+      "default": "space-y-6"
+    },
+    {
+      "type": "textarea",
+      "id": "state_2__main_info_classes",
+      "label": "State 2 Main Info Classes",
+      "default": "space-y-2"
+    },
+    {
+      "type": "textarea",
+      "id": "state_2__main_info_header_classes",
+      "label": "State 2 Main Info Header Classes",
+      "default": "text-xl font-medium"
+    },
+    {
+      "type": "textarea",
+      "id": "state_2__main_info_paragraph_classes",
+      "label": "State 2 Main Info Paragraph Classes",
+      "default": "text-gray-600"
+    },
+    {
+      "type": "textarea",
+      "id": "state_2__frequency_buttons_div_classes",
+      "label": "State 2 Frequency Buttons Div Classes",
+      "default": "flex space-x-4"
+    },
+    {
+      "type": "textarea",
+      "id": "state_3_classes",
+      "label": "State 3 Classes",
+      "default": "space-y-6"
+    },
+    {
+      "type": "textarea",
+      "id": "state_3__main_info_classes",
+      "label": "State 3 Main Info Classes",
+      "default": "space-y-2"
+    },
+    {
+      "type": "textarea",
+      "id": "state_3__main_info_header_classes",
+      "label": "State 3 Main Info Header Classes",
+      "default": "text-xl font-medium"
+    },
+    {
+      "type": "textarea",
+      "id": "state_3__main_info_paragraph_classes",
+      "label": "State 3 Main Info Paragraph Classes",
+      "default": "text-gray-600"
+    },
+    {
+      "type": "textarea",
+      "id": "state_3__input_steppers_classes",
+      "label": "State 3 Input Steppers Classes",
+      "default": "flex items-center space-x-2"
+    },
+    {
+      "type": "textarea",
+      "id": "stepper_button_classes",
+      "label": "Stepper Button Classes",
+      "default": "px-3 py-1 bg-gray-200 rounded"
+    },
+    {
+      "type": "textarea",
+      "id": "stepper_input_classes",
+      "label": "Stepper Input Classes",
+      "default": "w-16 text-center border rounded"
+    },
+    {
+      "type": "textarea",
+      "id": "right_column__checkout_button_div",
+      "label": "Checkout Button Div Classes",
+      "default": "mt-8 text-center"
+    },
+    {
+      "type": "textarea",
+      "id": "right_column__checkout_button",
+      "label": "Checkout Button Classes",
+      "default": "inline-block px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Subscription Plan",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "plan_content_image",
+          "label": "Plan Image"
+        },
+        {
+          "type": "text",
+          "id": "plan_name",
+          "label": "Plan Name",
+          "default": "Basic Plan"
+        },
+        {
+          "type": "text",
+          "id": "point_1",
+          "label": "Feature Point 1"
+        },
+        {
+          "type": "text",
+          "id": "point_2",
+          "label": "Feature Point 2"
+        },
+        {
+          "type": "text",
+          "id": "point_3",
+          "label": "Feature Point 3"
+        },
+        {
+          "type": "text",
+          "id": "point_4",
+          "label": "Feature Point 4"
+        },
+        {
+          "type": "text",
+          "id": "point_5",
+          "label": "Feature Point 5"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content_classes",
+          "label": "Plan Content Classes",
+          "default": "border rounded-lg p-4 space-y-4"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content_image_classes",
+          "label": "Plan Image Classes",
+          "default": "w-full h-40 object-cover rounded-md"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content__terms_classes",
+          "label": "Plan Terms Classes",
+          "default": "space-y-2"
+        },
+        {
+          "type": "textarea",
+          "id": "term__header_classes",
+          "label": "Term Header Classes",
+          "default": "text-lg font-semibold"
+        },
+        {
+          "type": "textarea",
+          "id": "term__points_classes",
+          "label": "Term Points Classes",
+          "default": "list-disc list-inside text-sm text-gray-600"
+        }
+      ]
+    },
+    {
+      "type": "frequency",
+      "name": "Delivery Frequency",
+      "settings": [
+        {
+          "type": "text",
+          "id": "frequency_label",
+          "label": "Frequency Label",
+          "default": "Weekly"
+        },
+        {
+          "type": "text",
+          "id": "frequency_value",
+          "label": "Frequency Value",
+          "default": "7"
+        },
+        {
+          "type": "textarea",
+          "id": "frequency_button_classes",
+          "label": "Frequency Button Classes",
+          "default": "px-4 py-2 border rounded-md hover:bg-gray-100 transition duration-300"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plan Selection Try",
+      "blocks": [
+        {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Basic Plan"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Standard Plan"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Premium Plan"
+          }
+        },
+        {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Weekly",
+            "frequency_value": "7"
+          }
+        },
+        {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Bi-Weekly",
+            "frequency_value": "14"
+          }
+        },
+        {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Monthly",
+            "frequency_value": "30"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const state1 = document.getElementById('state1');
+  const state2 = document.getElementById('state2');
+  const state3 = document.getElementById('state3');
+  const planButtons = document.querySelectorAll('.plan-button');
+  const frequencyButtons = document.querySelectorAll('[data-frequency]');
+  const decrementButton = document.querySelector('.decrement');
+  const incrementButton = document.querySelector('.increment');
+  const quantityInput = document.querySelector('input[type="number"]');
+
+  planButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      state1.style.display = 'none';
+      state2.style.display = 'block';
+    });
+  });
+
+  frequencyButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      state2.style.display = 'none';
+      state3.style.display = 'block';
+    });
+  });
+
+  decrementButton.addEventListener('click', () => {
+    if (quantityInput.value > 1) {
+      quantityInput.value = parseInt(quantityInput.value) - 1;
+    }
+  });
+
+  incrementButton.addEventListener('click', () => {
+    if (quantityInput.value < 10) {
+      quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
+  });
+});
+{% endjavascript %}
+
+{% stylesheet %}
+/* Add any custom styles here if needed */
+{% endstylesheet %}

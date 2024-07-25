@@ -37,10 +37,10 @@
             <div class="state_1__plans">
                 <div class="plan_content">
                     <!-- Plan Image -->
-                    {% if block.settings.plan_content_image != blank %}
-                        {{ block.settings.plan_content 
+                    {% if section.settings.plan_content_image != blank %}
+                        {{ section.settings.plan_content 
                             | image_url: width: 1500 
-                            | image_tag: class: block.settings.plan_content_image_classes
+                            | image_tag: class: section.settings.plan_content_image_classes
                         }}
                     {% else %}
                         {{ 'image' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-200' }}
