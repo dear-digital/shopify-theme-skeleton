@@ -8,33 +8,41 @@
       }}
       <div class="collection__image-overlay {{ section.settings.tw-collection__image-overlay }}"></div>
     {% endif %}
-    <h2 class="collection__heading {{ section.settings.tw-collection__heading }}">{{ collection.title }}</h2>
+    {% if collection.title %}
+      <h2 class="collection__heading {{ section.settings.tw-collection__heading }}">{{ collection.title }}</h2>
+    {% endif %}
   </div>
   <div class="collection__right-col {{ section.settings.tw-collection__right-col }}">
-    {% for product in collection.products %}
-      <div class="collection__card {{ section.settings.tw-collection__card }}">
-        <a href="{{ product.url }}">
-          {% if product.featured_image %}
-            {{
-              product.featured_image
-              | image_url: width: 2400, crop: 'center'
-              | image_tag: class: section.settings['tw-collection__product-featured-image']
-            }}
-          {% endif %}
-          <div class="collection__product-description {{ section.settings.tw-collection__product-description }}">
-            <h3 class="collection__product-title {{ section.settings.tw-collection__product-title }}">
-              {{ product.title }}
-            </h3>
-            <p class="collection__product-price {{ section.settings.tw-collection__product-price }}">
-              <span class="collection__product-price-text {{ section.settings.tw-collection__product-price-text }}">
-                {{- section.settings['collection__product-price-text'] -}}
-              </span>
-              &nbsp;{{ product.price | money }}
-            </p>
-          </div>
-        </a>
-      </div>
-    {% endfor %}
+    {% if collection.products %}
+      {% for product in collection.products %}
+        <div class="collection__card {{ section.settings.tw-collection__card }}">
+          <a href="{{ product.url }}">
+            {% if product.featured_image %}
+              {{
+                product.featured_image
+                | image_url: width: 2400, crop: 'center'
+                | image_tag: class: section.settings['tw-collection__product-featured-image']
+              }}
+            {% endif %}
+            <div class="collection__product-description {{ section.settings.tw-collection__product-description }}">
+              {% if product.title %}
+                <h3 class="collection__product-title {{ section.settings.tw-collection__product-title }}">
+                  {{ product.title }}
+                </h3>
+              {% endif %}
+              {% if product.price %}
+                <p class="collection__product-price {{ section.settings.tw-collection__product-price }}">
+                  <span class="collection__product-price-text {{ section.settings.tw-collection__product-price-text }}">
+                    {{- section.settings['collection__product-price-text'] -}}
+                  </span>
+                  &nbsp;{{ product.price | money }}
+                </p>
+              {% endif %}
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    {% endif %}
   </div>
 </div>
 
