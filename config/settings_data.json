@@ -158,8 +158,7 @@
           "cart_content_delivery_message_div": "px-4 py-10 border-brand-black border-b md:p-10",
           "cart_content_delivery_message_div_content": "text-black",
           "cart_content_delivery_message_classes": "text-mobile-caption text-center",
-          "cart_content_checkout_button_div": "w-full font-medium",
-          "cart_content_checkout_button": "text-mobile-button uppercase w-full h-full bg-brand-black text-white hover:bg-gray-800 transition-colors duration-200 px-6 pt-4 pb-[14px] tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em]"
+          "cart_content_checkout_button_div": "w-full font-medium"
         }
       }
     },
