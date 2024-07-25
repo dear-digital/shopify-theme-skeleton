@@ -26,7 +26,7 @@
           </button>
         </div>
 
-        <!-- Cart button -->
+              <!-- Mobile Cart button -->
         <div class="cart_button_classes {{ section.settings.cart_button_classes }}">
           <button id="cart-button" class="{{ section.settings.cart_button_svg_classes }}">
             {% render 'icon-cart' %}
@@ -44,19 +44,34 @@
         </div>
         <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
             {% for link in linklists[section.settings.right_menu].links %}
-            {% assign is_cart = false %}
-            {% assign lowercase_title = link.title | downcase %}
-            {% if settings.cart_identifier == 'url' and link.url contains '/cart' %}
-                {% assign is_cart = true %}
-            {% elsif settings.cart_identifier == 'title' and lowercase_title contains 'cart' %}
-                {% assign is_cart = true %}
-            {% endif %}
+            
             <a href="{{ link.url }}" 
-              class="navbar__menu-item {{ section.settings.right_menu_item_classes }}"
-              {% if is_cart %} data-action="open-cart" {% endif %}>
+              class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
               <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
             </a>
             {% endfor %}
+
+            {% comment %} Desktop Cart Button {% endcomment %}
+            <div class="{{ section.settings.desktop_cart_button_classes }}">
+              {% assign is_cart = false %}
+              {% assign lowercase_title = section.settings.desktop_cart_button_label | downcase %}
+              {% if settings.cart_identifier == 'url' and section.settings.desktop_cart_button_link contains '/cart' %}
+                  {% assign is_cart = true %}
+              {% elsif settings.cart_identifier == 'title' and lowercase_title contains 'cart' %}
+                  {% assign is_cart = true %}
+              {% endif %}
+              <a 
+                id="desktop-cart-button" 
+                href="{{ section.settings.desktop_cart_button_link }}" 
+                class="{{ section.settings.desktop_cart_button_link_classes }}" 
+                {% if is_cart %} data-action="open-cart" {% endif %}
+               
+              >
+                  
+                  {% render 'icon-cart' class: section.settings.desktop_cart_button_link_SVG %}
+                  {{ section.settings.desktop_cart_button_label }}
+              </a>
+            </div>
         </div>
       </div>
     </div>
@@ -182,6 +197,17 @@
       "default": "main-menu"
     },
     {
+      "type": "textarea",
+      "id": "desktop_cart_button_label",
+      "label": "Button Label",
+      "default": "Cart"
+    },
+    {
+      "type": "url",
+      "id": "desktop_cart_button_link",
+      "label": "Button Link"
+    },
+    {
       "type": "link_list",
       "id": "more_menu",
       "label": "More Menu",
@@ -244,6 +270,24 @@
       "id": "navbar__desktop_menu_item",
       "label": "Desktop Menu item",
       "default": "transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"
+    },
+    {
+      "type": "textarea",
+      "id": "desktop_cart_button_classes",
+      "label": "Desktop Cart button classes",
+      "default": "flex items-center justify-center border-brand-black border-l w-1/5"
+    },
+    {
+      "type": "textarea",
+      "id": "desktop_cart_button_link_classes",
+      "label": "Desktop Cart Button Link Classes",
+      "default": "flex items-center justify-center  w-full h-full gap-2"
+    },
+    {
+      "type": "textarea",
+      "id": "desktop_cart_button_link_SVG",
+      "label": "Desktop Cart Button Link SVG",
+      "default": "w-5 h-5"
     },
     {
       "type": "header",

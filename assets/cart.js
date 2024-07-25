@@ -3,6 +3,7 @@ class CartDrawer {
     this.drawer = document.getElementById("cart-drawer");
     this.overlay = document.getElementById("cart-overlay");
     this.openButton = document.getElementById("cart-button");
+    this.openDesktopCart = document.getElementById("desktop-cart-button");
     this.closeButton = document.getElementById("close-cart-button");
     this.desktopOpenButtons = document.querySelectorAll(
       '.navbar__menu_desktop [data-action="open-cart"]'
@@ -13,6 +14,12 @@ class CartDrawer {
   bindEvents() {
     if (this.openButton) {
       this.openButton.addEventListener("click", () => this.toggle());
+    }
+    if (this.openDesktopCart) {
+      this.openDesktopCart.addEventListener("click", (event) => {
+        event.preventDefault();
+        this.toggle();
+      });
     }
 
     if (this.closeButton) {
