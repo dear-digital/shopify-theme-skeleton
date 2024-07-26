@@ -249,10 +249,10 @@
         "collapsible_grid": "mx-auto"
       }
     },
-    "subscription_plan_try_WmMUGD": {
-      "type": "subscription-plan-try",
+    "subscription_plan_selection_bamYmJ": {
+      "type": "subscription-plan-selection",
       "blocks": {
-        "plan_cXhYQW": {
+        "plan_i9nbnU": {
           "type": "plan",
           "settings": {
             "plan_name": "Classic",
@@ -272,7 +272,7 @@
             "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
           }
         },
-        "plan_iYHRb7": {
+        "plan_pVww4F": {
           "type": "plan",
           "settings": {
             "plan_name": "Seasonal",
@@ -292,7 +292,7 @@
             "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
           }
         },
-        "plan_TNNXXX": {
+        "plan_C79h4p": {
           "type": "plan",
           "settings": {
             "plan_name": "Luxe",
@@ -312,13 +312,13 @@
             "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
           }
         },
-        "divider_hEYz7t": {
+        "divider_qQRETR": {
           "type": "divider",
           "settings": {
             "divider_classes": "border-t border-brand-light-gray"
           }
         },
-        "frequency_UUaFTF": {
+        "frequency_fDabKb": {
           "type": "frequency",
           "settings": {
             "frequency_label": "Weekly",
@@ -326,7 +326,7 @@
             "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
           }
         },
-        "frequency_Hwizhc": {
+        "frequency_4h7ex4": {
           "type": "frequency",
           "settings": {
             "frequency_label": "Bi-Weekly",
@@ -334,7 +334,7 @@
             "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
           }
         },
-        "frequency_CDAXYR": {
+        "frequency_P3bn7e": {
           "type": "frequency",
           "settings": {
             "frequency_label": "Monthly",
@@ -344,13 +344,13 @@
         }
       },
       "block_order": [
-        "plan_cXhYQW",
-        "plan_iYHRb7",
-        "plan_TNNXXX",
-        "divider_hEYz7t",
-        "frequency_UUaFTF",
-        "frequency_Hwizhc",
-        "frequency_CDAXYR"
+        "plan_i9nbnU",
+        "plan_pVww4F",
+        "plan_C79h4p",
+        "divider_qQRETR",
+        "frequency_fDabKb",
+        "frequency_4h7ex4",
+        "frequency_P3bn7e"
       ],
       "settings": {
         "state_1__sub_header": "Build Your Subscription",
@@ -395,6 +395,6 @@
     "subscription_main_section_iKXFGR",
     "dev_why_choose_us_PLNqyE",
     "subscription_faq_section_3RjngG",
-    "subscription_plan_try_WmMUGD"
+    "subscription_plan_selection_bamYmJ"
   ]
 }
