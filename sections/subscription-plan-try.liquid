@@ -112,7 +112,7 @@
           {% render 'icon-decrement' class: section.settings.stepper_button_SVG %}
         </button>
 
-        <input type="number" value="1" min="1" max="10" class="{{ section.settings.stepper_input_classes }}">
+        <input type="number" value="1" min="1" class="{{ section.settings.stepper_input_classes }}">
 
         <button class="increment {{ section.settings.stepper_button_classes }}">
           {% render 'icon-increment' class: section.settings.stepper_button_SVG %}
@@ -137,6 +137,25 @@
 </div>
 
 <script>
+  if (Shopify.designMode) {
+  document.addEventListener('shopify:section:load', function(event) {
+    const decrementButton = document.querySelector('.decrement');
+    const incrementButton = document.querySelector('.increment');
+    const quantityInput = document.querySelector('input[type="number"]');
+
+    decrementButton.addEventListener('click', () => {
+      if (quantityInput.value > 1) {
+        quantityInput.value = parseInt(quantityInput.value) - 1;
+      }
+    });
+
+    incrementButton.addEventListener('click', () => {
+     
+        quantityInput.value = parseInt(quantityInput.value) + 10;
+      
+    });
+  });
+}
 
   document.addEventListener('DOMContentLoaded', (event) => {
     
@@ -152,9 +171,9 @@
     });
 
     incrementButton.addEventListener('click', () => {
-      if (quantityInput.value < 10) {
+     
         quantityInput.value = parseInt(quantityInput.value) + 1;
-      }
+      
     });
   });
 
@@ -162,7 +181,7 @@
 
 {% schema %}
 {
-  "name": "Plan Selection Try",
+  "name": "Plan Selection",
   "settings": [
     {
       "type": "image_picker",
@@ -521,7 +540,7 @@
   ],
   "presets": [
     {
-      "name": "Plan Selection Try",
+      "name": "Plan Selection",
       "blocks": [
         {
           "type": "plan",
