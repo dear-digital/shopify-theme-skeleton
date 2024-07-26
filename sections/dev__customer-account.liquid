@@ -16,13 +16,13 @@
             {% for order in customer.orders %}
               <div class="orders-container__classes {{ section.settings.orders-container__classes }}">
                 <div class="orders-image-container__classes {{ section.settings.orders-image-container__classes }}">
-                  {% assign orders-image__classes = 'orders-image__classes {{ section.settings.orders-image__classes }}' %}
+                  {% assign orders_image_classes = 'orders_image_classes {{ section.settings.orders-image__classes }}' %}
                   {% if order.line_items.first.image %}
-                    <div classs="orders-image__classes {{ section.settings.orders-image__classes }}">
+                    <div classs="orders_image_classes {{ section.settings.orders-image__classes }}">
                         {{ order.line_items.first.image | image_url: width: 300, height: 600 | image_tag }}
                     </div>
                   {% else %}
-                    {{ 'product-1' | placeholder_svg_tag: orders-image__classes }}
+                    {{ 'product-1' | placeholder_svg_tag: orders_image_classes }}
                   {% endif %}
                 </div>
 

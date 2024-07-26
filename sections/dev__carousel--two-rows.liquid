@@ -24,13 +24,13 @@
     {% for block in section.blocks %}
       {% if block.type == 'upper-image' %}
         <div class="carousel__row_upper {{ block.settings.carousel__row_upper }}">
-          {%- assign carousel__image_style = 'carousel__image ' | append: section.settings.carousel__image -%}
+          {%- assign carousel_image_style = 'carousel__image ' | append: section.settings.carousel__image -%}
           <div class="carousel__upper-cell  {{ block.settings.carousel__upper-cell }}">
             {% if block.settings.image %}
               {{
                 block.settings.image
                 | image_url: width: image_url_width, height: image_url_height
-                | image_tag: class: carousel__image_style
+                | image_tag: class: carousel_image_style
               }}
             {% else %}
               {{ 'image' | placeholder_svg_tag }}
@@ -46,13 +46,13 @@
     {% for block in section.blocks %}
       {% if block.type == 'lower-image' %}
         <div class="carousel__row_lower {{ block.settings.carousel__row_lower }}">
-          {%- assign carousel__image_style = 'carousel__image ' | append: section.settings.carousel__image -%}
+          {%- assign carousel_image_style = 'carousel__image ' | append: section.settings.carousel__image -%}
           <div class="carousel__lower-cell  {{ block.settings.carousel__lower-cell }}">
             {% if block.settings.image %}
               {{
                 block.settings.image
                 | image_url: width: image_url_width, height: image_url_height
-                | image_tag: class: carousel__image_style
+                | image_tag: class: carousel_image_style
               }}
             {% else %}
               {{ 'image' | placeholder_svg_tag }}
