@@ -1,347 +1,484 @@
-{% comment %}
-  <div class="product {{ section.settings.tw-product }}">
-    <div class="product__left-col {{ section.settings.tw-product__left-col }}">
-      {% if product.featured_image != blank %}
-        {{
-          product.featured_image
-          | image_url: width: 1800, height: 1800, crop: 'center'
-          | image_tag: class: section.settings['tw-collection__product-featured-image']
-        }}
-      {% endif %}
-    </div>
-    <div class="product__right-col {{ section.settings.tw-product__right-col }}">
-      <div class="product__details {{ section.settings.tw-product__details }}">
-        <p class="product__text {{ section.settings.tw-product__text }}">
-          {{ product.collections[0].title -}}
-          <span class="">&nbsp;/ Quick Order</span>
-        </p>
-        <div class="product__main-info {{ section.settings.tw-product__main-info }}">
-          <h2 class="product__title {{ section.settings.tw-product__title }}">
-            {{ product.title }} - {{ product.price | money }}
-          </h2>
-          <p class="product__description {{ section.settings.tw-product__description }}">{{ product.description }}</p>
-        </div>
-        <div class="product__quantity {{ section.settings.tw-product__quantity }}">
-          <p class="product__quantity-heading {{ section.settings.product__quantity-heading }}">
-            {{ section.settings['product__quantity-heading-text'] }}
-          </p>
-          <div class="product__quantity-input-steppers {{ section.settings.product__quantity-input-steppers }}">
-            <quantity-steppers
-              decrement-btn="{{ section.settings.decrement_button_btn }}"
-              increment-btn="{{ section.settings.increment_button_btn }}"
-              input-box="{{ section.settings.input_box }}"
-            >
-            </quantity-steppers>
-          </div>
-        </div>
-        <div class="product__combination {{ section.settings.tw-product__combination }}">
-          <div class="product__combination-heading {{ section.settings.tw-product__combination-heading }}">
-            <p class="product__combination-extra-info {{ section.settings.tw-product__combination-extra-info }}">
-              {{ section.settings['product__combination-extra-info-text'] }}
-            </p>
-            <h3
-              class="product__combination-extra-info-heading {{ section.settings.tw-product__combination-extra-info-heading-text }}"
-            >
-              {{ section.settings['product__combination-extra-info-heading-text'] }}
-            </h3>
-          </div>
-          <product-slider class="relative w-full">
-            {% assign combination_products = product.metafields.custom.combination_products.value %}
-            {% if combination_products %}
-              <div class="overflow-hidden">
-                <div class="flex transition-transform duration-300 ease-in-out" id="slider-container">
-                  {% for product in combination_products %}
-                    <div class="slider__item flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-2">
-                      <div class="aspect-w-1 aspect-h-1 mb-2">
-                        {{
-                          product.featured_image
-                          | image_url: width: '400', height: '400', crop: 'center'
-                          | image_tag:
-                            class: section.settings['tw-product__combination-featured-image'],
-                            concat: ' w-full h-full object-cover',
-                            alt: product.title
-                        }}
-                      </div>
-                      <h4 class="product__combination-title text-lg font-semibold truncate">{{ product.title }}</h4>
-                      <p class="product__combination-price text-base text-gray-600">{{ product.price | money }}</p>
-                    </div>
-                  {% endfor %}
-                </div>
-              </div>
-              <button
-                id="prev-btn"
-                class="prev-btn w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md absolute top-1/2 left-2 transform -translate-y-1/2 z-10"
-              >
-                {% render 'icon-right-arrow' %}
-              </button>
-              <button
-                id="next-btn"
-                class="next-btn w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md absolute top-1/2 right-2 transform -translate-y-1/2 z-10"
-              >
-                {% render 'icon-right-arrow' %}
-              </button>
-            {% endif %}
-          </product-slider>
-        </div>
-        <div class="product__price-options {{ section.settings.tw-product__price-options }}">
-          <h3 class="product__price-options-heading {{ section.settings.tw-product__price-options-heading }}">
-            {{ section.settings['product__price-options-heading'] }}
-          </h3>
-          <div class="product__price-options-radio-buttons {{ section.settings.tw-product__price-options-radio-buttons }}">
-            <input
-              type="radio"
-              id="option1"
-              name="price-option"
-              value="option1"
-              class="{{ section.settings.tw-options-input }}"
-            >
-            <label for="option1" class="{{ section.settings.tw-options-label }}">One time purchase. Price $100</label>
-          </div>
-          <div
-            class="product__price-options-radio-buttons {{ section.settings.tw-product__price-options-radio-buttons }}"
-          >
-            <input
-              type="radio"
-              id="option2"
-              name="price-option"
-              value="option2"
-              class="{{ section.settings.tw-options-input }}"
-            >
-            <label for="option2" class="{{ section.settings.tw-options-label }}">Subscribe now, and save 25% </label>
-          </div>
-        </div>
-      </div>
-      <div class="product__add-to-cart-btn {{ section.settings.tw-product__add-to-cart-btn }}">
-        <a id="addToCartBtn" href="{{ routes.cart_add_url }}">Add to Cart</a>
-      </div>
-    </div>
-  </div>
-{% endcomment %}
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
+{% style %}
   .price-option input:checked + div div {
     display: block;
   }
-  n input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0;
-  }
-</style>
+{% endstyle %}
 
-<div class="container flex flex-col w-full lg:flex-row max-w-none">
-  <div class="image-container w-full lg:w-1/2 border border-brand-black">
-    <img
-      src="https://images.unsplash.com/photo-1515865404355-ddb5b0910878?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      alt="Rosy Delight Bouquet"
-      width="1200"
-      height="1200"
-      class="product-image aspect-[0.893] md:aspect-[1.146] lg:aspect-[0.956] w-full h-full object-cover"
-    >
+<div class="product {{ section.settings.tw-product }}">
+  <div class="product-image-wrapper {{ section.settings.tw-product-image-wrapper }}">
+    {% if product.featured_image %}
+      {{
+        product.featured_image
+        | image_url: width: 2800, height: 2800, crop: 'center'
+        | image_tag: alt: product.featured_image.alt, class: section.settings['tw-product-image']
+      }}
+    {% endif %}
   </div>
-  <div class="product-info px-4 py-10 flex flex-col gap-10 w-full lg:w-1/2 md:p-10 border border-brand-black">
-    <div class="product-details-section flex flex-col gap-6 w-full">
-      <p class="section-title font-medium uppercase text-[.98vw] leading-[1.2] tracking-[.04vw]">
-        Fresh Flowers / Quick Order
+  <div class="product-details {{ section.settings.tw-product-details }} ">
+    <div class="product-details-container {{ section.settings.tw-product-details-container }}">
+      <p class="product-title {{ section.settings.tw-product-title }}">
+        {{ product.collections[0].title }} / {{ product.title }}
       </p>
-
-      <div class="product-details flex flex-col gap-4">
-        <h1 class="product-title font-medium text-[2.7vw] leading-[1.2] my-[1em]">Rosy Delight - $100</h1>
-        <p class="description brightness-90 text-[1.12vw] leading-[1.3] tracking-[.03vw] my-[1em]">
-          Large exceptional bouquet composed of a selection of David Austin roses, known for their beauty and subtle
-          fragrance. The bouquet is accompanied by seasonal foliage which will enhance these sublime flowers even
-        </p>
+      <div class="product-info {{ section.settings.tw-product-info }}">
+        <h3 class="product-name {{ section.settings.tw-product-name }}">
+          {{ product.title }} - {{ product.price | money }}
+        </h3>
+        {% if product.description %}
+          <p class="product-description {{ section.settings.tw-product-description }}">
+            {{ product.description | strip_html }}
+          </p>
+        {% endif %}
       </div>
-
-      <div class="quantity flex flex-col gap-4 md:flex-row md:items-center">
-        <label class="quantity-label text-mobile-subtitle font-medium md:text-desktop-subtitle">Quantity</label>
-        <div class="quantity-control flex justify-between items-center md:justify-start">
-          <button
-            class="quantity-button minus border border-black h-11 w-11 text-4xl font-thin flex justify-center items-center"
-          >
-            <div class="">-</div>
-          </button>
-          <input
-            class="quantity-input text-center border-y border-black h-11 md:!w-12 flex-grow md:grow-0"
-            type="number"
-            value="1"
-          >
-          <button
-            class="quantity-button plus border border-black h-11 w-11 text-4xl font-thin flex justify-center items-center"
-          >
-            <div class="">+</div>
-          </button>
-        </div>
+      <div class="product-quantity {{ section.settings.tw-product-quantity }}">
+        <p class="quantity-title {{ section.settings.tw-quantity-title }}">Quantity</p>
+        <quantity-controls
+          data-controls-class="{{ section.settings.tw-quantity-controls }}"
+          data-button-class="{{ section.settings.tw-quantity-button }}"
+          data-input-class="{{ section.settings.tw-quantity-input }}"
+        ></quantity-controls>
       </div>
-
-      <div class="swiper mySwiper vase-options-container relative w-full h-auto max-w-full overflow-hidden">
-        <div class="vase-info flex flex-col gap-2 mb-4 md:justify-between md:flex-row-reverse md:items-center">
-          <p class="vase-not-included text-mobile-caption opacity-50 md:text-desktop-body">Vase Not Included</p>
-          <h3 class="combination-title text-mobile-subtitle font-medium md:text-desktop-subtitle">
+      <div class="product-combination {{ section.settings.tw-product-combination }}">
+        <div class="combination-info {{ section.settings.tw-combination-info }}">
+          <p class="combination-info-notice {{ section.settings.tw-combination-info-notice }}">
+            {{ product.metafields.custom.combination_product_notice }}
+          </p>
+          <p
+            class="combination-suggestion-header {{ section.settings.tw-combination-suggestion-header }}"
+          >
             Excellent Combination with:
-          </h3>
+          </p>
         </div>
-        <div class="custom-prev-button arrow-button left absolute top-1/2 left-0 w-8 h-8 z-10 flex justify-center select-none">
-          &leftarrow;
-        </div>
-        <div class="swiper-wrapper vase-options" navigation="true">
-          <!-- vase-1 -->
-          <div class="swiper-slide vase-option w-full">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1677178629331-140f46fad545?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Glass Vase"
-              width="1200"
-              height="1200"
-              class="vase-image aspect-[1.284] object-cover w-full"
-            >
-            <p class="vase-name mt-2 text-mobile-caption md:text-desktop-caption">Glass Vase</p>
-            <p class="vase-price text-mobile-caption text-brand-gray md:text-desktop-caption">$15</p>
-          </div>
-          <!-- vase-2 -->
-          <div class="swiper-slide vase-option w-full">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1677178629331-140f46fad545?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Glass Vase"
-              width="1200"
-              height="1200"
-              class="vase-image aspect-[1.284] object-cover w-full"
-            >
-            <p class="vase-name mt-2 text-mobile-caption md:text-desktop-caption">Glass Vase</p>
-            <p class="vase-price text-mobile-caption text-brand-gray md:text-desktop-caption">$25</p>
-          </div>
-          <!-- vase-3 -->
-          <div class="swiper-slide vase-option w-full">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1677178629331-140f46fad545?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Glass Vase"
-              width="1200"
-              height="1200"
-              class="vase-image aspect-[1.284] object-cover w-full"
-            >
-            <p class="vase-name mt-2 text-mobile-caption md:text-desktop-caption">Glass Vase</p>
-            <p class="vase-price text-mobile-caption text-brand-gray md:text-desktop-caption">$35</p>
-          </div>
-          <!-- vase-4 -->
-          <div class="swiper-slide vase-option w-full">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1677178629331-140f46fad545?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Glass Vase"
-              width="1200"
-              height="1200"
-              class="vase-image aspect-[1.284] object-cover w-full"
-            >
-            <p class="vase-name mt-2 text-mobile-caption md:text-desktop-caption">Glass Vase</p>
-            <p class="vase-price text-mobile-caption text-brand-gray md:text-desktop-caption">$45</p>
-          </div>
-          <!-- vase-5 -->
-          <div class="swiper-slide vase-option w-full">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1677178629331-140f46fad545?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Glass Vase"
-              width="1200"
-              height="1200"
-              class="vase-image aspect-[1.284] object-cover w-full"
-            >
-            <p class="vase-name mt-2 text-mobile-caption md:text-desktop-caption">Glass Vase</p>
-            <p class="vase-price text-mobile-caption text-brand-gray md:text-desktop-caption">$45</p>
-          </div>
-          <!-- vase-6 -->
-          <div class="swiper-slide vase-option w-full">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1677178629331-140f46fad545?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Glass Vase"
-              width="1200"
-              height="1200"
-              class="vase-image aspect-[1.284] object-cover w-full"
-            >
-            <p class="vase-name mt-2 text-mobile-caption md:text-desktop-caption">Glass Vase</p>
-            <p class="vase-price text-mobile-caption text-brand-gray md:text-desktop-caption">$45</p>
-          </div>
-        </div>
-        <div class="custom-next-button arrow-button right absolute top-1/2 right-0 w-8 h-8 z-10 flex justify-center select-none">
-          &rightarrow;
-        </div>
-      </div>
-
-      <div class="price-options flex flex-col gap-4">
-        <h3 class="price-option-title text-mobile-subtitle font-medium md:text-desktop-subtitle">Price options</h3>
-        <label class="price-option text-mobile-body flex items-center gap-3 cursor-pointer md:text-desktop-body">
-          <div class="relative">
-            <input class="price-input absolute opacity-0 w-6 h-6" type="radio" name="price-option" checked>
+        <carousel-component
+          data-products-class="{{ section.settings.tw-combination-products }}"
+          data-prev-class="{{ section.settings.tw-combination-prev }}"
+          data-container-class="{{ section.settings.tw-carousel-container }}"
+          data-track-class="{{ section.settings.tw-carousel-track }}"
+          data-next-class="{{ section.settings.tw-combination-next }}"
+        >
+          {% for item in product.metafields.custom.combination_products.value %}
             <div
-              class="w-6 h-6 border-2 border-brand-black rounded-full flex items-center justify-center bg-brand-light-gray"
+              class="product-item {{ section.settings.tw-product-item }}"
             >
-              <div class="w-3 h-3 bg-black rounded-full hidden"></div>
+              {{
+                item.featured_image
+                | image_url: width: 1000, height: 1000, crop: 'center'
+                | image_tag: class: section.settings['tw-product-item-image'], alt: item.featured_image.alt
+              }}
+              <h4 class="product-item-heading {{ section.settings.tw-product-item-heading }}">{{ item.title }}</h4>
+              <p class="product-item-price {{ section.settings.tw-product-item-price }}">
+                {{ item.price | money }}
+              </p>
+            </div>
+          {% endfor %}
+        </carousel-component>
+      </div>
+      <div class="product-price {{ section.settings.tw-product-price }}">
+        <p class="product-price-title {{ section.settings.tw-product-price-title }}">Price options</p>
+        <label
+          for="one-time-purchase"
+          class="price-option {{ section.settings.tw-price-option }}"
+        >
+          <div class="relative">
+            <input
+              type="radio"
+              id="one-time-purchase"
+              name="price-option"
+              class="price-input {{ section.settings.tw-price-input }}"
+              checked
+            >
+            <div
+              class="w-6 h-6 border-2 border-brand-black rounded-full flex items-center justify-center bg-brand-light-gray lg:w-[1.7vw] lg:h-[1.7vw]"
+            >
+              <div class="w-3 h-3 bg-black rounded-full lg:w-[1.2vw] lg:h-[1.2vw] hidden"></div>
             </div>
           </div>
           One time purchase. Price $100
         </label>
-        <label class="price-option text-mobile-body flex items-center gap-3 cursor-pointer md:text-desktop-body">
+        <label
+          for="subscribe-now"
+          class="price-option {{ section.settings.tw-price-option }}"
+        >
           <div class="relative">
-            <input class="price-input absolute opacity-0 w-6 h-6" type="radio" name="price-option">
-            <div
-              class="w-6 h-6 border-2 border-brand-black rounded-full flex items-center justify-center bg-brand-light-gray"
+            <input
+              type="radio"
+              id="subscribe-now"
+              name="price-option"
+              class="price-input {{ section.settings.tw-price-input }}"
             >
-              <div class="w-3 h-3 bg-black rounded-full hidden"></div>
+            <div
+              class="w-6 h-6 border-2 border-brand-black rounded-full flex items-center justify-center lg:w-[1.7vw] lg:h-[1.7vw] bg-brand-light-gray"
+            >
+              <div class="w-3 h-3 bg-black rounded-full lg:w-[1.2vw] lg:h-[1.2vw] hidden"></div>
             </div>
           </div>
           Subscribe now, and save 25% on this order.
         </label>
       </div>
     </div>
-    <button class="add-to-basket w-full text-brand-white bg-black px-6 py-4 text-mobile-button font-medium">
-      ADD TO BASKET
-    </button>
+    <div
+      class="product-actions {{ section.settings.tw-product-actions }}"
+    >
+      <a href="{{ routes.cart_add_url }}" class="add-to-cart"> Add to Cart </a>
+    </div>
   </div>
 </div>
 
-<!-- Initialize Swiper -->
+{% comment %} Carousel Template {% endcomment %}
+<template id="carousel-template">
+  <div class="combination-products">
+    <button class="combination-prev" aria-label="Previous">&lt;</button>
+    <div class="carousel-container">
+      <div class="carousel-track"></div>
+    </div>
+    <button class="combination-next" aria-label="Next">&gt;</button>
+  </div>
+</template>
+{% comment %} Carousel Template End {% endcomment %}
+
+{% comment %} Quantity Control Template {% endcomment %}
+<template id="quantity-controls-template">
+  <div class="quantity-controls">
+    <button class="quantity-decrease quantity-button">-</button>
+    <input type="number" min="1" value="1" class="quantity-input">
+    <button class="quantity-increase quantity-button">+</button>
+  </div>
+</template>
+{% comment %} Quantity Control Template End {% endcomment %}
+
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var swiper = new Swiper('.mySwiper', {
-      slidesPerView: 'auto',
-      spaceBetween: 16,
-      navigation: {
-        nextEl: '.custom-next-button',
-        prevEl: '.custom-prev-button',
-      },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 10,
-        },
-        480: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 4,
-          spaceBetween: 20,
-        },
-      },
-    });
-  });
+  // Carousel Custom Element
+  class CarouselComponent extends HTMLElement {
+    constructor() {
+      super();
+      this.currentIndex = 0;
+    }
+    connectedCallback() {
+      const template = document.getElementById('carousel-template');
+      const content = template.content.cloneNode(true);
+
+      // Move existing children into a temporary container
+      const tempContainer = document.createElement('div');
+      while (this.firstChild) {
+        tempContainer.appendChild(this.firstChild);
+      }
+
+      // Append the template content
+      this.appendChild(content);
+
+      // Apply classes from data attributes
+      this.querySelector('.combination-products').classList.add(...this.dataset.productsClass.split(' '));
+      this.querySelector('.combination-prev').classList.add(...this.dataset.prevClass.split(' '));
+      this.querySelector('.carousel-container').classList.add(...this.dataset.containerClass.split(' '));
+      this.querySelector('.carousel-track').classList.add(...this.dataset.trackClass.split(' '));
+      this.querySelector('.combination-next').classList.add(...this.dataset.nextClass.split(' '));
+
+      // Set up the carousel
+      this.track = this.querySelector('.carousel-track');
+      this.container = this.querySelector('.carousel-container');
+      this.items = Array.from(tempContainer.children);
+      this.items.forEach((item) => this.track.appendChild(item));
+
+      this.prevButton = this.querySelector('.combination-prev');
+      this.nextButton = this.querySelector('.combination-next');
+
+      this.itemWidth = this.items[0]?.offsetWidth || 0;
+      this.gap = 16; // Define gap size
+      this.totalWidth = this.items.length * (this.itemWidth + this.gap) - this.gap;
+
+      this.updateCarousel();
+      this.setupEventListeners();
+    }
+
+    updateCarousel() {
+      const containerWidth = this.container.offsetWidth;
+      this.itemsPerView = Math.floor(containerWidth / (this.itemWidth + this.gap));
+      const totalWidth = this.items.length * (this.itemWidth + this.gap) - this.gap;
+
+      // Calculate the maximum number of items that can be scrolled
+      const maxScrollableItems = Math.max(0, this.items.length - this.itemsPerView);
+
+      // Calculate the maximum scroll position
+      const maxScrollPosition = maxScrollableItems * (this.itemWidth + this.gap);
+
+      let scrollPosition = this.currentIndex * (this.itemWidth + this.gap);
+
+      // Adjust scroll position if we're at the end
+      if (scrollPosition > maxScrollPosition) {
+        scrollPosition = maxScrollPosition;
+        this.currentIndex = Math.floor(scrollPosition / (this.itemWidth + this.gap));
+      }
+
+      this.track.style.transform = `translateX(-${scrollPosition}px)`;
+
+      // Update button states
+      this.prevButton.disabled = this.currentIndex === 0;
+      this.nextButton.disabled = this.currentIndex >= maxScrollableItems;
+
+      // Update button styles
+      this.prevButton.style.opacity = this.prevButton.disabled ? '0.5' : '1';
+      this.nextButton.style.opacity = this.nextButton.disabled ? '0.5' : '1';
+    }
+
+    moveCarousel(direction) {
+      if (direction === 'next' && !this.nextButton.disabled) {
+        this.currentIndex++;
+      } else if (direction === 'prev' && !this.prevButton.disabled) {
+        this.currentIndex--;
+      }
+      this.updateCarousel();
+    }
+
+    setupEventListeners() {
+      window.addEventListener('resize', () => this.updateCarousel());
+      this.prevButton.addEventListener('click', () => this.moveCarousel('prev'));
+      this.nextButton.addEventListener('click', () => this.moveCarousel('next'));
+    }
+  }
+
+  customElements.define('carousel-component', CarouselComponent);
+
+  // Quantity Controls Custom Element
+  class QuantityControls extends HTMLElement {
+    constructor() {
+      super();
+      const template = document.getElementById('quantity-controls-template');
+      const content = template.content.cloneNode(true);
+      this.appendChild(content);
+    }
+
+    connectedCallback() {
+      // Apply classes from data attributes
+      this.querySelector('.quantity-controls').classList.add(...this.dataset.controlsClass.split(' '));
+      this.querySelectorAll('.quantity-button').forEach((button) =>
+        button.classList.add(...this.dataset.buttonClass.split(' '))
+      );
+      this.querySelector('.quantity-input').classList.add(...this.dataset.inputClass.split(' '));
+
+      this.quantityInput = this.querySelector('input[type="number"]');
+      this.decreaseButton = this.querySelector('.quantity-decrease');
+      this.increaseButton = this.querySelector('.quantity-increase');
+      this.decreaseButton.addEventListener('click', () => this.updateQuantity(-1));
+      this.increaseButton.addEventListener('click', () => this.updateQuantity(1));
+      this.quantityInput.addEventListener('change', () => this.validateInput());
+    }
+
+    updateQuantity(change) {
+      let currentValue = parseInt(this.quantityInput.value);
+      let newValue = currentValue + change;
+      newValue = Math.max(1, newValue);
+      this.quantityInput.value = newValue;
+    }
+
+    validateInput() {
+      let value = parseInt(this.quantityInput.value);
+      if (isNaN(value) || value < 1) {
+        this.quantityInput.value = 1;
+      } else {
+        this.quantityInput.value = value;
+      }
+    }
+  }
+
+  customElements.define('quantity-controls', QuantityControls);
 </script>
 
 {% schema %}
 {
   "name": "Main Product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tw-product",
+      "label": "Style tw-product",
+      "default": "flex flex-col lg:flex-row"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-image-wrapper",
+      "label": "Style tw-product-image-wrapper",
+      "default": "aspect-square lg:w-1/2 border-[1px] border-black"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-image",
+      "label": "Style product-image",
+      "default": "w-full h-full object-cover"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-details",
+      "label": "Style tw-product-details",
+      "default": "aspect-square flex flex-col lg:justify-center gap-10 px-4 py-10 md:p-10 lg:w-1/2 border-x-[1px] border-b-[1px] border-black lg:border-l-0 lg:border-y-[1px]"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-details-container",
+      "label": "Style tw-product-details-container",
+      "default": "flex flex-col gap-6"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-title",
+      "label": "Style tw-product-title",
+      "default": "font-medium uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-info",
+      "label": "Style tw-product-info",
+      "default": "flex flex-col gap-4"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-name",
+      "label": "Style tw-product-name",
+      "default": "font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-description",
+      "label": "Style tw-product-description",
+      "default": "brightness-[.9] text-mobile-body md:text-desktop-body lg:text-[1.12vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-quantity",
+      "label": "Style tw-product-quantity",
+      "default": "flex flex-col gap-4 md:flex-row md:items-center"
+    },
+    {
+      "type": "text",
+      "id": "tw-quantity-controls",
+      "label": "Style tw-quantity-controls",
+      "default": "w-full flex lg:text-xl"
+    },
+    {
+      "type": "text",
+      "id": "tw-quantity-title",
+      "label": "Style tw-quantity-title",
+      "default": "font-medium text-mobile-subtitle md:text-desktop-subtitle lg:text-[1.25vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-quantity-button",
+      "label": "Style tw-quantity-button",
+      "default": "w-11 h-11 border-[1px] border-black"
+    },
+    {
+      "type": "text",
+      "id": "tw-quantity-input",
+      "label": "Style tw-quantity-input",
+      "default": "text-center border-y-[1px] border-black h-11"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-combination",
+      "label": "Style tw-product-combination",
+      "default": "flex flex-col gap-4"
+    },
+    {
+      "type": "text",
+      "id": "tw-combination-info",
+      "label": "Style tw-combination-info",
+      "default": "flex flex-col gap-2 md:flex-row-reverse md:justify-between md:items-center"
+    },
+    {
+      "type": "text",
+      "id": "tw-combination-info-notice",
+      "label": "Style tw-combination-info-notice",
+      "default": "opacity-50 text-mobile-caption md:text-desktop-caption lg:text-[.98vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-combination-suggestion-header",
+      "label": "Style combination-suggestion-header",
+      "default": "font-medium text-mobile-subtitle md:text-desktop-subtitle lg:text-[1.25vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-combination-products",
+      "label": "Style tw-combination-products",
+      "default": "flex items-center gap-2.5"
+    },
+    {
+      "type": "text",
+      "id": "tw-combination-prev",
+      "label": "Style tw-combination-prev",
+      "default": "text-5xl lg:text-7xl hover:text-blue-500"
+    },
+    {
+      "type": "text",
+      "id": "tw-carousel-container",
+      "label": "Style tw-carousel-container",
+      "default": "overflow-hidden relative"
+    },
+    {
+      "type": "text",
+      "id": "tw-carousel-track",
+      "label": "Style tw-carousel-track",
+      "default": "flex gap-4 transition-transform duration-300 ease-in-out"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-item",
+      "label": "Style tw-product-item",
+      "default": "flex-none bg-white transition-transform duration-200 ease-in-out hover:scale-105 cursor-pointer"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-item-image",
+      "label": "Style tw-product-item-image",
+      "default": "w-32 object-cover mb-2 aspect-square lg:w-[11vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-item-heading",
+      "label": "Style tw-product-item-heading",
+      "default": "w-32 text-mobile-caption md:text-desktop-caption lg:text-[.98vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-item-price",
+      "label": "Style tw-product-item-price",
+      "default": "text-brand-gray w-32 text-mobile-caption md:text-desktop-caption lg:text-[.98vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-combination-next",
+      "label": "Style tw-combination-next",
+      "default": "text-5xl lg:text-7xl hover:text-blue-500"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-price",
+      "label": "Style tw-product-price",
+      "default": "flex flex-col gap-4"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-price-title",
+      "label": "Style tw-product-price-title",
+      "default": "font-medium text-mobile-subtitle md:text-desktop-subtitle lg:text-[1.25vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw-price-option",
+      "label": "Style tw-price-option",
+      "default": "flex items-center gap-3 text-mobile-body md:text-desktop-body lg:text-[1.12vw] cursor-pointer"
+    },
+    {
+      "type": "text",
+      "id": "tw-price-input",
+      "label": "Style tw-price-input",
+      "default": "absolute opacity-0 w-6 h-6 lg:w-[1.7vw] lg:h-[1.7vw] no-spin"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-actions",
+      "label": "Style tw-product-actions",
+      "default": "w-full bg-brand-black text-white uppercase px-6 py-4 font-medium text-mobile-button md:text-desktop-button lg:text-[1.12vw] text-center"
+    }
+  ],
   "presets": [
     {
       "name": "Main Product"
