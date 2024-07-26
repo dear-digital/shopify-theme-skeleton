@@ -10,8 +10,8 @@
     {% for article in blog.articles limit: section.settings.post_limit %}
       <article class="blog-post {{ section.settings.color_scheme }} {{ section.settings.blog_post_styles }}">
         {% if section.settings.show_image and article.image %}
-          {% assign blog-post__image_classes = section.settings.blog-post__image %}
-          {{ article.image | image_url: width: 2000 | image_tag: class: blog-post__image_classes }}
+          {% assign blog_post_image_classes = section.settings.blog-post__image %}
+          {{ article.image | image_url: width: 2000 | image_tag: class: blog_post_image_classes }}
         {% endif %}
 
         <h1 class="blog-post__title {{ section.settings.article_title_styles }}">
