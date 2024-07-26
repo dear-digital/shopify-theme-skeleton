@@ -18,11 +18,11 @@
         {{ section.settings.state_1__sub_header }}
       </h4>
       <div class="{{ section.settings.state_1__main_info_div_classes }}">
-        <h4 class="{{ section.settings.main_info_div__header_classes }}">
-          {{ section.settings.main_info_div__header }}
+        <h4 class="{{ section.settings.state_1__main_info_div__header_classes }}">
+          {{ section.settings.state_1__main_info_div__header }}
         </h4>
-        <div class="{{ section.settings.main_info_div__paragraph_classes }}">
-          {{ section.settings.main_info_div__paragraph }}
+        <div class="{{ section.settings.state_1__main_info_div__paragraph_classes }}">
+          {{ section.settings.state_1__main_info_div__paragraph }}
         </div>
       </div>
       <div class="{{ section.settings.state_1__plans_classes }}">
@@ -147,14 +147,14 @@
     },
     {
       "type": "text",
-      "id": "main_info_div__header",
+      "id": "state_1__main_info_div__header",
       "label": "State 1 Main Info Header",
       "default": "Selecting a Plan"
     },
     {
       "type": "richtext",
-      "id": "main_info_div__paragraph",
-      "label": "Main Info Paragraph",
+      "id": "state_1__main_info_div__paragraph",
+      "label": "State 1 Main Info Paragraph",
       "default": "<p>Enjoy free shipping on every order and save up to 30%.</p><p>Every bouquet we deliver is carefully curated to ensure it arrives fresh and stunning. To modify, pause, or cancel your subscription, simply log in to your account dashboard. You're in complete control of your flower delivery experience.</p>"
     },
     {
@@ -206,7 +206,7 @@
       "type": "textarea",
       "id": "left_column_classes",
       "label": "Left Column Classes",
-      "default": "w-full lg:w-1/2 h-[420px] lg:h-[100vh] lg:sticky lg:top-0"
+      "default": "w-full lg:w-1/2 h-[420px] md:h-[500px] lg:h-[100vh] lg:sticky lg:top-0 "
     },
     {
       "type": "textarea",
@@ -218,7 +218,7 @@
       "type": "textarea",
       "id": "right_column_classes",
       "label": "Right Column Classes",
-      "default": "w-full lg:w-1/2 px-4 py-10 space-y-10 border-brand-black border-t lg:py-20 lg:border-brand-black lg:border-r"
+      "default": "w-full lg:w-1/2 px-4 py-10 space-y-10 border-brand-black border-t md:px-10 md:py-20 lg:border-brand-black lg:border-r "
     },
     {
       "type": "textarea",
@@ -230,7 +230,7 @@
       "type": "textarea",
       "id": "state_1__sub_header_classes",
       "label": "State 1 Sub Header Classes",
-      "default": "text-mobile-caption-small font-medium uppercase lg:text-mobile-caption"
+      "default": "text-mobile-caption-small font-medium uppercase md:text-mobile-caption"
     },
     {
       "type": "textarea",
@@ -240,14 +240,14 @@
     },
     {
       "type": "textarea",
-      "id": "main_info_div__header_classes",
-      "label": "Main Info Header Classes",
-      "default": "text-mobile-heading-3 font-medium lg:text-desktop-heading-3"
+      "id": "state_1__main_info_div__header_classes",
+      "label": "State 1 Main Info Header Classes",
+      "default": "text-mobile-heading-3 font-medium md:text-desktop-heading-3"
     },
     {
       "type": "textarea",
-      "id": "main_info_div__paragraph_classes",
-      "label": "Main Info Paragraph Classes",
+      "id": "state_1__main_info_div__paragraph_classes",
+      "label": "State 1 Main Info Paragraph Classes",
       "default": "text-mobile-body text-brand-black opacity-90"
     },
     {
@@ -272,7 +272,7 @@
       "type": "textarea",
       "id": "state_2__main_info_header_classes",
       "label": "State 2 Main Info Header Classes",
-      "default": "text-mobile-heading-4 lg:text-desktop-heading-4"
+      "default": "text-mobile-heading-4 md:text-desktop-heading-4"
     },
     {
       "type": "textarea",
@@ -284,7 +284,7 @@
       "type": "textarea",
       "id": "state_2__frequency_buttons_div_classes",
       "label": "State 2 Frequency Buttons Div Classes",
-      "default": "flex flex-col gap-4 lg:flex-row justify-between"
+      "default": "flex flex-col gap-4 md:flex-row justify-between"
     },
     {
       "type": "textarea",
@@ -302,7 +302,7 @@
       "type": "textarea",
       "id": "state_3__main_info_header_classes",
       "label": "State 3 Main Info Header Classes",
-      "default": "text-mobile-heading-4 lg:text-desktop-heading-4"
+      "default": "text-mobile-heading-4 md:text-desktop-heading-4"
     },
     {
       "type": "textarea",
@@ -314,7 +314,7 @@
       "type": "textarea",
       "id": "state_3__input_steppers_classes",
       "label": "State 3 Input Steppers Classes",
-      "default": "flex items-center border-brand-black border-y lg:w-fit bg-red-200"
+      "default": "flex items-center border-brand-black border-y md:w-fit bg-red-200"
     },
     {
       "type": "textarea",
@@ -326,19 +326,19 @@
       "type": "textarea",
       "id": "stepper_input_classes",
       "label": "Stepper Input Classes",
-      "default": "text-mobile-body w-full h-full text-center lg:w-fit"
+      "default": "text-mobile-body w-full h-full text-center md:w-fit"
     },
     {
       "type": "textarea",
       "id": "right_column__checkout_button_div",
       "label": "Checkout Button Div Classes",
-      "default": "text-center"
+      "default": "h-[46px] md:h-[56px] flex items-center"
     },
     {
       "type": "textarea",
       "id": "right_column__checkout_button",
       "label": "Checkout Button Classes",
-      "default": "inline-block w-full px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out"
+      "default": "h-full flex items-center justify-center w-full border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out"
     }
   ],
   "blocks": [
@@ -402,13 +402,13 @@
           "type": "textarea",
           "id": "plan_content__image_terms_classes",
           "label": "Plan Content Image + Terms Div",
-          "default": "flex flex-col lg:flex-row lg:h-[225px]"
+          "default": "flex flex-col md:flex-row md:h-[225px]"
         },
         {
           "type": "textarea",
           "id": "plan_content__image_div_classes",
           "label": "Plan Image Div Classes",
-          "default": "w-full lg:w-1/2 lg:border-brand-light-gray lg:border-r"
+          "default": "w-full md:w-1/2 md:border-brand-light-gray border-b md:border-r md:border-b-0"
         },
         {
           "type": "textarea",
@@ -420,7 +420,7 @@
           "type": "textarea",
           "id": "plan_content__terms_classes",
           "label": "Plan Terms Classes",
-          "default": "p-4 space-y-4 lg:w-1/2"
+          "default": "p-4 space-y-4 md:w-1/2"
         },
         {
           "type": "textarea",
@@ -438,7 +438,7 @@
           "type": "textarea",
           "id": "plan_content__select_button_classes",
           "label": "Select Button Classes",
-          "default": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px"
+          "default": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
         }
       ]
     },
@@ -478,7 +478,7 @@
           "type": "textarea",
           "id": "frequency_button_classes",
           "label": "Frequency Button Styling",
-          "default": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300"
+          "default": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
         }
       ]
     }
@@ -519,6 +519,9 @@
             "point_4": "Premium vase with first delivery",
             "point_5": "",
           }
+        },
+        {
+          "type": "divider"
         },
         {
           "type": "frequency",

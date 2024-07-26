@@ -355,11 +355,12 @@
         "frequency_mBwjrn",
         "frequency_ANnAHR"
       ],
+      "disabled": true,
       "settings": {
         "left_column_image": "shopify:\/\/shop_images\/plan_left_colum_new.png",
         "state_1__sub_header": "Build Your Subscription",
-        "main_info_div__header": "Selecting a Plan",
-        "main_info_div__paragraph": "<p>Enjoy free shipping on every order and save up to 30%. <\/p><p>Every bouquet we deliver is carefully curated to ensure it arrives fresh and stunning. To modify, pause, or cancel your subscription, simply log in to your account dashboard. You're in complete control of your flower delivery experience.<\/p>",
+        "state_1__main_info_div__header": "Selecting a Plan",
+        "state_1__main_info_div__paragraph": "<p>Enjoy free shipping on every order and save up to 30%.<\/p><p>Every bouquet we deliver is carefully curated to ensure it arrives fresh and stunning. To modify, pause, or cancel your subscription, simply log in to your account dashboard. You're in complete control of your flower delivery experience.<\/p>",
         "state_2__main_info_header": "How often do you want flowers delivered?",
         "state_2__main_info_paragraph": "<p>Select the delivery frequency<\/p>",
         "state_3__main_info_header": "How many deliveries would you like ?",
@@ -373,8 +374,8 @@
         "state_1_classes": "space-y-6",
         "state_1__sub_header_classes": "text-mobile-caption-small font-medium uppercase md:text-mobile-caption",
         "state_1__main_info_div_classes": "space-y-4",
-        "main_info_div__header_classes": "text-mobile-heading-3 font-medium md:text-desktop-heading-3",
-        "main_info_div__paragraph_classes": "text-mobile-body text-brand-black opacity-90",
+        "state_1__main_info_div__header_classes": "text-mobile-heading-3 font-medium md:text-desktop-heading-3",
+        "state_1__main_info_div__paragraph_classes": "text-mobile-body text-brand-black opacity-90",
         "state_1__plans_classes": "flex flex-col gap-4",
         "state_2_classes": "space-y-6",
         "state_2__main_info_classes": "space-y-4",
@@ -391,6 +392,289 @@
         "right_column__checkout_button_div": "text-center",
         "right_column__checkout_button": "inline-block w-full px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out"
       }
+    },
+    "subscription_plan_try_N3Jtmp": {
+      "type": "subscription-plan-try",
+      "blocks": {
+        "divider_i3GpYK": {
+          "type": "divider",
+          "settings": {
+            "divider_classes": "border-t border-brand-light-gray"
+          }
+        },
+        "plan_HMzcDw": {
+          "type": "plan",
+          "settings": {
+            "plan_content__image": "shopify:\/\/shop_images\/bouquet_1.png",
+            "plan_name": "Classic",
+            "point_1": "Price $45",
+            "point_2": "Free Delivery",
+            "point_3": "Best for a budget",
+            "point_4": "Glass vase with first delivery",
+            "point_5": "Save up to 25%",
+            "select_plan_button_text": "Select",
+            "plan_content_classes": "border-brand-light-gray border border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 md:border-brand-light-gray md:border-r",
+            "plan_content__image_classes": "w-full object-cover h-full",
+            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2",
+            "term__header_classes": "text-mobile-subtitle font-medium",
+            "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
+            "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px"
+          }
+        },
+        "plan_B7Bx4c": {
+          "type": "plan",
+          "settings": {
+            "plan_content__image": "shopify:\/\/shop_images\/bouquet_2.png",
+            "plan_name": "Seasonal",
+            "point_1": "Price $65",
+            "point_2": "Free Delivery",
+            "point_3": "Best seasonal selections",
+            "point_4": "Glass vase with first delivery",
+            "point_5": "",
+            "select_plan_button_text": "Select",
+            "plan_content_classes": "border-brand-light-gray border border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 md:border-brand-light-gray md:border-r",
+            "plan_content__image_classes": "w-full object-cover h-full",
+            "plan_content__terms_classes": "p-4 space-y-4 lg:w-1\/2",
+            "term__header_classes": "text-mobile-subtitle font-medium",
+            "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
+            "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px"
+          }
+        },
+        "plan_wXeAkk": {
+          "type": "plan",
+          "settings": {
+            "plan_content__image": "shopify:\/\/shop_images\/bouquet_3.png",
+            "plan_name": "Luxe",
+            "point_1": "Price $95",
+            "point_2": "Free Delivery",
+            "point_3": "Premium arrangement",
+            "point_4": "Premium vase with first delivery",
+            "point_5": "",
+            "select_plan_button_text": "Select",
+            "plan_content_classes": "border-brand-light-gray border border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 md:border-brand-light-gray md:border-r",
+            "plan_content__image_classes": "w-full object-cover h-full",
+            "plan_content__terms_classes": "p-4 space-y-4 lg:w-1\/2",
+            "term__header_classes": "text-mobile-subtitle font-medium",
+            "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
+            "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px"
+          }
+        },
+        "frequency_f3GhfY": {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Weekly",
+            "frequency_value": "7",
+            "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
+          }
+        },
+        "frequency_dzqcF7": {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Bi-Weekly",
+            "frequency_value": "14",
+            "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
+          }
+        },
+        "frequency_JJqp3x": {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Monthly",
+            "frequency_value": "30",
+            "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
+          }
+        }
+      },
+      "block_order": [
+        "divider_i3GpYK",
+        "plan_HMzcDw",
+        "plan_B7Bx4c",
+        "plan_wXeAkk",
+        "frequency_f3GhfY",
+        "frequency_dzqcF7",
+        "frequency_JJqp3x"
+      ],
+      "disabled": true,
+      "settings": {
+        "left_column_image": "shopify:\/\/shop_images\/plan_left_colum_new.png",
+        "state_1__sub_header": "Build Your Subscription",
+        "state_1__main_info_div__header": "Selecting a Plan",
+        "state_1__main_info_div__paragraph": "<p>Enjoy free shipping on every order and save up to 30%.<\/p><p>Every bouquet we deliver is carefully curated to ensure it arrives fresh and stunning. To modify, pause, or cancel your subscription, simply log in to your account dashboard. You're in complete control of your flower delivery experience.<\/p>",
+        "state_2__main_info_header": "How often do you want flowers delivered?",
+        "state_2__main_info_paragraph": "<p>Select the delivery frequency<\/p>",
+        "state_3__main_info_header": "How many deliveries would you like ?",
+        "state_3__main_info_paragraph": "<p>Pay once and do not worry about flowers, our bouquets will be beautiful and on time, as many times as you need.<\/p>",
+        "right_column__checkout_button_label": "Checkout",
+        "right_column__checkout_button_link": "",
+        "subscription_plan_selection__container": "flex flex-col lg:flex-row-reverse lg:border-brand-black lg:border-y",
+        "left_column_classes": "w-full lg:w-1\/2 h-[420px] md:h-[500px] lg:h-[100vh] lg:sticky lg:top-0",
+        "left_column_image_classes": "w-full h-full object-cover",
+        "right_column_classes": "w-full lg:w-1\/2 px-4 py-10 space-y-10 border-brand-black border-t md:px-10 md:py-20 lg:border-brand-black lg:border-r",
+        "state_1_classes": "space-y-6",
+        "state_1__sub_header_classes": "text-mobile-caption-small font-medium uppercase md:text-mobile-caption",
+        "state_1__main_info_div_classes": "space-y-4",
+        "state_1__main_info_div__header_classes": "text-mobile-heading-3 font-medium md:text-desktop-heading-3",
+        "state_1__main_info_div__paragraph_classes": "text-mobile-body text-brand-black opacity-90",
+        "state_1__plans_classes": "flex flex-col gap-4",
+        "state_2_classes": "space-y-6",
+        "state_2__main_info_classes": "space-y-4",
+        "state_2__main_info_header_classes": "text-mobile-heading-4 md:text-desktop-heading-4",
+        "state_2__main_info_paragraph_classes": "text-mobile-body text-brand-black opacity-90",
+        "state_2__frequency_buttons_div_classes": "flex flex-col gap-4 md:flex-row justify-between",
+        "state_3_classes": "space-y-6",
+        "state_3__main_info_classes": "space-y-4",
+        "state_3__main_info_header_classes": "text-mobile-heading-4 md:text-desktop-heading-4",
+        "state_3__main_info_paragraph_classes": "text-mobile-body text-brand-black opacity-90",
+        "state_3__input_steppers_classes": "flex items-center border-brand-black border-y md:w-fit bg-red-200",
+        "stepper_button_classes": "px-3 py-1 h-[44px] bg-red-300 aspect-square border-brand-black border-x",
+        "stepper_input_classes": "text-mobile-body w-full h-full text-center md:w-fit",
+        "right_column__checkout_button_div": "h-[46px] md:h-[56px] flex items-center",
+        "right_column__checkout_button": "h-full flex items-center justify-center w-full border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out"
+      }
+    },
+    "subscription_plan_try_ENkNbk": {
+      "type": "subscription-plan-try",
+      "blocks": {
+        "plan_9LxWpQ": {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Classic",
+            "point_1": "Price $45",
+            "point_2": "Free Delivery",
+            "point_3": "Best for a budget",
+            "point_4": "Glass vase with first delivery",
+            "point_5": "Save up to 25%",
+            "select_plan_button_text": "Select",
+            "plan_content_classes": "border-brand-light-gray border border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 md:border-brand-light-gray border-b md:border-r md:border-b-0",
+            "plan_content__image_classes": "w-full object-cover h-full",
+            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2",
+            "term__header_classes": "text-mobile-subtitle font-medium",
+            "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
+            "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
+          }
+        },
+        "plan_jVdirA": {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Seasonal",
+            "point_1": "Price $65",
+            "point_2": "Free Delivery",
+            "point_3": "Best seasonal selections",
+            "point_4": "Glass vase with first delivery",
+            "point_5": "",
+            "select_plan_button_text": "Select",
+            "plan_content_classes": "border-brand-light-gray border border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 md:border-brand-light-gray border-b md:border-r md:border-b-0",
+            "plan_content__image_classes": "w-full object-cover h-full",
+            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2",
+            "term__header_classes": "text-mobile-subtitle font-medium",
+            "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
+            "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
+          }
+        },
+        "plan_8Ei9eY": {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Luxe",
+            "point_1": "Price $95",
+            "point_2": "Free Delivery",
+            "point_3": "Premium arrangement",
+            "point_4": "Premium vase with first delivery",
+            "point_5": "",
+            "select_plan_button_text": "Select",
+            "plan_content_classes": "border-brand-light-gray border border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 md:border-brand-light-gray border-b md:border-r md:border-b-0",
+            "plan_content__image_classes": "w-full object-cover h-full",
+            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2",
+            "term__header_classes": "text-mobile-subtitle font-medium",
+            "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
+            "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
+          }
+        },
+        "divider_wh9Dd4": {
+          "type": "divider",
+          "settings": {
+            "divider_classes": "border-t border-brand-light-gray"
+          }
+        },
+        "frequency_Axfeig": {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Weekly",
+            "frequency_value": "7",
+            "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
+          }
+        },
+        "frequency_MbFaYt": {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Bi-Weekly",
+            "frequency_value": "14",
+            "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
+          }
+        },
+        "frequency_8nV7Gn": {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Monthly",
+            "frequency_value": "30",
+            "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
+          }
+        }
+      },
+      "block_order": [
+        "plan_9LxWpQ",
+        "plan_jVdirA",
+        "plan_8Ei9eY",
+        "divider_wh9Dd4",
+        "frequency_Axfeig",
+        "frequency_MbFaYt",
+        "frequency_8nV7Gn"
+      ],
+      "settings": {
+        "state_1__sub_header": "Build Your Subscription",
+        "state_1__main_info_div__header": "Selecting a Plan",
+        "state_1__main_info_div__paragraph": "<p>Enjoy free shipping on every order and save up to 30%.<\/p><p>Every bouquet we deliver is carefully curated to ensure it arrives fresh and stunning. To modify, pause, or cancel your subscription, simply log in to your account dashboard. You're in complete control of your flower delivery experience.<\/p>",
+        "state_2__main_info_header": "How often do you want flowers delivered?",
+        "state_2__main_info_paragraph": "<p>Select the delivery frequency<\/p>",
+        "state_3__main_info_header": "How many deliveries would you like ?",
+        "state_3__main_info_paragraph": "<p>Pay once and do not worry about flowers, our bouquets will be beautiful and on time, as many times as you need.<\/p>",
+        "right_column__checkout_button_label": "Checkout",
+        "right_column__checkout_button_link": "",
+        "subscription_plan_selection__container": "flex flex-col lg:flex-row-reverse lg:border-brand-black lg:border-y",
+        "left_column_classes": "w-full lg:w-1\/2 h-[420px] md:h-[500px] lg:h-[100vh] lg:sticky lg:top-0",
+        "left_column_image_classes": "w-full h-full object-cover",
+        "right_column_classes": "w-full lg:w-1\/2 px-4 py-10 space-y-10 border-brand-black border-t md:px-10 md:py-20 lg:border-brand-black lg:border-r",
+        "state_1_classes": "space-y-6",
+        "state_1__sub_header_classes": "text-mobile-caption-small font-medium uppercase md:text-mobile-caption",
+        "state_1__main_info_div_classes": "space-y-4",
+        "state_1__main_info_div__header_classes": "text-mobile-heading-3 font-medium md:text-desktop-heading-3",
+        "state_1__main_info_div__paragraph_classes": "text-mobile-body text-brand-black opacity-90",
+        "state_1__plans_classes": "flex flex-col gap-4",
+        "state_2_classes": "space-y-6",
+        "state_2__main_info_classes": "space-y-4",
+        "state_2__main_info_header_classes": "text-mobile-heading-4 md:text-desktop-heading-4",
+        "state_2__main_info_paragraph_classes": "text-mobile-body text-brand-black opacity-90",
+        "state_2__frequency_buttons_div_classes": "flex flex-col gap-4 md:flex-row justify-between",
+        "state_3_classes": "space-y-6",
+        "state_3__main_info_classes": "space-y-4",
+        "state_3__main_info_header_classes": "text-mobile-heading-4 md:text-desktop-heading-4",
+        "state_3__main_info_paragraph_classes": "text-mobile-body text-brand-black opacity-90",
+        "state_3__input_steppers_classes": "flex items-center border-brand-black border-y md:w-fit bg-red-200",
+        "stepper_button_classes": "px-3 py-1 h-[44px] bg-red-300 aspect-square border-brand-black border-x",
+        "stepper_input_classes": "text-mobile-body w-full h-full text-center md:w-fit",
+        "right_column__checkout_button_div": "h-[46px] md:h-[56px] flex items-center",
+        "right_column__checkout_button": "h-full flex items-center justify-center w-full border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out"
+      }
     }
   },
   "order": [
@@ -398,6 +682,8 @@
     "subscription_main_section_iKXFGR",
     "dev_why_choose_us_PLNqyE",
     "subscription_faq_section_3RjngG",
-    "subscription_plan_try_Vth7bX"
+    "subscription_plan_try_Vth7bX",
+    "subscription_plan_try_N3Jtmp",
+    "subscription_plan_try_ENkNbk"
   ]
 }
