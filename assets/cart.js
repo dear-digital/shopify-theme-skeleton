@@ -2,7 +2,7 @@
 
 // Immediately Invoked Function Expression (IIFE)
 // Prevents the constants from conflicting with other scripts
-(function(){
+(function() {
 
   const TRANSLATE_X_FULL = "translate-x-full";
   const OPACITY_0 = "opacity-0";
@@ -14,9 +14,7 @@
       this.drawer = document.getElementById("cart-drawer");
       this.overlay = document.getElementById("cart-overlay");
       this.closeCartButton = document.getElementById("close-cart-button");
-      this.openCartButtons = document.querySelectorAll(
-        '[data-action="open-cart"]'
-      );
+      this.openCartButtons = document.querySelectorAll('[data-action="open-cart"]');
       this.bindEvents();
     }
 
