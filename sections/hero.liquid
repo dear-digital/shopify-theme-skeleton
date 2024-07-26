@@ -1,11 +1,18 @@
 <div class="hero {{ section.settings.hero }}">
   <div class="hero__left-col {{ section.settings.hero__left-col }}">
+    {% if section.settings['hero-main'] != blank or section.settings['hero-main-richtext'] != blank %}
     <div class="hero__header {{ section.settings.hero__header }}">
-      <h1 class="hero__title {{ section.settings.hero__title }}">{{ section.settings['hero-main'] }}</h1>
+      {% if section.settings['hero-main'] != blank %}
+        <h1 class="hero__title {{ section.settings.hero__title }}">{{ section.settings['hero-main'] }}</h1>
+      {% endif %} 
+      {% if section.settings['hero-main-richtext'] != blank %}
       <div class="hero__subtitle {{ section.settings.hero__subtitle }}">
         {{ section.settings['hero-main-richtext'] }}
       </div>
+      {% endif %}
     </div>
+    {% endif %}
+    {% if section.settings.hero__description != blank or section.settings.hero__image != blank %}
     <div class="hero__content {{ section.settings.hero__content }}">
       {% if section.settings.hero__image != blank %}
         {{
@@ -14,29 +21,36 @@
           | image_tag: class: section.settings['tail-hero__image']
         }}
       {% endif %}
+      {% if section.settings.hero__description != blank %}
       <p class="hero__description {{ section.settings.tail-hero__description }}">
         {{ section.settings.hero__description }}
       </p>
+      {% endif %}
     </div>
+    {% endif %}
   </div>
+  {% if section.blocks.size > 0 %}
   <div class="hero__right-col {{ section.settings.hero__right-col }}">
     {% assign first_block = true %}
     {% for block in section.blocks %}
       {% if block.type == 'collection' and block.settings.collection != blank %}
         <div class="hero__row {{ block.settings.hero__row }} {% if block.settings.reverse-image %} flex-row-reverse	{% endif %} {% unless first_block %} border-t-0 {% endunless %}">
           <div class="hero__product-image {{ block.settings.hero__product-image }} {% unless block.settings.reverse-image %}border-r-[1px]{% endunless %}">
-            {% if block.settings.collection.featured_image != blank %}
+            {% if block.settings.collection.featured_image != blank or block.settings.collection_image != blank %}
               {{
-                block.settings.collection.featured_image
+                block.settings.collection_image | default: block.settings.collection.featured_image
                 | image_url: width: 500
                 | image_tag: class: block.settings['hero__product-img']
               }}
             {% endif %}
           </div>
           <div class="hero__product {{ block.settings.hero__product }} {% if block.settings.reverse-image %}border-r-[1px]{% endif %}">
+            {% if block.settings.collection.title != blank %}
             <h3 class="hero__product-title {{ block.settings.hero__product-title }}">
               {{ block.settings.collection.title }}
             </h3>
+            {% endif %}
+            {% if block.settings.text != blank %}
             <a
               href="{{ block.settings.collection.url }}"
               class="hero__product-link {{ block.settings.hero__product-link }} {% unless block.settings.reverse-image %}flex-row-reverse{% endunless %}"
@@ -48,12 +62,14 @@
                 {% render 'icon-right-arrow' %}
               </span>
             </a>
+            {% endif %}
           </div>
           {% assign first_block = false %}
         </div>
       {% endif %}
     {% endfor %}
   </div>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -152,6 +168,12 @@
           "type": "collection",
           "id": "collection",
           "label": "Select collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Select Image",
+          "info": "If this is blank then the collection image will be used"
         },
         {
           "type": "text",

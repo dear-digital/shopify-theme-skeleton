@@ -348,11 +348,32 @@
     ]
   },
   {
-    "name": "Cart",
+     "name": "Cart",
     "settings": [
       {
         "type": "select",
         "id": "cart_type",
+        "label": "Select Cart type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
+        ],
+        "default": "drawer"
+      }
+    ]
+  },
+  {
+    "name": "Cart Dawn",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type_dawn",
         "options": [
           {
             "value": "drawer",

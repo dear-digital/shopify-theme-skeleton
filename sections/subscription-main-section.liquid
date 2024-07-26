@@ -1,0 +1,201 @@
+{% comment %} subscription-main-section.liquid {% endcomment %}
+
+<section class="{{section.settings.subscription_main_section}}">
+    <div class="{{section.settings.subscription_main_section__image}}">
+        {% if section.settings.image != blank %}
+            {{ section.settings.image 
+                | image_url: width: 1500 
+                | image_tag: class: section.settings.subscription_main_section__image_classes
+            }}
+        {% else %}
+            {{ 'image' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-200' }}
+        {% endif %}
+    </div>
+    <div class="{{section.settings.subscription_main_section__right_column}}">
+        <div class="{{section.settings.right_column__content_div}}">
+            <h2 class="{{section.settings.content_div__header_classes}}">
+                {{ section.settings.main_title }}
+            </h2>
+            <div class="{{section.settings.content_div__content}}">
+                {% for block in section.blocks %}
+                    {% if block.type == 'content_block' %}
+                        <div class="{{block.settings.content_div__content_subtitle_para_div}}">
+                            <h3 class="{{block.settings.content_div__content_subtitle_classes}}">
+                                {% comment %} named as 'title' instead of 'subtitle' to see dynamic naming of presets in theme editor after adding blocks :( {% endcomment %}
+                                {{ block.settings.title }}
+                            </h3>
+                            
+                            <ul class="{{block.settings.content_div__content_paragraph_classes}}">
+                                <li class="{{block.settings.content_div__content_paragraph_list_classes}}">
+                                    {{ block.settings.paragraph }}
+                                </li>
+                            </ul>
+                           
+                        </div>   
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <button class="{{ section.settings.right_column__button }}">
+            <a href="{{ section.settings.right_column__button_link }}">
+                        {{- section.settings.right_column__button_label | escape -}}
+            </a>
+        </button>
+
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Subscription Main Section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Main Image"
+        },
+        {
+            "type": "text",
+            "id": "main_title",
+            "label": "Main Title",
+            "default": "Flower Subscription"
+        },
+        {
+            "type": "textarea",
+            "id": "right_column__button_label",
+            "label": "Button Label",
+            "default": "Explore Plans"
+        },
+        {
+            "type": "url",
+            "id": "right_column__button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "header",
+            "content": "Tailwind styling classes"
+        },
+        {
+            "type": "textarea",
+            "id": "subscription_main_section",
+            "label": "Section Container Classes",
+            "default": "flex flex-col lg:flex-row lg:h-[720px]"
+        },
+        {
+            "type": "textarea",
+            "id": "subscription_main_section__image",
+            "label": "Image Container Classes",
+            "default": "w-full lg:w-1/2 h-[420px] md:h-[500px ] lg:h-full"
+        },
+        {
+            "type": "textarea",
+            "id": "subscription_main_section__image_classes",
+            "label": "Image Classes",
+            "default": "w-full h-full object-cover"
+        },
+        {
+            "type": "textarea",
+            "id": "subscription_main_section__right_column",
+            "label": "Right Column Classes",
+            "default": "px-4 py-10 flex flex-col gap-12 lg:w-1/2 md:p-20 lg:h-full lg:justify-center border-brand-black border-t lg:border-l lg:border-t-0"
+        },
+        {
+            "type": "textarea",
+            "id": "right_column__content_div",
+            "label": "Content Div Classes",
+            "default": "flex flex-col gap-4 lg:gap-6"
+        },
+        {
+            "type": "textarea",
+            "id": "content_div__header_classes",
+            "label": "Header Classes",
+            "default": "text-mobile-heading-2 font-semibold md:text-desktop-heading-2"
+        },
+        {
+            "type": "textarea",
+            "id": "content_div__content",
+            "label": "Content Container Classes",
+            "default": "space-y-6"
+        },
+        {
+            "type": "textarea",
+            "id": "right_column__button",
+            "label": "Button Classes",
+            "default": "px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em] font-medium h-[48px] hover:text-white hover:bg-brand-black transition ease-in 500 md:h-[56px] lg:w-fit"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "content_block",
+            "name": "Content Block",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Subtitle",
+                    "default": "For Yourself"
+                },
+                {
+                    "type": "richtext",
+                    "id": "paragraph",
+                    "label": "Paragraph",
+                    "default": "<p>The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!</p>"
+                },
+                {
+                    "type": "textarea",
+                    "id": "content_div__content_subtitle_para_div",
+                    "label": "Subtitle + Paragraph Container Classes",
+                    "default": "space-y-2"
+                },
+                {
+                    "type": "textarea",
+                    "id": "content_div__content_subtitle_classes",
+                    "label": "Subtitle Classes",
+                    "default": "text-mobile-heading-6 font-medium md:text-desktop-links"
+                },
+                {
+                    "type": "textarea",
+                    "id": "content_div__content_paragraph_classes",
+                    "label": "Paragraph Classes",
+                    "default": "pl-[1.5em]"
+                },
+                {
+                    "type": "textarea",
+                    "id": "content_div__content_paragraph_list_classes",
+                    "label": "Paragraph List Classes",
+                    "default": "text-mobile-body list-disc list-outside"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Subscription Main Section",
+            "blocks": [
+                {
+                    "type": "content_block",
+                    "settings": {
+                        "title": "For Yourself",
+                        "paragraph": "<p>The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!</p>"
+                    }
+                },
+                {
+                    "type": "content_block",
+                    "settings": {
+                        "title": "As a Gift",
+                        "paragraph": "<p>Simply provide us with their address and let us take care of the rest, delivering beautiful blooms straight to their doorstep at the frequency and duration of your choosing.</p>"
+                    }
+                },
+                {
+                    "type": "content_block",
+                    "settings": {
+                        "title": "For Business",
+                        "paragraph": "<p>Is a great way to create a pleasant atmosphere and leave a good impression on your guests and customers. Fresh floral arrangements will improve the aesthetic image of your business, and our service guarantees timely replacement without extra care or effort on your part.</p>"
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

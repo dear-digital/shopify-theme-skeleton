@@ -1,0 +1,199 @@
+{% if section.settings.main_heading != blank %}
+<div class="collapsible-content {{ section.settings.main_container }}">
+  <div class="collapsible-content__main-container {{ section.settings.main_content_container }}">
+    
+    <h2 class="collapsible-content__main-heading {{ section.settings.collapsible_main_heading }}">
+      {{ section.settings.main_heading }}
+    </h2>
+
+    {% if section.blocks.size > 0 %}
+    <div class="collapsible-content__grid {{ section.settings.collapsible_grid }}">
+        {% for block in section.blocks %}
+        {% if block.settings.title != blank and block.settings.content != blank %}         
+        <div class="collapsible-content__block-container {{ block.settings.collapsible_block_container }}">
+            <details class="collapsible-content__details {{ block.settings.collapsible_details }}">
+            <summary class="collapsible-content__summary {{ block.settings.collapsible_summary }}">
+                <span class="collapsible-content__title {{ block.settings.collapsible_title }}">
+                {{- block.settings.title -}}
+                </span>
+                <span class="collapsible-content__icon {{ block.settings.collapsible_icon }}">
+                {% render 'icon-collapsible-arrow' class: block.settings.collapsible_icon_SVG %}
+                </span>
+            </summary>
+            <p class="collapsible-content__content {{ block.settings.collapsible_content }}">
+                {{ block.settings.content }}
+            </p>
+            </details>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Subscription FAQ Content",
+  "class": "collapsible-content",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Main Heading",
+      "id": "main_heading",
+      "default": "Subscription FAQ"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Classes"
+    },
+    {
+      "type": "textarea",
+      "label": "Main Container",
+      "id": "main_container",
+      "default": "mx-auto bg-brand-extra-light py-10 md:px-10 md:py-20 lg:p-20 flex justify-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Main Content Container",
+      "id": "main_content_container",
+      "default": "bg-white px-6 py-10 space-y-6 border-brand-black border-y md:border-x md:p-10 md:space-y-10 md:w-full lg:p-20 lg:w-[864px]"
+    },
+    {
+      "type": "textarea",
+      "label": "Collapsible Main Heading",
+      "id": "collapsible_main_heading",
+      "default": "text-mobile-heading-2 md:text-desktop-heading-2 text-center font-semibold"
+    },
+    {
+      "type": "textarea",
+      "label": "Collapsible Grid",
+      "id": "collapsible_grid",
+      "default": "mx-auto"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Title",
+          "id": "title",
+          "default": "How often will I get a new bouquet?"
+        },
+        {
+          "type": "inline_richtext",
+          "label": "Content",
+          "id": "content",
+          "default": "Our subscriptions allow you to select a delivery frequency that best suits your needs - either weekly, bi-weekly, or monthly. You can also choose the number of deliveries for your subscription. Choose any combination that works for you!"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind Classes"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Block Container",
+          "id": "collapsible_block_container",
+          "default": "py-4 border-brand-black border-b"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Details",
+          "id": "collapsible_details",
+          "default": "group"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Summary",
+          "id": "collapsible_summary",
+          "default": "flex justify-between items-center cursor-pointer gap-6"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Title",
+          "id": "collapsible_title",
+          "default": "text-mobile-heading-6 font-medium md:text-desktop-heading-5 lg:text-desktop-heading-4 lg:font-regular"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Icon",
+          "id": "collapsible_icon",
+          "default": "transition duration-200 group-open:rotate-[-90deg]"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Icon SVG Size",
+          "id": "collapsible_icon_SVG",
+          "default": "w-3 h-3 md:w-4 md:h-4"
+        },
+        {
+          "type": "textarea",
+          "label": "Collapsible Content",
+          "id": "collapsible_content",
+          "default": "text-brand-black opacity-90 mt-3 text-mobile-caption leading-5 md:text-desktop-subtitle lg:leading-6 "
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscription FAQ Content",
+      "blocks": [
+        {
+          "type": "block",
+          "settings": {
+            "title": "How often will I get a new bouquet?",
+            "content": "The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!"
+            }
+        },
+        {
+          "type": "block",
+          "settings": {
+            "title": "Can i send subscription like as a gift ?",
+            "content": "Absolutely ! This is the most convenient way to show your feelings, subscribe to the address to whom you want to deliver bouquets and we will please that person with beautiful bouquets"
+            }
+        },
+        {
+          "type": "block",
+          "settings": {
+            "title": "Can I choose which bouquet I get ?",
+            "content": "Each subscription option is carefully selected by our specialists. Our florists select the best and freshest varieties for delivery that surprise and delight every time; thus, the current subscription offer does not allow you to choose a different bouquet for each delivery or to receive the entire subscription with one particular bouquet. Each bouquet will be individual and made according to your chosen plan - classic, seasonal or luxury bouquets"
+            }
+        },
+        {
+          "type": "block",
+          "settings": {
+            "title": "Can I change the shipping address ?",
+            "content": "Yes, you can! After you create an account, you can log in and adjust your settings to pause the next delivery and let us know the next best delivery date."
+            }
+        },
+        {
+          "type": "block",
+          "settings": {
+            "title": "What day will the subscription bouquet come?",
+            "content": "Depending on the day you first choose for your flower delivery, we will deliver on that day for all future deliveries. So if you get your flowers on Thursday every other week, you will get another flower delivery two weeks later on Thursday."
+            }
+        },
+        {
+          "type": "block",
+          "settings": {
+            "title": "Can I suspend my subscription to flowers ?",
+            "content": "Yes, you can! After you create an account, you can log in and adjust your settings to pause the next delivery and let us know the next best delivery date."
+            }
+        },
+        {
+          "type": "block",
+          "settings": {
+            "title": "Lorem Ipsum",
+            "content": "Yes, you can! After you create an account, you can log in and adjust your settings to pause the next delivery and let us know the next best delivery date."
+            }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -57,6 +57,8 @@
       "settings": {
         "menu": "main-menu",
         "right_menu": "right-menu",
+        "desktop_cart_button_label": "Cart",
+        "desktop_cart_button_link": "",
         "more_menu": "more-menu",
         "navbar_wrapper": "relative",
         "navbar_classes": "h-[48px] md:h-[56px] lg:[83px] w-full z-10 bg-white",
@@ -67,9 +69,11 @@
         "left_menu_item_classes": "text-brand-black hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1\/4",
         "right_menu_item_classes": "text-brand-black hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1\/4",
         "navbar__desktop_menu_item": "transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300",
+        "desktop_cart_button_classes": "transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 flex items-center justify-center  w-full h-full gap-2",
+        "desktop_cart_button_link_SVG": "w-5 h-5",
         "menu_button_container_classes": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden",
         "menu_button_svg_classes": "w-5 h-5",
-        "cart_button_classes": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden",
+        "mobile_cart_button_classes": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden",
         "cart_button_svg_classes": "w-5 h-5",
         "menu_overlay_classes": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none lg:hidden",
         "off_canvas_menu_container_classes": "fixed inset-y-0 left-0 w-full md:w-[384px] bg-white z-50 transition-transform duration-300 ease-in-out transform -translate-x-full lg:hidden border border-brand-black",
@@ -84,10 +88,56 @@
         "off_canvas_menu_social_item": "flex items-center justify-center",
         "off_canvas_menu_social_SVG": "h-5 w-5"
       }
+    },
+    "cart_69hwiH": {
+      "type": "cart",
+      "settings": {
+        "cart_title": "Shopping Cart",
+        "cart_content_product_name": "Rosy Delight",
+        "cart_content_product_quantity": "Quantity (1)",
+        "cart_content_product_price": "$100",
+        "cart_item_remove_button_label": "Remove",
+        "cart_item_remove_button_link": "",
+        "cart_content_subtotal_div_content_label": "Subtotal",
+        "cart_content_subtotal_div_content_total_price": "$100.00",
+        "cart_content_textarea_div_content_message": "Gift Message",
+        "cart_content_delivery_message": "<p>Shipping & taxes calculated at checkout Free standard shipping within Kyiv <\/p>",
+        "cart_content_checkout_button_label": "Check out",
+        "cart_content_checkout_button_link": "",
+        "cart_overlay_classes": "fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none block",
+        "cart_container_classes": "fixed inset-y-0 right-0 w-full lg:w-1\/2 bg-white z-50 transition-transform duration-300 ease-in-out transform translate-x-full flex flex-col overflow-y-auto",
+        "cart_header_classes": "px-6 py-3 flex justify-between items-center h-[48px] md:h-[56px] border-brand-black border-b md:px-10 md:py-4 lg:py-[26px]",
+        "cart_title_classes": "text-mobile-heading-6 font-medium md:text-desktop-heading-6",
+        "close_cart_button_classes": "text-black",
+        "cart_close_button_svg": "w-3 h-3 md:w-4 md:h-4",
+        "cart_content_classes": "flex flex-col h-full",
+        "cart_content_added_product_class": "px-4 py-6 flex flex-col gap-4 border-brand-black border-b md:p-10 md:flex-row md:justify-between",
+        "cart_item_image_classes": "w-[160px] aspect-square object-cover border-brand-black border",
+        "cart_content_added_product_class_main_info_button_div": "flex justify-between items-end md:items-center md:w-full",
+        "cart_content_added_product_class_main_info_button_label_price_div": "flex flex-col gap-2",
+        "cart_content_product_name_classes": "text-mobile-subtitle font-medium",
+        "cart_content_product_quantity_classes": "text-mobile-body",
+        "cart_content_product_price_classes": "text-mobile-subtitle font-medium",
+        "cart_content_added_product_class_main_info_button_remove_button_div": "text-mobile-links font-semibold tracking-[0.025em] md:text-desktop-button",
+        "cart_item_remove_button": "text-brand-gray",
+        "cart_content_subtotal_div": "px-4 py-6 border-brand-black border-b md:p-10",
+        "cart_content_subtotal_div_content": "flex justify-between",
+        "cart_content_subtotal_div_content_label_classes": "text-mobile-subtitle font-medium",
+        "cart_content_subtotal_div_content_total_price_classes": "text-mobile-subtitle font-medium md:text-desktop-heading-5",
+        "cart_content_textarea_div": "px-4 py-6 border-brand-black border-b flex-grow md:p-10",
+        "cart_content_textarea_div_content": "h-full",
+        "cart_content_textarea_div_content_message_classes": "w-full border border-gray-300 text-mobile-body h-full overflow-y-auto p-2 outline-none",
+        "cart_content_delivery_message_div": "px-4 py-10 border-brand-black border-b md:p-10",
+        "cart_content_delivery_message_div_content": "text-black",
+        "cart_content_delivery_message_classes": "text-mobile-caption text-center",
+        "cart_content_checkout_button_div": "w-full font-medium",
+        "cart_content_checkout_button_classes": "block text-center text-mobile-button uppercase w-full h-full bg-brand-black text-white hover:bg-gray-800 transition-colors duration-200 px-6 pt-4 pb-[14px] tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em]"
+      }
     }
   },
   "order": [
     "header",
-    "navbar_6VQw7f"
+    "navbar_6VQw7f",
+    "cart_69hwiH"
   ]
 }
