@@ -136,49 +136,29 @@
   </div>
 </div>
 
-{% javascript %}
+<script>
 
-document.addEventListener('DOMContentLoaded', (event) => {
-  const state1 = document.getElementById('state1');
-  const state2 = document.getElementById('state2');
-  const state3 = document.getElementById('state3');
-  const planButtons = document.querySelectorAll('.plan-button');
-  const frequencyButtons = document.querySelectorAll('[data-frequency]');
-  const decrementButton = document.querySelector('.decrement');
-  const incrementButton = document.querySelector('.increment');
-  const quantityInput = document.querySelector('input[type="number"]');
+  document.addEventListener('DOMContentLoaded', (event) => {
+    
+    const decrementButton = document.querySelector('.decrement');
+    const incrementButton = document.querySelector('.increment');
+    const quantityInput = document.querySelector('input[type="number"]');
 
-  planButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      state1.style.display = 'none';
-      state2.style.display = 'block';
+    decrementButton.addEventListener('click', () => {
+      if (quantityInput.value > 1) {
+        quantityInput.value = parseInt(quantityInput.value) - 1;
+        // console.log(quantityInput.value);
+      }
+    });
+
+    incrementButton.addEventListener('click', () => {
+      if (quantityInput.value < 10) {
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+      }
     });
   });
 
-  frequencyButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      state2.style.display = 'none';
-      state3.style.display = 'block';
-    });
-  });
-
-  decrementButton.addEventListener('click', () => {
-    if (quantityInput.value > 1) {
-      quantityInput.value = parseInt(quantityInput.value) - 1;
-    }
-  });
-
-  incrementButton.addEventListener('click', () => {
-    if (quantityInput.value < 10) {
-      quantityInput.value = parseInt(quantityInput.value) + 1;
-    }
-  });
-});
-{% endjavascript %}
-
-{% stylesheet %}
-/* Add any custom styles here if needed */
-{% endstylesheet %}
+</script>
 
 {% schema %}
 {
