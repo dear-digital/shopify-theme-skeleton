@@ -28,28 +28,47 @@
       <div class="{{ section.settings.state_1__plans_classes }}">
         {% for block in section.blocks %}
           {% if block.type == 'plan' %}
-            <div class="{{ block.settings.plan_content_classes }}" {{ block.shopify_attributes }}>
-              {% if block.settings.plan_content_image != blank %}
-                {{ block.settings.plan_content_image | image_url: width: 300 | image_tag: class: block.settings.plan_content_image_classes, alt: block.settings.plan_content_image.alt | default: block.settings.plan_name }}
-              {% else %}
-                {{ 'product-1' | placeholder_svg_tag: class: block.settings.plan_content_image_classes }}
-              {% endif %}
-              <div class="{{ block.settings.plan_content__terms_classes }}">
-                <h4 class="{{ block.settings.term__header_classes }}">{{ block.settings.plan_name }}</h4>
-                <ul class="{{ block.settings.term__points_classes }}">
-                  {% for i in (1..5) %}
-                    {% assign point_key = 'point_' | append: i %}
-                    {% if block.settings[point_key] != blank %}
-                      <li>{{ block.settings[point_key] }}</li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
+            <div class="{{ block.settings.plan_content_classes }}" {{ block.shopify_attributes }}>     
+              <div class="{{ block.settings.plan_content__image_terms_classes}}">
+                <div class="{{ block.settings.plan_content__image_div_classes}}"> 
+
+                  {% if block.settings.plan_content__image != blank %}
+                    {{ block.settings.plan_content__image 
+                      | image_url: width: 500 
+                      | image_tag: class: block.settings.plan_content__image_classes, 
+                                  alt: block.settings.plan_content__image.alt | default: block.settings.plan_name 
+                    }}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: block.settings.plan_content__image_classes }}
+                  {% endif %}
+                </div>
+                
+                <div class="{{ block.settings.plan_content__terms_classes }}">
+                  <h4 class="{{ block.settings.term__header_classes }}">{{ block.settings.plan_name }}</h4>
+                  <ul class="{{ block.settings.term__points_classes }}">
+                    {% for i in (1..5) %}
+                      {% assign point_key = 'point_' | append: i %}
+                      {% if block.settings[point_key] != blank %}
+                        <li>{{ block.settings[point_key] }}</li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
               </div>
+              <button class="{{ block.settings.plan_content__select_button_classes}}">
+                {{ block.settings.select_plan_button_text }}
+              </button>
             </div>
           {% endif %}
         {% endfor %}
       </div>
     </div>
+
+    {% for block in section.blocks %}
+      {% if block.type == 'divider' %}
+        <div class="{{ block.settings.divider_classes }}" {{ block.shopify_attributes }}></div>
+      {% endif %}
+    {% endfor %}
 
     {% comment %} State 2 {% endcomment %}
     <div class="{{ section.settings.state_2_classes }}" id="state2">
@@ -72,6 +91,12 @@
       </div>
     </div>
 
+    {% for block in section.blocks %}
+      {% if block.type == 'divider' %}
+        <div class="{{ block.settings.divider_classes }}" {{ block.shopify_attributes }}></div>
+      {% endif %}
+    {% endfor %}
+
     {% comment %} State 3 {% endcomment %}
     <div class="{{ section.settings.state_3_classes }}" id="state3">
       <div class="{{ section.settings.state_3__main_info_classes }}">
@@ -88,6 +113,12 @@
         <button class="increment {{ section.settings.stepper_button_classes }}">+</button>
       </div>
     </div>
+
+    {% for block in section.blocks %}
+      {% if block.type == 'divider' %}
+        <div class="{{ block.settings.divider_classes }}" {{ block.shopify_attributes }}></div>
+      {% endif %}
+    {% endfor %}
 
     {% comment %} Checkout Button {% endcomment %}
     <div class="{{ section.settings.right_column__checkout_button_div }}">
@@ -317,7 +348,7 @@
       "settings": [
         {
           "type": "image_picker",
-          "id": "plan_content_image",
+          "id": "plan_content__image",
           "label": "Plan Image"
         },
         {
@@ -352,6 +383,16 @@
           "label": "Feature Point 5"
         },
         {
+          "type": "text",
+          "id": "select_plan_button_text",
+          "label": "Select Button Text",
+          "default": "Select"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind styling classes"
+        },
+        {
           "type": "textarea",
           "id": "plan_content_classes",
           "label": "Plan Content Classes",
@@ -359,9 +400,21 @@
         },
         {
           "type": "textarea",
-          "id": "plan_content_image_classes",
+          "id": "plan_content__image_terms_classes",
+          "label": "Plan Content Image + Terms Div",
+          "default": "text-black"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content__image_div_classes",
+          "label": "Plan Image Div Classes",
+          "default": "w-full md:w-1/2"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content__image_classes",
           "label": "Plan Image Classes",
-          "default": "w-full h-40 object-cover rounded-md"
+          "default": "w-full h-40 object-cover"
         },
         {
           "type": "textarea",
@@ -380,6 +433,24 @@
           "id": "term__points_classes",
           "label": "Term Points Classes",
           "default": "list-disc list-inside text-sm text-gray-600"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content__select_button_classes",
+          "label": "Select Button Classes",
+          "default": "inline-block w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "divider_classes",
+          "label": "Divider Styling Tailwind",
+          "default": "border-t border-gray-200"
         }
       ]
     },
@@ -400,9 +471,13 @@
           "default": "7"
         },
         {
+          "type": "header",
+          "content": "Tailwind styling classes"
+        },
+        {
           "type": "textarea",
           "id": "frequency_button_classes",
-          "label": "Frequency Button Classes",
+          "label": "Frequency Button Styling",
           "default": "px-4 py-2 border rounded-md hover:bg-gray-100 transition duration-300"
         }
       ]
