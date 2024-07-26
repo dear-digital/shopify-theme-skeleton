@@ -108,9 +108,15 @@
         </div>
       </div>
       <div class="{{ section.settings.state_3__input_steppers_classes }}">
-        <button class="decrement {{ section.settings.stepper_button_classes }}">-</button>
+        <button class="decrement {{ section.settings.stepper_button_classes }}">
+          {% render 'icon-decrement' class: section.settings.stepper_button_SVG %}
+        </button>
+
         <input type="number" value="1" min="1" max="10" class="{{ section.settings.stepper_input_classes }}">
-        <button class="increment {{ section.settings.stepper_button_classes }}">+</button>
+
+        <button class="increment {{ section.settings.stepper_button_classes }}">
+          {% render 'icon-increment' class: section.settings.stepper_button_SVG %}
+        </button>
       </div>
     </div>
 
@@ -129,6 +135,50 @@
     </div>
   </div>
 </div>
+
+{% javascript %}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const state1 = document.getElementById('state1');
+  const state2 = document.getElementById('state2');
+  const state3 = document.getElementById('state3');
+  const planButtons = document.querySelectorAll('.plan-button');
+  const frequencyButtons = document.querySelectorAll('[data-frequency]');
+  const decrementButton = document.querySelector('.decrement');
+  const incrementButton = document.querySelector('.increment');
+  const quantityInput = document.querySelector('input[type="number"]');
+
+  planButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      state1.style.display = 'none';
+      state2.style.display = 'block';
+    });
+  });
+
+  frequencyButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      state2.style.display = 'none';
+      state3.style.display = 'block';
+    });
+  });
+
+  decrementButton.addEventListener('click', () => {
+    if (quantityInput.value > 1) {
+      quantityInput.value = parseInt(quantityInput.value) - 1;
+    }
+  });
+
+  incrementButton.addEventListener('click', () => {
+    if (quantityInput.value < 10) {
+      quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
+  });
+});
+{% endjavascript %}
+
+{% stylesheet %}
+/* Add any custom styles here if needed */
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -314,19 +364,25 @@
       "type": "textarea",
       "id": "state_3__input_steppers_classes",
       "label": "State 3 Input Steppers Classes",
-      "default": "flex items-center border-brand-black border-y md:w-fit bg-red-200"
+      "default": "flex items-center border-brand-black border-y md:w-fit"
     },
     {
       "type": "textarea",
       "id": "stepper_button_classes",
       "label": "Stepper Button Classes",
-      "default": "px-3 py-1 h-[44px] bg-red-300 aspect-square border-brand-black border-x"
+      "default": "px-3 py-1 h-[44px] aspect-square border-brand-black border-x"
+    },
+    {
+      "type": "textarea",
+      "id": "stepper_button_SVG",
+      "label": "Stepper Button SVG Classes",
+      "default": "w-4 h-4"
     },
     {
       "type": "textarea",
       "id": "stepper_input_classes",
       "label": "Stepper Input Classes",
-      "default": "text-mobile-body w-full h-full text-center md:w-fit"
+      "default": "text-mobile-body w-full h-full text-center md:w-fit outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
     },
     {
       "type": "textarea",
@@ -550,46 +606,3 @@
 }
 {% endschema %}
 
-{% javascript %}
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  const state1 = document.getElementById('state1');
-  const state2 = document.getElementById('state2');
-  const state3 = document.getElementById('state3');
-  const planButtons = document.querySelectorAll('.plan-button');
-  const frequencyButtons = document.querySelectorAll('[data-frequency]');
-  const decrementButton = document.querySelector('.decrement');
-  const incrementButton = document.querySelector('.increment');
-  const quantityInput = document.querySelector('input[type="number"]');
-
-  planButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      state1.style.display = 'none';
-      state2.style.display = 'block';
-    });
-  });
-
-  frequencyButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      state2.style.display = 'none';
-      state3.style.display = 'block';
-    });
-  });
-
-  decrementButton.addEventListener('click', () => {
-    if (quantityInput.value > 1) {
-      quantityInput.value = parseInt(quantityInput.value) - 1;
-    }
-  });
-
-  incrementButton.addEventListener('click', () => {
-    if (quantityInput.value < 10) {
-      quantityInput.value = parseInt(quantityInput.value) + 1;
-    }
-  });
-});
-{% endjavascript %}
-
-{% stylesheet %}
-/* Add any custom styles here if needed */
-{% endstylesheet %}
