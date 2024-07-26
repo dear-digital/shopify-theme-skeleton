@@ -1,12 +1,16 @@
 <!-- Section: Demo tailwind Simple CTA -->
 <div class="simple-cta {{ section.settings.simple-cta }}">
-  <div class="simple-cta__content {{ section.settings.simple-cta__content }}">
-    <h2 class="simple-cta__title {{ section.settings.simple-cta__title }}">{{ section.settings.title }}</h2>
-    <p class="simple-cta__description {{ section.settings.simple-cta__description }}">
-      {{ section.settings.description }}
-    </p>
+  <div class="simple-cta-content {{ section.settings.simple-cta__content }}">
+    {%- if section.settings.title != blank -%}
+      <h2 class="simple-cta-title {{ section.settings.simple-cta__title }}">{{ section.settings.title }}</h2>
+    {%- endif -%}
+    {%- if section.settings.description != blank -%}
+      <p class="simple-cta-description {{ section.settings.simple-cta__description }}">
+        {{ section.settings.description }}
+      </p>
+    {%- endif -%}
     {% if section.settings.button_link != blank and section.settings.button_text != blank %}
-      <a href="{{ section.settings.button_link }}" class="simple-cta__button {{ section.settings.simple-cta__button }}">
+      <a href="{{ section.settings.button_link }}" class="simple-cta-button {{ section.settings.simple-cta__button }}">
         {{- section.settings.button_text -}}
       </a>
     {% endif %}

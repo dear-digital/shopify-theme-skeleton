@@ -1,95 +1,156 @@
 <div class="{{ section.settings.container }}">
   <div class="{{ section.settings.left_container }}">
     <div class="{{ section.settings.top_block }}">
-      <h2 class="{{ section.settings.heading }}">{{ section.settings.heading_text }}</h2>
-    
-      <div class="{{ section.settings.form_block }}"> 
-        <p class="{{ section.settings.subheading }}">{{ section.settings.subheading_text }}</p>
-        <div class="{{ section.settings.book_call_button_block }}">
-          <!-- Calendly link widget begin -->
+      {%- if section.settings.heading_text != blank -%}
+        <h2 class="{{ section.settings.heading }}">{{ section.settings.heading_text }}</h2>
+      {%- endif -%}
 
-          {% # theme-check-disable %}
-          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          {% # theme-check-enable %}
+      <div class="{{ section.settings.form_block }}">
+        {%- if section.settings.subheading_text != blank -%}
+          <p class="{{ section.settings.subheading }}">{{ section.settings.subheading_text }}</p>
+        {%- endif -%}
+        {%- if section.settings.button_text != blank -%}
+          <div class="{{ section.settings.book_call_button_block }}">
+            <!-- Calendly link widget begin -->
 
-          <a href="" class="{{ section.settings.submit_button }}" onclick="Calendly.initPopupWidget({url: '{{ section.settings.calendly_url }}'});return false;">{{ section.settings.button_text }}</a>
-          <!-- Calendly link widget end -->
-        </div>
+            {% # theme-check-disable %}
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+            {% # theme-check-enable %}
+
+            <a
+              href=""
+              class="{{ section.settings.submit_button }}"
+              onclick="Calendly.initPopupWidget({url: '{{ section.settings.calendly_url }}'});return false;"
+            >
+              {{- section.settings.button_text -}}
+            </a>
+            <!-- Calendly link widget end -->
+          </div>
+        {%- endif -%}
       </div>
-        
     </div>
     <div class="{{ section.settings.bottom_block }}">
       <div class="{{ section.settings.bottom_block_first_column }}">
-        <h3 class="{{ section.settings.info_heading }}">{{ section.settings.phone_heading }}</h3>
+        {%- if section.settings.phone_heading != blank -%}
+          <h3 class="{{ section.settings.info_heading }}">{{ section.settings.phone_heading }}</h3>
+        {%- endif -%}
         <div class="{{ section.settings.bottom_block_first_column_info_text_div }}">
           {%- assign svg_class = section.settings.bottom_block_first_column_info_text_icon_SVG -%}
-          <div class="{{ section.settings.bottom_block_first_column_info_text_icon_div }}">
-            <span> {% render 'icon-call' class: svg_class %} </span>
-            <div class="{{ section.settings.info_text }}">{{ section.settings.phone_1 }} </div>
-          </div>
-          <div class="{{ section.settings.bottom_block_first_column_info_text_icon_div }}">
-            {% render 'icon-call' class: svg_class %}
-            <p class="{{ section.settings.info_text }}">{{ section.settings.phone_2 }}</p>
-          </div>
+          {%- if section.settings.phone_1 != blank -%}
+            <div class="{{ section.settings.bottom_block_first_column_info_text_icon_div }}">
+              <span> {% render 'icon-call', class: svg_class %} </span>
+              <div class="{{ section.settings.info_text }}">{{ section.settings.phone_1 }}</div>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.phone_2 != blank -%}
+            <div class="{{ section.settings.bottom_block_first_column_info_text_icon_div }}">
+              {% render 'icon-call', class: svg_class %}
+              <p class="{{ section.settings.info_text }}">{{ section.settings.phone_2 }}</p>
+            </div>
+          {%- endif -%}
         </div>
       </div>
       <div class="{{ section.settings.bottom_block_second_column }}">
-        <h3 class="{{ section.settings.info_heading }}">{{ section.settings.address_heading }}</h3>
+        {%- if section.settings.address_heading != blank -%}
+          <h3 class="{{ section.settings.info_heading }}">{{ section.settings.address_heading }}</h3>
+        {%- endif -%}
         <div class="{{ section.settings.bottom_block_second_column_address_map_div }}">
           {%- assign map_svg_class = section.settings.bottom_block_second_column_SVG -%}
-          <div class="{{ section.settings.bottom_block_second_column_address_map_icon_div }}">
-            <p class="{{ section.settings.bottom_block_second_column_address_1 }}">{{ section.settings.address_1 }} </p>
-          </div>
-          
-          <div class="{{ section.settings.bottom_block_second_column_address_map_icon_div }}">
-            {% render 'icon-location' class: map_svg_class %}
-            <p class="{{ section.settings.bottom_block_second_column_address_2 }}">{{ section.settings.address_2 }}</p>
-          </div>
-        </div>      
+          {%- if section.settings.address_1 != blank -%}
+            <div class="{{ section.settings.bottom_block_second_column_address_map_icon_div }}">
+              <p class="{{ section.settings.bottom_block_second_column_address_1 }}">
+                {{ section.settings.address_1 }}
+              </p>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.address_2 != blank -%}
+            <div class="{{ section.settings.bottom_block_second_column_address_map_icon_div }}">
+              {% render 'icon-location', class: map_svg_class %}
+              <p class="{{ section.settings.bottom_block_second_column_address_2 }}">
+                {{ section.settings.address_2 }}
+              </p>
+            </div>
+          {%- endif -%}
+        </div>
       </div>
     </div>
   </div>
   <div class="{{ section.settings.right_container }}">
     <div class="{{ section.settings.image_container }}">
       {% if section.settings.image != blank %}
-        {{ section.settings.image | image_url: width: 1000 | image_tag:
-          loading: 'lazy',
-          width: section.settings.image.width,
-          height: section.settings.image.height,
-          class: section.settings.image_class
+        {{
+          section.settings.image
+          | image_url: width: 1000
+          | image_tag:
+            loading: 'lazy',
+            width: section.settings.image.width,
+            height: section.settings.image.height,
+            class: section.settings.image_class
         }}
       {% else %}
         {{ 'image' | placeholder_svg_tag: section.settings.placeholder_image_class }}
       {% endif %}
     </div>
     <div class="{{ section.settings.social_container }}">
-      <h3 class="{{ section.settings.social_heading_class }}">{{ section.settings.social_heading }}</h3>
+      {%- if section.settings.social_heading != blank -%}
+        <h3 class="{{ section.settings.social_heading_class }}">{{ section.settings.social_heading }}</h3>
+      {%- endif -%}
       <div class="{{ section.settings.social_icons }}">
         {%- assign svg_class = section.settings.social_icon_svg -%}
         {% if settings.social_instagram_link != blank %}
-          <a href="{{ settings.social_instagram_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Instagram">
-            {% render 'icon-social-instagram' class: svg_class  %}
+          <a
+            href="{{ settings.social_instagram_link }}"
+            class="{{ section.settings.social_icon }}"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          >
+            {% render 'icon-social-instagram', class: svg_class %}
           </a>
         {% endif %}
         {% if settings.social_pinterest_link != blank %}
-          <a href="{{ settings.social_pinterest_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Pinterest">
-            {% render 'icon-social-pinterest' class: svg_class %}
+          <a
+            href="{{ settings.social_pinterest_link }}"
+            class="{{ section.settings.social_icon }}"
+            target="_blank"
+            rel="noopener"
+            aria-label="Pinterest"
+          >
+            {% render 'icon-social-pinterest', class: svg_class %}
           </a>
         {% endif %}
         {% if settings.social_facebook_link != blank %}
-          <a href="{{ settings.social_facebook_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Facebook">
-            {% render 'icon-social-facebook' class: svg_class %}
+          <a
+            href="{{ settings.social_facebook_link }}"
+            class="{{ section.settings.social_icon }}"
+            target="_blank"
+            rel="noopener"
+            aria-label="Facebook"
+          >
+            {% render 'icon-social-facebook', class: svg_class %}
           </a>
         {% endif %}
         {% if settings.social_twitter_link != blank %}
-          <a href="{{ settings.social_twitter_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Twitter">
-            {% render 'icon-social-twitter' class: svg_class %}
+          <a
+            href="{{ settings.social_twitter_link }}"
+            class="{{ section.settings.social_icon }}"
+            target="_blank"
+            rel="noopener"
+            aria-label="Twitter"
+          >
+            {% render 'icon-social-twitter', class: svg_class %}
           </a>
         {% endif %}
         {% if settings.social_vimeo_link != blank %}
-          <a href="{{ settings.social_vimeo_link }}" class="{{ section.settings.social_icon }}" target="_blank" rel="noopener" aria-label="Vimeo">
-            {% render 'icon-social-vimeo' class: svg_class %}
+          <a
+            href="{{ settings.social_vimeo_link }}"
+            class="{{ section.settings.social_icon }}"
+            target="_blank"
+            rel="noopener"
+            aria-label="Vimeo"
+          >
+            {% render 'icon-social-vimeo', class: svg_class %}
           </a>
         {% endif %}
       </div>
@@ -210,7 +271,7 @@
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading Classes",
-      "default": "text-mobile-subtitle md:text-desktop-hero-caption font-medium capitalize",
+      "default": "text-mobile-subtitle md:text-desktop-hero-caption font-medium capitalize"
     },
     {
       "type": "textarea",
@@ -230,7 +291,7 @@
       "label": "Left Container Bottom Block Classes",
       "default": "flex flex-col md:flex-row md:h-1/2 flex-grow"
     },
-     {
+    {
       "type": "textarea",
       "id": "info_heading",
       "label": "Info Heading Classes for both columns",
