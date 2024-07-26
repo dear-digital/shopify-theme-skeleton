@@ -23,8 +23,8 @@
                 {% when 'product' %}
                 <div class="product-card {{ block.settings.product-card }}">
                   {% if block.settings.product %}
-                    {% assign product__image-styles = block.settings.product__image-styles %}
-                    {{ block.settings.product | image_url: width: image_url_width | image_tag: width: image_tag_width, class: product__image-styles }}
+                    {% assign product_image_styles = block.settings.product__image-styles %}
+                    {{ block.settings.product | image_url: width: image_url_width | image_tag: width: image_tag_width, class: product_image_styles }}
                       <p class="product__title {{ block.settings.product__title }}">{{ block.settings.product.title }}</p>
                       <p class="product__description {{ block.settings.product__description }}">{{ block.settings.product.description }}</p>
                       <p class="product__price {{ block.settings.product__price }}">Price: {{ block.settings.product.price | money }}</p>
@@ -49,8 +49,8 @@
                 </div>
                 {% when 'video' %}
                 <div class="video-card {{ block.settings.video-card }}">
-                  {% assign video_image-styles = block.settings.video_image-styles %}
-                  {{ block.settings.cover_image | image_url: width: image_url_width | image_tag: width: image_tag_width, class: video_image-styles }}
+                  {% assign video_image_styles = block.settings.video_image_styles %}
+                  {{ block.settings.cover_image | image_url: width: image_url_width | image_tag: width: image_tag_width, class: video_image_styles }}
                   <a href="{{ block.settings.video_url }}" class="collage-card__link"></a>
                 </div>
             {% endcase %}
