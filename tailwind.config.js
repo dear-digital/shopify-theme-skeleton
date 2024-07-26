@@ -107,6 +107,22 @@ module.exports = {
         md: "768px", // tablet
         lg: "1440px", // large screen
       },
+      animation: {
+        'infinite-slider': 'infiniteSlider 20s linear infinite',
+        fadeIn: "fadeIn 0.2s ease-in-out forwards",
+      },
+      keyframes: {
+        infiniteSlider: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': {
+            transform: 'translateX(calc(-250px * 5))',
+          },
+        },
+        fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 100 },
+        },
+      },  
     },
   },
 };

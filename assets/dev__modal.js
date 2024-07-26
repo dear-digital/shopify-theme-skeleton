@@ -12,13 +12,12 @@ function toggleModal(show) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  toggleModal(true); // Show modal on page load
-});
+  toggleModal(true)
+})
 
-// Close Modal when clicked outside the modal
 window.onclick = function (e) {
-  const modalContainer = document.querySelector('.modal-container');
+  const modalContainer = document.querySelector('.modal-container')
   if (e.target === modalContainer) {
-    toggleModal(false);
+    toggleModal(false)
   }
-};
+}

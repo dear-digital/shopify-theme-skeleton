@@ -3,7 +3,7 @@ function updateTimer() {
   const endDateString = endDateElement.getAttribute('data-end-date');
   const endDateTime = new Date(endDateString).getTime();
 
-  let x = setInterval(function () {
+  let x = setInterval(() => {
     const now = new Date().getTime();
     const distance = endDateTime - now;
 
@@ -25,6 +25,6 @@ function updateTimer() {
   }, 1000);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   updateTimer();
 });
