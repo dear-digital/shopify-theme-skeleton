@@ -95,13 +95,15 @@
                 </div>
               {% when 'description' %}
                 <div class="description__classes {{ section.settings.description__classes }}">
-                  <p class="description-text__classes {{ section.settings.description-text__classes }}">{{ product.description }}</p>
+                  <p class="description-text__classes {{ section.settings.description-text__classes }}">
+                    {{ product.description }}
+                  </p>
                 </div>
 
               {% when 'checkout_buttons' %}
                 <div class="checkout__classes {{ section.settings.checkout__classes }}">
-                  <form action="/cart/add" method="post">
-                    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                  <form action="/cart/add" method="post" id="product-form" novalidate="novalidate">
+                    <input type="hidden" name="id" id="variant-id" value="{{ selected_variant.id }}">
                     <button
                       type="submit"
                       name="add"
@@ -111,9 +113,9 @@
                       {% endif %}
                     >
                       {% if selected_variant.available == false %}
-                        {{ section.settings.sold-out_text }}
+                        {{ section.settings['sold-out_text'] }}
                       {% else %}
-                        {{ section.settings.add-to-cart_text }}
+                        {{ section.settings['add-to-cart_text'] }}
                       {% endif %}
                     </button>
                   </form>
@@ -126,7 +128,7 @@
       </div>
     {% else %}
       <div class="no-product__classes {{ section.settings.no-product__classes }}">
-        {{ section.settings.no-product_text }}
+        {{ section.settings['no-product_text'] }}
       </div>
     {% endif %}
   </div>
