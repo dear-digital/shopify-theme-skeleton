@@ -1,3 +1,5 @@
+<!-- navbar.liquid -->
+
 {% assign has_social_icons = false %}
 {% if settings.social_facebook_link != blank or
       settings.social_instagram_link != blank or
@@ -18,35 +20,55 @@
     <div class="navbar__container {{ section.settings.container_classes }}">
 
         <!-- Mobile and Laptop menu button -->
-        <div class="menu_button_container_classes {{ section.settings.menu_button_container_classes }}">
+        <div class="menu-button-container-classes {{ section.settings.menu_button_container_classes }}">
           <button id="menu-button" class="{{ section.settings.menu_button_svg_classes }}">
             <span id="hamburger-icon">{% render 'icon-hamburger' %}</span>
           </button>
         </div>
 
-        <!-- Cart button -->
-        <div class="cart_button_classes {{ section.settings.cart_button_classes }}">
-          <button id="cart-button" class="{{ section.settings.cart_button_svg_classes }}">
-            {% render 'icon-cart' %}
-          </button>
-        </div>
+        <!--  Mobile Cart Button -->
+        <!-- 'open-cart' is the data action in JS of cart.js to Open Cart -->
+        <a 
+          href="{{ routes.cart_url }}" 
+          class="{{ section.settings.mobile_cart_button_classes }}" 
+          {% if settings.cart_type == 'drawer' %} data-action="open-cart" {% endif %}
+        >
+            {% render 'icon-cart' class: section.settings.cart_button_svg_classes %}
+        </a>
 
         <!-- Desktop menu -->
         <div class="navbar__menu_desktop {{ section.settings.navbar__menu_desktop }}">
-        <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
-            {% for link in linklists[section.settings.menu].links %}
-            <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
-              <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
-            </a>
-            {% endfor %}
-        </div>
-        <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
-            {% for link in linklists[section.settings.right_menu].links %}
-            <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
+          <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
+              {% for link in linklists[section.settings.menu].links %}
+              <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
                 <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
-            </a>
-            {% endfor %}
-        </div>
+              </a>
+              {% endfor %}
+          </div>
+          <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
+              {% for link in linklists[section.settings.right_menu].links %}
+              
+              <a href="{{ link.url }}" 
+                class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
+                <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
+              </a>
+              {% endfor %}
+
+              {% comment %} Desktop Cart Button {% endcomment %}
+              <!-- 'open-cart' is the data action in JS of cart.js to Open Cart -->
+              <a 
+                href="{{ routes.cart_url }}" 
+                class="navbar__menu-item {{ section.settings.right_menu_item_classes }}" 
+                {% if settings.cart_type == 'drawer' %} data-action="open-cart" {% endif %}
+              >
+                  <span class="navbar__desktop_menu_item {{ section.settings.desktop_cart_button_classes }}">
+                    {% render 'icon-cart' class: section.settings.desktop_cart_button_link_SVG %}
+                    {{ section.settings.desktop_cart_button_label }}
+                  
+                  </span>
+              </a>
+            
+          </div>
       </div>
     </div>
   </nav>
@@ -58,20 +80,22 @@
         {% render 'icon-close' %}
       </button>
     </div>
-    <div class="off_canvas_menu_content_classes {{ section.settings.off_canvas_menu_content_classes }}">
+    <div class="off-canvas-menu-content-classes {{ section.settings.off_canvas_menu_content_classes }}">
       {% for link in linklists[section.settings.menu].links %}
         <a href="{{ link.url }}" class="{{ section.settings.off_canvas_menu_item_classes }}">
           {{ link.title }}
         </a>
       {% endfor %}
       {% for link in linklists[section.settings.right_menu].links %}
-        <a href="{{ link.url }}" class="{{ section.settings.off_canvas_menu_item_classes }}">
+        <a href="{{ link.url }}" 
+          class="{{ section.settings.off_canvas_menu_item_classes }}"
+        >
           {{ link.title }}
         </a>
       {% endfor %}
 
       <!-- More Menus -->
-      <div class="off_canvas_more_menu {{ section.settings.off_canvas_more_menu }}">
+      <div class="off-canvas-more-menu {{ section.settings.off_canvas_more_menu }}">
         {% for link in linklists[section.settings.more_menu].links %}
         <a href="{{ link.url }}" class="{{ section.settings.off_canvas_more_menu_item }}">
           {{ link.title }}
@@ -81,7 +105,7 @@
 
       <!-- Social Menu -->
         {% if section.settings.show_social_media and has_social_icons %}
-        <div class="off_canvas_menu_social {{ section.settings.off_canvas_menu_social }}">
+        <div class="off-canvas-menu-social {{ section.settings.off_canvas_menu_social }}">
           {%- assign svg_class = section.settings.off_canvas_menu_social_SVG -%}
           {% if settings.social_facebook_link != blank %}
             <a href="{{ settings.social_facebook_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Facebook">
@@ -134,40 +158,12 @@
     </div>
   </div>
 
-
   <!-- Overlay -->
   <div id="menu-overlay" class="menu_overlay_classes {{ section.settings.menu_overlay_classes }}"></div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var menuButton = document.getElementById('menu-button');
-    var closeMenuButton = document.getElementById('close-menu-button');
-    var offCanvasMenu = document.getElementById('off-canvas-menu');
-    var menuOverlay = document.getElementById('menu-overlay');
-    var hamburgerIcon = document.getElementById('hamburger-icon');
-    var body = document.body;
-
-    function toggleMenu() {
-      offCanvasMenu.classList.toggle('translate-x-0');
-      menuOverlay.classList.toggle('opacity-0');
-      menuOverlay.classList.toggle('pointer-events-none');
-      body.classList.toggle('overflow-hidden');
-    }
-
-    menuButton.addEventListener('click', toggleMenu);
-    closeMenuButton.addEventListener('click', toggleMenu);
-    menuOverlay.addEventListener('click', toggleMenu);
-
-    if (Shopify.designMode) {
-      document.addEventListener('shopify:section:load', function(event) {
-        if (event.target.contains(menuButton)) {
-          menuButton.addEventListener('click', toggleMenu);
-        }
-      });
-    }
-  });
-</script>
+<!-- Include Navbar JavaScript -->
+<script src="{{ 'navbar.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
@@ -188,6 +184,17 @@
       "id": "right_menu",
       "label": "Right Menu",
       "default": "main-menu"
+    },
+    {
+      "type": "textarea",
+      "id": "desktop_cart_button_label",
+      "label": "Button Label",
+      "default": "Cart"
+    },
+    {
+      "type": "url",
+      "id": "desktop_cart_button_link",
+      "label": "Button Link"
     },
     {
       "type": "link_list",
@@ -254,6 +261,18 @@
       "default": "transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"
     },
     {
+      "type": "textarea",
+      "id": "desktop_cart_button_classes",
+      "label": "Desktop Cart Button Link Classes",
+      "default": "transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 flex items-center justify-center  w-full h-full gap-2"
+    },
+    {
+      "type": "textarea",
+      "id": "desktop_cart_button_link_SVG",
+      "label": "Desktop Cart Button Link SVG",
+      "default": "w-5 h-5"
+    },
+    {
       "type": "header",
       "content": "Mobile & Laptop Tailwind Classes"
     },
@@ -271,8 +290,8 @@
     },
     {
       "type": "textarea",
-      "id": "cart_button_classes",
-      "label": "Cart button classes",
+      "id": "mobile_cart_button_classes",
+      "label": "Mobile Cart button classes",
       "default": "flex items-center justify-center aspect-square border-brand-black border-x lg:hidden"
     },
     {
@@ -358,10 +377,8 @@
       "default": "h-5 w-5"
     }
   ],
-  "presets": [
-    {
-      "name": "Navbar"
-    }
-  ]
+  "enabled_on": {
+    "groups": ["header"]
+  }
 }
 {% endschema %}

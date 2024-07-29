@@ -1,0 +1,141 @@
+<div class="section {{ section.settings.tw-why-choose-us }}">
+  {% if section.settings.main_heading != blank %}
+  <div class="section__left-col {{ section.settings.tw-section__left-col }}">
+    <h3 class="section__main-heading {{ section.settings.tw-section__main-heading }}">
+      {{ section.settings.main_heading }}
+    </h3>
+  </div>
+  {% endif %}
+  {% if section.blocks.size > 0 %}
+  <div class="section__right-col {{ section.settings.tw-section__right-col }}">
+    {% for block in section.blocks %}
+      {% if block.type == 'benefit-block' %}
+        {% if block.settings.text != blank or block.settings.title != blank %}
+        <div class="section__benefit-block__content {{ block.settings.tw-why-choose-us__benefit-block__content }}">
+          <h3 class="section__benefit-block__title {{ block.settings.tw-why-choose-us__benefit-block__title }}">
+            {{ block.settings.title }}
+          </h3>
+          <p class="section__benefit-block__text {{ block.settings.tw-why-choose-us__benefit-block__text }}">
+            {{ block.settings.text }}
+          </p>
+        </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Why Choose Us",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "Why Choose Us ?"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-why-choose-us",
+      "label": "Style tw-why-choose-us",
+      "default": "flex flex-col lg:flex-row border-[1px] border-brand-black"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-section__left-col",
+      "label": "Style tw-section__left-col",
+      "default": "py-10 px-4 gap-4 lg:w-1/2 md:p-20 lg:gap-4 border-b-[1px] border-brand-black"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-section__main-heading",
+      "label": "Style tw-section__main-heading",
+      "default": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg: sticky lg:top-[5.56vw]"
+    },
+    {
+      "type": "textarea",
+      "id": "tw-section__right-col",
+      "label": "Style tw-section__right-col",
+      "default": "lg:w-1/2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit-block",
+      "name": "Benefit block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Stylish bouquets by florists"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "The task of the organization, especially the strengthening and development of the structure allows us to assess the importance of the directions of progressive development."
+        },
+        {
+          "type": "textarea",
+          "id": "tw-why-choose-us__benefit-block__content",
+          "label": "Style tw-why-choose-us__benefit-block__content",
+          "default": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] lg:border-l-[1px] border-brand-black"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-why-choose-us__benefit-block__title",
+          "label": "Style tw-why-choose-us__benefit-block__title",
+          "default": "font-medium text-mobile-heading-3 md:text-desktop-heading-3"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-why-choose-us__benefit-block__text",
+          "label": "Style tw-why-choose-us__benefit-block__text",
+          "default": "font-regular mobile-body md:text-desktop-body"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Us",
+      "settings": {
+        "main_heading": "Why Choose Us ?"
+      },
+      "blocks": [
+        {
+          "type": "benefit-block",
+          "settings": {
+            "title": "Stylish bouquets by florists",
+            "text": "The task of the organization, especially the strengthening and development of the structure allows us to assess the importance of the directions of progressive development."
+          }
+        },
+        {
+          "type": "benefit-block",
+          "settings": {
+            "title": "Stylish bouquets by florists",
+            "text": "The task of the organization, especially the strengthening and development of the structure allows us to assess the importance of the directions of progressive development."
+          }
+        },
+        {
+          "type": "benefit-block",
+          "settings": {
+            "title": "Stylish bouquets by florists",
+            "text": "The task of the organization, especially the strengthening and development of the structure allows us to assess the importance of the directions of progressive development."
+          }
+        },
+        {
+          "type": "benefit-block",
+          "settings": {
+            "title": "Stylish bouquets by florists",
+            "text": "The task of the organization, especially the strengthening and development of the structure allows us to assess the importance of the directions of progressive development."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
