@@ -17,7 +17,7 @@
   <div class="product-details {{ section.settings.tw-product-details }} ">
     <div class="product-details-container {{ section.settings.tw-product-details-container }}">
       <p class="product-title {{ section.settings.tw-product-title }}">
-        {{ product.collections[0].title }} / {{ product.title }}
+        {{ product.collections[0].title }} / <span class="text-brand-gray">{{ product.title }}</span>
       </p>
       <div class="product-info {{ section.settings.tw-product-info }}">
         <h3 class="product-name {{ section.settings.tw-product-name }}">
@@ -89,7 +89,9 @@
             <div
               class="w-6 h-6 border-2 border-brand-black rounded-full flex items-center justify-center bg-brand-light-gray lg:w-[1.7vw] lg:h-[1.7vw]"
             >
-              <div class="w-3 h-3 bg-black rounded-full lg:w-[1.2vw] lg:h-[1.2vw] hidden"></div>
+              <div
+                class="w-3 h-3 bg-black rounded-full md:w-[2.8vw] md:h-[2.8vw] lg:w-[1.04vw] lg:h-[1.04vw] hidden"
+              ></div>
             </div>
           </div>
           One time purchase. Price $100
@@ -106,9 +108,11 @@
               class="price-input {{ section.settings.tw-price-input }}"
             >
             <div
-              class="w-6 h-6 border-2 border-brand-black rounded-full flex items-center justify-center lg:w-[1.7vw] lg:h-[1.7vw] bg-brand-light-gray"
+              class="w-6 h-6 border-2 border-brand-black rounded-full flex items-center justify-center bg-brand-light-gray lg:w-[1.7vw] lg:h-[1.7vw]"
             >
-              <div class="w-3 h-3 bg-black rounded-full lg:w-[1.2vw] lg:h-[1.2vw] hidden"></div>
+              <div
+                class="w-3 h-3 bg-black rounded-full md:w-[2.8vw] md:h-[2.8vw] lg:w-[1.04vw] lg:h-[1.04vw] hidden"
+              ></div>
             </div>
           </div>
           Subscribe now, and save 25% on this order.
@@ -126,11 +130,11 @@
 {% comment %} Carousel Template {% endcomment %}
 <template id="carousel-template">
   <div class="combination-products">
-    <button class="combination-prev" aria-label="Previous">&lt;</button>
+    <button class="combination-prev" aria-label="Previous">{% render 'icon-left-arrow' %}</button>
     <div class="carousel-container">
       <div class="carousel-track"></div>
     </div>
-    <button class="combination-next" aria-label="Next">&gt;</button>
+    <button class="combination-next rotate-180" aria-label="Next">{% render 'icon-left-arrow' %}</button>
   </div>
 </template>
 {% comment %} Carousel Template End {% endcomment %}
@@ -138,9 +142,13 @@
 {% comment %} Quantity Control Template {% endcomment %}
 <template id="quantity-controls-template">
   <div class="quantity-controls">
-    <button class="quantity-decrease quantity-button">-</button>
+    <button class="quantity-decrease quantity-button">
+      {% render 'icon-minus' %}
+    </button>
     <input type="number" min="1" value="1" class="quantity-input">
-    <button class="quantity-increase quantity-button">+</button>
+    <button class="quantity-increase quantity-button">
+      {% render 'icon-plus' %}
+    </button>
   </div>
 </template>
 {% comment %} Quantity Control Template End {% endcomment %}
@@ -253,6 +261,11 @@
         button.classList.add(...this.dataset.buttonClass.split(' '))
       );
       this.querySelector('.quantity-input').classList.add(...this.dataset.inputClass.split(' '));
+
+      // Apply classes to SVG icons
+      this.querySelectorAll('.quantity-button svg').forEach((svg) =>
+        svg.classList.add(...this.dataset.buttonClass.split(' '))
+      );
 
       this.quantityInput = this.querySelector('input[type="number"]');
       this.decreaseButton = this.querySelector('.quantity-decrease');
