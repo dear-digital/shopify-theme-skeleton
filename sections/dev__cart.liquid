@@ -27,11 +27,11 @@
               <tr class="table-row__classes {{ section.settings.table-row__classes }}">
                 <td class="table-image__classes {{ section.settings.table-image__classes }}">
                   <a href="{{ item.url }}">
-                    {% assign product_image__classes = section.settings.product-image__classes %}
+                    {% assign product_image_classes  = section.settings.product_image__classes %}
                     {% if item.image %}
-                      {{ item.image | image_url: width: '300' | image_tag: class: product_image__classes }}
+                      {{ item.image | image_url: width: '300' | image_tag: class: product_image_classes }}
                     {% else %}
-                      {{ 'product-1' | placeholder_svg_tag: product_image__classes }}
+                      {{ 'product-1' | placeholder_svg_tag: product_image_classes }}
                     {% endif %}
                   </a>
                 </td>
@@ -263,7 +263,7 @@
     {
       "type": "textarea",
       "label": "Product Image Classes",
-      "id": "product-image__classes",
+      "id": "product_image__classes",
       "default": "w-20 h-20 object-cover border"
     },
     {
