@@ -1,25 +1,21 @@
-document.addEventListener('DOMContentLoaded', function () {
-  var goTopBtn = document.querySelector('.back-to-top-classes');
+document.addEventListener('DOMContentLoaded', () => {
+  const goTopBtn = document.querySelector('.back-to-top-classes');
   if (!goTopBtn) return;
+  const coords = 300;
+  const scrollSpeed = 80;
+  
+  const trackScroll = () => {
+    goTopBtn.classList.toggle('show', window.pageYOffset > coords);
+  };
 
-  function trackScroll() {
-    var scrolled = window.pageYOffset;
-    var coords = 300;
-    if (scrolled > coords) {
-      goTopBtn.classList.add('show');
-    } else {
-      goTopBtn.classList.remove('show');
-    }
-  }
-
-  function backToTop() {
+  const backToTop = () => {
     if (window.pageYOffset > 0) {
-      window.scrollBy(0, -80);
+      window.scrollBy(0, -scrollSpeed);
       requestAnimationFrame(backToTop);
     } else {
       goTopBtn.classList.remove('show');
     }
-  }
+  };
 
   window.addEventListener('scroll', trackScroll);
   goTopBtn.addEventListener('click', backToTop);

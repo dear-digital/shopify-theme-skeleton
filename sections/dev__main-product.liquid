@@ -103,7 +103,7 @@
               {% when 'checkout_buttons' %}
                 <div class="checkout__classes {{ section.settings.checkout__classes }}">
                   <form action="/cart/add" method="post" id="product-form" novalidate="novalidate">
-                    <input type="hidden" name="id" id="variant-id" value="{{ selected_variant.id }}">
+                    <input type="hidden" name="id" id="variant-id-{{ section.id }}" value="{{ selected_variant.id }}">
                     <button
                       type="submit"
                       name="add"

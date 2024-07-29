@@ -1,60 +1,61 @@
-class VariantSelector extends HTMLElement {
-  constructor() {
-    super();
-    this.addEventListener('change', this.onVariantChange.bind(this));
-  }
-
-  onVariantChange() {
-    this.getSelectedOptions();
-    this.getSelectedVariant();
-
-    if (this.currentVariant) {
-      this.updateURL();
-      this.updateFormID();
-      this.updatePrice();
+if (!customElements.get('variant-selector')) {
+  class VariantSelector extends HTMLElement {
+    constructor() {
+      super();
+      this.addEventListener('change', this.onVariantChange.bind(this));
     }
-  }
 
-  getSelectedOptions() {
-    this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
-  }
+    onVariantChange() {
+      this.getSelectedOptions();
+      this.getSelectedVariant();
 
-  getVariantJSON() {
-    this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
-    return this.variantData;
-  }
-
-  getSelectedVariant() {
-    this.currentVariant = this.getVariantJSON().find((variant) => {
-      return variant.options.every((option, index) => this.options[index] === option);
-    });
-  }
-
-  updateURL() {
-    if (!this.currentVariant) return;
-
-    window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
-  }
-
-  updateFormID() {
-    const formInput = document.querySelector('#variant-id');
-    if (formInput) {
-      formInput.value = this.currentVariant.id;
+      if (this.currentVariant) {
+        this.updateURL();
+        this.updateFormID();
+        this.updatePrice();
+      }
     }
-  }
 
-  updatePrice() {
-    fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
-      .then((response) => response.text())
-      .then((responseText) => {
-        const id = `price-${this.dataset.section}`;
-        const html = new DOMParser().parseFromString(responseText, 'text/html');
-        const oldPrice = document.getElementById(id);
-        const newPrice = html.getElementById(id);
+    getSelectedOptions() {
+      this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+    }
 
-        if (oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
+    getVariantJSON() {
+      this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+      return this.variantData;
+    }
+
+    getSelectedVariant() {
+      this.currentVariant = this.getVariantJSON().find((variant) => {
+        return variant.options.every((option, index) => this.options[index] === option);
       });
-  }
-}
+    }
 
-customElements.define('variant-selector', VariantSelector);
+    updateURL() {
+      if (!this.currentVariant) return;
+      window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
+    }
+
+    updateFormID() {
+      const formInput = document.querySelector('#variant-id-' + this.dataset.section); 
+      if (formInput) {
+        formInput.value = this.currentVariant.id;
+      }
+    }
+
+    updatePrice() {
+      fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
+        .then((response) => response.text())
+        .then((responseText) => {
+          const id = `price-${this.dataset.section}`;
+          const html = new DOMParser().parseFromString(responseText, 'text/html');
+          const oldPrice = document.getElementById(id);
+          const newPrice = html.getElementById(id);
+
+          if (oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
+        });
+    }
+  }
+
+  customElements.define('variant-selector', VariantSelector);
+}

@@ -1,18 +1,26 @@
 let typingTimer;
 const typingDelay = 1200;
 
-function closeSearch() {
-  document.querySelector('.container').style.display = 'none';
-  document.getElementById('overlay').style.display = 'none';
-}
+const closeSearch = () => {
+  const container = document.querySelector('.container');
+  const overlay = document.getElementById('overlay'); 
+  if (container) container.style.display = 'none';
+  if (overlay) overlay.style.display = 'none';
+};
 
-function handleSearchInput() {
+const handleSearchInput = () => {
   clearTimeout(typingTimer);
   typingTimer = setTimeout(performSearch, typingDelay);
-}
+};
 
-function performSearch() {
-  document.querySelector('form').submit();
-}
+const performSearch = () => {
+  const form = document.querySelector('form');
+  if (form) form.submit();
+};
 
-document.getElementById('searchInput').addEventListener('input', handleSearchInput);
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', handleSearchInput);
+  }
+});
