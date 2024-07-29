@@ -21,6 +21,8 @@
 
           {% for block in section.blocks %}
             {% case block.type %}
+              {%- when '@app' -%}
+                {% render block %}
               {% when 'vendor' %}
                 <div class="vendor__classes {{ section.settings.vendor__classes }}">
                   <span class="vendor-text__classes {{ section.settings.vendor-text__classes }}">
@@ -424,6 +426,9 @@
     }
   ],
   "blocks": [
+    {
+      "type": "@app"
+    },
     {
       "type": "vendor",
       "name": "Vendor",
