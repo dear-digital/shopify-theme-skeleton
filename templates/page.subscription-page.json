@@ -104,31 +104,31 @@
         "tw-section__right-col": "lg:w-1\/2"
       }
     },
-    "subscription_plan_selection_bamYmJ": {
+    "subscription_plan_selection_mfrrRr": {
       "type": "subscription-plan-selection",
       "blocks": {
-        "plan_i9nbnU": {
+        "plan_X4fmBx": {
           "type": "plan",
           "settings": {
-            "plan_content__image": "shopify:\/\/shop_images\/bouquet_1.png",
+            "plan_content__image": "shopify:\/\/shop_images\/RusticCharm.png",
             "plan_name": "Classic",
-            "point_1": "Price $45",
+            "point_1": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             "point_2": "Free Delivery",
             "point_3": "Best for a budget",
             "point_4": "Glass vase with first delivery",
-            "point_5": "Save up to 25%",
+            "point_5": "",
             "select_plan_button_text": "Select",
             "plan_content_classes": "border-brand-light-gray border border-b-0",
-            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:h-[225px]",
-            "plan_content__image_div_classes": "w-full md:w-1\/2 md:border-brand-light-gray border-b md:border-r md:border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:min-h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 h-[200px] md:h-[225px] md:border-brand-light-gray border-b md:border-r md:border-r-0 md:border-b-0",
             "plan_content__image_classes": "w-full object-cover h-full",
-            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2",
+            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2 md:border-brand-light-gray md:border-l",
             "term__header_classes": "text-mobile-subtitle font-medium",
             "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
             "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
           }
         },
-        "plan_pVww4F": {
+        "plan_MiNh7q": {
           "type": "plan",
           "settings": {
             "plan_content__image": "shopify:\/\/shop_images\/bouquet_2.png",
@@ -137,46 +137,46 @@
             "point_2": "Free Delivery",
             "point_3": "Best seasonal selections",
             "point_4": "Glass vase with first delivery",
-            "point_5": "",
+            "point_5": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             "select_plan_button_text": "Select",
             "plan_content_classes": "border-brand-light-gray border border-b-0",
-            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:h-[225px]",
-            "plan_content__image_div_classes": "w-full md:w-1\/2 md:border-brand-light-gray border-b md:border-r md:border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:min-h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 h-[200px] md:h-[225px] md:border-brand-light-gray border-b md:border-r md:border-r-0 md:border-b-0",
             "plan_content__image_classes": "w-full object-cover h-full",
-            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2",
+            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2 md:border-brand-light-gray md:border-l",
             "term__header_classes": "text-mobile-subtitle font-medium",
             "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
             "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
           }
         },
-        "plan_C79h4p": {
+        "plan_7YVpGj": {
           "type": "plan",
           "settings": {
             "plan_content__image": "shopify:\/\/shop_images\/bouquet_3.png",
             "plan_name": "Luxe",
             "point_1": "Price $95",
             "point_2": "Free Delivery",
-            "point_3": "Premium arrangement",
-            "point_4": "Premium vase with first delivery",
+            "point_3": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "point_4": "It has survived not only five centuries",
             "point_5": "",
             "select_plan_button_text": "Select",
             "plan_content_classes": "border-brand-light-gray border border-b-0",
-            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:h-[225px]",
-            "plan_content__image_div_classes": "w-full md:w-1\/2 md:border-brand-light-gray border-b md:border-r md:border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:min-h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 h-[200px] md:h-[225px] md:border-brand-light-gray border-b md:border-r md:border-r-0 md:border-b-0",
             "plan_content__image_classes": "w-full object-cover h-full",
-            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2",
+            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2 md:border-brand-light-gray md:border-l",
             "term__header_classes": "text-mobile-subtitle font-medium",
             "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
             "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
           }
         },
-        "divider_qQRETR": {
+        "divider_UGhxCe": {
           "type": "divider",
           "settings": {
             "divider_classes": "border-t border-brand-light-gray"
           }
         },
-        "frequency_fDabKb": {
+        "frequency_FWm47A": {
           "type": "frequency",
           "settings": {
             "frequency_label": "Weekly",
@@ -184,7 +184,7 @@
             "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
           }
         },
-        "frequency_4h7ex4": {
+        "frequency_fF97QB": {
           "type": "frequency",
           "settings": {
             "frequency_label": "Bi-Weekly",
@@ -192,7 +192,7 @@
             "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
           }
         },
-        "frequency_P3bn7e": {
+        "frequency_yreiDT": {
           "type": "frequency",
           "settings": {
             "frequency_label": "Monthly",
@@ -202,13 +202,13 @@
         }
       },
       "block_order": [
-        "plan_i9nbnU",
-        "plan_pVww4F",
-        "plan_C79h4p",
-        "divider_qQRETR",
-        "frequency_fDabKb",
-        "frequency_4h7ex4",
-        "frequency_P3bn7e"
+        "plan_X4fmBx",
+        "plan_MiNh7q",
+        "plan_7YVpGj",
+        "divider_UGhxCe",
+        "frequency_FWm47A",
+        "frequency_fF97QB",
+        "frequency_yreiDT"
       ],
       "settings": {
         "left_column_image": "shopify:\/\/shop_images\/plan_left_colum_new.png",
@@ -217,12 +217,12 @@
         "state_1__main_info_div__paragraph": "<p>Enjoy free shipping on every order and save up to 30%.<\/p><p>Every bouquet we deliver is carefully curated to ensure it arrives fresh and stunning. To modify, pause, or cancel your subscription, simply log in to your account dashboard. You're in complete control of your flower delivery experience.<\/p>",
         "state_2__main_info_header": "How often do you want flowers delivered?",
         "state_2__main_info_paragraph": "<p>Select the delivery frequency<\/p>",
-        "state_3__main_info_header": "How many deliveries would you like ? read",
+        "state_3__main_info_header": "How many deliveries would you like ?",
         "state_3__main_info_paragraph": "<p>Pay once and do not worry about flowers, our bouquets will be beautiful and on time, as many times as you need.<\/p>",
         "right_column__checkout_button_label": "Checkout",
         "right_column__checkout_button_link": "",
         "subscription_plan_selection__container": "flex flex-col lg:flex-row-reverse lg:border-brand-black lg:border-b",
-        "left_column_classes": "w-full lg:w-1\/2 h-[420px] md:h-[500px] lg:h-[100vh] lg:sticky lg:top-0 lg:border-brand-black lg:border-l",
+        "left_column_classes": "w-full lg:w-1\/2 h-[420px] md:h-[500px] lg:h-[70vh] lg:sticky lg:top-0 lg:border-brand-black lg:border-l",
         "left_column_image_classes": "w-full h-full object-cover",
         "right_column_classes": "w-full lg:w-1\/2 px-4 py-10 space-y-10 border-brand-black md:px-10 md:py-20 border-brand-black border-t lg:border-t-0",
         "state_1_classes": "space-y-6",
@@ -371,7 +371,7 @@
   "order": [
     "subscription_main_section_iKXFGR",
     "dev_why_choose_us_PLNqyE",
-    "subscription_plan_selection_bamYmJ",
+    "subscription_plan_selection_mfrrRr",
     "subscription_faq_section_3RjngG"
   ]
 }
