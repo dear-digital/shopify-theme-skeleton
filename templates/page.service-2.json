@@ -19,7 +19,7 @@
         "itbo__container_text_content_heading_paragraph_div_header_classes": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
         "itbo__container_text_content_heading_paragraph_div_para_classes": "text-mobile-body text-white md:text-desktop-hero-caption",
         "itbo__container_button_div": "flex items-start justify-center md:inline-block",
-        "itbo__container_button_classes": "text-center text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-brand-black pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
+        "itbo__container_button_classes": "text-center text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-white pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
       }
     }
   },
