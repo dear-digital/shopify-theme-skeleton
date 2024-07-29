@@ -48,9 +48,9 @@
         "right_column__button_label": "Explore Plans",
         "right_column__button_link": "",
         "subscription_main_section": "flex flex-col lg:flex-row lg:h-[720px]",
-        "subscription_main_section__image": "w-full lg:w-1\/2 h-[420px] md:h-[500px ] lg:h-full border-brand-black lg:border-r",
+        "subscription_main_section__image": "w-full lg:w-1\/2 h-[420px] md:h-[500px ] lg:h-full",
         "subscription_main_section__image_classes": "w-full h-full object-cover",
-        "subscription_main_section__right_column": "px-4 py-10 flex flex-col gap-12 lg:w-1\/2 md:p-20 lg:h-full lg:justify-center",
+        "subscription_main_section__right_column": "px-4 py-10 flex flex-col gap-12 lg:w-1\/2 md:p-20 lg:h-full lg:justify-center border-brand-black lg:border-l",
         "right_column__content_div": "flex flex-col gap-4 lg:gap-6",
         "content_div__header_classes": "text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
         "content_div__content": "space-y-6",
@@ -65,7 +65,7 @@
           "settings": {
             "title": "Choose a plan",
             "text": "Select the subscription plan that suits you best from our three bouquet designs: classic, seasonal, and deluxe. Each plan comes with a designer vase, free delivery, and a discount of up to 30%. Our seasonal and deluxe plans also include a luxurious scented candle to enhance the ambiance.",
-            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] border-brand-black",
+            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] border-brand-black lg:border-l",
             "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
             "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
           }
@@ -75,7 +75,7 @@
           "settings": {
             "title": "Frequency and Duration",
             "text": "Choose delivery frequency: once a week, every two weeks, or once a month. Then, select your subscription duration from 3 to 12 months. Enjoy savings with a longer subscription. We understand that every customer has different needs, and we aim to provide flexible subscription options that cater to your specific preferences.",
-            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px]  border-brand-black",
+            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px]  border-brand-black lg:border-l",
             "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
             "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
           }
@@ -85,7 +85,7 @@
           "settings": {
             "title": "Pay once",
             "text": "After entering your contact and delivery information and paying for your subscription, you can sit back and relax, knowing that you have secured a regular supply of fresh, stunning flowers for yourself or your loved ones",
-            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-brand-black",
+            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-brand-black lg:border-l",
             "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
             "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
           }
@@ -99,7 +99,7 @@
       "settings": {
         "main_heading": "How does it work?",
         "tw-why-choose-us": "flex flex-col lg:flex-row border-[1px] border-brand-black",
-        "tw-section__left-col": "py-10 px-4 gap-4 lg:w-1\/2 md:p-20 lg:gap-4 border-b-[1px] border-brand-black lg:border-b-0 lg:border-r",
+        "tw-section__left-col": "py-10 px-4 gap-4 lg:w-1\/2 md:p-20 lg:gap-4 border-b-[1px] border-brand-black lg:border-b-0",
         "tw-section__main-heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg: sticky lg:top-[5.56vw]",
         "tw-section__right-col": "lg:w-1\/2"
       }
@@ -221,10 +221,10 @@
         "state_3__main_info_paragraph": "<p>Pay once and do not worry about flowers, our bouquets will be beautiful and on time, as many times as you need.<\/p>",
         "right_column__checkout_button_label": "Checkout",
         "right_column__checkout_button_link": "",
-        "subscription_plan_selection__container": "flex flex-col lg:flex-row-reverse lg:border-brand-black lg:border-b",
-        "left_column_classes": "w-full lg:w-1\/2 h-[420px] md:h-[500px] lg:h-[70vh] lg:sticky lg:top-0",
-        "left_column_image_classes": "w-full h-full object-cover",
-        "right_column_classes": "w-full lg:w-1\/2 px-4 py-10 space-y-10 border-brand-black md:px-10 md:py-20 border-brand-black border-t lg:border-t-0 lg:border-r",
+        "subscription_plan_selection__container": "flex flex-col lg:flex-row-reverse lg:border-brand-black lg:border-b lg:min-h-screen",
+        "left_column_classes": "w-full lg:w-1\/2 h-[420px] md:h-[500px] lg:h-auto border-brand-black lg:border-l",
+        "left_column_image_classes": "w-full h-full object-cover lg:h-[70vh] lg:sticky lg:top-0",
+        "right_column_classes": "w-full lg:w-1\/2 px-4 py-10 space-y-10 border-brand-black md:px-10 md:py-20 border-brand-black border-t lg:border-t-0",
         "state_1_classes": "space-y-6",
         "state_1__sub_header_classes": "text-mobile-caption-small font-medium uppercase md:text-mobile-caption",
         "state_1__main_info_div_classes": "space-y-4",
