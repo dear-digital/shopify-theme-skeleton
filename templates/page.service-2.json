@@ -1,29 +1,32 @@
 {
   "sections": {
-    "image_text_button_overlay_3RNBx6": {
-      "type": "image-text-button-overlay",
+    "dev_service_JxHTef": {
+      "type": "dev__service",
       "settings": {
-        "itbo_background_image": "shopify:\/\/shop_images\/438441980_401917486106086_8299613698005126307_n_9bf7b180-2dc3-4014-bcea-0d51bd2550fd.jpg",
-        "itbo__container_text_content_small_header": "Service",
-        "itbo__container_text_content_heading_paragraph_div_header": "Wedding & Event Decor",
-        "itbo__container_text_content_heading_paragraph_div_para": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
-        "itbo__container_button_label": "Inquire Now",
-        "itbo__container_button_link": "",
-        "itbo__container": "relative h-[416px] md:h-[500px] lg:h-[720px] flex items-center justify-center",
-        "itbo__container_image_classes": "absolute inset-0 w-full h-full object-cover",
-        "itbo__container_overlay": "absolute inset-0 bg-black bg-opacity-50",
-        "itbo__container_content": "relative z-10 flex flex-col gap-16 py-10 px-4 md:p-20 md:items-center",
-        "itbo__container_text_content": "flex flex-col gap-6 text-center",
-        "itbo__container_text_content_small_header_classes": "text-mobile-caption-small md:text-mobile-caption uppercase text-white font-medium",
-        "itbo__container_text_content_heading_paragraph_div": "flex flex-col gap-4",
-        "itbo__container_text_content_heading_paragraph_div_header_classes": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
-        "itbo__container_text_content_heading_paragraph_div_para_classes": "text-mobile-body text-white md:text-desktop-hero-caption",
-        "itbo__container_button_div": "flex items-start justify-center md:inline-block",
-        "itbo__container_button_classes": "text-center text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-white pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
+        "our_service_title": "Our Service",
+        "title": "SERVICE",
+        "heading": "Flower Subscriptions",
+        "paragraph": "Experience the convenience and savings of regular flower deliveries with our flexible subscription service - up to 30% more profitable than one-time purchases.",
+        "button_link": "",
+        "button_text": "SUBSCRIBE NOW",
+        "tw-our-service": "py-10 px-4 md:p-20 md:text-center lg:py-20 lg:px-2.5 border-[1px] border-brand-black",
+        "tw-our-service__title": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2",
+        "tw-service": "lg:flex lg:justify-center lg:items-center border-b-[1px] border-x-[1px] border-brand-black",
+        "tw-service__left-col": "lg:w-1\/2",
+        "tw-service__image": "w-full object-cover object-center md:aspect-[1.536] lg:aspect-square border-b-[1px] lg:border-r-[1px] lg:border-b-0 border-brand-black",
+        "tw-service__right-col": "px-4 py-10 text-center md:p-20 lg:w-1\/2",
+        "tw-service__content": "flex flex-col gap-16",
+        "tw-service__text-content": "flex flex-col gap-6",
+        "tw-service__title": "font-medium text-mobile-overline md:text-desktop-overline",
+        "tw-service__heading-paragraph": "flex flex-col gap-4",
+        "tw-service__heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2",
+        "tw-service__paragraph": "font-regular text-mobile-body md:text-mobile-subtitle md:font-medium",
+        "tw-service__button": "py-4 px-6 border-[1px] border-brand-black md:py-0 md:px-0 md:border-0",
+        "tw-service__link-button": "md:py-4 md:px-6 md:border-[1px] border-brand-black font-medium text-mobile-button md:text-desktop-button"
       }
     }
   },
   "order": [
-    "image_text_button_overlay_3RNBx6"
+    "dev_service_JxHTef"
   ]
 }
