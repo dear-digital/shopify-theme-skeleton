@@ -21,6 +21,8 @@
 
           {% for block in section.blocks %}
             {% case block.type %}
+              {%- when '@app' -%}
+                {% render block %}
               {% when 'vendor' %}
                 <div class="vendor__classes {{ section.settings.vendor__classes }}">
                   <span class="vendor-text__classes {{ section.settings.vendor-text__classes }}">
@@ -95,13 +97,15 @@
                 </div>
               {% when 'description' %}
                 <div class="description__classes {{ section.settings.description__classes }}">
-                  <p class="description-text__classes {{ section.settings.description-text__classes }}">{{ product.description }}</p>
+                  <p class="description-text__classes {{ section.settings.description-text__classes }}">
+                    {{ product.description }}
+                  </p>
                 </div>
 
               {% when 'checkout_buttons' %}
                 <div class="checkout__classes {{ section.settings.checkout__classes }}">
-                  <form action="/cart/add" method="post">
-                    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                  <form action="/cart/add" method="post" id="product-form" novalidate="novalidate">
+                    <input type="hidden" name="id" id="variant-id-{{ section.id }}" value="{{ selected_variant.id }}">
                     <button
                       type="submit"
                       name="add"
@@ -111,9 +115,9 @@
                       {% endif %}
                     >
                       {% if selected_variant.available == false %}
-                        {{ section.settings.sold-out_text }}
+                        {{ section.settings['sold-out_text'] }}
                       {% else %}
-                        {{ section.settings.add-to-cart_text }}
+                        {{ section.settings['add-to-cart_text'] }}
                       {% endif %}
                     </button>
                   </form>
@@ -126,81 +130,66 @@
       </div>
     {% else %}
       <div class="no-product__classes {{ section.settings.no-product__classes }}">
-        {{ section.settings.no-product_text }}
+        {{ section.settings['no-product_text'] }}
       </div>
     {% endif %}
   </div>
 </div>
 
-<script>
-  class VariantSelector extends HTMLElement {
-    constructor() {
-      super();
-      this.addEventListener('change', this.onVariantChange);
-    }
+<script src="{{ 'dev__product.js' | asset_url }}" defer></script>
 
-    onVariantChange() {
-      this.getSelectedOptions();
-      this.getSelectedVariant();
 
-      if (this.currentVariant) {
-        this.updateURL();
-        this.updateFormID();
-        this.updatePrice();
-      }
-    }
+{%- liquid
+  if product.selected_or_first_available_variant.featured_media
+    assign seo_media = product.selected_or_first_available_variant.featured_media
+  else
+    assign seo_media = product.featured_media
+  endif
+-%}
 
-    getSelectedOptions() {
-      this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
-      console.log(this.options);
-    }
-
-    getVariantJSON() {
-      this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
-      return this.variantData;
-    }
-
-    getSelectedVariant() {
-      this.currentVariant = this.getVariantJSON().find((variant) => {
-        const findings = !variant.options
-          .map((option, index) => {
-            return this.options[index] === option;
-          })
-          .includes(false);
-
-        if (findings) return variant;
-      });
-
-      console.log(this.currentVariant);
-    }
-
-    updateURL() {
-      if (!this.currentVariant) return;
-
-      window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
-    }
-
-    updateFormID() {
-      const form_input = document.querySelector('#product-form').querySelector('input[name="id"]');
-      form_input.value = this.currentVariant.id;
-    }
-
-    updatePrice() {
-      fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
-        .then((response) => response.text())
-        .then((responseText) => {
-          const id = `price-${this.dataset.section}`;
-          const html = new DOMParser().parseFromString(responseText, 'text/html');
-
-          const oldPrice = document.getElementById(id);
-          const newPrice = html.getElementById(id);
-
-          if (oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
-        });
-    }
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "url": {{ request.origin | append: product.url | json }},
+    {% if seo_media -%}
+      "image": [
+        {{ seo_media | image_url: width: 1920 | prepend: "https:" | json }}
+      ],
+    {%- endif %}
+    "description": {{ product.description | strip_html | json }},
+    {% if product.selected_or_first_available_variant.sku != blank -%}
+      "sku": {{ product.selected_or_first_available_variant.sku | json }},
+    {%- endif %}
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | json }}
+    },
+    "offers": [
+      {%- for variant in product.variants -%}
+        {
+          "@type" : "Offer",
+          {%- if variant.sku != blank -%}
+            "sku": {{ variant.sku | json }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 12 -%}
+            "gtin12": {{ variant.barcode }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 13 -%}
+            "gtin13": {{ variant.barcode }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 14 -%}
+            "gtin14": {{ variant.barcode }},
+          {%- endif -%}
+          "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency" : {{ cart.currency.iso_code | json }},
+          "url" : {{ request.origin | append: variant.url | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
   }
-
-  customElements.define('variant-selector', VariantSelector);
 </script>
 
 {% schema %}
@@ -370,6 +359,9 @@
     }
   ],
   "blocks": [
+    {
+      "type": "@app"
+    },
     {
       "type": "vendor",
       "name": "Vendor",
