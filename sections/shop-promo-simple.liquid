@@ -1,0 +1,101 @@
+<!-- shop-promo-simple.liquid -->
+
+<div class="{{ section.settings.shop-promo }}">
+    <div class="{{ section.settings.shop-promo__content }}">
+        {%- if section.settings.title != blank -%}
+        <h2 class="{{ section.settings.shop-promo__title }}">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+        <div class="{{ section.settings.shop-promo__description }}">
+            {{ section.settings.description }}
+        </div>
+        {%- endif -%}
+    </div>
+    {% if section.settings.button_text != blank %}
+    {%- assign svg_classes = section.settings.shop-promo__button_SVG -%}
+    <a 
+        href="{{ section.settings.button_link }}" 
+        class="{{ section.settings.shop-promo__button }}"
+    >
+        {% render 'icon-call-filled' class: svg_classes %}
+        {{- section.settings.button_text -}}
+        {% render 'icon-right-arrow' class: svg_classes %}
+    </a>
+    {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Shop Promo Simple",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Discover Our Beautiful Bouquets"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Explore our collection of exquisite bouquets and surprise your loved ones with the perfect gift. Click the button below to start shopping.</p>"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop now"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind styling classes"
+    },
+    {
+      "type": "textarea",
+      "id": "shop-promo",
+      "label": "Style Shop Promo Container",
+      "default": "flex flex-col gap-8 px-4 py-10 border-brand-black border-y text-center items-center md:p-20 md:gap-10 "
+    },
+    {
+      "type": "textarea",
+      "id": "shop-promo__content",
+      "label": "Style Shop Promo Content",
+      "default": " space-y-4"
+    },
+    {
+      "type": "textarea",
+      "id": "shop-promo__title",
+      "label": "Style Shop Promo Title",
+      "default": "text-mobile-heading-2 font-semibold md:text-desktop-heading-2"
+    },
+    {
+      "type": "textarea",
+      "id": "shop-promo__description",
+      "label": "Style Shop Promo Description",
+      "default": "text-mobile-subtitle font-medium opacity-90 "
+    },
+    {
+      "type": "textarea",
+      "id": "shop-promo__button",
+      "label": "Style Shop Promo Button",
+      "default": "text-mobile-button font-medium uppercase flex gap-3 items-center justify-center bg-black text-white border-brand-black hover:bg-transparent hover:text-black border transition fade duration 300 ease-out h-[46px] w-[270px] md:text-desktop-button tracking-[0.025em] md:tracking-[0.03em] md:h-[56px]"
+    },
+    {
+      "type": "textarea",
+      "id": "shop-promo__button_SVG",
+      "label": "Style Shop Promo Button SVG",
+      "default": "w-5 h-5"
+    }
+  ],
+   "presets": [
+    {
+      "name": "Shop Promo Simple",
+    }
+  ]
+}
+{% endschema %}

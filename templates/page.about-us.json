@@ -1,5 +1,20 @@
 {
   "sections": {
+    "shop_promo_simple_pbDhbp": {
+      "type": "shop-promo-simple",
+      "settings": {
+        "title": "Discover Our Beautiful Bouquets",
+        "description": "<p>Explore our collection of exquisite bouquets and surprise your loved ones with the perfect gift. Click the button below to start shopping.<\/p>",
+        "button_link": "",
+        "button_text": "Shop now",
+        "shop-promo": "flex flex-col gap-8 px-4 py-10 border-brand-black border-y text-center items-center md:p-20 md:gap-10",
+        "shop-promo__content": "space-y-4",
+        "shop-promo__title": "text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
+        "shop-promo__description": "text-mobile-subtitle font-medium opacity-90",
+        "shop-promo__button": "text-mobile-button font-medium uppercase flex gap-3 items-center justify-center bg-black text-white h-[46px] w-[270px] md:text-desktop-button tracking-[0.025em] md:tracking-[0.03em] md:h-[56px] border-brand-black hover:bg-transparent hover:text-black border transition fade duration 300 ease-out",
+        "shop-promo__button_SVG": "w-5 h-5"
+      }
+    },
     "about_us_GYTzzQ": {
       "type": "about-us",
       "settings": {
@@ -54,6 +69,7 @@
     }
   },
   "order": [
+    "shop_promo_simple_pbDhbp",
     "about_us_GYTzzQ",
     "dev_contact_form_GkbeLk",
     "dev_contact_form_EzpBjb"

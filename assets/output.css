@@ -1211,6 +1211,10 @@ video {
   width: 20px;
 }
 
+.w-\[270px\] {
+  width: 270px;
+}
+
 .w-\[300px\] {
   width: 300px;
 }
@@ -3648,6 +3652,10 @@ video {
 
   .md\:justify-between {
     justify-content: space-between;
+  }
+
+  .md\:gap-10 {
+    gap: 2.5rem;
   }
 
   .md\:gap-4 {
