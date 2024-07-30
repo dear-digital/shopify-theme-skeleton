@@ -5,7 +5,7 @@
       "settings": {
         "collection__product-price-text": "Price",
         "tw-collection": "lg:flex lg:min-h-screen",
-        "tw-collection__left-col": "lg:w-1\/2 relative border-[1px] border-brand-black lg:sticky lg:top-0 lg:h-[100vh]",
+        "tw-collection__left-col": "lg:aspect-square lg:w-1\/2 relative border-[1px] border-brand-black lg:sticky lg:top-0 lg:h-full",
         "tw-collection__image": "h-full w-full object-cover",
         "tw-collection__image-overlay": "absolute inset-0 bg-black opacity-25",
         "tw-collection__heading": "w-full absolute top-1\/2 left-1\/2 transform -translate-x-1\/2 -translate-y-1\/2 text-white text-center font-semibold text-[12vw] md:text-[8.7vw] lg:text-[4.65vw] leading-[140%] z-10",
