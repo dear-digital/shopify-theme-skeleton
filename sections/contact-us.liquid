@@ -39,13 +39,13 @@
           {%- assign svg_class = section.settings.bottom_block_first_column_info_text_icon_SVG -%}
           {%- if section.settings.phone_1 != blank -%}
             <div class="{{ section.settings.bottom_block_first_column_info_text_icon_div }}">
-              <span> {% render 'icon-call', class: svg_class %} </span>
+              <span> {% render 'icon-call-outlined', class: svg_class %} </span>
               <div class="{{ section.settings.info_text }}">{{ section.settings.phone_1 }}</div>
             </div>
           {%- endif -%}
           {%- if section.settings.phone_2 != blank -%}
             <div class="{{ section.settings.bottom_block_first_column_info_text_icon_div }}">
-              {% render 'icon-call', class: svg_class %}
+              {% render 'icon-call-outlined', class: svg_class %}
               <p class="{{ section.settings.info_text }}">{{ section.settings.phone_2 }}</p>
             </div>
           {%- endif -%}

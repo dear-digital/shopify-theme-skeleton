@@ -2,8 +2,87 @@
   "name": "Footer Group",
   "type": "footer",
   "sections": {
+    "dev_footer_PmiaEk": {
+      "type": "dev__footer",
+      "blocks": {
+        "text_7hgpJR": {
+          "type": "text",
+          "settings": {
+            "heading": "Subscription",
+            "subtext": "Remember to offer beautiful flowers from Kyiv LuxeBouquets Valentines Day, Mothers Day, Christmas... Reminds you 7 days before. No spam or sharing your address",
+            "input-placeholder": "Enter your email",
+            "button_text": "SUBSCRIBE",
+            "tw-footer__text": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] md:border-r-[1px] border-brand-black md:p-10 md:gap-6",
+            "tw-footer__heading": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5",
+            "tw-footer__subtext": "font-regular text-mobile-body text-brand-black md:text-desktop-body",
+            "tw-footer__newsletter": "flex flex-col gap-4",
+            "tw-footer__newsletter-input": "font-regular text-mobile-body text-brand-black w-full p-4 border-[1px] border-brand-black",
+            "tw-footer__button": "font-medium text-mobile-links text-center bg-brand-black text-white py-4 px-6 block mt-2 w-full",
+            "tw-footer__form-errors": "text-mobile-links text-brand-black p-2 flex gap-2 items-center w-full justify-center block font-medium",
+            "tw-footer__form-success": "font-medium text-mobile-links text-brand-black p-2 flex gap-2 items-center w-full justify-center",
+            "success_message": "Thank you for subscribing!"
+          }
+        },
+        "contact_us_EPT6bH": {
+          "type": "contact_us",
+          "settings": {
+            "contact_us-heading": "Contact us",
+            "address_title": "Address",
+            "phone_title": "Phone",
+            "email_title": "Email",
+            "address": "1234 Main Street, Anytown, USA",
+            "phone": "+000000000000000",
+            "email": "fake@gmail.com",
+            "social-media-heading": "Follow us",
+            "show_social_media": true,
+            "tw-footer__contact-us": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] lg:border-r-[1px] border-brand-black md:p-10 md:gap-6",
+            "tw-footer__contact-us-title": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5",
+            "tw-footer__address-title": "font-regular text-mobile-caption text-brand-gray block",
+            "tw-footer__address": "font-medium text-mobile-links",
+            "tw-footer__phone-title": "font-regular text-mobile-caption text-brand-gray block",
+            "tw-footer__phone": "font-medium text-mobile-links",
+            "tw-footer__email-title": "font-regular text-mobile-caption text-brand-gray block",
+            "tw-footer__email": "font-medium text-mobile-links",
+            "tw-footer__social-media-title": "font-medium text-mobile-heading-5 text-brand-gray",
+            "tw-footer__social-media": "flex flex-row gap-4",
+            "tw-footer__social-media-link": "font-medium text-mobile-links"
+          }
+        },
+        "link_list_49Br9L": {
+          "type": "link_list",
+          "settings": {
+            "menu": "shop",
+            "tw-footer__link-list_style": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] md:border-b-0 md:border-r-[1px] border-brand-black lg:border-b-[1px] md:p-10 md:gap-6",
+            "tw-footer__title": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5",
+            "tw-footer__menu": "flex flex-col gap-2",
+            "tw-footer__menu-item": "font-medium text-mobile-links md:text-desktop-links",
+            "tw-footer__menu-link": ""
+          }
+        },
+        "link_list_wBF4qj": {
+          "type": "link_list",
+          "settings": {
+            "menu": "about-us",
+            "tw-footer__link-list_style": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] md:border-b-0 md:border-r-[1px] border-brand-black lg:border-b-[1px] md:p-10 md:gap-6",
+            "tw-footer__title": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5",
+            "tw-footer__menu": "flex flex-col gap-2",
+            "tw-footer__menu-item": "font-medium text-mobile-links md:text-desktop-links",
+            "tw-footer__menu-link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_7hgpJR",
+        "contact_us_EPT6bH",
+        "link_list_49Br9L",
+        "link_list_wBF4qj"
+      ],
+      "settings": {
+        "tw-footer__style": "flex flex-col border-t-[1px] border-brand-black md:grid md:grid-cols-2 lg:grid lg:grid-cols-4"
+      }
+    }
   },
   "order": [
-
+    "dev_footer_PmiaEk"
   ]
 }
