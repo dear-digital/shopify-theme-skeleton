@@ -1,0 +1,567 @@
+{% comment %} subscription-plan-selection.liquid {% endcomment %}
+
+<div class="{{ section.settings.subscription_plan_selection__container }}">
+  {% comment %} Left Column {% endcomment %}
+  <div class="{{ section.settings.left_column_classes }}">
+    {% if section.settings.left_column_image != blank %}
+      {{ section.settings.left_column_image | image_url: width: 1500 | image_tag: class: section.settings.left_column_image_classes, alt: section.settings.left_column_image.alt | default: 'Subscription Plan' }}
+    {% else %}
+      {{ 'image' | placeholder_svg_tag:  section.settings.left_column_image_classes }}
+    {% endif %}
+  </div>
+
+  {% comment %} Right Column {% endcomment %}
+  <div class="{{ section.settings.right_column_classes }}">
+    {% comment %} State 1 {% endcomment %}
+    <div class="{{ section.settings.state_1_classes }}" id="state1">
+      <h4 class="{{ section.settings.state_1__sub_header_classes }}">
+        {{ section.settings.state_1__sub_header }}
+      </h4>
+      <div class="{{ section.settings.state_1__main_info_div_classes }}">
+        <h4 class="{{ section.settings.state_1__main_info_div__header_classes }}">
+          {{ section.settings.state_1__main_info_div__header }}
+        </h4>
+        <div class="{{ section.settings.state_1__main_info_div__paragraph_classes }}">
+          {{ section.settings.state_1__main_info_div__paragraph }}
+        </div>
+      </div>
+      <div class="{{ section.settings.state_1__plans_classes }}">
+        {% for block in section.blocks %}
+          {% if block.type == 'plan' %}
+            <div class="{{ block.settings.plan_content_classes }}" {{ block.shopify_attributes }}>     
+              <div class="{{ block.settings.plan_content__image_terms_classes}}">
+                <div class="{{ block.settings.plan_content__image_div_classes}}"> 
+
+                  {% if block.settings.plan_content__image != blank %}
+                    {{ block.settings.plan_content__image 
+                      | image_url: width: 500 
+                      | image_tag: class: block.settings.plan_content__image_classes, 
+                                  alt: block.settings.plan_content__image.alt | default: block.settings.plan_name 
+                    }}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: block.settings.plan_content__image_classes }}
+                  {% endif %}
+                </div>
+                
+                <div class="{{ block.settings.plan_content__terms_classes }}">
+                  <h4 class="{{ block.settings.term__header_classes }}">{{ block.settings.plan_name }}</h4>
+                  <ul class="{{ block.settings.term__points_classes }}">
+                    {% for i in (1..5) %}
+                      {% assign point_key = 'point_' | append: i %}
+                      {% if block.settings[point_key] != blank %}
+                        <li>{{ block.settings[point_key] }}</li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <button class="{{ block.settings.plan_content__select_button_classes}}">
+                {{ block.settings.select_plan_button_text }}
+              </button>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% for block in section.blocks %}
+      {% if block.type == 'divider' %}
+        <div class="{{ block.settings.divider_classes }}" {{ block.shopify_attributes }}></div>
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} State 2 {% endcomment %}
+    <div class="{{ section.settings.state_2_classes }}" id="state2">
+      <div class="{{ section.settings.state_2__main_info_classes }}">
+        <h4 class="{{ section.settings.state_2__main_info_header_classes }}">
+          {{ section.settings.state_2__main_info_header }}
+        </h4>
+        <div class="{{ section.settings.state_2__main_info_paragraph_classes }}">
+          {{ section.settings.state_2__main_info_paragraph }}
+        </div>
+      </div>
+      <div class="{{ section.settings.state_2__frequency_buttons_div_classes }}">
+        {% for block in section.blocks %}
+          {% if block.type == 'frequency' %}
+            <button class="{{ block.settings.frequency_button_classes }}" data-frequency="{{ block.settings.frequency_value }}" {{ block.shopify_attributes }}>
+              {{ block.settings.frequency_label }}
+            </button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% for block in section.blocks %}
+      {% if block.type == 'divider' %}
+        <div class="{{ block.settings.divider_classes }}" {{ block.shopify_attributes }}></div>
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} State 3 {% endcomment %}
+    <div class="{{ section.settings.state_3_classes }}" id="state3">
+      <div class="{{ section.settings.state_3__main_info_classes }}">
+        <h4 class="{{ section.settings.state_3__main_info_header_classes }}">
+          {{ section.settings.state_3__main_info_header }}
+        </h4>
+        <div class="{{ section.settings.state_3__main_info_paragraph_classes }}">
+          {{ section.settings.state_3__main_info_paragraph }}
+        </div>
+      </div>
+      <div class="{{ section.settings.state_3__input_steppers_classes }}">
+        <button class="decrement {{ section.settings.stepper_button_classes }}">
+          {% render 'icon-decrement' class: section.settings.stepper_button_SVG %}
+        </button>
+
+        <input type="number" value="1" min="1" class="{{ section.settings.stepper_input_classes }}">
+
+        <button class="increment {{ section.settings.stepper_button_classes }}">
+          {% render 'icon-increment' class: section.settings.stepper_button_SVG %}
+        </button>
+      </div>
+    </div>
+
+    {% for block in section.blocks %}
+      {% if block.type == 'divider' %}
+        <div class="{{ block.settings.divider_classes }}" {{ block.shopify_attributes }}></div>
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} Checkout Button {% endcomment %}
+    <div class="{{ section.settings.right_column__checkout_button_div }}">
+      <a href="{{ section.settings.right_column__checkout_button_link }}"
+         class="{{ section.settings.right_column__checkout_button }}">
+        {{- section.settings.right_column__checkout_button_label | escape -}}
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Include JavaScript -->
+<script src="{{ 'plan-selection.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Plan Selection",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "left_column_image",
+      "label": "Left Column Image"
+    },
+    {
+      "type": "text",
+      "id": "state_1__sub_header",
+      "label": "State 1 Sub Header",
+      "default": "Build Your Subscription"
+    },
+    {
+      "type": "text",
+      "id": "state_1__main_info_div__header",
+      "label": "State 1 Main Info Header",
+      "default": "Selecting a Plan"
+    },
+    {
+      "type": "richtext",
+      "id": "state_1__main_info_div__paragraph",
+      "label": "State 1 Main Info Paragraph",
+      "default": "<p>Enjoy free shipping on every order and save up to 30%.</p><p>Every bouquet we deliver is carefully curated to ensure it arrives fresh and stunning. To modify, pause, or cancel your subscription, simply log in to your account dashboard. You're in complete control of your flower delivery experience.</p>"
+    },
+    {
+      "type": "text",
+      "id": "state_2__main_info_header",
+      "label": "State 2 Header",
+      "default": "How often do you want flowers delivered?"
+    },
+    {
+      "type": "richtext",
+      "id": "state_2__main_info_paragraph",
+      "label": "State 2 Paragraph",
+      "default": "<p>Select the delivery frequency</p>"
+    },
+    {
+      "type": "text",
+      "id": "state_3__main_info_header",
+      "label": "State 3 Header",
+      "default": "How many deliveries would you like ?"
+    },
+    {
+      "type": "richtext",
+      "id": "state_3__main_info_paragraph",
+      "label": "State 3 Paragraph",
+      "default": "<p>Pay once and do not worry about flowers, our bouquets will be beautiful and on time, as many times as you need.</p>"
+    },
+    {
+      "type": "text",
+      "id": "right_column__checkout_button_label",
+      "label": "Checkout Button Label",
+      "default": "Checkout"
+    },
+    {
+      "type": "url",
+      "id": "right_column__checkout_button_link",
+      "label": "Checkout Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind styling classes"
+    },
+    {
+      "type": "textarea",
+      "id": "subscription_plan_selection__container",
+      "label": "Container Classes",
+      "default": "flex flex-col lg:flex-row-reverse lg:border-brand-black lg:border-b lg:min-h-screen"
+    },
+    {
+      "type": "textarea",
+      "id": "left_column_classes",
+      "label": "Left Column Classes",
+      "default": "w-full lg:w-1/2 h-[420px] md:h-[500px] lg:h-auto border-brand-black lg:border-l"
+    },
+    {
+      "type": "textarea",
+      "id": "left_column_image_classes",
+      "label": "Left Column Image Classes",
+      "default": "w-full h-full object-cover lg:h-[70vh] lg:sticky lg:top-0"
+    },
+    {
+      "type": "textarea",
+      "id": "right_column_classes",
+      "label": "Right Column Classes",
+      "default": "w-full lg:w-1/2 px-4 py-10 space-y-10 border-brand-black md:px-10 md:py-20 border-brand-black border-t lg:border-t-0"
+    },
+    {
+      "type": "textarea",
+      "id": "state_1_classes",
+      "label": "State 1 Classes",
+      "default": "space-y-6"
+    },
+    {
+      "type": "textarea",
+      "id": "state_1__sub_header_classes",
+      "label": "State 1 Sub Header Classes",
+      "default": "text-mobile-caption-small font-medium uppercase md:text-mobile-caption"
+    },
+    {
+      "type": "textarea",
+      "id": "state_1__main_info_div_classes",
+      "label": "State 1 Main Info Div Classes",
+      "default": "space-y-4"
+    },
+    {
+      "type": "textarea",
+      "id": "state_1__main_info_div__header_classes",
+      "label": "State 1 Main Info Header Classes",
+      "default": "text-mobile-heading-3 font-medium md:text-desktop-heading-3"
+    },
+    {
+      "type": "textarea",
+      "id": "state_1__main_info_div__paragraph_classes",
+      "label": "State 1 Main Info Paragraph Classes",
+      "default": "text-mobile-body text-brand-black opacity-90"
+    },
+    {
+      "type": "textarea",
+      "id": "state_1__plans_classes",
+      "label": "State 1 Plans Classes",
+      "default": "flex flex-col gap-4"
+    },
+    {
+      "type": "textarea",
+      "id": "state_2_classes",
+      "label": "State 2 Classes",
+      "default": "space-y-6"
+    },
+    {
+      "type": "textarea",
+      "id": "state_2__main_info_classes",
+      "label": "State 2 Main Info Classes",
+      "default": "space-y-4"
+    },
+    {
+      "type": "textarea",
+      "id": "state_2__main_info_header_classes",
+      "label": "State 2 Main Info Header Classes",
+      "default": "text-mobile-heading-4 md:text-desktop-heading-4"
+    },
+    {
+      "type": "textarea",
+      "id": "state_2__main_info_paragraph_classes",
+      "label": "State 2 Main Info Paragraph Classes",
+      "default": "text-mobile-body text-brand-black opacity-90"
+    },
+    {
+      "type": "textarea",
+      "id": "state_2__frequency_buttons_div_classes",
+      "label": "State 2 Frequency Buttons Div Classes",
+      "default": "flex flex-col gap-4 md:flex-row justify-between"
+    },
+    {
+      "type": "textarea",
+      "id": "state_3_classes",
+      "label": "State 3 Classes",
+      "default": "space-y-6"
+    },
+    {
+      "type": "textarea",
+      "id": "state_3__main_info_classes",
+      "label": "State 3 Main Info Classes",
+      "default": "space-y-4"
+    },
+    {
+      "type": "textarea",
+      "id": "state_3__main_info_header_classes",
+      "label": "State 3 Main Info Header Classes",
+      "default": "text-mobile-heading-4 md:text-desktop-heading-4"
+    },
+    {
+      "type": "textarea",
+      "id": "state_3__main_info_paragraph_classes",
+      "label": "State 3 Main Info Paragraph Classes",
+      "default": "text-mobile-body text-brand-black opacity-90"
+    },
+    {
+      "type": "textarea",
+      "id": "state_3__input_steppers_classes",
+      "label": "State 3 Input Steppers Classes",
+      "default": "flex items-center border-brand-black border-y md:w-fit"
+    },
+    {
+      "type": "textarea",
+      "id": "stepper_button_classes",
+      "label": "Stepper Button Classes",
+      "default": "px-3 py-1 h-[44px] aspect-square border-brand-black border-x"
+    },
+    {
+      "type": "textarea",
+      "id": "stepper_button_SVG",
+      "label": "Stepper Button SVG Classes",
+      "default": "w-4 h-4"
+    },
+    {
+      "type": "textarea",
+      "id": "stepper_input_classes",
+      "label": "Stepper Input Classes",
+      "default": "text-mobile-body w-full h-full text-center md:w-fit outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
+    },
+    {
+      "type": "textarea",
+      "id": "right_column__checkout_button_div",
+      "label": "Checkout Button Div Classes",
+      "default": "h-[46px] md:h-[56px] flex items-center"
+    },
+    {
+      "type": "textarea",
+      "id": "right_column__checkout_button",
+      "label": "Checkout Button Classes",
+      "default": "h-full flex items-center justify-center w-full border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Plan",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "plan_content__image",
+          "label": "Plan Image"
+        },
+        {
+          "type": "text",
+          "id": "plan_name",
+          "label": "Plan Name",
+          "default": "Basic Plan"
+        },
+        {
+          "type": "text",
+          "id": "point_1",
+          "label": "Feature Point 1"
+        },
+        {
+          "type": "text",
+          "id": "point_2",
+          "label": "Feature Point 2"
+        },
+        {
+          "type": "text",
+          "id": "point_3",
+          "label": "Feature Point 3"
+        },
+        {
+          "type": "text",
+          "id": "point_4",
+          "label": "Feature Point 4"
+        },
+        {
+          "type": "text",
+          "id": "point_5",
+          "label": "Feature Point 5"
+        },
+        {
+          "type": "text",
+          "id": "select_plan_button_text",
+          "label": "Select Button Text",
+          "default": "Select"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind styling classes"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content_classes",
+          "label": "Plan Content Classes",
+          "default": "border-brand-light-gray border border-b-0"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content__image_terms_classes",
+          "label": "Plan Content Image + Terms Div",
+          "default": "flex flex-col md:flex-row md:min-h-[225px]"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content__image_div_classes",
+          "label": "Plan Image Div Classes",
+          "default": "w-full md:w-1/2 h-[200px] md:h-[225px] md:border-brand-light-gray border-b md:border-r md:border-r-0 md:border-b-0  "
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content__image_classes",
+          "label": "Plan Image Classes",
+          "default": "w-full object-cover h-full"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content__terms_classes",
+          "label": "Plan Terms Classes",
+          "default": "p-4 space-y-4 md:w-1/2 md:border-brand-light-gray md:border-l "
+        },
+        {
+          "type": "textarea",
+          "id": "term__header_classes",
+          "label": "Term Header Classes",
+          "default": "text-mobile-subtitle font-medium"
+        },
+        {
+          "type": "textarea",
+          "id": "term__points_classes",
+          "label": "Term Points Classes",
+          "default": "list-disc list-outside text-mobile-body space-y-1 pl-6"
+        },
+        {
+          "type": "textarea",
+          "id": "plan_content__select_button_classes",
+          "label": "Select Button Classes",
+          "default": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "divider_classes",
+          "label": "Divider Styling Tailwind",
+          "default": "border-t border-brand-light-gray"
+        }
+      ]
+    },
+    {
+      "type": "frequency",
+      "name": "Delivery Frequency",
+      "settings": [
+        {
+          "type": "text",
+          "id": "frequency_label",
+          "label": "Frequency Label",
+          "default": "Weekly"
+        },
+        {
+          "type": "text",
+          "id": "frequency_value",
+          "label": "Frequency Value",
+          "default": "7"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind styling classes"
+        },
+        {
+          "type": "textarea",
+          "id": "frequency_button_classes",
+          "label": "Frequency Button Styling",
+          "default": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plan Selection",
+      "blocks": [
+        {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Classic",
+            "point_1": "Price $45",
+            "point_2": "Free Delivery",
+            "point_3": "Best for a budget",
+            "point_4": "Glass vase with first delivery",
+            "point_5": "Save up to 25%",
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Seasonal",
+            "point_1": "Price $65",
+            "point_2": "Free Delivery",
+            "point_3": "Best seasonal selections",
+            "point_4": "Glass vase with first delivery",
+            "point_5": "",
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Luxe",
+            "point_1": "Price $95",
+            "point_2": "Free Delivery",
+            "point_3": "Premium arrangement",
+            "point_4": "Premium vase with first delivery",
+            "point_5": "",
+          }
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Weekly",
+            "frequency_value": "7"
+          }
+        },
+        {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Bi-Weekly",
+            "frequency_value": "14"
+          }
+        },
+        {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Monthly",
+            "frequency_value": "30"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

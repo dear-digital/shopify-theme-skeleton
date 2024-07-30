@@ -52,8 +52,12 @@ class AnnouncementSlider {
 }
 
 // Initialization on DOM ready
-document.addEventListener('DOMContentLoaded', function () {
-  new AnnouncementSlider('.announcement__wrapper');
+ 
+document.addEventListener('DOMContentLoaded', function () { 
+    const selector = '.announcement__wrapper';
+    if (document.querySelector(selector)) {
+        new AnnouncementSlider(selector);
+    } 
 });
 
 // Shopify design mode
@@ -62,7 +66,9 @@ if (Shopify.designMode) {
     //console.log(event.detail);
     const sectionId = event.detail.sectionId;
     const selector = `#shopify-section-${sectionId} .announcement__wrapper`;
-    new AnnouncementSlider(selector);
+    if (document.querySelector(selector)) {
+      new AnnouncementSlider(selector);
+  }
   });
 }
 

@@ -5,39 +5,27 @@
     {% for block in section.blocks %}
       <div class="logo-carousel__item {{ section.settings.logo_carousel_item_styles }}">
         {% if block.settings.logo %}
-          {{ block.settings.logo | image_url: 'master' | image_tag: class: 'logo-carousel__image' }}
+          {{
+            block.settings.logo
+            | image_url: width: 250, height: 250
+            | image_tag: class: 'logo-carousel__image'
+          }}
         {% endif %}
       </div>
     {% endfor %}
     {% for block in section.blocks %}
       <div class="logo-carousel__item {{ section.settings.logo_carousel_item_styles }}">
-        {% if block.settings.logo %}
-          {{ block.settings.logo | image_url: 'master' | image_tag: class: 'logo-carousel__image' }}
+        {% if block.settings.logo %} 
+          {{
+            block.settings.logo
+            | image_url: width: 250, height: 250
+            | image_tag: class: 'logo-carousel__image'
+          }}
         {% endif %}
       </div>
     {% endfor %}
   </div>
 </div>
-
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        animation: {
-          ['infinite-slider']: 'infiniteSlider 20s linear infinite',
-        },
-        keyframes: {
-          infiniteSlider: {
-            '0%': { transform: 'translateX(0)' },
-            '100%': {
-              transform: 'translateX(calc(-250px * 5))',
-            },
-          },
-        },
-      },
-    },
-  };
-</script>
 
 {% schema %}
 {

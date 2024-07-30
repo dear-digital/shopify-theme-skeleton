@@ -50,7 +50,7 @@
         "subscription_main_section": "flex flex-col lg:flex-row lg:h-[720px]",
         "subscription_main_section__image": "w-full lg:w-1\/2 h-[420px] md:h-[500px ] lg:h-full",
         "subscription_main_section__image_classes": "w-full h-full object-cover",
-        "subscription_main_section__right_column": "px-4 py-10 flex flex-col gap-12 lg:w-1\/2 md:p-20 border-brand-black  lg:h-full lg:justify-center lg:border-l",
+        "subscription_main_section__right_column": "px-4 py-10 flex flex-col gap-12 lg:w-1\/2 md:p-20 lg:h-full lg:justify-center border-brand-black lg:border-l",
         "right_column__content_div": "flex flex-col gap-4 lg:gap-6",
         "content_div__header_classes": "text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
         "content_div__content": "space-y-6",
@@ -65,7 +65,7 @@
           "settings": {
             "title": "Choose a plan",
             "text": "Select the subscription plan that suits you best from our three bouquet designs: classic, seasonal, and deluxe. Each plan comes with a designer vase, free delivery, and a discount of up to 30%. Our seasonal and deluxe plans also include a luxurious scented candle to enhance the ambiance.",
-            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] lg:border-l-[1px] border-brand-black",
+            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] border-brand-black lg:border-l",
             "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
             "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
           }
@@ -75,7 +75,7 @@
           "settings": {
             "title": "Frequency and Duration",
             "text": "Choose delivery frequency: once a week, every two weeks, or once a month. Then, select your subscription duration from 3 to 12 months. Enjoy savings with a longer subscription. We understand that every customer has different needs, and we aim to provide flexible subscription options that cater to your specific preferences.",
-            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] lg:border-l-[1px] border-brand-black",
+            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px]  border-brand-black lg:border-l",
             "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
             "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
           }
@@ -85,7 +85,7 @@
           "settings": {
             "title": "Pay once",
             "text": "After entering your contact and delivery information and paying for your subscription, you can sit back and relax, knowing that you have secured a regular supply of fresh, stunning flowers for yourself or your loved ones",
-            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] lg:border-l-[1px] border-brand-black",
+            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-brand-black lg:border-l",
             "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
             "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
           }
@@ -99,9 +99,153 @@
       "settings": {
         "main_heading": "How does it work?",
         "tw-why-choose-us": "flex flex-col lg:flex-row border-[1px] border-brand-black",
-        "tw-section__left-col": "py-10 px-4 gap-4 lg:w-1\/2 md:p-20 lg:gap-4 border-b-[1px] border-brand-black",
+        "tw-section__left-col": "py-10 px-4 gap-4 lg:w-1\/2 md:p-20 lg:gap-4 border-b-[1px] border-brand-black lg:border-b-0",
         "tw-section__main-heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg: sticky lg:top-[5.56vw]",
         "tw-section__right-col": "lg:w-1\/2"
+      }
+    },
+    "subscription_plan_selection_mfrrRr": {
+      "type": "subscription-plan-selection",
+      "blocks": {
+        "plan_X4fmBx": {
+          "type": "plan",
+          "settings": {
+            "plan_content__image": "shopify:\/\/shop_images\/RusticCharm.png",
+            "plan_name": "Classic",
+            "point_1": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "point_2": "Free Delivery",
+            "point_3": "Best for a budget",
+            "point_4": "Glass vase with first delivery",
+            "point_5": "",
+            "select_plan_button_text": "Select",
+            "plan_content_classes": "border-brand-light-gray border border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:min-h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 h-[200px] md:h-[225px] md:border-brand-light-gray border-b md:border-r md:border-r-0 md:border-b-0",
+            "plan_content__image_classes": "w-full object-cover h-full",
+            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2 md:border-brand-light-gray md:border-l",
+            "term__header_classes": "text-mobile-subtitle font-medium",
+            "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
+            "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
+          }
+        },
+        "plan_MiNh7q": {
+          "type": "plan",
+          "settings": {
+            "plan_content__image": "shopify:\/\/shop_images\/bouquet_2.png",
+            "plan_name": "Seasonal",
+            "point_1": "Price $65",
+            "point_2": "Free Delivery",
+            "point_3": "Best seasonal selections",
+            "point_4": "Glass vase with first delivery",
+            "point_5": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "select_plan_button_text": "Select",
+            "plan_content_classes": "border-brand-light-gray border border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:min-h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 h-[200px] md:h-[225px] md:border-brand-light-gray border-b md:border-r md:border-r-0 md:border-b-0",
+            "plan_content__image_classes": "w-full object-cover h-full",
+            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2 md:border-brand-light-gray md:border-l",
+            "term__header_classes": "text-mobile-subtitle font-medium",
+            "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
+            "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
+          }
+        },
+        "plan_7YVpGj": {
+          "type": "plan",
+          "settings": {
+            "plan_content__image": "shopify:\/\/shop_images\/bouquet_3.png",
+            "plan_name": "Luxe",
+            "point_1": "Price $95",
+            "point_2": "Free Delivery",
+            "point_3": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "point_4": "It has survived not only five centuries",
+            "point_5": "",
+            "select_plan_button_text": "Select",
+            "plan_content_classes": "border-brand-light-gray border border-b-0",
+            "plan_content__image_terms_classes": "flex flex-col md:flex-row md:min-h-[225px]",
+            "plan_content__image_div_classes": "w-full md:w-1\/2 h-[200px] md:h-[225px] md:border-brand-light-gray border-b md:border-r md:border-r-0 md:border-b-0",
+            "plan_content__image_classes": "w-full object-cover h-full",
+            "plan_content__terms_classes": "p-4 space-y-4 md:w-1\/2 md:border-brand-light-gray md:border-l",
+            "term__header_classes": "text-mobile-subtitle font-medium",
+            "term__points_classes": "list-disc list-outside text-mobile-body space-y-1 pl-6",
+            "plan_content__select_button_classes": "inline-block px-6 pt-4 pb-[14px] border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out w-[calc(100%+2px)] -mx-px h-[48px] md:h-[56px]"
+          }
+        },
+        "divider_UGhxCe": {
+          "type": "divider",
+          "settings": {
+            "divider_classes": "border-t border-brand-light-gray"
+          }
+        },
+        "frequency_FWm47A": {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Weekly",
+            "frequency_value": "7",
+            "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
+          }
+        },
+        "frequency_fF97QB": {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Bi-Weekly",
+            "frequency_value": "14",
+            "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
+          }
+        },
+        "frequency_yreiDT": {
+          "type": "frequency",
+          "settings": {
+            "frequency_label": "Monthly",
+            "frequency_value": "30",
+            "frequency_button_classes": "w-full px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase font-medium tracking-[0.025em] hover:bg-gray-100 transition duration-300 h-[48px] md:h-[56px]"
+          }
+        }
+      },
+      "block_order": [
+        "plan_X4fmBx",
+        "plan_MiNh7q",
+        "plan_7YVpGj",
+        "divider_UGhxCe",
+        "frequency_FWm47A",
+        "frequency_fF97QB",
+        "frequency_yreiDT"
+      ],
+      "settings": {
+        "left_column_image": "shopify:\/\/shop_images\/plan_left_colum_new.png",
+        "state_1__sub_header": "Build Your Subscription",
+        "state_1__main_info_div__header": "Selecting a Plan",
+        "state_1__main_info_div__paragraph": "<p>Enjoy free shipping on every order and save up to 30%.<\/p><p>Every bouquet we deliver is carefully curated to ensure it arrives fresh and stunning. To modify, pause, or cancel your subscription, simply log in to your account dashboard. You're in complete control of your flower delivery experience.<\/p>",
+        "state_2__main_info_header": "How often do you want flowers delivered?",
+        "state_2__main_info_paragraph": "<p>Select the delivery frequency<\/p>",
+        "state_3__main_info_header": "How many deliveries would you like ?",
+        "state_3__main_info_paragraph": "<p>Pay once and do not worry about flowers, our bouquets will be beautiful and on time, as many times as you need.<\/p>",
+        "right_column__checkout_button_label": "Checkout",
+        "right_column__checkout_button_link": "",
+        "subscription_plan_selection__container": "flex flex-col lg:flex-row-reverse lg:border-brand-black lg:border-b lg:min-h-screen",
+        "left_column_classes": "w-full lg:w-1\/2 h-[420px] md:h-[500px] lg:h-auto border-brand-black lg:border-l",
+        "left_column_image_classes": "w-full h-full object-cover lg:h-[70vh] lg:sticky lg:top-0",
+        "right_column_classes": "w-full lg:w-1\/2 px-4 py-10 space-y-10 border-brand-black md:px-10 md:py-20 border-brand-black border-t lg:border-t-0",
+        "state_1_classes": "space-y-6",
+        "state_1__sub_header_classes": "text-mobile-caption-small font-medium uppercase md:text-mobile-caption",
+        "state_1__main_info_div_classes": "space-y-4",
+        "state_1__main_info_div__header_classes": "text-mobile-heading-3 font-medium md:text-desktop-heading-3",
+        "state_1__main_info_div__paragraph_classes": "text-mobile-body text-brand-black opacity-90",
+        "state_1__plans_classes": "flex flex-col gap-4",
+        "state_2_classes": "space-y-6",
+        "state_2__main_info_classes": "space-y-4",
+        "state_2__main_info_header_classes": "text-mobile-heading-4 md:text-desktop-heading-4",
+        "state_2__main_info_paragraph_classes": "text-mobile-body text-brand-black opacity-90",
+        "state_2__frequency_buttons_div_classes": "flex flex-col gap-4 md:flex-row justify-between",
+        "state_3_classes": "space-y-6",
+        "state_3__main_info_classes": "space-y-4",
+        "state_3__main_info_header_classes": "text-mobile-heading-4 md:text-desktop-heading-4",
+        "state_3__main_info_paragraph_classes": "text-mobile-body text-brand-black opacity-90",
+        "state_3__input_steppers_classes": "flex items-center border-brand-black border-y md:w-fit",
+        "stepper_button_classes": "px-3 py-1 h-[44px] aspect-square border-brand-black border-x",
+        "stepper_button_SVG": "w-4 h-4",
+        "stepper_input_classes": "text-mobile-body w-full h-full text-center md:w-fit outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent",
+        "right_column__checkout_button_div": "h-[46px] md:h-[56px] flex items-center",
+        "right_column__checkout_button": "h-full flex items-center justify-center w-full border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out"
       }
     },
     "subscription_faq_section_3RjngG": {
@@ -227,6 +371,7 @@
   "order": [
     "subscription_main_section_iKXFGR",
     "dev_why_choose_us_PLNqyE",
+    "subscription_plan_selection_mfrrRr",
     "subscription_faq_section_3RjngG"
   ]
 }

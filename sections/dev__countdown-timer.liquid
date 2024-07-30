@@ -1,64 +1,37 @@
 <div class=" {{ section.settings.container__main }}">
-  <div class="{{ section.settings.subcontainer__main }}">
-    <div class="{{ section.settings.title__div }}">
-      <h1 class="{{ section.settings.title__h1__div }}">
-        {{ section.settings.title }}
-      </h1>
-      <div class=" {{ section.settings.subtitle__div }}">
-        {{ section.settings.subtitle }}
+  <div class="end-date" data-end-date="{{ section.settings.end_date }}">
+    <div class="{{ section.settings.subcontainer__main }}">
+      <div class="{{ section.settings.title__div }}">
+        <h1 class="{{ section.settings.title__h1__div }}">
+          {{ section.settings.title }}
+        </h1>
+        <div class=" {{ section.settings.subtitle__div }}">
+          {{ section.settings.subtitle }}
+        </div>
       </div>
-    </div>
-    <div class=" {{ section.settings.timer__container }}">
-      <div class=" {{ section.settings.timer_subdiv }}">
-        <div class="{{ section.settings.timer_numbers }} js-timer-days">00</div>
-        <div class="{{ section.settings.timer__text }}">Days</div>
-      </div>
-      <div class=" {{ section.settings.timer_subdiv }}">
-        <div class="{{ section.settings.timer_numbers }} js-timer-hours">00</div>
-        <div class="{{ section.settings.timer__text }}">Hours</div>
-      </div>
-      <div class=" {{ section.settings.timer_subdiv }}">
-        <div class="{{ section.settings.timer_numbers }} js-timer-minutes">00</div>
-        <div class="{{ section.settings.timer__text }}">Minutes</div>
-      </div>
-      <div class=" {{ section.settings.timer_subdiv }}">
-        <div class="{{ section.settings.timer_numbers }} js-timer-seconds">00</div>
-        <div class="{{ section.settings.timer__text }}">Seconds</div>
+      <div class=" {{ section.settings.timer__container }}">
+        <div class=" {{ section.settings.timer_subdiv }}">
+          <div class="{{ section.settings.timer_numbers }} js-timer-days">00</div>
+          <div class="{{ section.settings.timer__text }}">Days</div>
+        </div>
+        <div class=" {{ section.settings.timer_subdiv }}">
+          <div class="{{ section.settings.timer_numbers }} js-timer-hours">00</div>
+          <div class="{{ section.settings.timer__text }}">Hours</div>
+        </div>
+        <div class=" {{ section.settings.timer_subdiv }}">
+          <div class="{{ section.settings.timer_numbers }} js-timer-minutes">00</div>
+          <div class="{{ section.settings.timer__text }}">Minutes</div>
+        </div>
+        <div class=" {{ section.settings.timer_subdiv }}">
+          <div class="{{ section.settings.timer_numbers }} js-timer-seconds">00</div>
+          <div class="{{ section.settings.timer__text }}">Seconds</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  function updateTimer() {
-    var endDateTime = new Date('{{ section.settings.end_date }}').getTime();
-
-    var x = setInterval(function () {
-      var now = new Date().getTime();
-      var distance = endDateTime - now;
-
-      if (distance <= 0) {
-        clearInterval(x);
-        document.querySelector('.timer').classList.add('timer--expired');
-        return;
-      }
-
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.querySelector('.js-timer-days').innerText = days < 10 ? '0' + days : days;
-      document.querySelector('.js-timer-hours').innerText = hours < 10 ? '0' + hours : hours;
-      document.querySelector('.js-timer-minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
-      document.querySelector('.js-timer-seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
-    }, 1000);
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    updateTimer();
-  });
-</script>
+<script src="{{ 'dev__countdown-timer.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
