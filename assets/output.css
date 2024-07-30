@@ -2876,9 +2876,9 @@ video {
   cursor: pointer;
 }
 
-.hover\:border-brand-black:hover {
+.hover\:border-white:hover {
   --tw-border-opacity: 1;
-  border-color: rgb(18 18 18 / var(--tw-border-opacity));
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .hover\:bg-blue-400:hover {
