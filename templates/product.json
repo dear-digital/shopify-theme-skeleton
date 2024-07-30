@@ -3,52 +3,59 @@
     "template": {
       "type": "dev__main-product",
       "blocks": {
-        "vendor": {
-          "type": "vendor",
+        "products_recommendation_wdHcnF": {
+          "type": "products-recommendation",
           "settings": {
-          }
-        },
-        "title": {
-          "type": "title",
-          "settings": {
-          }
-        },
-        "price": {
-          "type": "price",
-          "settings": {
-          }
-        },
-        "variant_selector": {
-          "type": "variant_selector",
-          "settings": {
-          }
-        },
-        "quantity": {
-          "type": "quantity",
-          "settings": {
-          }
-        },
-        "description": {
-          "type": "description",
-          "settings": {
-          }
-        },
-        "checkout_buttons": {
-          "type": "checkout_buttons",
-          "settings": {
+            "products_recommendation-title": "You may also like...",
+            "product-recommendation-price-text": "Price",
+            "tw-products-recommendation-wrapper": "flex flex-col items-center justify-center",
+            "tw-products-recommendation-heading": "px-6 py-20 md:p-20 font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[38px] border-[1px] border-x-brand-black w-full text-center",
+            "tw-product-card": "flex flex-col md:flex-row md:flex-wrap justify-center items-center text-center",
+            "tw-product-link": "md:w-1\/2 lg:w-1\/4 relative border-[1px] border-brand-black",
+            "tw-product-featured-image": "aspect-square object-cover",
+            "tw-product-info": "w-full absolute bottom-3 text-brand-black flex flex-col justify-center items-center gap-1",
+            "tw-product-title": "leading-[120%] tracking-[.03vw] font-medium text-[4.3vw] md:text-[2.1vw] lg:text-[1.19vw]",
+            "tw-product-price": "leading-[120%] tracking-[.03vw] font-medium text-[3.7vw] md:text-[1.8vw] lg:text-[.98vw] text-brand-gray",
+            "tw-price-label": ""
           }
         }
       },
       "block_order": [
-        "vendor",
-        "title",
-        "price",
-        "variant_selector",
-        "quantity",
-        "description",
-        "checkout_buttons"
+        "products_recommendation_wdHcnF"
       ],
       "settings": {
+        "tw-product": "flex flex-col lg:flex-row",
+        "tw-product-image-wrapper": "aspect-square lg:w-1\/2 border-[1px] border-black",
+        "tw-product-image": "w-full h-full object-cover",
+        "tw-product-details": "lg:aspect-square flex flex-col lg:justify-center gap-10 px-4 py-10 md:p-10 lg:w-1\/2 border-x-[1px] border-b-[1px] border-black lg:border-l-0 lg:border-y-[1px]",
+        "tw-product-details-container": "flex flex-col gap-6",
+        "tw-product-title": "font-medium uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
+        "tw-product-info": "flex flex-col gap-4",
+        "tw-product-name": "font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]",
+        "tw-product-description": "brightness-[.9] text-mobile-body md:text-desktop-body lg:text-[1.12vw]",
+        "tw-product-quantity": "flex flex-col gap-4 md:flex-row md:items-center",
+        "tw-quantity-controls": "w-full flex lg:text-xl",
+        "tw-quantity-title": "font-medium text-mobile-subtitle md:text-desktop-subtitle lg:text-[1.25vw]",
+        "tw-quantity-button": "w-11 h-11 border-[1px] border-black",
+        "tw-quantity-input": "text-center border-y-[1px] border-black h-11",
+        "tw-product-combination": "flex flex-col gap-4",
+        "tw-combination-info": "flex flex-col gap-2 md:flex-row-reverse md:justify-between md:items-center",
+        "tw-combination-info-notice": "opacity-50 text-mobile-caption md:text-desktop-caption lg:text-[.98vw]",
+        "tw-combination-suggestion-header": "font-medium text-mobile-subtitle md:text-desktop-subtitle lg:text-[1.25vw]",
+        "tw-combination-products": "flex items-center gap-2.5",
+        "tw-combination-prev": "text-5xl lg:text-7xl hover:text-blue-500",
+        "tw-carousel-container": "overflow-hidden relative",
+        "tw-carousel-track": "flex gap-4 transition-transform duration-300 ease-in-out",
+        "tw-product-item": "flex-none bg-white transition-transform duration-200 ease-in-out hover:scale-105 cursor-pointer",
+        "tw-product-item-image": "w-32 object-cover mb-2 aspect-square lg:w-[11vw]",
+        "tw-product-item-heading": "w-32 text-mobile-caption md:text-desktop-caption lg:text-[.98vw]",
+        "tw-product-item-price": "text-brand-gray w-32 text-mobile-caption md:text-desktop-caption lg:text-[.98vw]",
+        "tw-combination-next": "text-5xl lg:text-7xl hover:text-blue-500",
+        "tw-product-price": "flex flex-col gap-4",
+        "tw-product-price-title": "font-medium text-mobile-subtitle md:text-desktop-subtitle lg:text-[1.25vw]",
+        "tw-price-option": "flex items-center gap-3 text-mobile-body md:text-desktop-body lg:text-[1.12vw] cursor-pointer",
+        "tw-price-input": "absolute opacity-0 w-6 h-6 lg:w-[1.7vw] lg:h-[1.7vw] no-spin",
+        "tw-product-actions": "w-full bg-brand-black text-white uppercase px-6 py-4 font-medium text-mobile-button md:text-desktop-button lg:text-[1.12vw] text-center"
       }
     }
   },

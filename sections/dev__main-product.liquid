@@ -129,6 +129,45 @@
   </div>
 </div>
 
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'products-recommendation' %}
+      <div class="products-recommendation-wrapper {{ block.settings.tw-products-recommendation-wrapper }}">
+        <div class="products-recommendation-heading {{ block.settings.tw-products-recommendation-heading }}">
+          {{ block.settings['products_recommendation-title'] }}
+        </div>
+        <div class="product-card {{ block.settings.tw-product-card }}">
+          {% for product in product.metafields.custom.products_recommendation.value %}
+            <a href="{{ product.url }}" class="product-link {{ block.settings.tw-product-link }}">
+              {% if product.featured_image %}
+                {{
+                  product.featured_image
+                  | image_url: width: 2800, height: 2800, crop: 'center'
+                  | image_tag: class: block.settings['tw-product-featured-image']
+                }}
+              {% endif %}
+              <div class="product-info {{ block.settings.tw-product-info }}">
+                {% if product.title %}
+                  <h3 class="product-title {{ block.settings.tw-product-title }}">
+                    {{ product.title }}
+                  </h3>
+                {% endif %}
+                {% if product.price %}
+                  <p class="product-price {{ block.settings.tw-product-price }}">
+                    <span class="price-label {{ block.settings.tw-price-label }}">
+                      {{- block.settings['product-recommendation-price-text'] -}}
+                    </span>
+                    &nbsp;<span class="price-amount">{{ product.price | money }}</span>
+                  </p>
+                {% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+  {% endcase %}
+{% endfor %}
+
 {% comment %} Carousel Template {% endcomment %}
 <template id="carousel-template">
   <div class="combination-products">
@@ -350,6 +389,71 @@
       "id": "tw-product-actions",
       "label": "Style tw-product-actions",
       "default": "w-full bg-brand-black text-white uppercase px-6 py-4 font-medium text-mobile-button md:text-desktop-button lg:text-[1.12vw] text-center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "products-recommendation",
+      "name": "Products Recommendation",
+      "settings": [
+        {
+          "type": "text",
+          "id": "products_recommendation-title",
+          "label": "Title",
+          "default": "You may also like"
+        },
+        {
+          "type": "text",
+          "id": "product-recommendation-price-text",
+          "label": "Price Label",
+          "default": "Price"
+        },
+        {
+          "type": "text",
+          "id": "tw-products-recommendation-wrapper",
+          "label": "Style tw-products-recommendation-wrapper"
+        },
+        {
+          "type": "text",
+          "id": "tw-products-recommendation-heading",
+          "label": "Style tw-products-recommendation-heading"
+        },
+        {
+          "type": "text",
+          "id": "tw-product-card",
+          "label": "Style tw-product-card"
+        },
+        {
+          "type": "text",
+          "id": "tw-product-link",
+          "label": "Style tw-product-link"
+        },
+        {
+          "type": "text",
+          "id": "tw-product-featured-image",
+          "label": "Style tw-product-featured-image"
+        },
+        {
+          "type": "text",
+          "id": "tw-product-info",
+          "label": "Style tw-product-info"
+        },
+        {
+          "type": "text",
+          "id": "tw-product-title",
+          "label": "Style tw-product-title"
+        },
+        {
+          "type": "text",
+          "id": "tw-product-price",
+          "label": "Style tw-product-price"
+        },
+        {
+          "type": "text",
+          "id": "tw-price-label",
+          "label": "Style tw-price-label"
+        }
+      ]
     }
   ],
   "presets": [
