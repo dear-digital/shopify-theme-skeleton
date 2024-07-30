@@ -1,0 +1,362 @@
+{% assign has_image = false %}
+{% if section.settings.image != blank %}
+  {% assign has_image = true %}
+{% endif %}
+{% assign has_social_icons = true %}
+{% if settings.social_facebook_link == blank
+  and settings.social_instagram_link == blank
+  and settings.social_youtube_link == blank
+  and settings.social_tiktok_link == blank
+  and settings.social_twitter_link == blank
+  and settings.social_pinterest_link == blank
+  and settings.social_snapchat_link == blank
+  and settings.social_tumblr_link == blank
+  and settings.social_vimeo_link == blank
+%}
+  {% assign has_social_icons = false %}
+{% endif %}
+
+{% assign mobile_image_order = 'order-first' %}
+{% if section.settings.image_position == 'right' %}
+  {% assign mobile_image_order = 'order-last' %}
+{% endif %}
+
+{% assign desktop_image_order = 'lg:order-first' %}
+{% if section.settings.image_position_desktop == 'right' %}
+  {% assign desktop_image_order = 'lg:order-last' %}
+{% endif %}
+
+<div class="image-text-section {{ section.settings.tw-image-text-section }}">
+  {% if has_image %}
+    <div
+      class="
+        image-container {{ mobile_image_order }} {{ desktop_image_order }} {{ section.settings.tw-image-container }} {% if mobile_image_order == 'order-first' %}
+            border border-b-brand-black
+        {% else %}
+            border border-t-brand-black
+        {% endif %}
+        {% if desktop_image_order == 'order-first' %}
+            lg:border lg:border-r-brand-black
+        {% else %}
+            lg:border lg:border-l-brand-black
+        {% endif %}
+      "
+    >
+      {{
+        section.settings.image
+        | image_url: width: '2800', height: '2800', crop: 'center'
+        | image_tag: class: section.settings['tw-image'], alt: section.settings.image.alt
+      }}
+    </div>
+  {% endif %}
+  <div class="content {{ section.settings.tw-content }} {% if has_image %}lg:w-1/2{% else %}w-full{% endif %}">
+    <div class="content-container {{ section.settings.tw-content-container }}">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'heading' %}
+            <{{ block.settings.heading_size }}
+              class="section-heading {{ block.settings.tw-heading }}"
+              style="font-family: {{ block.settings.font.family }}, {{ block.settings.font.fallback_families }};"
+            >
+              {{ block.settings.heading_text }}
+            </{{ block.settings.heading_size }}>
+          {% when 'paragraph' %}
+            <p class="section-paragraph {{ block.settings.tw-paragraph }}">
+              {{ block.settings.paragraph_text }}
+            </p>
+          {% else %}
+            <!-- Handle other block types here -->
+        {% endcase %}
+      {% endfor %}
+    </div>
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'social-icons' %}
+          {% if has_social_icons and block.settings.show_social_media %}
+            <div class="social-icons {{ block.settings.tw-social-icons }}">
+              <ul class="list-social {{ block.settings.tw-list-social }}" role="list">
+                {%- if settings.social_facebook_link != blank -%}
+                  <li class="list-social__item {{ block.settings.tw-list-social__item }}">
+                    <a
+                      href="{{ settings.social_facebook_link }}"
+                      class="link list-social__link {{ block.settings.tw-link-social__link  }}"
+                    >
+                      {%- render 'icon-facebook', class: block.settings['tw-social-icon'] -%}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_instagram_link != blank -%}
+                  <li class="list-social__item {{ block.settings.tw-list-social__item }}">
+                    <a
+                      href="{{ settings.social_instagram_link }}"
+                      class="link list-social__link {{ block.settings.tw-link-social__link  }}"
+                    >
+                      {%- render 'icon-instagram', class: block.settings['tw-social-icon'] -%}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_youtube_link != blank -%}
+                  <li class="list-social__item {{ block.settings.tw-list-social__item }}">
+                    <a
+                      href="{{ settings.social_youtube_link }}"
+                      class="link list-social__link {{ block.settings.tw-link-social__link  }}"
+                    >
+                      {%- render 'icon-youtube', class: block.settings['tw-social-icon'] -%}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_twitter_link != blank -%}
+                  <li class="list-social__item {{ block.settings.tw-list-social__item }}">
+                    <a
+                      href="{{ settings.social_twitter_link }}"
+                      class="link list-social__link {{ block.settings.tw-link-social__link  }}"
+                    >
+                      {%- render 'icon-twitter', class: block.settings['tw-social-icon'] -%}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_snapchat_link != blank -%}
+                  <li class="list-social__item {{ block.settings.tw-list-social__item }}">
+                    <a
+                      href="{{ settings.social_snapchat_link }}"
+                      class="link list-social__link {{ block.settings.tw-link-social__link  }}"
+                    >
+                      {%- render 'icon-snapchat', class: block.settings['tw-social-icon'] -%}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_pinterest_link != blank -%}
+                  <li class="list-social__item {{ block.settings.tw-list-social__item }}">
+                    <a
+                      href="{{ settings.social_pinterest_link }}"
+                      class="link list-social__link {{ block.settings.tw-link-social__link  }}"
+                    >
+                      {%- render 'icon-pinterest', class: block.settings['tw-social-icon'] -%}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_tumblr_link != blank -%}
+                  <li class="list-social__item {{ block.settings.tw-list-social__item }}">
+                    <a
+                      href="{{ settings.social_tumblr_link }}"
+                      class="link list-social__link {{ block.settings.tw-link-social__link  }}"
+                    >
+                      {%- render 'icon-tumblr', class: block.settings['tw-social-icon'] -%}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_vimeo_link != blank -%}
+                  <li class="list-social__item {{ block.settings.tw-list-social__item }}">
+                    <a
+                      href="{{ settings.social_vimeo_link }}"
+                      class="link list-social__link {{ block.settings.tw-link-social__link  }}"
+                    >
+                      {%- render 'icon-vimeo', class: block.settings['tw-social-icon'] -%}
+                    </a>
+                  </li>
+                {%- endif -%}
+              </ul>
+            </div>
+          {% endif %}
+        {% else %}
+          <!-- Handle other block types here -->
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Mobile Image Position",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Top" },
+        { "value": "right", "label": "Bottom" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_position_desktop",
+      "label": "Desktop Image Position",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "tw-image-text-section",
+      "label": "Style tw-image-text-section",
+      "default": "flex flex-col lg:flex-row border-[1px] border-brand-black"
+    },
+    {
+      "type": "text",
+      "id": "tw-image-container",
+      "label": "Style tw-image-container",
+      "default": "w-full lg:w-1/2 aspect-square"
+    },
+    {
+      "type": "text",
+      "id": "tw-image",
+      "label": "Style tw-image",
+      "default": "object-cover w-full h-full"
+    },
+    {
+      "type": "text",
+      "id": "tw-content",
+      "label": "Style tw-content",
+      "default": "flex flex-col gap-16 justify-center items-center text-center px-4 py-10 md:p-20 lg:w-1/2"
+    },
+    {
+      "type": "text",
+      "id": "tw-content-container",
+      "label": "Style tw-content-container",
+      "default": "flex flex-col justify-center items-center text-center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading Size",
+          "default": "h2",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" }
+          ]
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading_text",
+          "label": "Heading Text",
+          "default": "Heading Text"
+        },
+        {
+          "type": "font_picker",
+          "id": "font",
+          "label": "Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "text",
+          "id": "tw-heading",
+          "label": "Style tw-heading"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "paragraph_text",
+          "label": "Paragraph Text",
+          "default": "Paragraph Text"
+        },
+        {
+          "type": "text",
+          "id": "tw-paragraph",
+          "label": "Style tw-paragraph"
+        }
+      ]
+    },
+    {
+      "type": "social-icons",
+      "name": "Social Icons",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_social_media",
+          "label": "Show Social Icons",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "tw-social-icons",
+          "label": "Style tw-social-icons"
+        },
+        {
+          "type": "text",
+          "id": "tw-list-social",
+          "label": "Style tw-list-social"
+        },
+        {
+          "type": "text",
+          "id": "tw-list-social__item",
+          "label": "Style tw-list-social__item"
+        },
+        {
+          "type": "text",
+          "id": "tw-link-social__link",
+          "label": "Style tw-link-social__link"
+        },
+        {
+          "type": "text",
+          "id": "tw-social-icon",
+          "label": "Style tw-social-icon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text",
+      "blocks": [
+        {
+          "type": "heading",
+          "settings": {
+            "heading_text": "Our Story",
+            "tw-heading": "font-semibold text-mobile-heading-2 mb-6 md:text-desktop-heading-2 lg:text-[3.8vw]"
+          }
+        },
+        {
+          "type": "heading",
+          "settings": {
+            "heading_size": "h5",
+            "heading_text": "About",
+            "tw-heading": "text-[1.25rem] mb-6 md:text-[1.75rem] lg:text-[3.8vw]"
+          }
+        },
+        {
+          "type": "heading",
+          "settings": {
+            "heading_text": "Kyiv LuxeBouquets",
+            "tw-heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]"
+          }
+        },
+        {
+          "type": "paragraph",
+          "settings": {
+            "paragraph_text": "Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread Joy with Our <em>Online Flower Delivery Service</em>",
+            "tw-paragraph": "mt-6 text-mobile-subtitle lg:text-[1.25vw]"
+          }
+        },
+        {
+          "type": "social-icons",
+          "settings": {
+            "tw-list-social": "flex flex-wrap gap-4",
+            "tw-link-social__link": "rounded-full border-[1px] border-brand-black p-3 w-12 h-12 lg:w-20 lg:h-20 flex justify-center items-center",
+            "tw-social-icon": "w-8 h-8"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

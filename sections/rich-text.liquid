@@ -1,0 +1,95 @@
+<div class="rich-text-section {{ section.settings.tw-rich-text-section }}">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'text' %}
+        <p
+          class="section-text {{ block.settings.tw-text }}"
+          style="font-family: {{ block.settings.text_font.family }}, {{ block.settings.font.fallback_families }};"
+        >
+          {{ block.settings.text }}
+        </p>
+      {% when 'heading' %}
+        <{{ block.settings.heading_size }}
+          class="section-heading {{ block.settings.tw-heading }}"
+          style="font-family: {{ block.settings.heading_font.family }}, {{ block.settings.font.fallback_families }};"
+        >
+          {{ block.settings.heading_text }}
+        </{{ block.settings.heading_size }}>
+      {% when 'paragraph' %}
+        <p class="section-paragraph {{ block.settings.tw-paragraph }}">
+          {{ block.settings.paragraph_text }}
+        </p>
+    {% endcase %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Rich text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tw-rich-text-section",
+      "label": "Style tw-rich-text-section"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading Size",
+          "default": "h2",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" }
+          ]
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading_text",
+          "label": "Heading Text",
+          "default": "Heading Text"
+        },
+        {
+          "type": "font_picker",
+          "id": "heading_font",
+          "label": "Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "text",
+          "id": "tw-heading",
+          "label": "Style tw-heading"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "paragraph_text",
+          "label": "Paragraph Text",
+          "default": "Paragraph Text",
+          "info": "This is the paragraph text."
+        },
+        {
+          "type": "text",
+          "id": "tw-paragraph",
+          "label": "Style tw-paragraph"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Rich text" }]
+}
+{% endschema %}
