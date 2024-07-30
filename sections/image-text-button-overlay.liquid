@@ -4,7 +4,7 @@
     {% comment %} Background Image {% endcomment %}
     {% assign image_classes = section.settings.itbo__container_image_classes %}
     {% if section.settings.itbo_background_image != blank %}
-        {{
+        {{ 
             section.settings.itbo_background_image
             | image_url: width: 800
             | image_tag: 

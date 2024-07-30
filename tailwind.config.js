@@ -125,4 +125,24 @@ module.exports = {
       },  
     },
   },
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".no-spin": {
+          "-webkit-appearance": "none",
+          "-moz-appearance": "textfield",
+          appearance: "none",
+          margin: "0",
+        },
+        'input[type="number"]::-webkit-inner-spin-button': {
+          "-webkit-appearance": "none",
+        },
+        'input[type="number"]::-webkit-outer-spin-button': {
+          "-webkit-appearance": "none",
+        },
+      };
+
+      addUtilities(newUtilities, ["responsive", "hover"]);
+    },
+  ],
 };
