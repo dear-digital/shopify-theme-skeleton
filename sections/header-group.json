@@ -2,56 +2,6 @@
   "name": "Header Group",
   "type": "header",
   "sections": {
-    "header": {
-      "type": "dev__header",
-      "disabled": true,
-      "settings": {
-        "logo_width": 100,
-        "logo_alt": "",
-        "menu": "",
-        "search": false,
-        "cart": false,
-        "account-text": "Account",
-        "logout-text": "Logout",
-        "login-text": "Login",
-        "register-text": "Register",
-        "theme_navbar_classes": "",
-        "container_classes": "mx-auto px-4 sm:px-6",
-        "sub-container_classes": "flex justify-between items-center py-6",
-        "logo_classes": "lg:flex-1 truncate",
-        "logo_image_styles": "rounded-lg",
-        "shop_name_classes": "font-semibold",
-        "hamburger_button_classes": "-mr-2 -my-2 ml-3 md:hidden",
-        "hamburger_button_styles": "bg-white p-2 inline-flex items-center justify-center focus:outline-none",
-        "navbar_classes": "hidden md:flex space-x-10",
-        "navbar_link_wrapper_classes": "relative",
-        "navbar_link_button_classes": "inline-flex items-center text-base text-gray-500 hover:text-gray-900",
-        "navbar_dropdown_classes": "absolute z-10 -ml-5 mt-5 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1\/2 lg:-translate-x-1\/2",
-        "dropdown_content_classes": "shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg",
-        "dropdown_inner_classes": "relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8",
-        "dropdown_link_classes": "-m-3 p-3 flex items start rounded-lg hover:bg-gray-100",
-        "utility_menu_classes": "hidden md:flex items-center justify-end md:flex-1 space-x-5",
-        "cart_link_classes": "whitespace-nowrap text-base text-gray-500 hover:text-gray-900",
-        "search_link_classes": "text-gray-500 hover:text-gray-900",
-        "account-link__classes": "text-gray-500 hover:text-gray-900",
-        "logout-link__classes": "text-gray-500 hover:text-gray-900",
-        "login-link__classes": "text-gray-500 hover:text-gray-900",
-        "register-link__classes": "text-gray-500 hover:text-gray-900",
-        "mobile_menu_classes": "absolute z-10 top-0 inset-x-0 p-2 transform origin-top-left md:hidden",
-        "mobile_menu_content_classes": "shadow-lg rounded-lg ring-1 ring-black ring-opacity-5 bg-white w-full",
-        "mobile_menu_header_classes": "flex items-center justify-between pb-3",
-        "mobile_menu_title_classes": "text-lg text-gray-500 p-5",
-        "mobile_menu_close_button_classes": "-mr-2 p-5",
-        "mobile_menu_links_classes": "pt-3 p-5",
-        "mobile_menu_nav_classes": "grid gap-y-7",
-        "mobile_icons_classes": "flex gap-4",
-        "mobile_menu_dropdown_wrapper_classes": "relative",
-        "mobile_menu_dropdown_button_classes": "text-base text-gray-500 hover:text-gray-900 flex items-center justify-between w-full",
-        "mobile_menu_dropdown_content_classes": "grid gap-y-7 py-3",
-        "mobile_menu_dropdown_inner_classes": "-m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50",
-        "mobile_menu_dropdown_link_classes": "ml-3 text-base font-medium text-gray-500"
-      }
-    },
     "navbar_6VQw7f": {
       "type": "navbar",
       "settings": {
@@ -136,7 +86,6 @@
     }
   },
   "order": [
-    "header",
     "navbar_6VQw7f",
     "cart_69hwiH"
   ]
