@@ -2,10 +2,10 @@
   "name": "Footer Group",
   "type": "footer",
   "sections": {
-    "dev_footer_PmiaEk": {
+    "dev_footer_MNBaKg": {
       "type": "dev__footer",
       "blocks": {
-        "text_7hgpJR": {
+        "text_TrchRP": {
           "type": "text",
           "settings": {
             "heading": "Subscription",
@@ -23,7 +23,7 @@
             "success_message": "Thank you for subscribing!"
           }
         },
-        "contact_us_EPT6bH": {
+        "contact_us_kk8P98": {
           "type": "contact_us",
           "settings": {
             "contact_us-heading": "Contact us",
@@ -48,10 +48,10 @@
             "tw-footer__social-media-link": "font-medium text-mobile-links"
           }
         },
-        "link_list_49Br9L": {
+        "link_list_LWLAji": {
           "type": "link_list",
           "settings": {
-            "menu": "shop",
+            "menu": "footer",
             "tw-footer__link-list_style": "py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] md:border-b-0 md:border-r-[1px] border-brand-black lg:border-b-[1px] md:p-10 md:gap-6",
             "tw-footer__title": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5",
             "tw-footer__menu": "flex flex-col gap-2",
@@ -59,7 +59,7 @@
             "tw-footer__menu-link": ""
           }
         },
-        "link_list_wBF4qj": {
+        "link_list_NRa6Wx": {
           "type": "link_list",
           "settings": {
             "menu": "about-us",
@@ -72,17 +72,15 @@
         }
       },
       "block_order": [
-        "text_7hgpJR",
-        "contact_us_EPT6bH",
-        "link_list_49Br9L",
-        "link_list_wBF4qj"
+        "text_TrchRP",
+        "contact_us_kk8P98",
+        "link_list_LWLAji",
+        "link_list_NRa6Wx"
       ],
       "settings": {
-        "tw-footer__style": "flex flex-col border-x-[1px] border-t-[1px] border-brand-black md:grid md:grid-cols-2 lg:grid lg:grid-cols-4"
+        "tw-footer__style": "flex flex-col border-t-[1px] border-x-[1px] border-brand-black md:grid md:grid-cols-2 lg:grid lg:grid-cols-4"
       }
     }
   },
-  "order": [
-    "dev_footer_PmiaEk"
-  ]
+  "order": ["dev_footer_MNBaKg"]
 }

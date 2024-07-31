@@ -1,5 +1,213 @@
 {
   "sections": {
+    "image_with_text_wWiaLU": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_BpQBcg": {
+          "type": "heading",
+          "settings": {
+            "heading_size": "h2",
+            "heading_text": "Our Story",
+            "font": "assistant_n4",
+            "tw-heading": "font-semibold text-mobile-heading-2 mb-6 md:text-desktop-heading-2 lg:text-[3.8vw]"
+          }
+        },
+        "heading_fzmgNJ": {
+          "type": "heading",
+          "settings": {
+            "heading_size": "h5",
+            "heading_text": "About",
+            "font": "libelle_n4",
+            "tw-heading": "text-[1.25rem] mb-6 md:text-[1.75rem] lg:text-[3.8vw]"
+          }
+        },
+        "heading_p6zPLa": {
+          "type": "heading",
+          "settings": {
+            "heading_size": "h2",
+            "heading_text": "Kyiv LuxeBouquets",
+            "font": "assistant_n4",
+            "tw-heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]"
+          }
+        },
+        "paragraph_AG3yDj": {
+          "type": "paragraph",
+          "settings": {
+            "paragraph_text": "Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread Joy with Our <em>Online Flower Delivery Service<\/em>",
+            "tw-paragraph": "mt-6 text-mobile-subtitle lg:text-[1.25vw]"
+          }
+        },
+        "social_icons_kPPA9C": {
+          "type": "social-icons",
+          "settings": {
+            "show_social_media": true,
+            "tw-social-icons": "",
+            "tw-list-social": "flex flex-wrap gap-4",
+            "tw-list-social__item": "",
+            "tw-link-social__link": "rounded-full border-[1px] border-brand-black p-3 w-12 h-12 lg:w-20 lg:h-20 flex justify-center items-center",
+            "tw-social-icon": "w-8 h-8"
+          }
+        }
+      },
+      "block_order": [
+        "heading_BpQBcg",
+        "heading_fzmgNJ",
+        "heading_p6zPLa",
+        "paragraph_AG3yDj",
+        "social_icons_kPPA9C"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Fresh_Flowers.png",
+        "image_position": "right",
+        "image_position_desktop": "right",
+        "tw-image-text-section": "flex flex-col lg:flex-row border-[1px] border-brand-black",
+        "tw-image-container": "w-full lg:w-1\/2 aspect-[0.893] md:aspect-[1.536] lg:aspect-square",
+        "tw-image": "object-cover w-full h-full",
+        "tw-content": "flex flex-col gap-16 justify-center items-center text-center px-4 py-10 md:p-20 lg:w-1\/2",
+        "tw-content-container": "flex flex-col justify-center items-center"
+      }
+    },
+    "rich_text_8aP7Yg": {
+      "type": "rich-text",
+      "blocks": {
+        "paragraph_LKRY8K": {
+          "type": "paragraph",
+          "settings": {
+            "paragraph_text": "Our Story",
+            "tw-paragraph": "uppercase text-mobile-overline mb-6 md:text-desktop-overline lg:text-[.98vw]"
+          }
+        },
+        "heading_eQhbWW": {
+          "type": "heading",
+          "settings": {
+            "heading_size": "h3",
+            "heading_text": "Our Founder's Passion",
+            "heading_font": "assistant_n4",
+            "tw-heading": "font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]"
+          }
+        },
+        "paragraph_jWCYj9": {
+          "type": "paragraph",
+          "settings": {
+            "paragraph_text": "Kyiv LuxeBouquets was founded in 2010 by Natalia Zelinska  with the goal of bringing unique and exquisite bouquets to the people of Kyiv. Natalia has always had a passion for flowers and design, and his vision was to create a local floral studio that would specialize in the creation and delivery of fresh, beautiful, and distinctive bouquets.",
+            "tw-paragraph": "mt-4 text-mobile-body md:text-desktop-body lg:text-[1.12vw] tracking-[.03vw]"
+          }
+        }
+      },
+      "block_order": [
+        "paragraph_LKRY8K",
+        "heading_eQhbWW",
+        "paragraph_jWCYj9"
+      ],
+      "settings": {
+        "tw-rich-text-section": "px-4 py-10 md:p-20 lg:p-[5.56vw] flex flex-col justify-center items-center text-center border border-x-brand-black"
+      }
+    },
+    "image_with_text_et9DyE": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_jG9gJm": {
+          "type": "heading",
+          "settings": {
+            "heading_size": "h3",
+            "heading_text": "Expertly Crafted Bouquets",
+            "font": "assistant_n4",
+            "tw-heading": "w-full font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw] text-left"
+          }
+        },
+        "paragraph_tH3Bqi": {
+          "type": "paragraph",
+          "settings": {
+            "paragraph_text": "At Kyiv LuxeBouquets, we take pride in our team of talented and experienced florists who carefully select each bloom, ensuring that only the freshest and most stunning flowers make it into our bouquets. We work directly with farms to source the highest quality flowers, and our skilled florists expertly craft each bouquet to perfection.",
+            "tw-paragraph": "mt-4 text-mobile-body md::text-text-desktop-body lg:text-[1.12vw] text-left"
+          }
+        }
+      },
+      "block_order": [
+        "heading_jG9gJm",
+        "paragraph_tH3Bqi"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/438558421_1186887409389748_5814496462648866946_n_9fa6b090-8be9-458b-bf54-37f0ba267d0f.jpg",
+        "image_position": "left",
+        "image_position_desktop": "left",
+        "tw-image-text-section": "flex flex-col lg:flex-row border-[1px] border-brand-black",
+        "tw-image-container": "w-full lg:w-1\/2 aspect-square",
+        "tw-image": "object-cover w-full h-full",
+        "tw-content": "flex flex-col justify-start items-center text-center px-4 py-10 md:p-20 lg:w-1\/2 lg:relative",
+        "tw-content-container": "flex flex-col justify-center items-center lg:sticky lg:top-[5.56vw]"
+      }
+    },
+    "image_with_text_4LpyJP": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_iwFmtr": {
+          "type": "heading",
+          "settings": {
+            "heading_size": "h3",
+            "heading_text": "Bouquets, Gifts & Ambiance",
+            "font": "assistant_n4",
+            "tw-heading": "w-full font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw] text-left"
+          }
+        },
+        "paragraph_QyMCbX": {
+          "type": "paragraph",
+          "settings": {
+            "paragraph_text": "In addition to our stunning bouquets, we also offer a collection of dried bouquets, house plants, and fragrant candles from luxury brands to create the perfect ambiance. We believe that sending flowers, plants, and gifts should be easy and stress-free, which is why we offer same or next-day delivery throughout Kyiv.",
+            "tw-paragraph": "mt-4 text-mobile-body md::text-text-desktop-body lg:text-[1.12vw] text-left"
+          }
+        }
+      },
+      "block_order": [
+        "heading_iwFmtr",
+        "paragraph_QyMCbX"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/contact_us.png",
+        "image_position": "left",
+        "image_position_desktop": "right",
+        "tw-image-text-section": "flex flex-col lg:flex-row border-[1px] border-brand-black",
+        "tw-image-container": "w-full lg:w-1\/2 aspect-square",
+        "tw-image": "object-cover w-full h-full",
+        "tw-content": "flex flex-col justify-start items-center text-center px-4 py-10 md:p-20 lg:w-1\/2 lg:relative",
+        "tw-content-container": "flex flex-col justify-center items-center lg:sticky lg:top-[5.56vw]"
+      }
+    },
+    "image_with_text_Q7qcHC": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_AKqpxG": {
+          "type": "heading",
+          "settings": {
+            "heading_size": "h3",
+            "heading_text": "Making Every Day Special",
+            "font": "assistant_n4",
+            "tw-heading": "w-full font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw] text-left"
+          }
+        },
+        "paragraph_jxktL3": {
+          "type": "paragraph",
+          "settings": {
+            "paragraph_text": "Our mission is simple: to make every day special and memorable for our customers. We are dedicated to providing the highest quality flowers, exceptional customer service, and a seamless online experience that will make you feel confident and satisfied with your purchase.Thank you for choosing Kyiv LuxeBouquets. We look forward to bringing joy and happiness to your life with our beautiful bouquets and gifts.",
+            "tw-paragraph": "mt-4 text-mobile-body md::text-text-desktop-body lg:text-[1.12vw] text-left"
+          }
+        }
+      },
+      "block_order": [
+        "heading_AKqpxG",
+        "paragraph_jxktL3"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/438651119_1488919035381730_6468235666756736443_n_0a038ae6-2d29-47ac-bd3b-033eddc92d88.jpg",
+        "image_position": "left",
+        "image_position_desktop": "left",
+        "tw-image-text-section": "flex flex-col lg:flex-row border-[1px] border-brand-black",
+        "tw-image-container": "w-full lg:w-1\/2 aspect-square",
+        "tw-image": "object-cover w-full h-full",
+        "tw-content": "flex flex-col justify-start items-center text-center px-4 py-10 md:p-20 lg:w-1\/2 lg:relative",
+        "tw-content-container": "flex flex-col justify-center items-center lg:sticky lg:top-[5.56vw]"
+      }
+    },
     "shop_promo_simple_pbDhbp": {
       "type": "shop-promo-simple",
       "settings": {
@@ -7,71 +215,21 @@
         "description": "<p>Explore our collection of exquisite bouquets and surprise your loved ones with the perfect gift. Click the button below to start shopping.<\/p>",
         "button_link": "",
         "button_text": "Shop now",
-        "shop-promo": "flex flex-col gap-8 px-4 py-10 border-brand-black border-y text-center items-center md:p-20 md:gap-10",
+        "shop-promo": "flex flex-col gap-8 px-4 py-10 border border-x-brand-black text-center items-center md:p-20 md:gap-10",
         "shop-promo__content": "space-y-4",
         "shop-promo__title": "text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
         "shop-promo__description": "text-mobile-subtitle font-medium opacity-90",
         "shop-promo__button": "text-mobile-button font-medium uppercase flex gap-3 items-center justify-center bg-black text-white h-[46px] w-[270px] md:text-desktop-button tracking-[0.025em] md:tracking-[0.03em] md:h-[56px] border-brand-black hover:bg-transparent hover:text-black border transition fade duration 300 ease-out",
         "shop-promo__button_SVG": "w-5 h-5"
       }
-    },
-    "about_us_GYTzzQ": {
-      "type": "about-us",
-      "settings": {
-        "about_us__container_left_heading": "About Us",
-        "about_us__container_right_small_header": "Our Story",
-        "about_us__container_right_sub_header": "Kyiv LuxeBouquets",
-        "about_us__container_right_description": "<p>We are a modern local floral studio, which specializes in the design and delivery of unique bouquets. We have the best florists who carefully select each look, our studio cooperates directly with farms for growing different flowers, so we always have fresh flowers, which are collected by our florists in exquisite bouquets. We have a collection of fresh bouquets, collections of dried bouquets, house plants, as well as fragrant candles from luxury brands to create the perfect atmosphere. Make someone's day amazing by sending flowers, plants and gifts the same or next day. Ordering flowers online has never been easier.<\/p>",
-        "about_us__container_right_button_label": "Learn More",
-        "about_us__container_right_button_link": "",
-        "about_us__container": "flex flex-col lg:flex-row w-full",
-        "about_us__container_left": "w-full px-4 py-10 border-brand-black border border-t-0 gap-4 md:p-20 lg:border-r-0",
-        "about_us__container_left_heading_div_classes": "lg:sticky lg:top-[5.56vw]",
-        "about_us__container_left_heading_classes": "text-brand-black text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
-        "about_us__container_right": "w-full px-4 py-10 border-brand-black border border-t-0 md:p-20 lg:border-r-0 lg:border-l-1",
-        "about_us__container_right_content": "flex flex-col gap-6",
-        "about_us__container_right_small_header_classes": "uppercase text-brand-black text-mobile-overline font-medium md:text-desktop-overline",
-        "about_us__container_right_sub_header_classes": "text-brand-black text-mobile-heading-3 font-medium md:text-desktop-heading-3",
-        "about_us__container_right_description_classes": "text-mobile-body font-regular opacity-90",
-        "about_us__container_right_button_div": "flex items-start justify-center mt-16 md:inline-block",
-        "about_us__container_right_button_classes": "text-brand-black uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-brand-black pt-4 pb-[14px] px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
-      }
-    },
-    "dev_contact_form_GkbeLk": {
-      "type": "dev__contact-form",
-      "settings": {
-        "contact_title": "Contact Us",
-        "send_button_text": "Send Message",
-        "contact": "w-full dark:bg-gray-900 dark:text-white py-10 text-center mx-auto",
-        "contact__style--title": "text-2xl md:text-4xl font-bold",
-        "contact__style--form": "mt-5 md:mt-7 w-full mx-auto px-6 md:w-3\/5",
-        "contact__form_styles": "flex flex-col items-center",
-        "contact__1st-row": "flex justify-between gap-2 w-full",
-        "contact__style--input": "w-full px-2 py-1 text-sm md:text-base border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
-        "contact__style--textarea": "w-full px-2 py-1 text-sm md:text-base border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
-        "contact__submit-button": "py-1 px-2 block mx-auto md:py-3 md:px-5 md:w-full text-sm font-medium text-center bg-blue-600 text-white rounded-md border cursor-pointer bg-primary-700 border-primary-600 hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-      }
-    },
-    "dev_contact_form_EzpBjb": {
-      "type": "dev__contact-form",
-      "settings": {
-        "contact_title": "Contact Us",
-        "send_button_text": "Send Message",
-        "contact": "w-full dark:bg-gray-900 dark:text-white py-10 text-center mx-auto",
-        "contact__style--title": "text-2xl md:text-4xl font-bold",
-        "contact__style--form": "mt-5 md:mt-7 w-full mx-auto px-6 md:w-3\/5",
-        "contact__form_styles": "flex flex-col items-center",
-        "contact__1st-row": "flex justify-between gap-2 w-full",
-        "contact__style--input": "w-full px-2 py-1 text-sm md:text-base border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
-        "contact__style--textarea": "w-full px-2 py-1 text-sm md:text-base border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
-        "contact__submit-button": "py-1 px-2 block mx-auto md:py-3 md:px-5 md:w-full text-sm font-medium text-center bg-blue-600 text-white rounded-md border cursor-pointer bg-primary-700 border-primary-600 hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-      }
     }
   },
   "order": [
-    "shop_promo_simple_pbDhbp",
-    "about_us_GYTzzQ",
-    "dev_contact_form_GkbeLk",
-    "dev_contact_form_EzpBjb"
+    "image_with_text_wWiaLU",
+    "rich_text_8aP7Yg",
+    "image_with_text_et9DyE",
+    "image_with_text_4LpyJP",
+    "image_with_text_Q7qcHC",
+    "shop_promo_simple_pbDhbp"
   ]
 }
