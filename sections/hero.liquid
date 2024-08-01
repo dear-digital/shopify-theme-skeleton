@@ -15,18 +15,14 @@
     {% if section.settings.hero__description != blank or section.settings.hero__image != blank %}
     <div class="hero__content {{ section.settings.hero__content }}">
       {% if section.settings.hero__image != blank %}
-          {% if section.settings.hero__image != blank %}
-          {{
-            section.settings.hero__image
-            | image_url: width: 600
-            | image_tag: 
-                sizes: '(min-width: 1440px) 1440px, (min-width: 768px) 768px, 100vw',
-                widths: '480, 768, 1440'
-          }}
-{% endif %}
-      {% else %}
-          {{ 'image' | placeholder_svg_tag:  section.settings['tail-hero__image'] }}
-      {% endif %}
+        {{
+          section.settings.hero__image
+          | image_url: width: 200
+          | image_tag: class: section.settings['tail-hero__image']
+        }}
+        {% else %}
+        {{ 'image' | placeholder_svg_tag:  section.settings.hero__image }}
+    {% endif %}
       {% if section.settings.hero__description != blank %}
       <p class="hero__description {{ section.settings.tail-hero__description }}">
         {{ section.settings.hero__description }}
