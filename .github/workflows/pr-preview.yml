@@ -1,0 +1,222 @@
+name: PR Preview
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+
+jobs:
+  check-and-queue:
+    if: github.event.issue.pull_request && github.event.comment.body == '!preview'
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check_lock.outputs.should_run }}
+    steps:
+      - name: Check lock label
+        id: check_lock
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const lockLabel = 'preview-locked';
+            let shouldRun = 'false';
+
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+
+            const isLocked = labels.some(label => label.name === lockLabel);
+
+            if (isLocked) {
+              console.log('This PR is already locked for preview. Allowing update.');
+              shouldRun = 'true';
+            } else {
+              const { data: openPRs } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open'
+              });
+              
+              const lockedPR = openPRs.find(pr => pr.labels.some(label => label.name === lockLabel));
+              
+              if (lockedPR) {
+                await github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: `A preview is currently in progress for PR #${lockedPR.number}. Your request has been queued. Please wait for the current preview to be unlocked.`
+                });
+              } else {
+                console.log('No locked PR found. Creating lock.');
+                await github.rest.issues.addLabels({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  labels: [lockLabel]
+                });
+                shouldRun = 'true';
+              }
+            }
+
+            core.setOutput('should_run', shouldRun);
+
+  preview:
+    needs: check-and-queue
+    if: needs.check-and-queue.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get PR details
+        id: pr_details
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            core.setOutput('branch', pr.data.head.ref);
+            core.setOutput('sha', pr.data.head.sha);
+
+      - name: Set up Git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+      - name: Update development-preview branch
+        run: |
+          git fetch origin
+          git checkout -B development-preview origin/main
+          git reset --hard origin/main
+          git clean -fd
+          git fetch origin ${{ steps.pr_details.outputs.branch }}
+          git merge --allow-unrelated-histories --no-ff origin/${{ steps.pr_details.outputs.branch }} || true
+          if git status | grep -q "Unmerged paths"; then
+            echo "Merge conflict detected. Attempting to resolve..."
+            git merge --abort
+            git reset --hard origin/main
+            git cherry-pick --allow-empty --allow-unrelated-histories ${{ steps.pr_details.outputs.sha }} || true
+            if git status | grep -q "Unmerged paths"; then
+              echo "Unable to automatically resolve conflicts. Capturing conflict details..."
+              git diff > conflict_diff.patch
+              echo "CONFLICT_DETECTED=true" >> $GITHUB_ENV
+            else
+              git push -f origin development-preview
+            fi
+          else
+            git push -f origin development-preview
+          fi
+
+      - name: Generate Shopify theme preview link
+        id: create_preview
+        env:
+          SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+          SHOPIFY_ADMIN_API_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ADMIN_API_ACCESS_TOKEN }}
+        run: |
+          THEME_ID=170516611386
+          STORE_NAME=$(echo $SHOPIFY_STORE | cut -d'.' -f1)
+          PREVIEW_URL="https://admin.shopify.com/store/${STORE_NAME}/themes/${THEME_ID}/editor"
+          echo "preview_url=${PREVIEW_URL}" >> $GITHUB_OUTPUT
+
+      - name: Comment on PR with preview links
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const previewUrl = '${{ steps.create_preview.outputs.preview_url }}';
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Preview is ready for the latest changes in this PR. You can now check the following:
+
+              1. Preview Branch: https://github.com/${context.repo.owner}/${context.repo.repo}/tree/development-preview
+              2. Shopify Theme Preview: ${previewUrl}
+
+              Please review and provide your feedback. Once you're done, comment '!unlock-preview' on this PR to allow new preview generations. Note that only the user who initiated this preview can unlock it.`
+            });
+
+  unlock-preview:
+    if: github.event.issue.pull_request && github.event.comment.body == '!unlock-preview'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check permissions and locked PR
+        id: check_permissions_and_lock
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const lockLabel = 'preview-locked';
+            let hasPermission = false;
+
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+
+            const isLocked = labels.some(label => label.name === lockLabel);
+
+            if (isLocked) {
+              const { data: pr } = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.issue.number
+              });
+              
+              if (pr.user.login === context.payload.comment.user.login) {
+                hasPermission = true;
+              } else {
+                await github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: `Only ${pr.user.login} can unlock this preview as they initiated it.`
+                });
+              }
+            } else {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: 'This PR is not currently locked for preview. No action needed.'
+              });
+            }
+
+            core.setOutput('has_permission', hasPermission);
+
+      - name: Remove lock label
+        if: steps.check_permissions_and_lock.outputs.has_permission == 'true'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const lockLabel = 'preview-locked';
+
+            await github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              name: lockLabel
+            });
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Preview lock has been removed. New previews can now be generated.'
+            });
