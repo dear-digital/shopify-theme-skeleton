@@ -15,11 +15,13 @@
     {% if section.settings.hero__description != blank or section.settings.hero__image != blank %}
     <div class="hero__content {{ section.settings.hero__content }}">
       {% if section.settings.hero__image != blank %}
-        {{
-          section.settings.hero__image
-          | image_url: width: 200
-          | image_tag: class: section.settings['tail-hero__image']
-        }}
+          {{
+            section.settings.hero__image
+            | image_url: width: 200
+            | image_tag: class: section.settings['tail-hero__image']
+          }}
+      {% else %}
+          {{ 'image' | placeholder_svg_tag:  section.settings['tail-hero__image'] }}
       {% endif %}
       {% if section.settings.hero__description != blank %}
       <p class="hero__description {{ section.settings.tail-hero__description }}">
