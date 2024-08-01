@@ -246,41 +246,41 @@
         "button_link": "",
         "button_text": "SUBSCRIBE NOW",
         "tw-our-service": "py-10 px-4 md:p-20 md:text-center lg:py-20 lg:px-2.5 border-b border-brand-black",
-        "tw-our-service__title": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2",
+        "tw-our-service__title": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]",
         "tw-service": "lg:flex lg:justify-center lg:items-center border-b-[1px] border-x-[1px] border-brand-black",
         "tw-service__left-col": "lg:w-1\/2 h-[420px] md:h-[500px] lg:h-fit",
         "tw-service__image": "w-full h-full object-cover object-center md:aspect-[1.536] lg:aspect-square border-b-[1px] lg:border-r-[1px] lg:border-b-0 border-brand-black",
-        "tw-service__right-col": "px-4 py-10 text-center md:p-20 lg:w-1\/2",
+        "tw-service__right-col": "px-4 py-10 text-center md:p-20 lg:w-1\/2 lg:p-[5.56vw]",
         "tw-service__content": "flex flex-col gap-16",
         "tw-service__text-content": "flex flex-col gap-6",
-        "tw-service__title": "font-medium text-mobile-overline md:text-desktop-overline",
-        "tw-service__heading-paragraph": "flex flex-col gap-4",
-        "tw-service__heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2",
-        "tw-service__paragraph": "font-regular text-mobile-body md:text-mobile-subtitle md:font-medium",
+        "tw-service__title": "font-medium text-mobile-overline md:text-desktop-overline lg:text-[.98vw] lg:mb-[1.7vw]",
+        "tw-service__heading-paragraph": "flex flex-col gap-4 lg:mb-[4.5vw]",
+        "tw-service__heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw] lg:mb-[1.12vw]",
+        "tw-service__paragraph": "font-regular text-mobile-body md:text-mobile-subtitle md:font-medium lg:text-[1.12vw] tracking-[.03vw] text-brand-gray",
         "tw-service__button": "py-4 px-6 border-[1px] border-brand-black md:py-0 md:px-0 md:border-0",
-        "tw-service__link-button": "md:py-4 md:px-6 md:border-[1px] border-brand-black font-medium text-mobile-button md:text-desktop-button"
+        "tw-service__link-button": "md:py-4 md:px-6 md:border-[1px] border-brand-black font-medium text-mobile-button md:text-desktop-button lg:text-[1.12vw] lg:py-[1.25vw] lg:px-[1.7vw]"
       }
     },
-    "image_text_button_overlay_BnAWXJ": {
-      "type": "image-text-button-overlay",
+    "parallax_overlay_dmydRH": {
+      "type": "parallax-overlay",
       "settings": {
-        "itbo_background_image": "shopify:\/\/shop_images\/Service_Section_Image_Banner_with_Overlay.png",
-        "itbo__container_text_content_small_header": "Service",
-        "itbo__container_text_content_heading_paragraph_div_header": "Wedding & Event Decor",
-        "itbo__container_text_content_heading_paragraph_div_para": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
-        "itbo__container_button_label": "Inquire Now",
-        "itbo__container_button_link": "",
-        "itbo__container": "relative h-[416px] md:h-[500px] lg:h-[720px] flex items-center justify-center",
-        "itbo__container_image_classes": "absolute inset-0 w-full h-full object-cover",
-        "itbo__container_overlay": "absolute inset-0 bg-black bg-opacity-50",
-        "itbo__container_content": "relative z-10 flex flex-col gap-16 py-10 px-4 md:p-20 md:items-center",
-        "itbo__container_text_content": "flex flex-col gap-6 text-center",
-        "itbo__container_text_content_small_header_classes": "text-mobile-caption-small md:text-mobile-caption uppercase text-white font-medium",
-        "itbo__container_text_content_heading_paragraph_div": "flex flex-col gap-4",
-        "itbo__container_text_content_heading_paragraph_div_header_classes": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2",
-        "itbo__container_text_content_heading_paragraph_div_para_classes": "text-mobile-body text-white md:text-desktop-hero-caption",
-        "itbo__container_button_div": "flex items-start justify-center md:inline-block",
-        "itbo__container_button_classes": "text-center text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-white pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
+        "background_image": "shopify:\/\/shop_images\/Flower_Subscription.png",
+        "small_header_text": "Service",
+        "heading_text": "Wedding & Event Decor",
+        "paragraph_text": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
+        "button_label": "Inquire Now",
+        "button_link": "",
+        "container_classes": "relative aspect-[2] flex items-center justify-center",
+        "background_image_classes": "absolute inset-0 w-full h-full object-cover",
+        "overlay_classes": "absolute inset-0 bg-black bg-opacity-50",
+        "content_classes": "relative z-10 flex flex-col gap-16 py-10 px-4 md:p-20 md:items-center lg:w-[66.66%]",
+        "text_content_classes": "flex flex-col gap-6 text-center",
+        "small_header_classes": "text-mobile-caption-small md:text-mobile-caption uppercase text-white font-medium lg:text-[.98vw] lg:mb-[1.7vw]",
+        "heading_paragraph_div_classes": "flex flex-col gap-4 lg:gap-[1.12vw] lg:mb-[3.5vw]",
+        "heading_classes": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2 lg:text-[3.8vw]",
+        "paragraph_classes": "text-mobile-body text-white md:text-desktop-hero-caption lg:text-[1.12vw] tracking-[.03vw]",
+        "button_div_classes": "flex items-start justify-center md:inline-block",
+        "button_classes": "text-center text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-white pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button lg:text-[1.12vw] lg:py-[1.25vw] lg:px-[1.7vw]"
       }
     }
   },
@@ -290,6 +290,6 @@
     "dev_why_choose_us_WCKxAT",
     "contact_us_3zCHDF",
     "dev_service_keHepD",
-    "image_text_button_overlay_BnAWXJ"
+    "parallax_overlay_dmydRH"
   ]
 }
