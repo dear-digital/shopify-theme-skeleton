@@ -103,7 +103,8 @@
         "hero__title": "text-mobile-heading-1 font-semibold pb-4 md:pr-12 md:text-desktop-heading-1",
         "hero__subtitle": "text-mobile-hero-caption pb-6 md:pb-[54px] md:text-desktop-hero-caption lg:pb-0",
         "hero__content": "flex pt-4 border-t-[1px] border-brand-black md:pt-6 lg:align-center",
-        "tail-hero__image": "w-1\/2 pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]",
+        "hero__image-container": "w-1\/2",
+        "tail-hero__image": "w-full pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]",
         "tail-hero__description": "w-1\/2 pl-4 content-end text-mobile-small-description md:pl-6 md:text-desktop-caption",
         "hero__right-col": "w-full lg:w-1\/2 lg:h-screen lg:max-h-[50vw]"
       }

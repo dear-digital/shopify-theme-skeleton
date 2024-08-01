@@ -15,13 +15,31 @@
     {% if section.settings.hero__description != blank or section.settings.hero__image != blank %}
     <div class="hero__content {{ section.settings.hero__content }}">
       {% if section.settings.hero__image != blank %}
-        {{
-          section.settings.hero__image
-          | image_url: width: 200
-          | image_tag: class: section.settings['tail-hero__image']
-        }}
+        <picture class="{{ section.settings.hero__image-container }}">
+            <!-- source tag is used to load different sizes images with DPR (1x or 2x) -->
+            <source
+              media="(min-width: 1440px)"
+              srcset="{{ section.settings.hero__image | image_url: width: 1200 }} 1x, {{ section.settings.hero__image | image_url: width: 2400 }} 2x"
+            >
+            <source
+              media="(min-width: 768px)"
+              srcset="{{ section.settings.hero__image | image_url: width: 600 }} 1x, {{ section.settings.hero__image | image_url: width: 1200 }} 2x"
+            >
+            <source
+              srcset="{{ section.settings.hero__image | image_url: width: 300 }} 1x, {{ section.settings.hero__image | image_url: width: 600 }} 2x"
+            >
+            <!-- image_url: width: 350 will run, but only if none of the preceding <source> elements' media queries are matched  -->
+            <!-- It is as a Fallback Image if the browser does not support the <picture> element -->
+            {{ 
+              section.settings.hero__image 
+              | image_url: width: 350 
+              | image_tag: 
+                class: section.settings['tail-hero__image'],
+                sizes: '(min-width: 1440px) 1250px, (min-width: 768px) 650px, 350px'
+            }}
+          </picture>
         {% else %}
-        {{ 'image' | placeholder_svg_tag:  section.settings.hero__image }}
+            {{ 'image' | placeholder_svg_tag:  section.settings.hero__image }}
     {% endif %}
       {% if section.settings.hero__description != blank %}
       <p class="hero__description {{ section.settings.tail-hero__description }}">
@@ -144,9 +162,15 @@
     },
     {
       "type": "textarea",
+      "id": "hero__image-container",
+      "label": "Style hero__image-container",
+      "default": "w-1/2"
+    },
+    {
+      "type": "textarea",
       "id": "tail-hero__image",
       "label": "Style hero__image",
-      "default": "w-1/2 pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]"
+      "default": "w-full pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]"
     },
     {
       "type": "textarea",
