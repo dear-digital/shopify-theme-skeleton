@@ -15,11 +15,19 @@
     {% if section.settings.hero__description != blank or section.settings.hero__image != blank %}
     <div class="hero__content {{ section.settings.hero__content }}">
       {% if section.settings.hero__image != blank %}
+          {% assign srcset = section.settings.hero__image | image_url: width: 480 | append: ' 480w, ' %}
+          {% assign srcset = srcset | append: section.settings.hero__image | image_url: width: 768 | append: ' 768w, ' %}
+          {% assign srcset = srcset | append: section.settings.hero__image | image_url: width: 1440 | append: ' 1440w' %}
+
           {{
             section.settings.hero__image
-            | image_url: width: 200
-            | image_tag: class: section.settings['tail-hero__image']
+            | image_url: width: 500
+            | image_tag: 
+                class: section.settings['tail-hero__image'], 
+                sizes: "(min-width: 1440px) 1440px, (min-width: 768px) 768px, 100vw", 
+                srcset: srcset
           }}
+
       {% else %}
           {{ 'image' | placeholder_svg_tag:  section.settings['tail-hero__image'] }}
       {% endif %}
