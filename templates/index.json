@@ -235,30 +235,30 @@
         "social_icon_svg": "w-6 h-6"
       }
     },
-    "dev_service_keHepD": {
-      "type": "dev__service",
+    "service_zqVAwn": {
+      "type": "service",
       "settings": {
         "our_service_title": "Our Service",
-        "image": "shopify:\/\/shop_images\/plan_left_colum_new.png",
+        "image": "shopify:\/\/shop_images\/438418561_799267005593792_2962723716381083815_n_42851eb5-a879-43a3-bd9b-d06d911a281a.jpg",
         "title": "SERVICE",
         "heading": "Flower Subscriptions",
         "paragraph": "Experience the convenience and savings of regular flower deliveries with our flexible subscription service - up to 30% more profitable than one-time purchases.",
         "button_link": "",
         "button_text": "SUBSCRIBE NOW",
-        "tw-our-service": "py-10 px-4 md:p-20 md:text-center lg:py-20 lg:px-2.5 border-b border-brand-black",
-        "tw-our-service__title": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]",
-        "tw-service": "lg:flex lg:justify-center lg:items-center border-b-[1px] border-x-[1px] border-brand-black",
-        "tw-service__left-col": "lg:w-1\/2 h-[420px] md:h-[500px] lg:h-fit",
-        "tw-service__image": "w-full h-full object-cover object-center md:aspect-[1.536] lg:aspect-square border-b-[1px] lg:border-r-[1px] lg:border-b-0 border-brand-black",
-        "tw-service__right-col": "px-4 py-10 text-center md:p-20 lg:w-1\/2 lg:p-[5.56vw]",
-        "tw-service__content": "flex flex-col gap-16",
-        "tw-service__text-content": "flex flex-col gap-6",
-        "tw-service__title": "font-medium text-mobile-overline md:text-desktop-overline lg:text-[.98vw] lg:mb-[1.7vw]",
-        "tw-service__heading-paragraph": "flex flex-col gap-4 lg:mb-[4.5vw]",
-        "tw-service__heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw] lg:mb-[1.12vw]",
-        "tw-service__paragraph": "font-regular text-mobile-body md:text-mobile-subtitle md:font-medium lg:text-[1.12vw] tracking-[.03vw] text-brand-gray",
-        "tw-service__button": "py-4 px-6 border-[1px] border-brand-black md:py-0 md:px-0 md:border-0",
-        "tw-service__link-button": "md:py-4 md:px-6 md:border-[1px] border-brand-black font-medium text-mobile-button md:text-desktop-button lg:text-[1.12vw] lg:py-[1.25vw] lg:px-[1.7vw]"
+        "tw_our_service": "py-10 px-4 md:p-20 md:text-center lg:py-20 lg:px-2.5 border-[1px] border-brand-black",
+        "tw_our_service__title": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]",
+        "tw_service": "lg:flex lg:justify-center lg:items-center border-b-[1px] border-x-[1px] border-brand-black",
+        "tw_service__left_col": "lg:w-1\/2",
+        "tw_service__image": "w-full object-cover object-center md:aspect-[1.536] lg:aspect-square border-b-[1px] lg:border-r-[1px] lg:border-b-0 border-brand-black",
+        "tw_service__right_col": "px-4 py-10 text-center md:p-20 lg:w-1\/2 lg:p-[5.56vw]",
+        "tw_service__content": "flex flex-col gap-16",
+        "tw_service__text_content": "flex flex-col gap-6",
+        "tw_service__title": "font-medium text-mobile-overline md:text-desktop-overline lg:text-[.98vw] lg:mb-[1.7vw]",
+        "tw_service__heading_paragraph": "flex flex-col gap-4 lg:mb-[4.5vw]",
+        "tw_service__heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw] lg:mb-[1.12vw]",
+        "tw_service__paragraph": "font-regular text-mobile-body md:text-mobile-subtitle md:font-medium lg:text-[1.12vw] tracking-[.03vw] text-brand-gray",
+        "tw_service__button": "py-4 px-6 border-[1px] border-brand-black md:py-0 md:px-0 md:border-0",
+        "tw_service__link_button": "md:py-4 md:px-6 md:border-[1px] border-brand-black font-medium text-mobile-button md:text-desktop-button lg:text-[1.12vw] lg:py-[1.25vw] lg:px-[1.7vw]"
       }
     },
     "parallax_overlay_dmydRH": {
@@ -289,7 +289,7 @@
     "about_us_X8mMxR",
     "dev_why_choose_us_WCKxAT",
     "contact_us_3zCHDF",
-    "dev_service_keHepD",
+    "service_zqVAwn",
     "parallax_overlay_dmydRH"
   ]
 }

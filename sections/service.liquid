@@ -1,35 +1,43 @@
-<div class="our-service {{ section.settings.tw-our-service }}">
-  <h3 class="our-service__title {{ section.settings.tw-our-service__title }}">
+<div class="our-service {{ section.settings.tw_our_service }}">
+  <h3 class="our-service__title {{ section.settings.tw_our_service__title }}">
     {{ section.settings.our_service_title }}
   </h3>
 </div>
-<div class="service {{ section.settings.tw-service }}">
-  <div class="service__left-col {{ section.settings.tw-service__left-col }}">
+
+<div class="service {{ section.settings.tw_service }}">
+  <div class="service__left-col {{ section.settings.tw_service__left_col }}">
     {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: '600' | image_tag: class: section.settings['tw-service__image'] }}
+      {{
+        section.settings.image
+        | image_url: width: '2800', height: '2800', crop: 'center'
+        | image_tag: class: section.settings.tw_service__image
+      }}
     {% else %}
-      <div class="service__image {{ section.settings.tw-service__image }}">
+      <div class="service__image {{ section.settings.tw_service__image }}">
         {{ 'collection-1' | placeholder_svg_tag }}
       </div>
     {% endif %}
   </div>
-  <div class="service__right-col {{ section.settings.tw-service__right-col }}">
-    <div class="service__content {{ section.settings.tw-service__content }}">
-      <div class="service__text-content {{ section.settings.tw-service__text-content }}">
-        <div class="service__title {{ section.settings.tw-service__title }}">
+
+  <div class="service__right-col {{ section.settings.tw_service__right_col }}">
+    <div class="service__content {{ section.settings.tw_service__content }}">
+      <div class="service__text-content {{ section.settings.tw_service__text_content }}">
+        <div class="service__title {{ section.settings.tw_service__title }}">
           {{ section.settings.title }}
         </div>
-        <div class="service__heading-paragraph {{ section.settings.tw-service__heading-paragraph }}">
-          <div class="service__heading {{ section.settings.tw-service__heading }}">{{ section.settings.heading }}</div>
-          <div class="service__paragraph {{ section.settings.tw-service__paragraph }}">
+        <div class="service__heading-paragraph {{ section.settings.tw_service__heading_paragraph }}">
+          <div class="service__heading {{ section.settings.tw_service__heading }}">
+            {{ section.settings.heading }}
+          </div>
+          <div class="service__paragraph {{ section.settings.tw_service__paragraph }}">
             {{ section.settings.paragraph }}
           </div>
         </div>
       </div>
-      <div class="service__button {{ section.settings.tw-service__button }}">
+      <div class="service__button {{ section.settings.tw_service__button }}">
         <a
           href="{{ section.settings.button_link }}"
-          class="service__link {{ section.settings.tw-service__link-button }}"
+          class="service__link {{ section.settings.tw_service__link_button }}"
         >
           {{- section.settings.button_text -}}
         </a>
@@ -89,85 +97,85 @@
     },
     {
       "type": "textarea",
-      "id": "tw-our-service",
+      "id": "tw_our_service",
       "label": "Style tw-our-service",
       "default": "py-10 px-4 md:p-20 md:text-center lg:py-20 lg:px-2.5 border-[1px] border-brand-black"
     },
     {
       "type": "textarea",
-      "id": "tw-our-service__title",
+      "id": "tw_our_service__title",
       "label": "Style tw-our-service__title",
       "default": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]"
     },
     {
       "type": "textarea",
-      "id": "tw-service",
+      "id": "tw_service",
       "label": "Style tw-service",
       "default": "lg:flex lg:justify-center lg:items-center border-b-[1px] border-x-[1px] border-brand-black"
     },
     {
       "type": "textarea",
-      "id": "tw-service__left-col",
+      "id": "tw_service__left_col",
       "label": "Style tw-service__left-col",
       "default": "lg:w-1/2"
     },
     {
       "type": "textarea",
-      "id": "tw-service__image",
+      "id": "tw_service__image",
       "label": "Style tw-service__image",
       "default": "w-full object-cover object-center md:aspect-[1.536] lg:aspect-square border-b-[1px] lg:border-r-[1px] lg:border-b-0 border-brand-black"
     },
     {
       "type": "textarea",
-      "id": "tw-service__right-col",
+      "id": "tw_service__right_col",
       "label": "Style tw-service__right-col",
       "default": "px-4 py-10 text-center md:p-20 lg:w-1/2 lg:p-[5.56vw]"
     },
     {
       "type": "textarea",
-      "id": "tw-service__content",
+      "id": "tw_service__content",
       "label": "Style tw-service__content",
       "default": "flex flex-col gap-16"
     },
     {
       "type": "textarea",
-      "id": "tw-service__text-content",
+      "id": "tw_service__text_content",
       "label": "Style tw-service__text-content",
       "default": "flex flex-col gap-6"
     },
     {
       "type": "textarea",
-      "id": "tw-service__title",
+      "id": "tw_service__title",
       "label": "Style tw-service__title",
       "default": "font-medium text-mobile-overline md:text-desktop-overline lg:text-[.98vw] lg:mb-[1.7vw]"
     },
     {
       "type": "textarea",
-      "id": "tw-service__heading-paragraph",
+      "id": "tw_service__heading_paragraph",
       "label": "Style tw-service__heading-paragraph",
       "default": "flex flex-col gap-4 lg:mb-[4.5vw]"
     },
     {
       "type": "textarea",
-      "id": "tw-service__heading",
+      "id": "tw_service__heading",
       "label": "Style tw-service__heading",
       "default": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw] lg:mb-[1.12vw]"
     },
     {
       "type": "textarea",
-      "id": "tw-service__paragraph",
+      "id": "tw_service__paragraph",
       "label": "Style tw-service__paragraph",
       "default": "font-regular text-mobile-body md:text-mobile-subtitle md:font-medium lg:text-[1.12vw] tracking-[.03vw] text-brand-gray"
     },
     {
       "type": "textarea",
-      "id": "tw-service__button",
+      "id": "tw_service__button",
       "label": "Style tw-service__button",
       "default": "py-4 px-6 border-[1px] border-brand-black md:py-0 md:px-0 md:border-0"
     },
     {
       "type": "textarea",
-      "id": "tw-service__link-button",
+      "id": "tw_service__link_button",
       "label": "Style tw-service__link-button",
       "default": "md:py-4 md:px-6 md:border-[1px] border-brand-black font-medium text-mobile-button md:text-desktop-button lg:text-[1.12vw] lg:py-[1.25vw] lg:px-[1.7vw]"
     }
