@@ -1,6 +1,6 @@
 <!-- image-banner.liquid -->
 
-<div class="image-banner {{ section.settings.image-banner }}" >
+<div class="image-banner {{ section.settings.image-banner }} color-{{ section.settings.color_scheme }}" >
 {%- assign image_url_width = section.settings.image_url_width -%}
 {%- assign image_url_height = section.settings.image_url_height -%}
 {%- assign image_tag_styles_class = "testimonial__image " | append: section.settings.image_tag_styles -%}
@@ -13,14 +13,14 @@
 
 
   <div class="image-banner__text-wrapper {{ section.settings.image-banner__text-wrapper }}">
-    <h2 class="image-banner__title {{ section.settings.image-banner__title }}">{{ section.settings.title | escape }}</h2>
+    <h2 class="image-banner__title {{ section.settings.image-banner__title }} title">{{ section.settings.title | escape }}</h2>
     <p class="image-banner__description {{ section.settings.image-banner__description }}">{{ section.settings.description }}</p>
     {% if section.blocks.size > 0 %}
       <div class="image-banner__buttons {{ section.settings.image-banner__buttons }}">
         {% for block in section.blocks %}
           <a
             href="{{ block.settings.url }}"
-            class="image-banner__button {{ section.settings.image-banner__button }}"
+            class="image-banner__button {{ section.settings.image-banner__button }} button"
           >
             {{- block.settings.text -}}
           </a>
@@ -108,7 +108,14 @@
       "id": "image-banner__button",
       "label": "Text Single Button Style Section",
       "default": "px-6 py-2 border border-solid rounded text-white no-underline inline-block bg-black color-white"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

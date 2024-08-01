@@ -1,5 +1,5 @@
-<div class="section_container_styles {{ section.settings.section_container_styles }}">
-  <div class="title_styles {{ section.settings.title_styles }}">{{ section.settings.title }}</div>
+<div class="section_container_styles {{ section.settings.section_container_styles }} color-{{ section.settings.color_scheme }}">
+  <div class="title_styles {{ section.settings.title_styles }} title">{{ section.settings.title }}</div>
   <div class="sub-title-container_styles {{ section.settings.sub-title-container_styles }}">
     <p class="sub-title_styles {{ section.settings.sub-title_styles }}">{{ section.settings.subtext_title }}</p>
   </div>
@@ -11,7 +11,7 @@
     {% endif %}
     <a
       href="{{ shop_url }}"
-      class="link_styles {{ section.settings.link_styles }}"
+      class="link_styles {{ section.settings.link_styles }} button"
     >
       {{- section.settings.button_label -}}
     </a>
@@ -86,7 +86,14 @@
       "id": "link_styles",
       "label": "Link Styles",
       "default": "px-4 inline py-2 text-base font-medium shadow bg-green-600 hover:bg-green-800 text-white"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ]
 }
 {% endschema %}

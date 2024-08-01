@@ -1,6 +1,6 @@
-<div class="collage_class {{ section.settings.collage_class }}">
+<div class="collage_class {{ section.settings.collage_class }} color-{{ section.settings.color_scheme }}">
   {% if section.settings.heading != blank %}
-    <div class="collage-wrapper-title {{ section.settings.collage-wrapper-title }}">
+    <div class="collage-wrapper-title {{ section.settings.collage-wrapper-title }} title">
         {{ section.settings.heading }}
     </div>
   {% endif %}
@@ -21,29 +21,29 @@
                     {% endif %}
                 </div>
                 {% when 'product' %}
-                <div class="product-card {{ block.settings.product-card }}">
+                <div class="product-card {{ block.settings.product-card }} color-{{ section.settings.color_scheme_secondary }}">
                   {% if block.settings.product %}
                     {% assign product_image_styles = block.settings.product__image-styles %}
                     {{ block.settings.product | image_url: width: image_url_width | image_tag: width: image_tag_width, class: product_image_styles }}
-                      <p class="product__title {{ block.settings.product__title }}">{{ block.settings.product.title }}</p>
+                      <p class="product__title {{ block.settings.product__title }} title">{{ block.settings.product.title }}</p>
                       <p class="product__description {{ block.settings.product__description }}">{{ block.settings.product.description }}</p>
                       <p class="product__price {{ block.settings.product__price }}">Price: {{ block.settings.product.price | money }}</p>
                       <p class="product__sku {{ block.settings.product__sku }}">SKU: {{ block.settings.product.sku }}</p>
                       <!-- Add more product details as needed -->
-                      <a href="{{ block.settings.product.url }}" class="product__button {{ block.settings.product__button }}">Shop Now</a>
+                      <a href="{{ block.settings.product.url }}" class="product__button {{ block.settings.product__button }} button">Shop Now</a>
                   {% endif %}
                 </div>
                 {% when 'collection' %}
-                <div class="collection-card {{ block.settings.collection-card }}">
+                <div class="collection-card {{ block.settings.collection-card }} color-{{ section.settings.color_scheme_secondary }}">
                     {%- if block.settings.collection != blank -%}
                       {{ block.settings.collection | image_url: width: image_url_width | image_tag: width: image_tag_width }}
                     {% else %}
                       {{ 'image' | placeholder_svg_tag }}
                     {% endif %}
-                    <div class="collection__title {{ block.settings.collection__title }}">{{ block.settings.collection.title }}</div>
+                    <div class="collection__title {{ block.settings.collection__title }} title">{{ block.settings.collection.title }}</div>
                     <div class="collection__description {{ block.settings.collection__description }}">{{ block.settings.collection.description }}</div>
                     <!-- Display collection items or details as needed -->
-                    <a href="{{ block.settings.collection.url }}" class="collection__button {{ block.settings.collection__button }}">
+                    <a href="{{ block.settings.collection.url }}" class="collection__button {{ block.settings.collection__button }} button">
                       {{- block.settings.collection_text | default: block.settings.collection.title -}}
                     </a>
                 </div>
@@ -124,7 +124,21 @@
       "id": "collage__item",
       "label": "Collage Item Style Section",
       "default": "flex-row box-border mb-20 w-full"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-4"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme_secondary",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

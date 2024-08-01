@@ -1,14 +1,14 @@
 <!-- sections/cards.liquid -->
 
-<div class="card-section__container {{ section.settings.card_section_container_styles }}">
-  <h2 class="card-section__title {{ section.settings.card_section_title_styles }}">
+<div class="card-section__container {{ section.settings.card_section_container_styles }} color-{{ section.settings.color_scheme }}">
+  <h2 class="card-section__title {{ section.settings.card_section_title_styles }} title">
     {{ section.settings.section_title }}
   </h2>
 </div>
-<div class="card-container {{ section.settings.card_container_styles }}">
+<div class="card-container {{ section.settings.card_container_styles }} color-{{ section.settings.color_scheme }}">
   {% for block in section.blocks %}
     <div class="card-wrapper {{ section.settings.card_wrapper_styles }}">
-      <div class="card {{ section.settings.card_styles }}">
+      <div class="card {{ section.settings.card_styles }} color-{{ section.settings.color_scheme_secondary }}">
         {% if block.settings.card_link != blank and block.settings.card_image != blank %}
           <a href="{{ block.settings.card_link }}" class="card__link">
             {%- assign image_width = section.settings.image_width -%}
@@ -24,7 +24,7 @@
         <div class="card__content {{ section.settings.card_content_styles }}">
           {% if block.settings.card_link != blank and block.settings.card_details != blank %}
             <a href="{{ block.settings.card_link }}" class="card__link">
-              <h5 class="card__details {{ section.settings.card_details_styles }}">
+              <h5 class="card__details {{ section.settings.card_details_styles }} title">
                 {{ block.settings.card_details }}
               </h5>
             </a>
@@ -35,7 +35,7 @@
           {% if block.settings.card_link != blank and block.settings.card_button_text != blank %}
             <a
               href="{{ block.settings.card_link }}"
-              class="card__button {{ section.settings.card_button_styles }}"
+              class="card__button {{ section.settings.card_button_styles }} button"
             >
               {{ block.settings.card_button_text }}
               <span class="card__button-icon {{ section.settings.card_button_icon_styles }}">
@@ -136,7 +136,21 @@
       "label": "Card Button Icon Styles",
       "id": "card_button_icon_styles",
       "default": "rtl:rotate-180 w-3 h-3 ms-2 mt-1 md:w-3.5 md:h-3.5"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme_secondary",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

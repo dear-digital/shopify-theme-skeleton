@@ -1,6 +1,6 @@
 {% assign main_menu_linklist = linklists[section.settings.menu].links %}
 
-<div class="theme_navbar_classes {{ section.settings.theme_navbar_classes }}" x-data="{ mobileMenuOpen: false }">
+<div class="theme_navbar_classes {{ section.settings.theme_navbar_classes }} color-{{ section.settings.color_scheme }}" x-data="{ mobileMenuOpen: false }">
   <div class="container_classes {{ section.settings.container_classes }}">
     <div class="sub-container_classes {{ section.settings.sub-container_classes }}">
       <!-- STORE NAME / STORE LOGO -->
@@ -533,7 +533,14 @@
       "id": "mobile_menu_dropdown_link_classes",
       "label": "Mobile Menu Dropdown Link Classes",
       "default": "ml-3 text-base font-medium text-gray-500"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
         {

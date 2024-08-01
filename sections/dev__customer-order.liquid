@@ -1,4 +1,4 @@
-<div class="orders-container__classes {{ section.settings.orders-container__classes }}">
+<div class="orders-container__classes {{ section.settings.orders-container__classes }} color-{{ section.settings.color_scheme }}">
   <div class="orders-details__classes {{ section.settings.orders-details__classes }}">
     <div class="orders-title__classes {{ section.settings.orders-title__classes }}">
       <h1 class="orders-name__classes {{ section.settings.orders-name__classes }}">
@@ -681,7 +681,14 @@
       "id": "table-total__classes",
       "label": "Table Total Styles",
       "default": "border border-gray-200 px-4 py-2"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ]
 }
 {% endschema %}

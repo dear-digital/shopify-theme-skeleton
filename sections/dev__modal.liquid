@@ -2,7 +2,7 @@
 <div id="modal_window">
   <div class="modal-dark-overlay {{ section.settings.style_modal-dark-overlay }}"></div>
   <div class="modal-container {{ section.settings.style_modal-container }}">
-    <div class="modal {{ section.settings.style_modal }}">
+    <div class="modal {{ section.settings.style_modal }} color-{{ section.settings.color_scheme }}">
       <button
         id="closeModal"
         class="close {{ section.settings.style_close }}"
@@ -10,11 +10,11 @@
       >
         {% render 'icon-cross' %}
       </button>
-      <h2 class="modal_header {{ section.settings.style_modal_header }}">{{ section.settings.modal_header }}</h2>
+      <h2 class="modal_header {{ section.settings.style_modal_header }} title">{{ section.settings.modal_header }}</h2>
       <p class="modal_content {{ section.settings.style_modal_content }}">{{ section.settings.modal_content }}</p>
       <button
         id="acknowledgeButton"
-        class="modal_button {{ section.settings.style_modal_button }}"
+        class="modal_button {{ section.settings.style_modal_button }} button"
         onclick="document.getElementById('modal_window').style.display='none'"
       >
         {{ section.settings.modal_button }}
@@ -93,7 +93,14 @@
       "id": "style_modal_button",
       "label": "Style Modal Button",
       "default": "bg-purple-900 text-white px-2 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-base hover:bg-purple-600 hover:text-slate-200"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

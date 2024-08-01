@@ -1,5 +1,5 @@
-<div class="list-collections-container__classes {{ section.settings.list-collections-container__classes }}">
-  <h1 class="list-collections-title__classes {{ section.settings.list-collections-title__classes }}">
+<div class="list-collections-container__classes {{ section.settings.list-collections-container__classes }} color-{{ section.settings.color_scheme }}">
+  <h1 class="list-collections-title__classes {{ section.settings.list-collections-title__classes }} title">
     {{ section.settings.title }}
   </h1>
 
@@ -117,7 +117,14 @@
       "id": "collections-title__classes",
       "label": "Collections Title Classes",
       "default": "text-center text-xl"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

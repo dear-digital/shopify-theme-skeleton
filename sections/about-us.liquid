@@ -1,4 +1,4 @@
-<div class="about-us-container {{ section.settings.about_us__container }}">
+<div class="about-us-container {{ section.settings.about_us__container }} color-{{ section.settings.color_scheme }}">
   <div class="about-us-left-container {{ section.settings.about_us__container_left }}">
     {%- if section.settings.about_us__container_left_heading != blank -%}
       <div class="about-us-left-heading {{ section.settings.about_us__container_left_heading_div_classes }}">
@@ -12,12 +12,12 @@
   <div class="about-us-right-container {{ section.settings.about_us__container_right }}">
     <div class="about-us-right-content {{ section.settings.about_us__container_right_content }}">
       {%- if section.settings.about_us__container_right_small_header != blank -%}
-        <h6 class="about-us-right-small-header {{ section.settings.about_us__container_right_small_header_classes }}">
+        <h6 class="about-us-right-small-header {{ section.settings.about_us__container_right_small_header_classes }} sub-title">
           {{ section.settings.about_us__container_right_small_header }}
         </h6>
       {%- endif -%}
       {%- if section.settings.about_us__container_right_sub_header != blank -%}
-        <h4 class="about-us-right-sub-header {{ section.settings.about_us__container_right_sub_header_classes }}">
+        <h4 class="about-us-right-sub-header {{ section.settings.about_us__container_right_sub_header_classes }} title">
           {{ section.settings.about_us__container_right_sub_header }}
         </h4>
       {%- endif -%}
@@ -32,7 +32,7 @@
       <div class="{{ section.settings.about_us__container_right_button_div }}">
         <a
           href="{{ section.settings.about_us__container_right_button_link }}"
-          class="{{ section.settings.about_us__container_right_button_classes }}"
+          class="{{ section.settings.about_us__container_right_button_classes }} button"
         >
           {{- section.settings.about_us__container_right_button_label | escape -}}
         </a>
@@ -149,7 +149,14 @@
       "id": "about_us__container_right_button_classes",
       "label": "Button Classes",
       "default": "text-center block text-brand-black uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-brand-black pt-4 pb-[14px] px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

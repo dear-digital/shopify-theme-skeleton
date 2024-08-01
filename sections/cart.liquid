@@ -1,10 +1,10 @@
  <!-- cart.liquid -->
 
-<div  id="cart-drawer" class="{{ section.settings.cart_container_classes }}">
+<div  id="cart-drawer" class="{{ section.settings.cart_container_classes }} color-{{ section.settings.color_scheme }}" >
   
   {% comment %} Cart Header {% endcomment %}
   <div class="{{ section.settings.cart_header_classes }}">
-    <h2 class="{{ section.settings.cart_title_classes }}">{{ section.settings.cart_title }}</h2>
+    <h2 class="{{ section.settings.cart_title_classes }} title">{{ section.settings.cart_title }}</h2>
     <button id="close-cart-button" class="{{ section.settings.close_cart_button_classes }}">
       {% assign svg_class = section.settings.cart_close_button_svg %}
       {% render 'icon-close' class: svg_class %}
@@ -60,7 +60,7 @@
     {% comment %} Subtotal Block {% endcomment %}
     <div class="{{ section.settings.cart_content_subtotal_div }}">
       <div class="{{ section.settings.cart_content_subtotal_div_content }}">
-        <h4 class="{{ section.settings.cart_content_subtotal_div_content_label_classes }}"> 
+        <h4 class="{{ section.settings.cart_content_subtotal_div_content_label_classes }} title"> 
           {{ section.settings.cart_content_subtotal_div_content_label }}
         </h4>
 
@@ -93,7 +93,7 @@
     {% comment %} Checkout Button Block {% endcomment %}
     <div class="{{ section.settings.cart_content_checkout_button_div }}">
       <a 
-        class="{{ section.settings.cart_content_checkout_button_classes }}"
+        class="{{ section.settings.cart_content_checkout_button_classes }} button"
         href="{{ section.settings.cart_content_checkout_button_link }}"
       >
           {{- section.settings.cart_content_checkout_button_label | escape -}}
@@ -361,7 +361,14 @@
         "id": "cart_content_checkout_button_classes",
         "label": "Cart Content Checkout Button Classes",
         "default": "block text-center text-mobile-button uppercase w-full h-full bg-brand-black text-white hover:bg-gray-800 transition-colors duration-200 px-6 pt-4 pb-[14px] tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em]"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "enabled_on": {
     "groups": ["header"]

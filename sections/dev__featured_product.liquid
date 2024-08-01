@@ -1,6 +1,6 @@
 {% assign product = section.settings.product %}
 
-<div class="main-container__classes {{ section.settings.main-container__classes }}">
+<div class="main-container__classes {{ section.settings.main-container__classes }} color-{{ section.settings.color_scheme }}">
   <div class="sub-container__classes {{ section.settings.sub-container__classes }}">
     <div class="product-image__classes {{ section.settings.product-image__classes }}">
       {% if product.featured_image %}
@@ -23,20 +23,20 @@
             {% case block.type %}
               {% when 'vendor' %}
                 <div class="vendor__classes {{ section.settings.vendor__classes }}">
-                  <span class="vendor-text__classes {{ section.settings.vendor-text__classes }}">
+                  <span class="vendor-text__classes {{ section.settings.vendor-text__classes }} color-{{ section.settings.color_scheme }}">
                     {{- product.vendor -}}
                   </span>
                 </div>
               {% when 'title' %}
                 <div class="title__classes {{ section.settings.title__classes }}">
-                  <h1 class="title-text__classes {{ section.settings.title-text__classes }}">{{ product.title }}</h1>
+                  <h1 class="title-text__classes {{ section.settings.title-text__classes }} title">{{ product.title }}</h1>
                 </div>
               {% when 'price' %}
                 <div class="price__classes {{ section.settings.price__classes }}" id="price-{{ section.id }}">
                   <span class="price-compare-text__classes {{ section.settings.price-compare-text__classes }}">
                     {{- product.selected_or_first_available_variant.compare_at_price | money -}}
                   </span>
-                  <span class="price-text__classes {{ section.settings.price-text__classes }}">
+                  <span class="price-text__classes {{ section.settings.price-text__classes }} color-{{ section.settings.color_scheme }}">
                     {{- product.selected_or_first_available_variant.price | money -}}
                   </span>
 
@@ -109,7 +109,7 @@
                     <button
                       type="submit"
                       name="add"
-                      class="checkout-button__classes {{ section.settings.checkout-button__classes }}"
+                      class="checkout-button__classes {{ section.settings.checkout-button__classes }} button"
                       {% if product.available == false %}
                         disabled
                       {% endif %}
@@ -325,7 +325,14 @@
       "label": "View Full Details Class",
       "id": "view-full-details__classes",
       "default": "hover:underline"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

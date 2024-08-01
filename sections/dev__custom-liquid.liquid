@@ -1,4 +1,4 @@
-<div style="background-color: {{ section.settings.background_color }};">
+<div class="color-{{ section.settings.color_scheme }}">
   {{ section.settings.custom_liquid }}
 </div>
 
@@ -14,12 +14,13 @@
       "label": "Custom Liquid",
       "info": "Add app snippets or other code to create advanced customizations. [Learn more](https://shopify.dev/docs/api/liquid)"
     },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "info": "Choose a background color for the section."
-    }
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

@@ -1,5 +1,5 @@
 <div class="announcement">
-  <div class="announcement__wrapper {{ section.settings.announcement__wrapper }} ">
+  <div class="announcement__wrapper {{ section.settings.announcement__wrapper }} color-{{ section.settings.color_scheme }}">
 
     {% if section.blocks.size > 0 %}
     <div class="announcement__button-prev {{ section.settings.announcement__button-prev }}">
@@ -89,7 +89,14 @@
       "id": "announcement__message",
       "label": "Style Message",
       "default": "font-semibold text-sm md:text-base"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

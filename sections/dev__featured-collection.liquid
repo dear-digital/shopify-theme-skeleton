@@ -1,6 +1,6 @@
-<div class="featured-collection {{ section.settings.featured-collection }}">
+<div class="featured-collection {{ section.settings.featured-collection }} color-{{ section.settings.color_scheme }}">
   <div class="featured-collection__centered-content {{ section.settings.featured-collection__centered-content }}">
-    <div class="featured-collection__feature-headers {{ section.settings.featured-collection__feature-headers }}">
+    <div class="featured-collection__feature-headers {{ section.settings.featured-collection__feature-headers }} title">
       {{ section.settings.heading }}
     </div>
 
@@ -28,7 +28,7 @@
   <div class="featured-collection__product-container {{ section.settings.featured-collection__product-container }} [&::-webkit-scrollbar]:h-[{{ section.settings.scroll_bar_height }}px]">
     {% for block in section.blocks %}
       <div
-        class="featured-collection__product-card {{ block.settings.featured-collection__product-card }}"
+        class="featured-collection__product-card {{ block.settings.featured-collection__product-card }} color-{{ section.settings.color_scheme_secondary }}"
         {{ block.shopify_attributes }}
         data-category="{{ block.settings.category | handle }}"
       >
@@ -54,13 +54,13 @@
         <p class="featured-collection__category {{ block.settings.featured-collection__category }}" id="categoryCSS">
           {{ block.settings.category }}
         </p>
-        <h3 class="featured-collection__title {{ block.settings.featured-collection__title }}">
+        <h3 class="featured-collection__title {{ block.settings.featured-collection__title }} title">
           {{ block.settings.title }}
         </h3>
-        <p class="featured-collection__description {{ block.settings.featured-collection__description }}">
+        <p class="featured-collection__description {{ block.settings.featured-collection__description }} color-{{ section.settings.color_scheme_secondary }}">
           {{ block.settings.description }}
         </p>
-        <p class="featured-collection__price {{ block.settings.featured-collection__price }}">
+        <p class="featured-collection__price {{ block.settings.featured-collection__price }} color-{{ section.settings.color_scheme_secondary }}">
           {{ section.settings.product_currency }}
           {{ block.settings.price }}
           <span class="featured-collection__strikePrice {{ block.settings.featured-collection__strikePrice }}">
@@ -193,7 +193,21 @@
       "id": "featured-collection__product-container",
       "label": "Product Container Style",
       "default": "flex overflow-x-auto flex-nowrap justify-start items-stretch mx-auto my-0 pb-[30px] [&::-webkit-scrollbar-track]:bg-gray-200 [&::-webkit-scrollbar-thumb]:bg-gray-500 [&::-webkit-scrollbar-thumb:hover]:bg-gray-600"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme_secondary",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

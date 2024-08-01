@@ -1,4 +1,4 @@
-<section class="map-section_classes {{ section.settings.map-section_classes }}">
+<section class="map-section_classes {{ section.settings.map-section_classes }} color-{{ section.settings.color_scheme }}">
   <div class="map-container_classes {{ section.settings.map-container_classes }}">
     <iframe
       width="{{ section.settings.iframe_width }}"
@@ -10,9 +10,9 @@
     ></iframe>
   </div>
   <div class="info-container_classes {{ section.settings.info-container_classes }}">
-    <div class="address-container_classes {{ section.settings.address-container_classes }}">
+    <div class="address-container_classes {{ section.settings.address-container_classes }} color-{{ section.settings.color_scheme }}">
       <div class="address-info_classes {{ section.settings.address-info_classes }}">
-        <h2 class="address-heading_classes {{ section.settings.address-heading_classes }}">
+        <h2 class="address-heading_classes {{ section.settings.address-heading_classes }} title">
           {{ section.settings.map_address_heading }}
         </h2>
         <p class="address-text_classes {{ section.settings.address-text_classes }}">
@@ -20,11 +20,11 @@
         </p>
       </div>
       <div class="details_classes {{ section.settings.details_classes }}">
-        <h2 class="email-heading_classes {{ section.settings.email-heading_classes }}">
+        <h2 class="email-heading_classes {{ section.settings.email-heading_classes }} title">
           {{ section.settings.email_address_heading }}
         </h2>
         <a class="email-info_classes {{ section.settings.email-info_classes }}">{{ section.settings.email_address }}</a>
-        <h2 class="phone-heading_classes {{ section.settings.phone-heading_classes }}">
+        <h2 class="phone-heading_classes {{ section.settings.phone-heading_classes }} title">
           {{ section.settings.phone_number_heading }}
         </h2>
         <p class="phone-info_classes {{ section.settings.phone-info_classes }}">{{ section.settings.phone_number }}</p>
@@ -214,7 +214,14 @@
       "id": "phone-info_classes",
       "label": "Phone Information Styling",
       "default": "leading-relaxed"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

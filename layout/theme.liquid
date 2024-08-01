@@ -23,32 +23,109 @@
     {% endif %}
 
     {% render 'meta-tags' %}
+
+    {% style %}
+        {% for scheme in settings.color_schemes -%}
+          {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+          {% if forloop.index == 1 -%}
+            :root,
+          {%- endif %}
+          .color-{{ scheme.id }} {
+              --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+            {% if scheme.settings.background_gradient != empty %}
+              --gradient-background: {{ scheme.settings.background_gradient }};
+            {% else %}
+              --gradient-background: {{ scheme.settings.background }};
+            {% endif %}
+
+            {% liquid
+              assign background_color = scheme.settings.background
+              assign background_color_brightness = background_color | color_brightness
+              if background_color_brightness <= 26
+                assign background_color_contrast = background_color | color_lighten: 50
+              elsif background_color_brightness <= 65
+                assign background_color_contrast = background_color | color_lighten: 5
+              else
+                assign background_color_contrast = background_color | color_darken: 25
+              endif
+            %}
+
+            --color-title: {{ scheme.settings.title.red }},{{ scheme.settings.title.green }},{{ scheme.settings.title.blue }};
+            --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+            --color-background-contrast: {{ background_color_contrast.red }},{{ background_color_contrast.green }},{{ background_color_contrast.blue }};
+            --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
+            --color-button: {{ scheme.settings.primary_button.red }},{{ scheme.settings.primary_button.green }},{{ scheme.settings.primary_button.blue }};
+            --color-button-text: {{ scheme.settings.on_primary_button.red }},{{ scheme.settings.on_primary_button.green }},{{ scheme.settings.on_primary_button.blue }};
+            --color-secondary-button: {{ scheme.settings.secondary_button.red }},{{ scheme.settings.secondary_button.green }},{{ scheme.settings.secondary_button.blue }};
+            --color-primary-button-text: {{ scheme.settings.on_primary_button.red }},{{ scheme.settings.on_primary_button.green }},{{ scheme.settings.on_primary_button.blue }};
+            --color-secondary-button-text: {{ scheme.settings.on_secondary_button.red }},{{ scheme.settings.on_secondary_button.green }},{{ scheme.settings.on_secondary_button.blue }};
+            --color-link: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+            --color-icons: {{ scheme.settings.icons.red }},{{ scheme.settings.icons.green }},{{ scheme.settings.icons.blue }};
+            --color-badge-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+            --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+            --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+            --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
+          }
+        {% endfor %}
+
+        {{ scheme_classes | prepend: 'body' }} {
+          color: rgba(var(--color-foreground)) !important;
+          background-color: rgb(var(--color-background)) !important;
+        } 
+        .button{
+          background-color: rgba(var(--color-button)) !important;
+          color: rgba(var(--color-button-text)) !important; 
+          border: 1px solid rgba(var(--color-primary-button-text));
+        } 
+        .button:hover{
+          background-color: rgba(var(--color-secondary-button)) !important;
+          color: rgba(var(--color-secondary-button-text)) !important;
+          border: 1px solid rgba(var(--color-secondary-button-text)); 
+        } 
+        .title{
+          color: rgba(var(--color-title)) !important;
+        }
+        .sub-title{
+          color: rgba(var(--color-foreground)) !important;
+        }
+        svg{
+          fill: rgba(var(--color-icons));
+        }
+        rect, circle{
+          stroke: rgba(var(--color-icons));
+        }
+    {% endstyle %}
+
     {% if settings.tailwind_enabled %}
       {% if request.design_mode %}
         <script>
-          document.addEventListener("DOMContentLoaded", function() {
-            document.body.style.opacity = "1";
+          document.addEventListener('DOMContentLoaded', function () {
+            document.body.style.opacity = '1';
           });
         </script>
-        
+
         {% # theme-check-disable %}
         <script src="https://cdn.tailwindcss.com"></script>
         {% # theme-check-enable %}
         <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            {{ settings.tailwind_config }}
+          document.addEventListener('DOMContentLoaded', function () {
+            {
+              {
+                settings.tailwind_config;
+              }
+            }
           });
-        </script>   
-        <style type='text/tailwindcss'>
+        </script>
+        <style type="text/tailwindcss">
           {{ settings.tailwind_css }}
-        </style>             
+        </style>
       {% else %}
-      {{ 'output.css' | asset_url | stylesheet_tag }}
+        {{ 'output.css' | asset_url | stylesheet_tag }}
       {% endif %}
-    {% else %}      
+    {% else %}
       {{ 'base.css' | asset_url | stylesheet_tag }}
     {% endif %}
-        
+
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
 
     {{ content_for_header }}
@@ -60,11 +137,10 @@
       }
     </script>
     {%- liquid
-      assign heading_font_medium = settings.heading_font | font_modify: 'weight', "500"
+      assign heading_font_medium = settings.heading_font | font_modify: 'weight', '500'
     %}
-    
-    {% style %}
 
+    {% style %}
       {{ settings.heading_font | font_face: font_display: 'swap' }}
       {{ heading_font_medium | font_face: font_display: 'swap' }}
       {{ settings.body_font | font_face: font_display: 'swap' }}
@@ -98,7 +174,11 @@
     {% endstyle %}
   </head>
 
-  <body {% if settings.tailwind_enabled and request.design_mode %}style="opacity:0;transition:0.1s ease;"{% endif %}>
+  <body
+    {% if settings.tailwind_enabled and request.design_mode %}
+      style="opacity:0;transition:0.1s ease;"
+    {% endif %}
+  >
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -106,7 +186,6 @@
     {% if settings.initial_modal_enabled and template == 'index' %}
       {% section 'dev__modal' %}
     {% endif %}
-
 
     {% comment %}
       {% section 'dev__announcement-bar' %}

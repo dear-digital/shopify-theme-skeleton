@@ -1,5 +1,5 @@
-<div class="account-container__classes {{ section.settings.account-container__classes }}">
-  <h1 class="account-title__classes {{ section.settings.account-title__classes }}">
+<div class="account-container__classes {{ section.settings.account-container__classes }} color-{{ section.settings.color_scheme }}">
+  <h1 class="account-title__classes {{ section.settings.account-title__classes }} title">
     {{ section.settings['account-title'] }}
   </h1>
 
@@ -61,7 +61,7 @@
       </div>
     {% endif %}
     <div class="account-details__classes {{ section.settings.account-details__classes }}">
-      <h2 class="account-details-title__classes {{ section.settings.account-details-title__classes }}">
+      <h2 class="account-details-title__classes {{ section.settings.account-details-title__classes }} title">
         {{ section.settings['account-details-title'] }}
       </h2>
       {{ customer.default_address | format_address }}
@@ -244,7 +244,14 @@
       "id": "account-view-address__classes",
       "label": "Account View Address Classes",
       "default": "text-sm text-blue-600 hover:text-blue-900 underline"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ]
 }
 {% endschema %}

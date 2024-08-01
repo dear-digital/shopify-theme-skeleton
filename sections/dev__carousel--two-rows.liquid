@@ -1,7 +1,7 @@
 <!-- Carousel Container -->
-<div class="carousel {{ section.settings.carousel }}">
+<div class="carousel {{ section.settings.carousel }} color-{{ section.settings.color_scheme }}">
   <!-- Carousel Text -->
-  <div class="carousel__text {{ section.settings.carousel__text }}">
+  <div class="carousel__text {{ section.settings.carousel__text }} color-{{ section.settings.color_scheme }}">
     <h2 class="carousel__heading {{ section.settings.carousel__heading }}">{{ section.settings.heading_text }}</h2>
     <p class="carousel__subheading {{ section.settings.carousel__subheading }}">
       {{ section.settings.subheading_text }}
@@ -178,7 +178,14 @@
       "id": "carousel__image",
       "label": "Image Styles",
       "default": "w-[150px] h-[150px] object-cover rounded-lg m-[10px]"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

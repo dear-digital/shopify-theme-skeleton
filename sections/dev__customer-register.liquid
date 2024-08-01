@@ -1,7 +1,7 @@
-<div class="customer-register__classes {{ section.settings.customer-register__classes }}">
+<div class="customer-register__classes {{ section.settings.customer-register__classes }} color-{{ section.settings.color_scheme }}">
   <div class="register-form__classes {{ section.settings.register-form__classes }}">
     <div>
-      <h1 class="register-title__classes {{ section.settings.register-title__classes }}">
+      <h1 class="register-title__classes {{ section.settings.register-title__classes }} title">
         {{ section.settings['register-title'] }}
       </h1>
     </div>
@@ -80,7 +80,7 @@
         <div>
           <button
             type="submit"
-            class="create-button__classes {{ section.settings.create-button__classes }}"
+            class="create-button__classes {{ section.settings.create-button__classes }} button"
           >
             {{ section.settings['create-button'] }}
           </button>
@@ -285,7 +285,14 @@
       "id": "create-button__classes",
       "default": "relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900",
       "label": "Create an Account Button Classes"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ]
 }
 {% endschema %}

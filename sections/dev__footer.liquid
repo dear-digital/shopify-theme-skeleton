@@ -12,11 +12,11 @@
   {% assign has_social_icons = false %}
 {% endif %}
 
-<div class="footer {{ section.settings.tw-footer__style }}">
+<div class="footer {{ section.settings.tw-footer__style }} color-{{ section.settings.color_scheme }}">
   {% for block in section.blocks %}
     {% if block.type == 'link_list' %}
       <div class="footer__link-list {{ block.settings.tw-footer__link-list_style }}">
-        <h3 class="footer__title {{ block.settings.tw-footer__title }}">{{ block.settings.menu.title }}</h3>
+        <h3 class="footer__title {{ block.settings.tw-footer__title }} title">{{ block.settings.menu.title }}</h3>
         <ul class="footer__menu {{ block.settings.tw-footer__menu }}">
           {% for link in block.settings.menu.links %}
             <li class="footer__menu-item {{ block.settings.tw-footer__menu-item }}">
@@ -29,7 +29,7 @@
       </div>
     {% elsif block.type == 'contact_us' %}
       <div class="contact-us {{ block.settings.tw-footer__contact-us }}">
-        <h3 class="contact-us__title {{ block.settings.tw-footer__contact-us-title }}">
+        <h3 class="contact-us__title {{ block.settings.tw-footer__contact-us-title }} title">
           {{ block.settings['contact_us-heading'] }}
         </h3>
         <p class="contact-us__address {{ block.settings.tw-footer__address }}">
@@ -61,7 +61,7 @@
       </div>
     {% elsif block.type == 'text' %}
       <div class="text {{ block.settings.tw-footer__text }}">
-        <h3 class="text__heading {{ block.settings.tw-footer__heading }}">{{ block.settings.heading }}</h3>
+        <h3 class="text__heading {{ block.settings.tw-footer__heading }} title">{{ block.settings.heading }}</h3>
         <div class="text__subtext {{ block.settings.tw-footer__subtext }}">{{ block.settings.subtext }}</div>
         <div {{ block.shopify_attributes }} class="{{ block.settings.tw-footer__newsletter }}">
           {% form 'customer', class: 'newsletter-form' %}
@@ -73,7 +73,7 @@
               required
             >
             <input type="hidden" name="contact[tags]" value="newsletter">
-            <button type="submit" class="newsletter-form__submit {{ block.settings.tw-footer__button }}">
+            <button type="submit" class="newsletter-form__submit {{ block.settings.tw-footer__button }} button">
               {{- block.settings.button_text -}}
             </button>
             {% if form.errors %}
@@ -132,7 +132,14 @@
       "id": "tw-footer__style",
       "label": "Style footer",
       "default": "flex flex-col border-t-[1px] border-brand-black md:grid md:grid-cols-2 lg:grid lg:grid-cols-4"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

@@ -1,6 +1,6 @@
 <!-- sections/dev__logo-carousel.liquid -->
 
-<div class="logo-carousel {{ section.settings.logo_carousel_styles }}">
+<div class="logo-carousel {{ section.settings.logo_carousel_styles }} color-{{ section.settings.color_scheme }}">
   <div class="logo-carousel__wrapper {{ section.settings.logo_carousel_wrapper_styles }}">
     {% for block in section.blocks %}
       <div class="logo-carousel__item {{ section.settings.logo_carousel_item_styles }}">
@@ -59,7 +59,14 @@
       "type": "textarea",
       "label": "Logo Carousel Image Styles",
       "id": "logo_carousel_image_styles"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

@@ -1,5 +1,5 @@
 {% if cart.item_count > 0 %}
-  <div class="main-container__classes {{ section.settings.main-container__classes }}">
+  <div class="main-container__classes {{ section.settings.main-container__classes }} color-{{ section.settings.color_scheme }}">
     <div class="cart-container__classes {{ section.settings.cart-container__classes }}">
       <div class="cart-sub-container__classes {{ section.settings.cart-sub-container__classes }}">
         <h1 class="cart-title__classes {{ section.settings.cart-title__classes }}">
@@ -95,13 +95,13 @@
     </div>
   </div>
 {% else %}
-  <div class="cart-empty-container__classes {{ section.settings.cart-empty-container__classes }}">
+  <div class="cart-empty-container__classes {{ section.settings.cart-empty-container__classes }} color-{{ section.settings.color_scheme }}">
     <div class="cart-empty-sub-container__classes {{ section.settings.cart-empty-sub-container__classes }}">
-      <h1 class="cart-empty-text__classes {{ section.settings.cart-empty-text__classes }}">{{ section.settings.cart-empty }}</h1>
+      <h1 class="cart-empty-text__classes {{ section.settings.cart-empty-text__classes }} title">{{ section.settings.cart-empty }}</h1>
       <div class="cart-empty-collections__classes {{ section.settings.cart-empty-collections__classes }}">
         <a
           href="{{ routes.all_products_collection_url }}"
-          class="cart-empty-collections-text__classes {{ section.settings.cart-empty-collections-text__classes }}"
+          class="cart-empty-collections-text__classes {{ section.settings.cart-empty-collections-text__classes }} button"
           >{{ section.settings.cart-continue-shopping }}</a
         >
       </div>
@@ -411,7 +411,14 @@
       "label": "Cart Empty Collections Text Classes",
       "id": "cart-empty-collections-text__classes",
       "default": "border border-gray-600 text-white bg-gray-600 px-8 py-3"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

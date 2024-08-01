@@ -1,10 +1,10 @@
 <div
-  class="login-container__classes {{ section.settings.login-container__classes }}"
+  class="login-container__classes {{ section.settings.login-container__classes }} color-{{ section.settings.color_scheme }}"
   x-data="{ loginForm: true, pwRecoverForm: false }"
 >
   <div x-show="loginForm" class="login__classes {{ section.settings.login__classes }}">
     <div>
-      <h1 class="login-title__classes {{ section.settings.login-title__classes }}">
+      <h1 class="login-title__classes {{ section.settings.login-title__classes }} title">
         {{ section.settings['login-title'] }}
       </h1>
     </div>
@@ -72,7 +72,7 @@
         <div>
           <button
             type="submit"
-            class="login-button__classes {{ section.settings.login-button__classes }}"
+            class="login-button__classes {{ section.settings.login-button__classes }} button"
           >
             {{ section.settings['login-button'] }}
           </button>
@@ -82,7 +82,7 @@
   </div>
   <div x-show="pwRecoverForm" class="recover-password__classes {{ section.settings.recover-password__classes }}">
     <div>
-      <h1 class="recover-password-title__classes {{ section.settings.recover-password-title__classes }}">
+      <h1 class="recover-password-title__classes {{ section.settings.recover-password-title__classes }} title">
         {{ section.settings['recover-password-title'] }}
       </h1>
     </div>
@@ -117,7 +117,7 @@
         <div>
           <button
             type="submit"
-            class="recover-password-button__classes {{ section.settings.recover-password-button__classes }}"
+            class="recover-password-button__classes {{ section.settings.recover-password-button__classes }} button"
           >
             {{ section.settings['recover-password-button'] }}
           </button>
@@ -416,7 +416,14 @@
       "id": "back-to-login-link__classes",
       "default": "underline text-gray-500 hover:text-gray-900",
       "label": "Back to Login Link Classes"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ]
 }
 {% endschema %}

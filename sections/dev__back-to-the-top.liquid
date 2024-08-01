@@ -3,7 +3,7 @@
     id="BackToTop"
     href="#"
     title="Back to the top"
-    class="back-to-top-classes {{ section.settings.back-to-top_classes }}"
+    class="back-to-top-classes {{ section.settings.back-to-top_classes }} color-{{ section.settings.color_scheme }}"
   >
     {% render 'arrow' %}
   </a>
@@ -42,7 +42,14 @@
       "id": "back-to-top_classes",
       "label": "Back to Top Section Styling",
       "default": "fixed bottom-4 right-4 bg-gray-300 rounded-full p-4 hover:bg-gray-400"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

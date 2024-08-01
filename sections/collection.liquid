@@ -1,4 +1,4 @@
-<div class="collection {{ section.settings.tw-collection }}">
+<div class="collection {{ section.settings.tw-collection }} color-{{ section.settings.color_scheme }}">
   <div class="collection__left-col {{ section.settings.tw-collection__left-col }}">
     {% if collection.image %}
       {{
@@ -9,7 +9,7 @@
       <div class="collection__image-overlay {{ section.settings.tw-collection__image-overlay }}"></div>
     {% endif %}
     {% if collection.title %}
-      <h2 class="collection__heading {{ section.settings.tw-collection__heading }}">{{ collection.title }}</h2>
+      <h2 class="collection__heading {{ section.settings.tw-collection__heading }} title">{{ collection.title }}</h2>
     {% endif %}
   </div>
   <div class="collection__right-col {{ section.settings.tw-collection__right-col }}">
@@ -111,7 +111,14 @@
       "id": "tw-collection__product-price",
       "label": "Style tw-collection__product-price",
       "default": "leading-[120%] tracking-[.03vw] font-medium text-[3.7vw] md:text-[1.8vw] lg:text-[.98vw]"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

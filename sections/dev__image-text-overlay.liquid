@@ -1,4 +1,4 @@
-<div class="image-text-overlay-container {{ section.settings.image-text-overlay-container }}">
+<div class="image-text-overlay-container {{ section.settings.image-text-overlay-container }} color-{{ section.settings.color_scheme }}">
     {%- assign image_url_width = section.settings.image_url_width -%}
     {%- assign image_tag_styles_class = section.settings.image-text-overlay-image-tag -%}
     {% if section.settings.image %}
@@ -8,10 +8,10 @@
     {% endif %}
   
   <div class="image-text-overlay-content {{ section.settings.image-text-overlay-content }}">
-    <h2 class="image-text-overlay-title {{ section.settings.image-text-overlay-title }}">
+    <h2 class="image-text-overlay-title {{ section.settings.image-text-overlay-title }} title">
     {{ section.settings.main_title }}
     </h2>
-    <div class="image-text-overlay-description {{ section.settings.image-text-overlay-description }}">
+    <div class="image-text-overlay-description {{ section.settings.image-text-overlay-description }} ">
     <p>{{ section.settings.content }}</p>
     </div>
   </div>
@@ -83,7 +83,14 @@
       "id": "image-text-overlay-description",
       "label": "Description Style",
       "default": "text-sm md:text-lg text-gray-600 mb-1 md:mb-5"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

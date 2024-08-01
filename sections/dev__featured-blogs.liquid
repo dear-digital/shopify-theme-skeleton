@@ -1,20 +1,20 @@
 {% assign blog_handle = section.settings.blog %}
 {% assign blog = blogs[blog_handle] %}
 
-<div class="featured-blog {{ section.settings.featured_blog_styles }}">
-  <h1 class="featured-blog__heading {{ section.settings.heading_styles }}">
+<div class="featured-blog {{ section.settings.featured_blog_styles }} color-{{ section.settings.color_scheme }}">
+  <h1 class="featured-blog__heading {{ section.settings.heading_styles }} title">
     {{ section.settings.heading }}
   </h1>
 
   <div class="blog-posts columns-{{ section.settings.columns_desktop }} {{ section.settings.blog-posts }}">
     {% for article in blog.articles limit: section.settings.post_limit %}
-      <article class="blog-post {{ section.settings.color_scheme }} {{ section.settings.blog_post_styles }}">
+      <article class="blog-post {{ section.settings.blog_post_styles }} color-{{ section.settings.color_scheme_secondary }}">
         {% if section.settings.show_image and article.image %}
           {% assign blog_post_image_classes = section.settings.blog-post__image %}
           {{ article.image | image_url: width: 2000 | image_tag: class: blog_post_image_classes }}
         {% endif %}
 
-        <h1 class="blog-post__title {{ section.settings.article_title_styles }}">
+        <h1 class="blog-post__title {{ section.settings.article_title_styles }} title">
           {{- article.title -}}
         </h1>
 
@@ -28,10 +28,10 @@
           <p class="blog-post__author {{ section.settings.author_styles }}">{{ article.author.name }}</p>
         {% endif %}
 
-        <p class="blog-post__content {{ section.settings.content_styles }}">
+        <p class="blog-post__content {{ section.settings.content_styles }} color-{{ section.settings.color_scheme_secondary }}">
           {{ article.content | strip_html | truncatewords: section.settings.truncate_words }}
         </p>
-        <a href="{{ article.url }}" class="blog-post__read-more {{ section.settings.read_more_styles }}">
+        <a href="{{ article.url }}" class="blog-post__read-more {{ section.settings.read_more_styles }} ">
           {{- section.settings.read_more_text -}}
         </a>
       </article>
@@ -39,7 +39,7 @@
   </div>
 
   {% if section.settings.show_view_all %}
-    <a href="{{ blog.url }}" class="featured-blog__view-all {{ section.settings.view_all_styles }}">
+    <a href="{{ blog.url }}" class="featured-blog__view-all {{ section.settings.view_all_styles }} button">
       {{ section.settings.view_all_text }}
     </a>
   {% endif %}
@@ -135,13 +135,7 @@
       "step": 1,
       "default": 3,
       "label": "Columns (Desktop)"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "scheme-1"
-    },
+    }, 
     {
       "type": "textarea",
       "label": "Blog Post Styles",
@@ -219,7 +213,21 @@
       "id": "read_more_text",
       "default": "Read More",
       "label": "Read More Link Text"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme_secondary",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-5"
+		}
   ],
   "presets": [
     {

@@ -68,12 +68,32 @@
     ]
   },
   {
-    "name": "Colors",
+    "name": "Color Scheme",
     "settings": [
       {
         "type": "color_scheme_group",
         "id": "color_schemes",
         "definition": [
+          {
+            "type": "header",
+            "content": "Typography"
+          }, 
+          {
+            "type": "color",
+            "id": "title",
+            "label": "Title - Heading",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "text",
+            "label": "Description Text",
+            "default": "#121212"
+          }, 
+          {
+            "type": "header",
+            "content": "Background"
+          },
           {
             "type": "color",
             "id": "background",
@@ -83,56 +103,72 @@
           {
             "type": "color_background",
             "id": "background_gradient",
-            "label": "Background gradient",
+            "label": "Gradient",
             "info": "Background gradient replaces background where possible."
           },
           {
-            "type": "color",
-            "id": "text",
-            "label": "Text",
-            "default": "#121212"
+            "type": "header",
+            "content": "Additional"
           },
           {
             "type": "color",
-            "id": "button",
-            "label": "Solid button background",
-            "default": "#121212"
+            "id": "primary_button",
+            "label": "Primary Button Background"
           },
           {
             "type": "color",
-            "id": "button_label",
-            "label": "Solid button label",
+            "id": "on_primary_button",
+            "label": "On Primary Button Label"
+          },
+          {
+            "type": "color",
+            "id": "primary_button_border",
+            "label": "Primary Button Border"
+          }, 
+          {
+            "type": "color",
+            "id": "secondary_button",
+            "label": "Hover Button Background"
+          },
+          {
+            "type": "color",
+            "id": "on_secondary_button",
+            "label": "On Hover Button Label"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_border",
+            "label": "Hover Button Border"
+          }, 
+          {
+            "type": "color",
+            "id": "icons",
+            "label": "Icons",
             "default": "#FFFFFF"
           },
           {
             "type": "color",
-            "id": "secondary_button_label",
-            "label": "Outline button",
-            "default": "#121212"
-          },
-          {
-            "type": "color",
-            "id": "shadow",
-            "label": "Shadow",
+            "id": "links",
+            "label": "Links",
             "default": "#121212"
           }
         ],
         "role": {
-          "text": "text",
           "background": {
             "solid": "background",
             "gradient": "background_gradient"
           },
-          "links": "secondary_button_label",
-          "icons": "text",
-          "primary_button": "button",
-          "on_primary_button": "button_label",
-          "primary_button_border": "button",
-          "secondary_button": "background",
-          "on_secondary_button": "secondary_button_label",
-          "secondary_button_border": "secondary_button_label"
+          "text": "text",
+          "primary_button": "primary_button",
+          "on_primary_button": "on_primary_button",
+          "primary_button_border": "primary_button_border",
+          "secondary_button": "secondary_button",
+          "on_secondary_button": "on_secondary_button",
+          "secondary_button_border": "secondary_button_border",
+          "icons": "icons",
+          "links": "links"
         }
-      }
+      }      
     ]
   },
   {

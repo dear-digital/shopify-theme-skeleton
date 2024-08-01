@@ -1,8 +1,8 @@
-<div class="banner-template {{ section.settings.banner-template }}">
+<div class="banner-template {{ section.settings.banner-template }} color-{{ section.settings.color_scheme }}">
   <div class="image-banner {{ section.settings.image-banner }}">
     <div class="image-banner-content {{ section.settings.image-banner-content }}">
       <p class="image-banner-small-title {{ section.settings.image-banner-small-title }}">{{ section.settings.small_title }}</p>
-      <h2 class="image-banner-title {{ section.settings.image-banner-title }}">
+      <h2 class="image-banner-title {{ section.settings.image-banner-title }} title">
         {{ section.settings.main_title }}
       </h2>
       <div class="image-banner-description {{ section.settings.image-banner-description }}">
@@ -111,7 +111,14 @@
       "id": "image-banner-image",
       "label": "Image Style",
       "default": "flex-1 w-full h-auto block"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

@@ -1,13 +1,13 @@
 <!-- dev__multi-column.liquid -->
 
-<div class="multi-column {{ section.settings.multi-column }}">
-  <h2 class="{{ section.settings.multi-column__section-title }}">
+<div class="multi-column {{ section.settings.multi-column }} color-{{ section.settings.color_scheme }}">
+  <h2 class="{{ section.settings.multi-column__section-title }} title">
     {{ section.settings.section_title }}
   </h2>
 
   <div class="multi-column__container {{ section.settings.multi-column__container }}">
     {% for block in section.blocks %}
-      <div class="multi-column__item {{ section.settings.multi-column__item }}">
+      <div class="multi-column__item {{ section.settings.multi-column__item }} color-{{ section.settings.color_scheme_secondary }}">
         {% if block.settings.image %}
           {%- assign image_alt = block.settings.image_alt_text -%}
           {%- assign image_styles = section.settings.multi-column__style--item-img -%}
@@ -17,7 +17,7 @@
           </div>
         {% endif %}
 
-        <h3 class="multi-column__item-title {{ section.settings.multi-column__item-title }}">
+        <h3 class="multi-column__item-title {{ section.settings.multi-column__item-title }} title">
           {{ block.settings.column_title }}
         </h3>
         <p class="multi-column__item-content {{ section.settings.multi-column__item-content }}">
@@ -105,7 +105,21 @@
       "id": "multi-column__item-link",
       "label": "Style Column Link",
       "default": "text-sm md:text-base font-normal cursor-pointer text-blue-900 hover:text-blue-600 hover:underline"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme_secondary",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-3"
+		}
   ],
   "blocks": [
     {

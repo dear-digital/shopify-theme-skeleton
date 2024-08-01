@@ -2,7 +2,7 @@
 <div id="modal_window">
   <div class="modal-dark-overlay {{ section.settings.style_modal-dark-overlay }}"></div>
   <div class="modal-container {{ section.settings.style_modal-container }}">
-    <div class="modal {{ section.settings.style_modal }}">
+    <div class="modal {{ section.settings.style_modal }} color-{{ section.settings.color_scheme }}">
       <div class="modal-img {{ section.settings.modal-img }}">
         {%- assign image_url_width = section.settings.image_url_width -%}
         {%- assign image_url_height = section.settings.image_url_height -%}
@@ -26,13 +26,13 @@
         {% render 'icon-cross' %}
       </button>
       <div class="modal-content {{ section.settings.modal-content }}">
-        <div class="modal-offers {{ section.settings.modal-style_offers }}">{{ section.settings['modal-offers'] }}</div>
+        <div class="modal-offers {{ section.settings.modal-style_offers }} title">{{ section.settings['modal-offers'] }}</div>
         <input
           type="email"
           placeholder="Email Address(*)"
           class="modal-email-input {{ section.settings.style_modal_email_input }}"
         >
-        <button id="submitEmailButton" class="modal-submit-button {{ section.settings.style_modal_submit_button }}">
+        <button id="submitEmailButton" class="modal-submit-button {{ section.settings.style_modal_submit_button }} button">
           {{ section.settings.modal_button }}
         </button>
       </div>
@@ -145,7 +145,14 @@
       "id": "modal_image_styles",
       "label": "Modal Block Image Styles",
       "default": "object-cover"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

@@ -1,4 +1,4 @@
-<div class="card-main {{ section.settings.card__main }}">
+<div class="card-main {{ section.settings.card__main }} color-{{ section.settings.color_scheme }}">
   {%- if section.settings.section_title != blank or section.settings.section_subtitle != blank -%}
   <div class="card-main-div {{ section.settings.card__main__div }} ">
     {%- if section.settings.section_title != blank -%}
@@ -13,7 +13,7 @@
   {%- endif -%}
   <div class="card-block-div {{ section.settings.card__main__block_div }}">
     {% for block in section.blocks %}
-      <div class="card-block-maindiv {{ block.settings.card__block_maindiv }} ">
+      <div class="card-block-maindiv {{ block.settings.card__block_maindiv }} color-{{ section.settings.color_scheme_secondary }}">
         {% if block.settings.card_link != blank and block.settings.card_image != blank %}
           <a href="{{ block.settings.card_link }}" class="card-link {{ block.settings.card_link_style }}">
             {%- assign image_width = section.settings.image_width -%}
@@ -28,7 +28,7 @@
         {% endif %}
         <div class="{{ block.settings.card__block_style }}">
           {%- if block.settings.card__block_title != blank -%}
-            <h3 class="{{ block.settings.card__block_title_style }}">
+            <h3 class="{{ block.settings.card__block_title_style }} title">
               {{ block.settings.card__block_title }}
             </h3>
           {%- endif -%}
@@ -132,7 +132,21 @@
       "label": "Card Block Div Styles",
       "id": "card__block_div",
       "default": "grid gap-8 mb-6 lg:mb-16 md:grid-cols-2"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-2"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme_secondary",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

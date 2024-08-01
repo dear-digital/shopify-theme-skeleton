@@ -6,7 +6,7 @@
   }
 {% endstyle %}
 
-<div class="product {{ section.settings.tw-product }}">
+<div class="product {{ section.settings.tw-product }} color-{{ section.settings.color_scheme }}">
   <div class="product-image-wrapper {{ section.settings.tw-product-image-wrapper }}">
     {% if product.featured_image %}
       {{
@@ -22,7 +22,7 @@
         {{ product.collections[0].title }} / <span class="text-brand-gray">{{ product.title }}</span>
       </p>
       <div class="product-info {{ section.settings.tw-product-info }}">
-        <h3 class="product-name {{ section.settings.tw-product-name }}">
+        <h3 class="product-name {{ section.settings.tw-product-name }} title">
           {{ product.title }} - {{ product.price | money }}
         </h3>
         {% if product.description %}
@@ -122,7 +122,7 @@
       </div>
     </div>
     <div
-      class="product-actions {{ section.settings.tw-product-actions }}"
+      class="product-actions {{ section.settings.tw-product-actions }} button"
     >
       <a href="{{ routes.cart_add_url }}" class="add-to-cart"> Add to Cart </a>
     </div>
@@ -389,7 +389,14 @@
       "id": "tw-product-actions",
       "label": "Style tw-product-actions",
       "default": "w-full bg-brand-black text-white uppercase px-6 py-4 font-medium text-mobile-button md:text-desktop-button lg:text-[1.12vw] text-center"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

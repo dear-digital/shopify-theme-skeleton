@@ -1,8 +1,8 @@
-<div class=" {{ section.settings.container__main }}">
+<div class=" {{ section.settings.container__main }} color-{{ section.settings.color_scheme }}">
   <div class="end-date" data-end-date="{{ section.settings.end_date }}">
     <div class="{{ section.settings.subcontainer__main }}">
       <div class="{{ section.settings.title__div }}">
-        <h1 class="{{ section.settings.title__h1__div }}">
+        <h1 class="{{ section.settings.title__h1__div }} title">
           {{ section.settings.title }}
         </h1>
         <div class=" {{ section.settings.subtitle__div }}">
@@ -113,7 +113,14 @@
       "label": "Timer text Styles",
       "id": "timer__text",
       "default": "text-sm text-black font-bold"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {
