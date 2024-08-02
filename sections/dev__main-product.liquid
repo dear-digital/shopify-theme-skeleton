@@ -6,86 +6,86 @@
   }
 {% endstyle %}
 
-<div class="product flex flex-col lg:flex-row {{ section.settings.tw-product }}">
-  <div class="product-image-wrapper aspect-square lg:w-1\/2 border-[1px] border-black {{ section.settings.tw-product-image-wrapper }}">
+<div class="product {{ section.settings.tw-product }}">
+  <div class="product-image-wrapper {{ section.settings.tw-product-image-wrapper }}">
     {% if product.featured_image %}
       {{
         product.featured_image
         | image_url: width: 2800, height: 2800, crop: 'center'
-        | image_tag: alt: product.featured_image.alt, class: "w-full h-full object-cover"
+        | image_tag: alt: product.featured_image.alt, class: section.settings['tw-product-image']
       }}
     {% endif %}
   </div>
-  <div class="product-details lg:aspect-square flex flex-col lg:justify-center gap-10 px-4 py-10 md:p-10 lg:w-1\/2 border-x-[1px] border-b-[1px] border-black lg:border-l-0 lg:border-y-[1px] {{ section.settings.tw-product-details }} ">
-    <div class="product-details-container flex flex-col gap-6 {{ section.settings.tw-product-details-container }}">
-      <p class="product-title font-medium uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw] {{ section.settings.tw-product-title }}">
+  <div class="product-details {{ section.settings.tw-product-details }} ">
+    <div class="product-details-container {{ section.settings.tw-product-details-container }}">
+      <p class="product-title {{ section.settings.tw-product-title }}">
         {{ product.collections[0].title }} / <span class="text-brand-gray">{{ product.title }}</span>
       </p>
-      <div class="product-info flex flex-col gap-4 {{ section.settings.tw-product-info }}">
-        <h3 class="product-name font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw] {{ section.settings.tw-product-name }}">
+      <div class="product-info {{ section.settings.tw-product-info }}">
+        <h3 class="product-name {{ section.settings.tw-product-name }}">
           {{ product.title }} - {{ product.price | money }}
         </h3>
         {% if product.description %}
-          <p class="product-description brightness-[.9] text-mobile-body md:text-desktop-body lg:text-[1.12vw] {{ section.settings.tw-product-description }}">
+          <p class="product-description {{ section.settings.tw-product-description }}">
             {{ product.description | strip_html }}
           </p>
         {% endif %}
       </div>
-      <div class="product-quantity flex flex-col gap-4 md:flex-row md:items-center {{ section.settings.tw-product-quantity }}">
-        <p class="quantity-title font-medium text-mobile-subtitle md:text-desktop-subtitle lg:text-[1.25vw] {{ section.settings.tw-quantity-title }}">Quantity</p>
+      <div class="product-quantity {{ section.settings.tw-product-quantity }}">
+        <p class="quantity-title {{ section.settings.tw-quantity-title }}">Quantity</p>
         <quantity-controls
-          data-controls-class="w-full flex lg:text-xl {{ section.settings.tw-quantity-controls }}"
-          data-button-class="w-11 h-11 border-[1px] border-black {{ section.settings.tw-quantity-button }}"
-          data-input-class="text-center border-y-[1px] border-black h-11 {{ section.settings.tw-quantity-input }}"
+          data-controls-class="{{ section.settings.tw-quantity-controls }}"
+          data-button-class="{{ section.settings.tw-quantity-button }}"
+          data-input-class="{{ section.settings.tw-quantity-input }}"
         ></quantity-controls>
       </div>
-      <div class="product-combination flex flex-col gap-4 {{ section.settings.tw-product-combination }}">
-        <div class="combination-info flex flex-col gap-2 md:flex-row-reverse md:justify-between md:items-center {{ section.settings.tw-combination-info }}">
-          <p class="combination-info-notice opacity-50 text-mobile-caption md:text-desktop-caption lg:text-[.98vw] {{ section.settings.tw-combination-info-notice }}">
+      <div class="product-combination {{ section.settings.tw-product-combination }}">
+        <div class="combination-info {{ section.settings.tw-combination-info }}">
+          <p class="combination-info-notice {{ section.settings.tw-combination-info-notice }}">
             {{ product.metafields.custom.combination_product_notice }}
           </p>
           <p
-            class="combination-suggestion-header font-medium text-mobile-subtitle md:text-desktop-subtitle lg:text-[1.25vw] {{ section.settings.tw-combination-suggestion-header }}"
+            class="combination-suggestion-header {{ section.settings.tw-combination-suggestion-header }}"
           >
             Excellent Combination with:
           </p>
         </div>
         <carousel-component
-          data-products-class="flex items-center gap-2.5 {{ section.settings.tw-combination-products }}"
-          data-prev-class="text-5xl lg:text-7xl hover:text-blue-500 {{ section.settings.tw-combination-prev }}"
-          data-container-class="overflow-hidden relative {{ section.settings.tw-carousel-container }}"
-          data-track-class="flex gap-4 transition-transform duration-300 ease-in-out {{ section.settings.tw-carousel-track }}"
-          data-next-class="text-5xl lg:text-7xl hover:text-blue-500 {{ section.settings.tw-combination-next }}"
+          data-products-class="{{ section.settings.tw-combination-products }}"
+          data-prev-class="{{ section.settings.tw-combination-prev }}"
+          data-container-class="{{ section.settings.tw-carousel-container }}"
+          data-track-class="{{ section.settings.tw-carousel-track }}"
+          data-next-class="{{ section.settings.tw-combination-next }}"
         >
           {% for item in product.metafields.custom.combination_products.value %}
             <div
-              class="product-item flex-none bg-white transition-transform duration-200 ease-in-out hover:scale-105 cursor-pointer {{ section.settings.tw-product-item }}"
+              class="product-item {{ section.settings.tw-product-item }}"
             >
               {{
                 item.featured_image
                 | image_url: width: 1000, height: 1000, crop: 'center'
-                | image_tag: class: 'w-32 object-cover mb-2 aspect-square lg:w-[11vw]', alt: item.featured_image.alt
+                | image_tag: class: section.settings['tw-product-item-image'], alt: item.featured_image.alt
               }}
-              <h4 class="product-item-heading w-32 text-mobile-caption md:text-desktop-caption lg:text-[.98vw] {{ section.settings.tw-product-item-heading }}">{{ item.title }}</h4>
-              <p class="product-item-price text-brand-gray w-32 text-mobile-caption md:text-desktop-caption lg:text-[.98vw] {{ section.settings.tw-product-item-price }}">
+              <h4 class="product-item-heading {{ section.settings.tw-product-item-heading }}">{{ item.title }}</h4>
+              <p class="product-item-price {{ section.settings.tw-product-item-price }}">
                 {{ item.price | money }}
               </p>
             </div>
           {% endfor %}
         </carousel-component>
       </div>
-      <div class="product-price flex flex-col gap-4 {{ section.settings.tw-product-price }}">
-        <p class="product-price-title font-medium text-mobile-subtitle md:text-desktop-subtitle lg:text-[1.25vw] {{ section.settings.tw-product-price-title }}">Price options</p>
+      <div class="product-price {{ section.settings.tw-product-price }}">
+        <p class="product-price-title {{ section.settings.tw-product-price-title }}">Price options</p>
         <label
           for="one-time-purchase"
-          class="price-option flex items-center gap-3 text-mobile-body md:text-desktop-body lg:text-[1.12vw] cursor-pointer {{ section.settings.tw-price-option }}"
+          class="price-option {{ section.settings.tw-price-option }}"
         >
           <div class="relative">
             <input
               type="radio"
               id="one-time-purchase"
               name="price-option"
-              class="price-input absolute opacity-0 w-6 h-6 lg:w-[1.7vw] lg:h-[1.7vw] no-spin {{ section.settings.tw-price-input }}"
+              class="price-input {{ section.settings.tw-price-input }}"
               checked
             >
             <div
@@ -100,14 +100,14 @@
         </label>
         <label
           for="subscribe-now"
-          class="price-option flex items-center gap-3 text-mobile-body md:text-desktop-body lg:text-[1.12vw] cursor-pointer {{ section.settings.tw-price-option }}"
+          class="price-option {{ section.settings.tw-price-option }}"
         >
           <div class="relative">
             <input
               type="radio"
               id="subscribe-now"
               name="price-option"
-              class="price-input absolute opacity-0 w-6 h-6 lg:w-[1.7vw] lg:h-[1.7vw] no-spin {{ section.settings.tw-price-input }}"
+              class="price-input {{ section.settings.tw-price-input }}"
             >
             <div
               class="w-6 h-6 border-2 border-brand-black rounded-full flex items-center justify-center bg-brand-light-gray lg:w-[1.7vw] lg:h-[1.7vw]"
@@ -122,7 +122,7 @@
       </div>
     </div>
     <div
-      class="product-actions w-full bg-brand-black text-white uppercase px-6 py-4 font-medium text-mobile-button md:text-desktop-button lg:text-[1.12vw] text-center {{ section.settings.tw-product-actions }}"
+      class="product-actions {{ section.settings.tw-product-actions }}"
     >
       <a href="{{ routes.cart_add_url }}" class="add-to-cart"> Add to Cart </a>
     </div>
@@ -136,24 +136,24 @@
         <div class="products-recommendation-heading px-6 py-20 md:p-20 font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[38px] border-[1px] border-x-brand-black w-full text-center {{ block.settings.tw-products-recommendation-heading }}">
           {{ block.settings['products_recommendation-title'] }}
         </div>
-        <div class="product-card flex flex-col md:flex-row md:flex-wrap justify-center items-center text-center {{ block.settings.tw-product-card }}">
+        <div class="product-card {{ block.settings.tw-product-card }}">
           {% for product in product.metafields.custom.products_recommendation.value %}
-            <a href="{{ product.url }}" class="product-link md:w-1\/2 lg:w-1\/4 relative border-[1px] border-brand-black {{ block.settings.tw-product-link }}">
+            <a href="{{ product.url }}" class="product-link {{ block.settings.tw-product-link }}">
               {% if product.featured_image %}
                 {{
                   product.featured_image
                   | image_url: width: 2800, height: 2800, crop: 'center'
-                  | image_tag: class: 'aspect-square object-cover'
+                  | image_tag: class: block.settings['tw-product-featured-image']
                 }}
               {% endif %}
-              <div class="product-info w-full absolute bottom-3 text-brand-black flex flex-col justify-center items-center gap-1 {{ block.settings.tw-product-info }}">
+              <div class="product-info {{ block.settings.tw-product-info }}">
                 {% if product.title %}
-                  <h3 class="product-title leading-[120%] tracking-[.03vw] font-medium text-[4.3vw] md:text-[2.1vw] lg:text-[1.19vw] {{ block.settings.tw-product-title }}">
+                  <h3 class="product-title {{ block.settings.tw-product-title }}">
                     {{ product.title }}
                   </h3>
                 {% endif %}
                 {% if product.price %}
-                  <p class="product-price leading-[120%] tracking-[.03vw] font-medium text-[3.7vw] md:text-[1.8vw] lg:text-[.98vw] text-brand-gray {{ block.settings.tw-product-price }}">
+                  <p class="product-price {{ block.settings.tw-product-price }}">
                     <span class="price-label {{ block.settings.tw-price-label }}">
                       {{- block.settings['product-recommendation-price-text'] -}}
                     </span>
@@ -209,6 +209,12 @@
       "id": "tw-product-image-wrapper",
       "label": "Style tw-product-image-wrapper",
       "default": "aspect-square lg:w-1/2 border-[1px] border-black"
+    },
+    {
+      "type": "text",
+      "id": "tw-product-image",
+      "label": "Style product-image",
+      "default": "w-full h-full object-cover"
     },
     {
       "type": "text",
@@ -332,6 +338,12 @@
     },
     {
       "type": "text",
+      "id": "tw-product-item-image",
+      "label": "Style tw-product-item-image",
+      "default": "w-32 object-cover mb-2 aspect-square lg:w-[11vw]"
+    },
+    {
+      "type": "text",
       "id": "tw-product-item-heading",
       "label": "Style tw-product-item-heading",
       "default": "w-32 text-mobile-caption md:text-desktop-caption lg:text-[.98vw]"
@@ -415,6 +427,11 @@
           "type": "text",
           "id": "tw-product-link",
           "label": "Style tw-product-link"
+        },
+        {
+          "type": "text",
+          "id": "tw-product-featured-image",
+          "label": "Style tw-product-featured-image"
         },
         {
           "type": "text",
