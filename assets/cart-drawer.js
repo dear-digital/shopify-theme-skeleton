@@ -283,8 +283,7 @@ function toggleCartVisibility(open) {
   document.querySelector('.cart-overlay')?.classList[action]('drawn');
   document.body.classList[action](OVERFLOW_HIDDEN);
 }
-
-window.upsellOpenedByDrawer = false;
+ 
 
 function handleDisabledCheckout(button) {
   if (button.dataset.empty) return;
@@ -309,56 +308,20 @@ async function fetchAndParseCartAndHeader(url) {
   const data = await response.json();
   const parser = new DOMParser();
   const cartHtmlDoc = parser.parseFromString(data['cart-drawer'], 'text/html');
-  const cartHTML = cartHtmlDoc.querySelector('.shopify-section-yg-cart-drawer .drawer-cart').innerHTML;
+  const cartHTML = cartHtmlDoc.querySelector('.shopify-section-cart-drawer .drawer-cart').innerHTML;
   return { cartHTML };
-}
+} 
 
-function calculateCustomCartTotal(cartItems) {
-  let customCartTotal = 0;
-  cartItems.forEach((item) => {
-    customCartTotal += item.final_line_price;
-  });
-  return customCartTotal;
-}
-
-async function handleGratisProducts(cart, sections) {
+async function customCartUpdate(cart, sections) {
   let updatedCart = cart;
-  let updatedSections = sections;
+  let updatedSections = sections; 
   return { cart: updatedCart, sections: updatedSections };
-}
+} 
 
-function findLineForGratisProduct(cart, variantId) {
-  const index = cart.items.findIndex(
-    (item) => item.properties._gratis_product === 'true' && item.variant_id === parseInt(variantId)
-  );
-  return index + 1;
-}
-
-var _learnq = _learnq || [];
-
-async function checkGratisProductEligibility(data, sections = null) {
+async function checkGratisProductEligibility(data, sections = null) {  
   let cart = data;
-  let cart_update = data;
-  let custom_cart_total = calculateCustomCartTotal(cart.items);
-  let newSections = sections;
-  if (_learnq) {
-    _learnq.push([
-      'track',
-      'Added to Cart',
-      {
-        total_price: custom_cart_total / 100,
-        $value: custom_cart_total / 100,
-        items: cart.items,
-      },
-    ]);
-  }
-  const { cart: updatedCart, sections: updatedSections } = await handleGratisProducts(
-    cart,
-    custom_cart_total,
-    newSections
-  );
-  cart_update = updatedCart;
-  newSections = updatedSections;
+  let cart_update = data; 
+  let newSections = sections;  
   return { cart: cart_update, sections: newSections };
 }
 
@@ -373,14 +336,14 @@ async function refreshCart(openCart = true, cartData = null, sections = null) {
   }
 
   try {
-    let data = cartData ? cartData : await fetchCart();
-    const { cart: cart_update, sections: newSections } = await checkGratisProductEligibility(data, sections);
+    let data = cartData ? cartData : await fetchCart(); 
+    const { cart: cart_update, sections: newSections } = await checkGratisProductEligibility(data, sections); 
     updatedSections = newSections;
     data = cart_update;
 
     const rootUrl = routes.root_url === '/' ? '' : routes.root_url;
     const cartUrl = `${rootUrl}/?sections=cart-drawer`;
-    let cartHTML;
+    let cartHTML; 
 
     if (!updatedSections) {
       const fetchedSections = await fetchAndParseCartAndHeader(cartUrl);
@@ -388,7 +351,7 @@ async function refreshCart(openCart = true, cartData = null, sections = null) {
     } else {
       const parser = new DOMParser();
       const cartHtmlDoc = parser.parseFromString(updatedSections['cart-drawer'], 'text/html');
-      cartHTML = cartHtmlDoc.querySelector('.shopify-section-yg-cart-drawer .drawer-cart').innerHTML;
+      cartHTML = cartHtmlDoc.querySelector('.shopify-section-cart-drawer .drawer-cart').innerHTML;
     }
     cartContainer.innerHTML = cartHTML;
   } catch (error) {

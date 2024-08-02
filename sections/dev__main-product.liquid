@@ -1,25 +1,14 @@
 <script src="{{ 'product-components.js' | asset_url }}" defer="defer"></script>
 
+{%- assign product_form_id = 'product-form-' | append: section.id -%}
+
 {% style %}
   .price-option input:checked + div div {
     display: block;
   }
 {% endstyle %}
 
-{% assign selected_variant = product.selected_or_first_available_variant %}
-{%- assign product_form_id = 'product-form-' | append: section.id -%}
-
-<div class="main-container__classes {{ section.settings.main-container__classes }}" id="MainProduct-{{ section.id }}">
-  <div class="sub-container__classes {{ section.settings.sub-container__classes }}">
-    <div class="product-image__classes {{ section.settings.product-image__classes }}">
-      {% if product.featured_image %}
-        {{ product.featured_image | image_url: width: '500' | image_tag: width: '500' }}
-      {% else %}
-        {{ 'image' | placeholder_svg_tag }}
-      {% endif %}
-    </div> 
-
-<div class="product {{ section.settings.tw-product }}">
+<div class="product {{ section.settings.tw-product }}" id="MainProduct-{{ section.id }}">
   <div class="product-image-wrapper {{ section.settings.tw-product-image-wrapper }}">
     {% if product.featured_image %}
       {{
@@ -36,7 +25,7 @@
       </p>
       <div class="product-info {{ section.settings.tw-product-info }}">
         <h3 class="product-name {{ section.settings.tw-product-name }}">
-          {{ product.title }} - {{ product.price | money }}
+          {{ product.title }} - {{ product.selected_or_first_available_variant.price | money }}
         </h3>
         {% if product.description %}
           <p class="product-description {{ section.settings.tw-product-description }}">
@@ -45,7 +34,7 @@
         {% endif %}
       </div>
       <div class="product-quantity {{ section.settings.tw-product-quantity }}">
-        <p class="quantity-title {{ section.settings.tw-quantity-title }}">Quantity</p>
+        <p class="quantity-title {{ section.settings.tw-quantity-title }}" for="Quantity-{{ section.id }}">Quantity</p>
         <quantity-controls
           data-controls-class="{{ section.settings.tw-quantity-controls }}"
           data-button-class="{{ section.settings.tw-quantity-button }}"
@@ -60,188 +49,6 @@
           <p
             class="combination-suggestion-header {{ section.settings.tw-combination-suggestion-header }}"
           >
- 
-
-          {% for block in section.blocks %}
-            {% case block.type %}
-              {%- when '@app' -%}
-                {% render block %}
-              {% when 'vendor' %}
-                <div class="vendor__classes {{ section.settings.vendor__classes }}">
-                  <span class="vendor-text__classes {{ section.settings.vendor-text__classes }}">
-                    {{- product.vendor -}}
-                  </span>
-                </div>
-              {% when 'title' %}
-                <div class="title__classes {{ section.settings.title__classes }}">
-                  <h1 class="title-text__classes {{ section.settings.title-text__classes }}">{{ product.title }}</h1>
-                </div>
-              {% when 'price' %}
-                <div class="price__classes {{ section.settings.price__classes }}" id="price-{{ section.id }}">
-                  <span class="price-compare-text__classes {{ section.settings.price-compare-text__classes }}">
-                    {{- selected_variant.compare_at_price | money -}}
-                  </span>
-                  <span class="price-text__classes {{ section.settings.price-text__classes }}">
-                    {{- selected_variant.price | money -}}
-                  </span>
-
-                  {% if selected_variant.price < selected_variant.compare_at_price %}
-                    <span class="price-sales__classes {{ section.settings.price-sales__classes }}">Sale</span>
-                  {% endif %}
-                </div>
-              {% when 'variant_selector' %}
-                <div class="variant__classes {{ section.settings.variant__classes }}">
-                  {% unless product.has_only_default_variant %}
-                    <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
-                      {% for option in product.options_with_values %}
-                        <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
-
-                        <div class="variant-sub__classes {{ section.settings.variant-sub__classes }}">
-                          <select
-                            name="options[{{ option.name | escape }}]"
-                            id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                            class="variant-select__classes {{ section.settings.variant-select__classes }}"
-                          >
-                            {% for value in option.values %}
-                              <option
-                                value="{{ value | escape }}"
-                                {% if option.selected_value == value %}
-                                  selected="selected"
-                                {% endif %}
-                              >
-                                {{ value }}
-                              </option>
-                            {% endfor %}
-                          </select>
-                        </div>
-
-                        <script type="application/json">
-                          {{ product.variants | json }}
-                        </script>
-                      {% endfor %}
-                    </variant-selector>
-                  {% endunless %}
-                </div>
-
-              {% when 'quantity' %}
-                <div class="quantity__classes {{ section.settings.quantity__classes }}">
-                  <label for="Quantity-{{ section.id }}">Quantity</label>
-
-                  <div class="quantity-sub__classes {{ section.settings.quantity-sub__classes }}">
-                    <input
-                      type="number"
-                      name="quantity"
-                      id="Quantity-{{ section.id }}"
-                      value="1"
-                      min="1"
-                      class="quantity-input__classes {{ section.settings.quantity-input__classes }}"
-                    >
-                  </div>
-                </div>
-              {% when 'description' %}
-                <div class="description__classes {{ section.settings.description__classes }}">
-                  <p class="description-text__classes {{ section.settings.description-text__classes }}">
-                    {{ product.description }}
-                  </p>
-                </div>
-
-              {% when 'checkout_buttons' %}
-                <div {{ block.shopify_attributes }} class=" {{ section.settings.checkout__classes }}">
-                  {%- if product != blank -%}
-                    <product-form class="product-form">
-                      <div
-                        class="product-form__error-message-wrapper"
-                        role="alert"
-                        hidden
-                      >
-                        <svg
-                          aria-hidden="true"
-                          focusable="false"
-                          class="icon icon-error"
-                          viewBox="0 0 13 13"
-                        >
-                          <circle
-                            cx="6.5"
-                            cy="6.50049"
-                            r="5.5"
-                            stroke="white"
-                            stroke-width="2" />
-                          <circle
-                            cx="6.5"
-                            cy="6.5"
-                            r="5.5"
-                            fill="#EB001B"
-                            stroke="#EB001B"
-                            stroke-width="0.7" />
-                          <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white" />
-                          <path
-                            d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z"
-                            fill="white"
-                            stroke="#EB001B"
-                            stroke-width="0.7">
-                        </svg>
-                        <span class="product-form__error-message"></span>
-                      </div>
-
-                      {%- form 'product',
-                        product,
-                        id: product_form_id,
-                        class: 'form',
-                        novalidate: 'novalidate',
-                        data-type: 'add-to-cart-form'
-                      -%}
-                        <input
-                          type="hidden"
-                          name="id"
-                          value="{{ product.selected_or_first_available_variant.id }}"
-                          disabled
-                          class="product-variant-id"
-                        >
-                        <div class="product-form__buttons">
-                          <cart-functions-wrapper>
-                            <button
-                              id="ProductSubmitButton-{{ section.id }}"
-                              type="submit"
-                              name="add"
-                              class="add-to-cart checkout-button__classes {{ section.settings.checkout-button__classes }}"
-                              {% if product.selected_or_first_available_variant.available == false %}
-                                disabled
-                              {% endif %}
-                              data-cart-quantity="div[id^='MainProduct'] input[name='quantity']"
-                              data-cart-id="input[name='id']"
-                            >
-                              <span>
-                                {%- if product.selected_or_first_available_variant.available == false -%}
-                                  {{ 'sections.cart.sold-out' | t }}
-                                {%- else -%}
-                                  {{ 'sections.cart.add-to-cart' | t }}
-                                {%- endif -%}
-                              </span>
-                            </button>
-                          </cart-functions-wrapper>
-                        </div>
-                      {%- endform -%}
-                    </product-form>
-                  {%- else -%}
-                    <div class="product-form">
-                      <div class="product-form__buttons form">
-                        <button
-                          type="submit"
-                          name="add"
-                          class="product-form__submit button button--full-width button--primary"
-                          disabled
-                        >
-                          {{ 'sections.cart.sold-out' | t }}
-                        </button>
-                      </div>
-                    </div>
-                  {%- endif -%}
-                </div>
-
-              {% else %}
-
-            {% endcase %}
-
             Excellent Combination with:
           </p>
         </div>
@@ -266,7 +73,6 @@
                 {{ item.price | money }}
               </p>
             </div>
- 
           {% endfor %}
         </carousel-component>
       </div>
@@ -317,24 +123,63 @@
         </label>
       </div>
     </div>
-    <div
-      class="product-actions {{ section.settings.tw-product-actions }}"
-    >
-      <a href="{{ routes.cart_add_url }}" class="add-to-cart"> Add to Cart </a>
+    <div {{ block.shopify_attributes }} class=" {{ section.settings.checkout__classes }}">
+      {%- if product != blank -%}
+        <product-form class="product-form">
+          {%- form 'product',
+            product,
+            id: product_form_id,
+            class: 'form',
+            novalidate: 'novalidate',
+            data-type: 'add-to-cart-form'
+          -%}
+            <input
+              type="hidden"
+              name="id"
+              value="{{ product.selected_or_first_available_variant.id }}"
+              disabled
+              class="product-variant-id"
+            >
+            <cart-functions-wrapper>
+              <button
+                id="ProductSubmitButton-{{ section.id }}"
+                type="submit"
+                name="add"
+                class="add-to-cart checkout-button__classes product-actions {{ section.settings.tw-product-actions }}"
+                {% if product.selected_or_first_available_variant.available == false %}
+                  disabled
+                {% endif %}
+                data-cart-quantity="div[id^='MainProduct'] input[name='quantity']"
+                data-cart-id="input[name='id']"
+              >
+                <span class="add-to-cart">
+                  {%- if product.selected_or_first_available_variant.available == false -%}
+                    {{ 'sections.cart.sold-out' | t }}
+                  {%- else -%}
+                    {{ 'sections.cart.add-to-cart' | t }}
+                  {%- endif -%}
+                </span>
+              </button>
+            </cart-functions-wrapper>
+          {%- endform -%}
+        </product-form>
+      {%- else -%}
+        <div class="product-form">
+          <div class="product-form__buttons form">
+            <button
+              type="submit"
+              name="add"
+              class="product-form__submit button product-actions {{ section.settings.tw-product-actions }}"
+              disabled
+            >
+              {{ 'sections.cart.sold-out' | t }}
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </div>
-
- 
-<script src="{{ 'dev__product.js' | asset_url }}" defer></script>
-
-{%- liquid
-  if product.selected_or_first_available_variant.featured_media
-    assign seo_media = product.selected_or_first_available_variant.featured_media
-  else
-    assign seo_media = product.featured_media
-  endif
--%} 
 
 {% for block in section.blocks %}
   {% case block.type %}
@@ -386,7 +231,6 @@
   </div>
 </template>
 {% comment %} Carousel Template End {% endcomment %}
- 
 
 {% comment %} Quantity Control Template {% endcomment %}
 <template id="quantity-controls-template">
@@ -394,7 +238,7 @@
     <button class="quantity-decrease quantity-button">
       {% render 'icon-minus' %}
     </button>
-    <input type="number" min="1" value="1" class="quantity-input">
+    <input type="number" min="1" value="1" class="quantity-input" name="quantity" id="Quantity-{{ section.id }}">
     <button class="quantity-increase quantity-button">
       {% render 'icon-plus' %}
     </button>
