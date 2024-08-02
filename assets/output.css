@@ -4366,14 +4366,6 @@ input[type="number"]::-webkit-outer-spin-button {
     height: 100%;
   }
 
-  .lg\:h-screen {
-    height: 100vh;
-  }
-
-  .lg\:max-h-\[50vw\] {
-    max-height: 50vw;
-  }
-
   .lg\:min-h-screen {
     min-height: 100vh;
   }
@@ -4474,10 +4466,6 @@ input[type="number"]::-webkit-outer-spin-button {
     align-items: center;
   }
 
-  .lg\:items-stretch {
-    align-items: stretch;
-  }
-
   .lg\:justify-center {
     justify-content: center;
   }
@@ -4492,10 +4480,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .lg\:gap-6 {
     gap: 1.5rem;
-  }
-
-  .lg\:overflow-auto {
-    overflow: auto;
   }
 
   .lg\:overflow-hidden {
