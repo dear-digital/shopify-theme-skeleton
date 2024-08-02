@@ -97,15 +97,15 @@
         "hero-main-richtext": "<p>Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread Joy with Our Online Flower Delivery Service<\/p>",
         "hero__image": "shopify:\/\/shop_images\/heroimage.jpg",
         "hero__description": "Experience the joy of giving with our modern floral studio. Order online and send fresh flowers, plants and gifts today.",
-        "hero": "flex-wrap lg:flex-nowrap lg:flex w-full justify-between items-start lg:items-stretch lg:max-h-[50vw] lg:overflow-auto lg:hide-scrollbar",
-        "hero__left-col": "w-full lg:w-1\/2 px-4 py-10 md:p-20 lg:border-b-[1px] lg:border-brand-black lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden",
+        "hero": "flex-wrap lg:flex-nowrap lg:flex w-full justify-between items-start lg:hide-scrollbar",
+        "hero__left-col": "w-full lg:w-1\/2 px-4 py-10 md:p-20 lg:border-b-[1px] lg:border-brand-black lg:sticky lg:top-0 lg:h-full lg:aspect-square",
         "hero__header": "flex flex-col lg:h-[50%] lg:justify-center",
         "hero__title": "text-mobile-heading-1 font-semibold pb-4 md:pr-12 md:text-desktop-heading-1",
         "hero__subtitle": "text-mobile-hero-caption pb-6 md:pb-[54px] md:text-desktop-hero-caption lg:pb-0",
         "hero__content": "flex pt-4 border-t-[1px] border-brand-black md:pt-6 lg:align-center",
         "tail-hero__image": "w-1\/2 pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]",
         "tail-hero__description": "w-1\/2 pl-4 content-end text-mobile-small-description md:pl-6 md:text-desktop-caption",
-        "hero__right-col": "w-full lg:w-1\/2 lg:h-screen lg:max-h-[50vw]"
+        "hero__right-col": "w-full lg:w-1\/2"
       }
     },
     "about_us_X8mMxR": {
