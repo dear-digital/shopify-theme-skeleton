@@ -2348,10 +2348,6 @@ video {
   font-size: 3.7vw;
 }
 
-.text-\[4\.1vw\] {
-  font-size: 4.1vw;
-}
-
 .text-\[4\.3vw\] {
   font-size: 4.3vw;
 }
@@ -4226,6 +4222,7 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-top: 0px;
   }
 
+<<<<<<< HEAD
   .lg\:mt-\[1\.25w\] {
     margin-top: 1.25w;
   }
@@ -4234,6 +4231,8 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-top: 1.7vw;
   }
 
+=======
+>>>>>>> parent of 6676200 (Remove unused CSS classes in product recommendation section)
   .lg\:flex {
     display: flex;
   }
@@ -4523,6 +4522,7 @@ input[type="number"]::-webkit-outer-spin-button {
     padding-right: 2rem;
   }
 
+<<<<<<< HEAD
   .lg\:px-\[1\.25vw\] {
     padding-left: 1.25vw;
     padding-right: 1.25vw;
@@ -4533,6 +4533,8 @@ input[type="number"]::-webkit-outer-spin-button {
     padding-right: 1.2vw;
   }
 
+=======
+>>>>>>> parent of 6676200 (Remove unused CSS classes in product recommendation section)
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -4543,11 +4545,14 @@ input[type="number"]::-webkit-outer-spin-button {
     padding-bottom: 5rem;
   }
 
+<<<<<<< HEAD
   .lg\:py-\[1\.7vw\] {
     padding-top: 1.7vw;
     padding-bottom: 1.7vw;
   }
 
+=======
+>>>>>>> parent of 6676200 (Remove unused CSS classes in product recommendation section)
   .lg\:py-\[26px\] {
     padding-top: 26px;
     padding-bottom: 26px;

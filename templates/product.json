@@ -8,8 +8,8 @@
           "settings": {
             "products_recommendation-title": "You may also like...",
             "product-recommendation-price-text": "Price",
-            "tw-products-recommendation-wrapper": "",
-            "tw-products-recommendation-heading": "",
+            "tw-products-recommendation-wrapper": "flex flex-col items-center justify-center",
+            "tw-products-recommendation-heading": "px-6 py-20 md:p-20 font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[38px] border-[1px] border-x-brand-black w-full text-center",
             "tw-product-card": "flex flex-col md:flex-row md:flex-wrap justify-center items-center text-center",
             "tw-product-link": "md:w-1\/2 lg:w-1\/4 relative border-[1px] border-brand-black",
             "tw-product-featured-image": "aspect-square object-cover",

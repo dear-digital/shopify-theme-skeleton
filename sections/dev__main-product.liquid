@@ -132,8 +132,8 @@
 {% for block in section.blocks %}
   {% case block.type %}
     {% when 'products-recommendation' %}
-      <div class="products-recommendation-wrapper flex flex-col items-center justify-center {{ block.settings.tw-products-recommendation-wrapper }}">
-        <div class="products-recommendation-heading px-6 py-20 md:p-20 font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[38px] border-[1px] border-x-brand-black w-full text-center {{ block.settings.tw-products-recommendation-heading }}">
+      <div class="products-recommendation-wrapper {{ block.settings.tw-products-recommendation-wrapper }}">
+        <div class="products-recommendation-heading {{ block.settings.tw-products-recommendation-heading }}">
           {{ block.settings['products_recommendation-title'] }}
         </div>
         <div class="product-card {{ block.settings.tw-product-card }}">
