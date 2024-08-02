@@ -81,7 +81,7 @@ if (Shopify.designMode) {
  */
 async function fetchCart() {
   try {
-    const response = await fetch(window.Shopify.routes.root + 'cart.js');
+    const response = await fetch(window.Shopify.routes.root + 'cart-drawer.js');
     const cart = await response.json();
     return cart;
   } catch (error) {

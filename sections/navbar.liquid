@@ -25,7 +25,7 @@
       </div>
 
       <!-- Mobile Cart Button -->
-      <!-- 'open-cart' is the data action in JS of cart.js to Open Cart --> 
+      <!-- 'open-cart' is the data action in JS of cart-drawer.js to Open Cart --> 
       <span 
         class="cart-toggler navbar__menu-item {{ section.settings.mobile_cart_button_classes }} cursor-pointer"
         {% if settings.cart_type == 'drawer' %}
@@ -62,7 +62,7 @@
           {% endfor %}
 
           {% comment %} Desktop Cart Button {% endcomment %}
-          <!-- 'open-cart' is the data action in JS of cart.js to Open Cart -->
+          <!-- 'open-cart' is the data action in JS of cart-drawer.js to Open Cart -->
           <span 
             class="cart-toggler navbar__menu-item {{ section.settings.right_menu_item_classes }} cursor-pointer"
             {% if settings.cart_type == 'drawer' %}
