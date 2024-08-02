@@ -1,74 +1,100 @@
 theme:
-  - "layout/**/*"
-  - "templates/**/*"
-  - "sections/**/*"
-  - "snippets/**/*"
+  - changed-files:
+    - any-glob-to-any-file:
+      - "layout/**/*"
+      - "templates/**/*"
+      - "sections/**/*"
+      - "snippets/**/*"
 
 assets:
-  - "assets/**/*"
+  - changed-files:
+    - any-glob-to-any-file: "assets/**/*"
 
 locales:
-  - "locales/**/*"
+  - changed-files:
+    - any-glob-to-any-file: "locales/**/*"
 
 config:
-  - "config/**/*"
-  - "config/settings_data.json"
-  - "config/settings_schema.json"
+  - changed-files:
+    - any-glob-to-any-file: 
+      - "config/**/*"
+      - "config/settings_data.json"
+      - "config/settings_schema.json"
 
 styles:
-  - "**/*.css"
-  - "src/tailwind.css"
-  - "tailwind.config.js"
+  - changed-files:
+    - any-glob-to-any-file:
+      - "**/*.css"
+      - "src/tailwind.css"
+      - "tailwind.config.js"
 
 scripts:
-  - "**/*.js"
-  - "assets/global.js"
+  - changed-files:
+    - any-glob-to-any-file:
+      - "**/*.js"
+      - "assets/global.js"
 
 liquid:
-  - "**/*.liquid"
+  - changed-files:
+    - any-glob-to-any-file: "**/*.liquid"
 
 documentation:
-  - "**/*.md"
-  - "LICENSE"
-  - "README.md"
-  - "CODE_OF_CONDUCT.md"
-  - "CONTRIBUTING.md"
-  - "SECURITY.md"
-  - "release-notes.md"
-  - "rewards.md"
-  - "documentation/**/*"
+  - changed-files:
+    - any-glob-to-any-file:
+      - "**/*.md"
+      - "LICENSE"
+      - "README.md"
+      - "CODE_OF_CONDUCT.md"
+      - "CONTRIBUTING.md"
+      - "SECURITY.md"
+      - "release-notes.md"
+      - "rewards.md"
+      - "documentation/**/*"
 
 ci:
-  - ".github/**/*"
+  - changed-files:
+    - any-glob-to-any-file: ".github/**/*"
 
 package:
-  - "package.json"
-  - "package-lock.json"
+  - changed-files:
+    - any-glob-to-any-file:
+      - "package.json"
+      - "package-lock.json"
 
 ignore-files:
-  - ".gitignore"
-  - ".shopifyignore"
+  - changed-files:
+    - any-glob-to-any-file:
+      - ".gitignore"
+      - ".shopifyignore"
 
 templates:
-  - "templates/**/*.json"
+  - changed-files:
+    - any-glob-to-any-file: "templates/**/*.json"
 
 customers:
-  - "templates/customers/**/*"
+  - changed-files:
+    - any-glob-to-any-file: "templates/customers/**/*"
 
 sections:
-  - "sections/**/*"
+  - changed-files:
+    - any-glob-to-any-file: "sections/**/*"
 
 snippets:
-  - "snippets/**/*"
+  - changed-files:
+    - any-glob-to-any-file: "snippets/**/*"
 
 icons:
-  - "snippets/icon-*.liquid"
+  - changed-files:
+    - any-glob-to-any-file: "snippets/icon-*.liquid"
 
 extras:
-  - "extras/**/*"
+  - changed-files:
+    - any-glob-to-any-file: "extras/**/*"
 
 python:
-  - "**/*.py"
+  - changed-files:
+    - any-glob-to-any-file: "**/*.py"
 
 json:
-  - "**/*.json"
+  - changed-files:
+    - any-glob-to-any-file: "**/*.json"
