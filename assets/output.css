@@ -638,6 +638,10 @@ video {
   left: 0px;
 }
 
+.left-1 {
+  left: 0.25rem;
+}
+
 .left-1\/2 {
   left: 50%;
 }
@@ -664,6 +668,10 @@ video {
 
 .top-0 {
   top: 0px;
+}
+
+.top-1 {
+  top: 0.25rem;
 }
 
 .top-1\/2 {
@@ -1377,6 +1385,11 @@ video {
   transform-origin: top left;
 }
 
+.-translate-x-1 {
+  --tw-translate-x: -0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .-translate-x-1\/2 {
   --tw-translate-x: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1384,6 +1397,11 @@ video {
 
 .-translate-x-full {
   --tw-translate-x: -100%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-y-1 {
+  --tw-translate-y: -0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -4222,17 +4240,6 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-top: 0px;
   }
 
-<<<<<<< HEAD
-  .lg\:mt-\[1\.25w\] {
-    margin-top: 1.25w;
-  }
-
-  .lg\:mt-\[1\.7vw\] {
-    margin-top: 1.7vw;
-  }
-
-=======
->>>>>>> parent of 6676200 (Remove unused CSS classes in product recommendation section)
   .lg\:flex {
     display: flex;
   }
@@ -4259,10 +4266,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .lg\:h-\[1\.04vw\] {
     height: 1.04vw;
-  }
-
-  .lg\:h-\[1\.77vw\] {
-    height: 1.77vw;
   }
 
   .lg\:h-\[1\.7vw\] {
@@ -4316,10 +4319,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .lg\:w-\[1\.04vw\] {
     width: 1.04vw;
-  }
-
-  .lg\:w-\[1\.77vw\] {
-    width: 1.77vw;
   }
 
   .lg\:w-\[1\.7vw\] {
@@ -4522,19 +4521,6 @@ input[type="number"]::-webkit-outer-spin-button {
     padding-right: 2rem;
   }
 
-<<<<<<< HEAD
-  .lg\:px-\[1\.25vw\] {
-    padding-left: 1.25vw;
-    padding-right: 1.25vw;
-  }
-
-  .lg\:px-\[1\.2vw\] {
-    padding-left: 1.2vw;
-    padding-right: 1.2vw;
-  }
-
-=======
->>>>>>> parent of 6676200 (Remove unused CSS classes in product recommendation section)
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -4545,14 +4531,6 @@ input[type="number"]::-webkit-outer-spin-button {
     padding-bottom: 5rem;
   }
 
-<<<<<<< HEAD
-  .lg\:py-\[1\.7vw\] {
-    padding-top: 1.7vw;
-    padding-bottom: 1.7vw;
-  }
-
-=======
->>>>>>> parent of 6676200 (Remove unused CSS classes in product recommendation section)
   .lg\:py-\[26px\] {
     padding-top: 26px;
     padding-bottom: 26px;
@@ -4581,10 +4559,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .lg\:text-\[1\.25vw\] {
     font-size: 1.25vw;
-  }
-
-  .lg\:text-\[1\.45vw\] {
-    font-size: 1.45vw;
   }
 
   .lg\:text-\[2\.7vw\] {
