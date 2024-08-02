@@ -1,6 +1,6 @@
 {% comment %} subscription-plan-selection.liquid {% endcomment %}
 
-<div class="{{ section.settings.subscription_plan_selection__container }}">
+<div class="{{ section.settings.subscription_plan_selection__container }} color-{{ section.settings.color_scheme }}">
   {% comment %} Left Column {% endcomment %}
   <div class="{{ section.settings.left_column_classes }}">
     {% if section.settings.left_column_image != blank %}
@@ -18,7 +18,7 @@
         {{ section.settings.state_1__sub_header }}
       </h4>
       <div class="{{ section.settings.state_1__main_info_div_classes }}">
-        <h4 class="{{ section.settings.state_1__main_info_div__header_classes }}">
+        <h4 class="{{ section.settings.state_1__main_info_div__header_classes }} title">
           {{ section.settings.state_1__main_info_div__header }}
         </h4>
         <div class="{{ section.settings.state_1__main_info_div__paragraph_classes }}">
@@ -55,7 +55,7 @@
                   </ul>
                 </div>
               </div>
-              <button class="{{ block.settings.plan_content__select_button_classes}}">
+              <button class="{{ block.settings.plan_content__select_button_classes}} button">
                 {{ block.settings.select_plan_button_text }}
               </button>
             </div>
@@ -73,7 +73,7 @@
     {% comment %} State 2 {% endcomment %}
     <div class="{{ section.settings.state_2_classes }}" id="state2">
       <div class="{{ section.settings.state_2__main_info_classes }}">
-        <h4 class="{{ section.settings.state_2__main_info_header_classes }}">
+        <h4 class="{{ section.settings.state_2__main_info_header_classes }} title">
           {{ section.settings.state_2__main_info_header }}
         </h4>
         <div class="{{ section.settings.state_2__main_info_paragraph_classes }}">
@@ -100,7 +100,7 @@
     {% comment %} State 3 {% endcomment %}
     <div class="{{ section.settings.state_3_classes }}" id="state3">
       <div class="{{ section.settings.state_3__main_info_classes }}">
-        <h4 class="{{ section.settings.state_3__main_info_header_classes }}">
+        <h4 class="{{ section.settings.state_3__main_info_header_classes }} title">
           {{ section.settings.state_3__main_info_header }}
         </h4>
         <div class="{{ section.settings.state_3__main_info_paragraph_classes }}">
@@ -129,7 +129,7 @@
     {% comment %} Checkout Button {% endcomment %}
     <div class="{{ section.settings.right_column__checkout_button_div }}">
       <a href="{{ section.settings.right_column__checkout_button_link }}"
-         class="{{ section.settings.right_column__checkout_button }}">
+         class="{{ section.settings.right_column__checkout_button }} button">
         {{- section.settings.right_column__checkout_button_label | escape -}}
       </a>
     </div>
@@ -354,7 +354,14 @@
       "id": "right_column__checkout_button",
       "label": "Checkout Button Classes",
       "default": "h-full flex items-center justify-center w-full border-brand-black border  text-mobile-button uppercase font-medium tracking-[0.025em] bg-brand-black text-white hover:text-brand-black hover:bg-transparent transition duration 300 ease-out"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-6"
+		}
   ],
   "blocks": [
     {

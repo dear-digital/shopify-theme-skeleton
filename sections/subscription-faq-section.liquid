@@ -1,8 +1,8 @@
 {% if section.settings.main_heading != blank %}
-<div class="collapsible-content {{ section.settings.main_container }}">
-  <div class="collapsible-content__main-container {{ section.settings.main_content_container }}">
+<div class="collapsible-content {{ section.settings.main_container }} color-{{ section.settings.color_scheme }}">
+  <div class="collapsible-content__main-container {{ section.settings.main_content_container }} color-{{ section.settings.color_scheme_secondary }}">
     
-    <h2 class="collapsible-content__main-heading {{ section.settings.collapsible_main_heading }}">
+    <h2 class="collapsible-content__main-heading {{ section.settings.collapsible_main_heading }} title">
       {{ section.settings.main_heading }}
     </h2>
 
@@ -20,7 +20,7 @@
                 {% render 'icon-collapsible-arrow' class: block.settings.collapsible_icon_SVG %}
                 </span>
             </summary>
-            <p class="collapsible-content__content {{ block.settings.collapsible_content }}">
+            <p class="collapsible-content__content {{ block.settings.collapsible_content }} color-{{ section.settings.color_scheme_secondary }}">
                 {{ block.settings.content }}
             </p>
             </details>
@@ -71,7 +71,21 @@
       "label": "Collapsible Grid",
       "id": "collapsible_grid",
       "default": "mx-auto"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-5"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme_secondary",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

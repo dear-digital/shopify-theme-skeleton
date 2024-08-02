@@ -1,7 +1,7 @@
-<div class="section {{ section.settings.tw-why-choose-us }}">
+<div class="section {{ section.settings.tw-why-choose-us }} color-{{ section.settings.color_scheme }}">
   {% if section.settings.main_heading != blank %}
   <div class="section__left-col {{ section.settings.tw-section__left-col }}">
-    <h3 class="section__main-heading {{ section.settings.tw-section__main-heading }}">
+    <h3 class="section__main-heading {{ section.settings.tw-section__main-heading }} title">
       {{ section.settings.main_heading }}
     </h3>
   </div>
@@ -12,7 +12,7 @@
       {% if block.type == 'benefit-block' %}
         {% if block.settings.text != blank or block.settings.title != blank %}
         <div class="section__benefit-block__content {{ block.settings.tw-why-choose-us__benefit-block__content }}">
-          <h3 class="section__benefit-block__title {{ block.settings.tw-why-choose-us__benefit-block__title }}">
+          <h3 class="section__benefit-block__title {{ block.settings.tw-why-choose-us__benefit-block__title }} title">
             {{ block.settings.title }}
           </h3>
           <p class="section__benefit-block__text {{ block.settings.tw-why-choose-us__benefit-block__text }}">
@@ -59,7 +59,14 @@
       "id": "tw-section__right-col",
       "label": "Style tw-section__right-col",
       "default": "lg:w-1/2"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

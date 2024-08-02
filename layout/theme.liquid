@@ -68,6 +68,7 @@
           }
         {% endfor %}
 
+        /* When the Tailwind classes will be refactored, the color and background classes will have to be removed, so after that - there will be no need to put the "!important" classes here. */
         {{ scheme_classes | prepend: 'body' }} {
           color: rgba(var(--color-foreground)) !important;
           background-color: rgb(var(--color-background)) !important;
@@ -75,12 +76,12 @@
         .button{
           background-color: rgba(var(--color-button)) !important;
           color: rgba(var(--color-button-text)) !important; 
-          border: 1px solid rgba(var(--color-primary-button-text));
+          border: 1px solid rgba(var(--color-primary-button-text)) !important;
         } 
         .button:hover{
           background-color: rgba(var(--color-secondary-button)) !important;
           color: rgba(var(--color-secondary-button-text)) !important;
-          border: 1px solid rgba(var(--color-secondary-button-text)); 
+          border: 1px solid rgba(var(--color-secondary-button-text)) !important; 
         } 
         .title{
           color: rgba(var(--color-title)) !important;

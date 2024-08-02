@@ -2,7 +2,7 @@
 {%- liquid
   assign video_id = section.settings.video.id | default: section.settings.video_url.id
 -%}
-<div class="video-text-container {{ section.settings.video_text_container_styles }}">
+<div class="video-text-container {{ section.settings.video_text_container_styles }} color-{{ section.settings.color_scheme }}">
   <!-- Video container -->
   <div class="video-container {{ section.settings.video_container_styles }}">
 
@@ -53,21 +53,21 @@
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'heading' %}
-          <h2 class="text-container__heading {{ section.settings.text_container_heading_styles }}">
+          <h2 class="text-container__heading {{ section.settings.text_container_heading_styles }} title">
             {{ block.settings.heading }}
           </h2>
         {% when 'sub_heading' %}
-          <h3 class="text-container__sub-heading {{ section.settings.text_container_sub_heading_styles }}">
+          <h3 class="text-container__sub-heading {{ section.settings.text_container_sub_heading_styles }} color-{{ section.settings.color_scheme }}">
             {{ block.settings.sub_heading }}
           </h3>
         {% when 'paragraph' %}
-          <p class="text-container__paragraph {{ section.settings.text_container_paragraph_styles }}">
+          <p class="text-container__paragraph {{ section.settings.text_container_paragraph_styles }} color-{{ section.settings.color_scheme }}">
             {{ block.settings.paragraph }}
           </p>
         {% when 'button' %}
           <a
             href="{{ block.settings.button_link }}"
-            class="text-container__button {{ section.settings.text_container_button_styles }}"
+            class="text-container__button {{ section.settings.text_container_button_styles }} button"
           >
             {{ block.settings.button_text }}
           </a>
@@ -216,7 +216,14 @@
       "id": "text_container_button_styles",
       "label": "Button",
       "default": "md:text-lg py-2 px-5 rounded-full border-2 border-slate-400 inline-block"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

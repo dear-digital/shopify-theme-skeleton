@@ -16,7 +16,7 @@
 
 
 <div class="navbar-wrapper {{ section.settings.navbar_wrapper }}">
-  <nav class="navbar {{ section.settings.navbar_classes }}">
+  <nav class="navbar {{ section.settings.navbar_classes }} color-{{ section.settings.color_scheme }}">
     <div class="navbar__container {{ section.settings.container_classes }}">
 
         <!-- Mobile and Laptop menu button -->
@@ -246,13 +246,13 @@
       "type": "textarea",
       "id": "left_menu_item_classes",
       "label": "Left menu item classes",
-      "default": "text-brand-black hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1/4"
+      "default": "hover:text-gray-900 border-brand-black border-r-[1px] flex items-center justify-center w-1/4"
     },
     {
       "type": "textarea",
       "id": "right_menu_item_classes",
       "label": "Right menu item classes",
-      "default": "text-brand-black hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1/4"
+      "default": "hover:text-gray-900 border-brand-black border-l-[1px] flex items-center justify-center w-1/4"
     },
     {
       "type": "textarea",
@@ -328,7 +328,7 @@
       "type": "textarea",
       "id": "off_canvas_menu_content_classes",
       "label": "Off-canvas menu content classes",
-      "default": "text-mobile-heading-5 md:text-desktop-heading-5 text-brand-black font-medium h-[calc(100%_-_47px)] md:h-[calc(100%_-_55px)] overflow-y-scroll"
+      "default": "text-mobile-heading-5 md:text-desktop-heading-5 font-medium h-[calc(100%_-_47px)] md:h-[calc(100%_-_55px)] overflow-y-scroll"
     },
     {
       "type": "textarea",
@@ -375,7 +375,14 @@
       "id": "off_canvas_menu_social_SVG",
       "label": "Off-canvas menu social SVG classes",
       "default": "h-5 w-5"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "enabled_on": {
     "groups": ["header"]

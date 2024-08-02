@@ -1,6 +1,6 @@
 <div class="table__maindiv {{ section.settings.table__maindiv }} ">
   <table class="table__subdiv {{ section.settings.table__subdiv }} ">
-    <thead class="table__thead  {{ section.settings.table__thead }}">
+    <thead class="table__thead  {{ section.settings.table__thead }} color-{{ section.settings.color_scheme }}">
       <tr>
         <th scope="col" class="table__trow {{ section.settings.table__trow }} ">
           {{ section.settings.table__heading1 }}
@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       {% for block in section.blocks %}
-        <tr class="table__mainblock {{ block.settings.table__mainblock }}">
+        <tr class="table__mainblock {{ block.settings.table__mainblock }} color-{{ section.settings.color_scheme_secondary }}">
           <th scope="row" class="table__heading_style {{ block.settings.table__heading_style }}">
             {{ block.settings.table__blockheading1 }}
           </th>
@@ -86,7 +86,21 @@
       "id": "table__trow",
       "label": "Table Row Styling",
       "default": "px-6 py-3"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-2"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme_secondary",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-3"
+		}
   ],
   "blocks": [
     {

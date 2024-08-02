@@ -1,9 +1,9 @@
-<div class="hero {{ section.settings.hero }}">
+<div class="hero {{ section.settings.hero }} color-{{ section.settings.color_scheme }}">
   <div class="hero__left-col {{ section.settings.hero__left-col }}">
     {% if section.settings['hero-main'] != blank or section.settings['hero-main-richtext'] != blank %}
     <div class="hero__header {{ section.settings.hero__header }}">
       {% if section.settings['hero-main'] != blank %}
-        <h1 class="hero__title {{ section.settings.hero__title }}">{{ section.settings['hero-main'] }}</h1>
+        <h1 class="hero__title {{ section.settings.hero__title }} title">{{ section.settings['hero-main'] }}</h1>
       {% endif %} 
       {% if section.settings['hero-main-richtext'] != blank %}
       <div class="hero__subtitle {{ section.settings.hero__subtitle }}">
@@ -46,7 +46,7 @@
           </div>
           <div class="hero__product {{ block.settings.hero__product }} {% if block.settings.reverse-image %}border-r-[1px]{% endif %}">
             {% if block.settings.collection.title != blank %}
-            <h3 class="hero__product-title {{ block.settings.hero__product-title }}">
+            <h3 class="hero__product-title {{ block.settings.hero__product-title }} title">
               {{ block.settings.collection.title }}
             </h3>
             {% endif %}
@@ -157,7 +157,14 @@
       "id": "hero__right-col",
       "label": "Style hero__right-col",
       "default": "w-full lg:w-1/2 lg:h-screen lg:max-h-[50vw]"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

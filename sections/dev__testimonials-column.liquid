@@ -1,12 +1,12 @@
-<div class="testimonial-container {{ section.settings.testimonials_container_styles }}">
+<div class="testimonial-container {{ section.settings.testimonials_container_styles }} color-{{ section.settings.color_scheme }}">
   <div class="testimonial-wrapper {{ section.settings.testimonials_wrapper_styles }}">
-    <h2 class="testimonial-title {{ section.settings.testimonials_title_styles }}">
+    <h2 class="testimonial-title {{ section.settings.testimonials_title_styles }} title">
       {{ section.settings.testimonial_title }}
     </h2>
 
     <div class="testimonial-grid {{ section.settings.testimonials_grid_styles }}">
       {% for testimonial in section.blocks %}
-        <blockquote class="testimonial-block {{ section.settings.testimonials_block_styles }}">
+        <blockquote class="testimonial-block {{ section.settings.testimonials_block_styles }} color-{{ section.settings.color_scheme_secondary }}">
           <div class="testimonial-content {{ section.settings.testimonials_content_styles }}">
             {% if testimonial.settings.testimonial_image %}
               {{
@@ -30,13 +30,13 @@
                 {% endfor %}
               </div>
 
-              <p class="testimonial-author {{ section.settings.testimonial_author_styles }}">
+              <p class="testimonial-author {{ section.settings.testimonial_author_styles }} color-{{ section.settings.color_scheme_secondary }}">
                 {{ testimonial.settings.testimonial_author }}
               </p>
             </div>
           </div>
 
-          <p class="testimonial-text {{ section.settings.testimonial_text_styles }}">
+          <p class="testimonial-text {{ section.settings.testimonial_text_styles }} color-{{ section.settings.color_scheme_secondary }}">
             {{ testimonial.settings.testimonial_text }}
           </p>
         </blockquote>
@@ -142,7 +142,21 @@
       "id": "testimonial_text_styles",
       "label": "Testimonial Text",
       "default": "mt-4 md:basis-3/5 text-gray-700"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme_secondary",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-5"
+		}
   ],
   "blocks": [
     {

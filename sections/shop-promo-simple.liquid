@@ -1,9 +1,9 @@
 <!-- shop-promo-simple.liquid -->
 
-<div class="{{ section.settings.shop-promo }}">
+<div class="{{ section.settings.shop-promo }} color-{{ section.settings.color_scheme }}">
     <div class="{{ section.settings.shop-promo__content }}">
         {%- if section.settings.title != blank -%}
-        <h2 class="{{ section.settings.shop-promo__title }}">{{ section.settings.title }}</h2>
+        <h2 class="{{ section.settings.shop-promo__title }} title">{{ section.settings.title }}</h2>
         {%- endif -%}
         {%- if section.settings.description != blank -%}
         <div class="{{ section.settings.shop-promo__description }}">
@@ -15,7 +15,7 @@
     {%- assign svg_classes = section.settings.shop-promo__button_SVG -%}
     <a 
         href="{{ section.settings.button_link }}" 
-        class="{{ section.settings.shop-promo__button }}"
+        class="{{ section.settings.shop-promo__button }} button"
     >
         {% render 'icon-call-filled' class: svg_classes %}
         {{- section.settings.button_text -}}
@@ -90,7 +90,14 @@
       "id": "shop-promo__button_SVG",
       "label": "Style Shop Promo Button SVG",
       "default": "w-5 h-5"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
    "presets": [
     {

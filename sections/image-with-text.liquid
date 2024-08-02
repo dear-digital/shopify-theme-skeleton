@@ -26,7 +26,7 @@
   {% assign desktop_image_order = 'lg:order-last' %}
 {% endif %}
 
-<div class="image-text-section {{ section.settings.tw-image-text-section }}">
+<div class="image-text-section {{ section.settings.tw-image-text-section }} color-{{ section.settings.color_scheme }}">
   {% if has_image %}
     <div
       class="
@@ -55,7 +55,7 @@
         {% case block.type %}
           {% when 'heading' %}
             <{{ block.settings.heading_size }}
-              class="section-heading {{ block.settings.tw-heading }}"
+              class="section-heading {{ block.settings.tw-heading }} {% if block.settings.heading_size == "h2" %} title {% endif %}"
               style="font-family: {{ block.settings.font.family }}, {{ block.settings.font.fallback_families }};"
             >
               {{ block.settings.heading_text }}
@@ -219,7 +219,14 @@
       "id": "tw-content-container",
       "label": "Style tw-content-container",
       "default": "flex flex-col justify-center items-center text-center"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

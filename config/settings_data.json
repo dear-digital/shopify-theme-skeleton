@@ -262,6 +262,22 @@
           "links": "#121212"
         }
       }, 
+      "scheme-6": {
+        "settings": {
+          "title": "#121212",
+          "text": "#121212", 
+          "background": "#ffffff",
+          "background_gradient": "",
+          "primary_button": "#121212",
+          "on_primary_button": "#ffffff", 
+          "primary_button_border": "#121212",
+          "secondary_button": "#ffffff",
+          "on_secondary_button": "#121212", 
+          "secondary_button_border": "#ffffff",
+          "icons": "#121212",
+          "links": "#121212"
+        }
+      },
     }
   },
   "presets": {

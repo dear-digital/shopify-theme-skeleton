@@ -1,4 +1,4 @@
-<div class="rich-text-section {{ section.settings.tw-rich-text-section }}">
+<div class="rich-text-section {{ section.settings.tw-rich-text-section }} color-{{ section.settings.color_scheme }}">
   {% for block in section.blocks %}
     {% case block.type %}
       {% when 'text' %}
@@ -10,7 +10,7 @@
         </p>
       {% when 'heading' %}
         <{{ block.settings.heading_size }}
-          class="section-heading {{ block.settings.tw-heading }}"
+          class="section-heading {{ block.settings.tw-heading }} title"
           style="font-family: {{ block.settings.heading_font.family }}, {{ block.settings.font.fallback_families }};"
         >
           {{ block.settings.heading_text }}
@@ -31,7 +31,14 @@
       "type": "text",
       "id": "tw-rich-text-section",
       "label": "Style tw-rich-text-section"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

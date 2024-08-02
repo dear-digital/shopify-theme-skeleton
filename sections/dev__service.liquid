@@ -1,9 +1,9 @@
 <div class="our-service {{ section.settings.tw-our-service }}">
-  <h3 class="our-service__title {{ section.settings.tw-our-service__title }}">
+  <h3 class="our-service__title {{ section.settings.tw-our-service__title }}" style="color: {{section.settings.title_color}}">
     {{ section.settings.our_service_title }}
   </h3>
 </div>
-<div class="service {{ section.settings.tw-service }}">
+<div class="service {{ section.settings.tw-service }} color-{{ section.settings.color_scheme }}">
   <div class="service__left-col {{ section.settings.tw-service__left-col }}">
     {% if section.settings.image != blank %}
       {{ section.settings.image | image_url: width: '600' | image_tag: class: section.settings['tw-service__image'] }}
@@ -20,7 +20,7 @@
           {{ section.settings.title }}
         </div>
         <div class="service__heading-paragraph {{ section.settings.tw-service__heading-paragraph }}">
-          <div class="service__heading {{ section.settings.tw-service__heading }}">{{ section.settings.heading }}</div>
+          <div class="service__heading {{ section.settings.tw-service__heading }} title">{{ section.settings.heading }}</div>
           <div class="service__paragraph {{ section.settings.tw-service__paragraph }}">
             {{ section.settings.paragraph }}
           </div>
@@ -29,7 +29,7 @@
       <div class="service__button {{ section.settings.tw-service__button }}">
         <a
           href="{{ section.settings.button_link }}"
-          class="service__link {{ section.settings.tw-service__link-button }}"
+          class="service__link {{ section.settings.tw-service__link-button }} button"
         >
           {{- section.settings.button_text -}}
         </a>
@@ -170,7 +170,20 @@
       "id": "tw-service__link-button",
       "label": "Style tw-service__link-button",
       "default": "md:py-4 md:px-6 md:border-[1px] border-brand-black font-medium text-mobile-button md:text-desktop-button"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		},
+		{
+			"type": "color",
+			"id": "title_color",
+			"label": "Title Color",
+			"default": "#000000"
+		}
   ],
   "presets": [
     {

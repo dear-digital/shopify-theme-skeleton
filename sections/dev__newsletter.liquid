@@ -1,12 +1,12 @@
 <!-- sections/newsletter.liquid -->
 
-<div class="newsletter-section {{ section.settings.section_container_styles }}">
+<div class="newsletter-section {{ section.settings.section_container_styles }} color-{{ section.settings.color_scheme }}">
   <div class="newsletter-inner-container {{ section.settings.inner_container_styles }}">
     <div class="newsletter-centering {{ section.settings.centering_styles }}">
-      <h2 class="newsletter-title {{ section.settings.title_styles }}">
+      <h2 class="newsletter-title {{ section.settings.title_styles }} title">
         {{ section.settings.newsletter_title }}
       </h2>
-      <p class="newsletter-subtitle {{ section.settings.subtitle_styles }}">
+      <p class="newsletter-subtitle {{ section.settings.subtitle_styles }} color-{{ section.settings.color_scheme }}">
         {{ section.settings.newsletter_subtitle }}
       </p>
       {% form 'customer' %}
@@ -28,7 +28,7 @@
             <button
               type="submit"
               name="commit"
-              class="newsletter-button {{ section.settings.button_styles }}"
+              class="newsletter-button {{ section.settings.button_styles }} button"
             >
               {{ section.settings.newsletter_button_text }}
             </button>
@@ -151,7 +151,14 @@
       "id": "privacy_policy_styles",
       "label": "Privacy Policy Styles",
       "default": "mx-auto max-w-screen-sm text-xs md:text-sm text-gray-500 newsletter-form-footer dark:text-gray-300 text-center"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {

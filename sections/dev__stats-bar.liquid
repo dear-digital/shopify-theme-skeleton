@@ -1,10 +1,10 @@
-<section id="{{ 'home-' | append: section.id }}">
+<section id="{{ 'home-' | append: section.id }}" class="color-{{ section.settings.color_scheme }}">
   <div class="stats-container__classes {{ section.settings.stats-container__classes }}">
-    <h2 class="stats-title__classes {{ section.settings.stats-title__classes }}">{{ section.settings.stats_heading }}</h2>
+    <h2 class="stats-title__classes {{ section.settings.stats-title__classes }} title">{{ section.settings.stats_heading }}</h2>
     <div class="stats-inner-container__classes {{ section.settings.stats-inner-container__classes }} {{ section.settings.per_row_sm }} {{ section.settings.per_row_md }} {{ section.settings.per_row_lg }}">
       {% for block in section.blocks %}
         <div class="stats-wrapper__classes {{ section.settings.stats-wrapper__classes }}">
-          <div class="stats__classes {{ section.settings.stats__classes }} ">
+          <div class="stats__classes {{ section.settings.stats__classes }} color-{{ section.settings.color_scheme_secondary }}">
             <div class="stats-content__classes {{ section.settings.stats-content__classes }}">
               <span class="stats-icon__classes {{ section.settings.stats-icon__classes }}">
                 {% if block.settings.icon_select == 'icon-rocket' %}
@@ -17,10 +17,10 @@
                   {% render 'icon-users-group' %}
                 {% endif %}
               </span>
-              <div class="stats-details__classes {{ section.settings.stats-details__classes }}">
+              <div class="stats-details__classes {{ section.settings.stats-details__classes }} color-{{ section.settings.color_scheme_secondary }}">
                 {{ block.settings.stats_details }}
               </div>
-              <div class="stats-subdetails__classes {{ section.settings.stats-subdetails__classes }}">
+              <div class="stats-subdetails__classes {{ section.settings.stats-subdetails__classes }} color-{{ section.settings.color_scheme_secondary }}">
                 {{ block.settings.stats_subdetails }}
               </div>
             </div>
@@ -185,7 +185,21 @@
       "id": "stats-subdetails__classes",
       "label": "Stats Subdetails Classes",
       "default": "text-sm md:text-base mb-3 font-normal text-gray-700 dark:text-gray-400"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme_secondary",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "blocks": [
     {

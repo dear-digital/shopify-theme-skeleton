@@ -1,6 +1,6 @@
 <!-- itbo: image-text-button-overlay -->
 
-<div class="{{ section.settings.itbo__container }}">
+<div class="{{ section.settings.itbo__container }} color-{{ section.settings.color_scheme }}">
     {% comment %} Background Image {% endcomment %}
     {% assign image_classes = section.settings.itbo__container_image_classes %}
     {% if section.settings.itbo_background_image != blank %}
@@ -26,7 +26,7 @@
             </h3>
 
             <div class="{{ section.settings.itbo__container_text_content_heading_paragraph_div }}">
-                <h2 class="{{ section.settings.itbo__container_text_content_heading_paragraph_div_header_classes }}">
+                <h2 class="{{ section.settings.itbo__container_text_content_heading_paragraph_div_header_classes }} title">
                     {{ section.settings.itbo__container_text_content_heading_paragraph_div_header }}
                 </h2>
                 <div class="{{ section.settings.itbo__container_text_content_heading_paragraph_div_para_classes }}">
@@ -38,7 +38,7 @@
         <div class="{{ section.settings.itbo__container_button_div }}">
             <a 
                 href="{{ section.settings.itbo__container_button_link }}"
-                class="{{ section.settings.itbo__container_button_classes }}"
+                class="{{ section.settings.itbo__container_button_classes }} button"
             >
                         {{- section.settings.itbo__container_button_label | escape -}}
             </a>
@@ -122,7 +122,7 @@
             "type": "textarea",
             "id": "itbo__container_text_content_small_header_classes",
             "label": "Text Content Div Small Header Text Classes",
-            "default": "text-mobile-caption-small md:text-mobile-caption uppercase text-white font-medium"
+            "default": "text-mobile-caption-small md:text-mobile-caption uppercase font-medium"
         },
         {
             "type": "textarea",
@@ -134,13 +134,13 @@
             "type": "textarea",
             "id": "itbo__container_text_content_heading_paragraph_div_header_classes",
             "label": "Container Text Content Heading Para Header Classes",
-            "default": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2"
+            "default": "text-mobile-heading-2 font-semibold md:text-desktop-heading-2"
         },
         {
             "type": "textarea",
             "id": "itbo__container_text_content_heading_paragraph_div_para_classes",
             "label": "Container Text Content Heading Para Paragraph Classes",
-            "default": "text-mobile-body text-white md:text-desktop-hero-caption"
+            "default": "text-mobile-body md:text-desktop-hero-caption"
         },
         {
             "type": "textarea",
@@ -152,8 +152,15 @@
             "type": "textarea",
             "id": "itbo__container_button_classes",
             "label": "Button Classes",
-            "default": "text-center text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-white pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
-        }
+            "default": "text-center uppercase hover:bg-brand-black text-mobile-button font-medium border pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
+        },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-2"
+		}
     ],
     "presets": [
         {

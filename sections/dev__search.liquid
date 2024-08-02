@@ -1,7 +1,7 @@
-<div class="search-container__classes {{ section.settings.search-container__classes }}">
+<div class="search-container__classes {{ section.settings.search-container__classes }} color-{{ section.settings.color_scheme }}">
   <div class="paginate__classes {{ section.settings.paginate__classes }}" id="overlay"></div>
   {% paginate search.results by 8 %}
-    <h1 class="search-title__classes {{ section.settings.search-title__classes }}">
+    <h1 class="search-title__classes {{ section.settings.search-title__classes }} title">
       {{ section.settings['search-title'] }}
     </h1>
 
@@ -19,7 +19,7 @@
           value="{{ search.terms | escape }}"
           class="search-input__classes {{ section.settings.search-input__classes }}"
         >
-        <button type="submit" class="search-button__classes {{ section.settings.search-button__classes }}">
+        <button type="submit" class="search-button__classes {{ section.settings.search-button__classes }} button">
           {{ section.settings['search-button-text'] }}
         </button>
       </form>
@@ -201,7 +201,14 @@
       "id": "search-no-results__classes",
       "label": "Search No Results Classes",
       "default": "text-center my-4"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ]
 }
 {% endschema %}

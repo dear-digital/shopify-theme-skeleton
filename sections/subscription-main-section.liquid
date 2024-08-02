@@ -11,9 +11,9 @@
             {{ 'image' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-200' }}
         {% endif %}
     </div>
-    <div class="{{section.settings.subscription_main_section__right_column}}">
+    <div class="{{section.settings.subscription_main_section__right_column}} color-{{ section.settings.color_scheme }}">
         <div class="{{section.settings.right_column__content_div}}">
-            <h2 class="{{section.settings.content_div__header_classes}}">
+            <h2 class="{{section.settings.content_div__header_classes}} title">
                 {{ section.settings.main_title }}
             </h2>
             <div class="{{section.settings.content_div__content}}">
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <button class="{{ section.settings.right_column__button }}">
+        <button class="{{ section.settings.right_column__button }} button">
             <a href="{{ section.settings.right_column__button_link }}">
                         {{- section.settings.right_column__button_label | escape -}}
             </a>
@@ -123,7 +123,14 @@
             "id": "right_column__button",
             "label": "Button Classes",
             "default": "px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em] font-medium h-[48px] hover:text-white hover:bg-brand-black transition ease-in 500 md:h-[56px] lg:w-fit"
-        }
+        },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
     ],
     "blocks": [
         {

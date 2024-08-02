@@ -10,7 +10,7 @@
   }
 {%- endstyle -%}
 
-<div class="flex items-center justify-center {{ section.settings.notification }}">
+<div class="flex items-center justify-center {{ section.settings.notification }} color-{{ section.settings.color_scheme }}">
   {% if section.settings.notification_text != blank %}
     <span class="blinking_circle {{ section.settings.notification__blinking_circle }}"></span>
     <div class="{{ section.settings.notification__simple_texts_div }}">
@@ -100,7 +100,14 @@
       "id": "notification__style_bold_text",
       "label": "Style Notification Bold Text",
       "default": "text-sm md:text-xl font-bold underline hover:text-gray-300 uppercase"
-    }
+    },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"label": "Color scheme",
+			"info": "To change the card color scheme, update your theme settings.",
+			"default": "scheme-1"
+		}
   ],
   "presets": [
     {
