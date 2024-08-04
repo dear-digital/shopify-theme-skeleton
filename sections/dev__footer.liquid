@@ -54,8 +54,65 @@
           <h3 class="contact-us__social-media-title {{ block.settings.tw-footer__social-media-title }}">
             {{ block.settings['social-media-heading'] }}
           </h3>
-          <div class="contact-us__social-media {{ block.settings.tw-footer__social-media }}">
-            {%- render 'social-icons', class: 'footer__list-social' -%}
+          <div class="social-icons {{ block.settings.tw-footer__social-media }}">
+            <ul class="list-social flex flex-wrap gap-8" role="list">
+              {%- if settings.social_facebook_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_facebook_link }}" class="link list-social__link">
+                    {%- render 'icon-facebook', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_instagram_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_instagram_link }}" class="link list-social__link">
+                    {%- render 'icon-instagram', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_youtube_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_youtube_link }}" class="link list-social__link">
+                    {%- render 'icon-youtube', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_twitter_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_twitter_link }}" class="link list-social__link">
+                    {%- render 'icon-twitter', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_snapchat_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_snapchat_link }}" class="link list-social__link">
+                    {%- render 'icon-snapchat', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_pinterest_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_pinterest_link }}" class="link list-social__link">
+                    {%- render 'icon-pinterest', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_tumblr_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_tumblr_link }}" class="link list-social__link">
+                    {%- render 'icon-tumblr', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_vimeo_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_vimeo_link }}" class="link list-social__link">
+                    {%- render 'icon-vimeo', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul>
           </div>
         {% endif %}
       </div>
@@ -155,7 +212,7 @@
           "type": "textarea",
           "id": "tw-footer__title",
           "label": "Style footer__title",
-          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5"
+          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5 lg:text-[1.45vw]"
         },
         {
           "type": "textarea",
@@ -167,7 +224,7 @@
           "type": "textarea",
           "id": "tw-footer__menu-item",
           "label": "Style footer__menu-item",
-          "default": "font-medium text-mobile-links md:text-desktop-links"
+          "default": "font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw]"
         },
         {
           "type": "textarea",
@@ -245,49 +302,49 @@
           "type": "textarea",
           "id": "tw-footer__contact-us-title",
           "label": "Style contact-us__title",
-          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5"
+          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5 lg:text-[1.45vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__address-title",
           "label": "Style contact-us__address-title",
-          "default": "font-regular text-mobile-caption text-brand-gray block"
+          "default": "font-regular text-mobile-caption text-brand-gray block lg:text-[.98vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__address",
           "label": "Style contact-us__address",
-          "default": "font-medium text-mobile-links"
+          "default": "font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__phone-title",
           "label": "Style contact-us__phone-title",
-          "default": "font-regular text-mobile-caption text-brand-gray block"
+          "default": "font-regular text-mobile-caption text-brand-gray block lg:text-[.98vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__phone",
           "label": "Style contact-us__phone",
-          "default": "font-medium text-mobile-links"
+          "default": "font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__email-title",
           "label": "Style contact-us__email-title",
-          "default": "font-regular text-mobile-caption text-brand-gray block"
+          "default": "font-regular text-mobile-caption text-brand-gray block lg:text-[.98vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__email",
           "label": "Style contact-us__email",
-          "default": "font-medium text-mobile-links"
+          "default": "font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__social-media-title",
           "label": "Style contact-us__social-media-title",
-          "default": "font-medium text-mobile-heading-5 text-brand-gray"
+          "default": "font-medium text-mobile-heading-5 md:text-desktop-heading-5 text-brand-gray lg:text-[1.45vw]"
         },
         {
           "type": "textarea",
@@ -300,6 +357,12 @@
           "id": "tw-footer__social-media-link",
           "label": "Style contact-us__social-media-link",
           "default": "font-medium text-mobile-links"
+        },
+        {
+          "type": "textarea",
+          "id": "tw-list-social__item-icon",
+          "label": "Style tw-list-social__item-icon",
+          "default": "lg:w-[1.77vw] lg:h-[1.77vw]"
         }
       ]
     },
@@ -341,13 +404,13 @@
           "type": "textarea",
           "id": "tw-footer__heading",
           "label": "Style text__heading",
-          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5"
+          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5 lg:text-[1.45vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__subtext",
           "label": "Style text__subtext",
-          "default": "font-regular text-mobile-body text-brand-black md:text-desktop-body"
+          "default": "font-regular text-mobile-body text-brand-black md:text-desktop-body lg:text-[1.12vw]"
         },
         {
           "type": "textarea",
@@ -359,13 +422,13 @@
           "type": "textarea",
           "id": "tw-footer__newsletter-input",
           "label": "Style newsletter-input",
-          "default": "font-regular text-mobile-body text-brand-black w-full p-4 border-[1px] border-brand-black"
+          "default": "font-regular text-mobile-body text-brand-black w-full p-4 border-[1px] border-brand-black lg:text-[1.12vw] lg:py-[1.7vw] lg:px-[1.2vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__button",
           "label": "Style button",
-          "default": "font-medium text-mobile-links text-center bg-brand-black text-white py-4 px-6 block mt-2 w-full"
+          "default": "font-medium text-mobile-links text-center bg-brand-black text-white py-4 px-6 block mt-2 w-full lg:text-[1.12vw] lg:py-[1.7vw] lg:px-[1.25vw] lg:mt-[1.7vw]"
         },
         {
           "type": "textarea",

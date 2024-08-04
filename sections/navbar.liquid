@@ -1,80 +1,93 @@
 <!-- navbar.liquid -->
 
 {% assign has_social_icons = false %}
-{% if settings.social_facebook_link != blank or
-      settings.social_instagram_link != blank or
-      settings.social_youtube_link != blank or
-      settings.social_tiktok_link != blank or
-      settings.social_twitter_link != blank or
-      settings.social_pinterest_link != blank or
-      settings.social_snapchat_link != blank or
-      settings.social_tumblr_link != blank or
-      settings.social_vimeo_link != blank
+{% if settings.social_facebook_link != blank
+  or settings.social_instagram_link != blank
+  or settings.social_youtube_link != blank
+  or settings.social_tiktok_link != blank
+  or settings.social_twitter_link != blank
+  or settings.social_pinterest_link != blank
+  or settings.social_snapchat_link != blank
+  or settings.social_tumblr_link != blank
+  or settings.social_vimeo_link != blank
 %}
   {% assign has_social_icons = true %}
 {% endif %}
 
-
 <div class="navbar-wrapper {{ section.settings.navbar_wrapper }}">
   <nav class="navbar {{ section.settings.navbar_classes }}">
     <div class="navbar__container {{ section.settings.container_classes }}">
+      <!-- Mobile and Laptop menu button -->
+      <div class="menu-button-container-classes {{ section.settings.menu_button_container_classes }}">
+        <button id="menu-button" class="{{ section.settings.menu_button_svg_classes }}">
+          <span id="hamburger-icon">{% render 'icon-hamburger' %}</span>
+        </button>
+      </div>
 
-        <!-- Mobile and Laptop menu button -->
-        <div class="menu-button-container-classes {{ section.settings.menu_button_container_classes }}">
-          <button id="menu-button" class="{{ section.settings.menu_button_svg_classes }}">
-            <span id="hamburger-icon">{% render 'icon-hamburger' %}</span>
-          </button>
+      <!-- Mobile Cart Button -->
+      <!-- 'open-cart' is the data action in JS of cart-drawer.js to Open Cart --> 
+      <span 
+        class="cart-toggler navbar__menu-item {{ section.settings.mobile_cart_button_classes }} cursor-pointer"
+        {% if settings.cart_type == 'drawer' %}
+          data-action="open-cart"
+        {% endif %}
+        id="cart-icon-bubble icon_cart"
+      >
+        <span class="navbar__desktop_menu_item {{ section.settings.desktop_cart_button_classes }}"> 
+          {% render 'icon-cart', class: section.settings.cart_button_svg_classes %} 
+        </span> 
+      </span>
+
+      <!-- Desktop menu -->
+      <div class="navbar__menu_desktop {{ section.settings.navbar__menu_desktop }}">
+        <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
+          {% for link in linklists[section.settings.menu].links %}
+            <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
+              <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}">
+                {{ link.title }}
+              </span>
+            </a>
+          {% endfor %}
         </div>
+        <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
+          {% for link in linklists[section.settings.right_menu].links %}
+            <a
+              href="{{ link.url }}"
+              class="navbar__menu-item {{ section.settings.right_menu_item_classes }}"
+            >
+              <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}">
+                {{ link.title }}
+              </span>
+            </a>
+          {% endfor %}
 
-        <!--  Mobile Cart Button -->
-        <!-- 'open-cart' is the data action in JS of cart.js to Open Cart -->
-        <a 
-          href="{{ routes.cart_url }}" 
-          class="{{ section.settings.mobile_cart_button_classes }}" 
-          {% if settings.cart_type == 'drawer' %} data-action="open-cart" {% endif %}
-        >
-            {% render 'icon-cart' class: section.settings.cart_button_svg_classes %}
-        </a>
-
-        <!-- Desktop menu -->
-        <div class="navbar__menu_desktop {{ section.settings.navbar__menu_desktop }}">
-          <div class="navbar__menu-left {{ section.settings.navbar__menu_left }}">
-              {% for link in linklists[section.settings.menu].links %}
-              <a href="{{ link.url }}" class="navbar__menu-item {{ section.settings.left_menu_item_classes }}">
-                <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
-              </a>
-              {% endfor %}
-          </div>
-          <div class="navbar__menu-right {{ section.settings.navbar__menu_right }}">
-              {% for link in linklists[section.settings.right_menu].links %}
-              
-              <a href="{{ link.url }}" 
-                class="navbar__menu-item {{ section.settings.right_menu_item_classes }}">
-                <span class="navbar__desktop_menu_item {{ section.settings.navbar__desktop_menu_item }}"> {{ link.title }} </span>
-              </a>
-              {% endfor %}
-
-              {% comment %} Desktop Cart Button {% endcomment %}
-              <!-- 'open-cart' is the data action in JS of cart.js to Open Cart -->
-              <a 
-                href="{{ routes.cart_url }}" 
-                class="navbar__menu-item {{ section.settings.right_menu_item_classes }}" 
-                {% if settings.cart_type == 'drawer' %} data-action="open-cart" {% endif %}
-              >
-                  <span class="navbar__desktop_menu_item {{ section.settings.desktop_cart_button_classes }}">
-                    {% render 'icon-cart' class: section.settings.desktop_cart_button_link_SVG %}
-                    {{ section.settings.desktop_cart_button_label }}
-                  
-                  </span>
-              </a>
-            
-          </div>
+          {% comment %} Desktop Cart Button {% endcomment %}
+          <!-- 'open-cart' is the data action in JS of cart-drawer.js to Open Cart -->
+          <span 
+            class="cart-toggler navbar__menu-item {{ section.settings.right_menu_item_classes }} cursor-pointer"
+            {% if settings.cart_type == 'drawer' %}
+              data-action="open-cart"
+            {% endif %}
+            id="cart-icon-bubble icon_cart"
+          >
+            <span class="navbar__desktop_menu_item {{ section.settings.desktop_cart_button_classes }}">
+              {% render 'icon-cart', class: section.settings.desktop_cart_button_link_SVG %}
+              {{ section.settings.desktop_cart_button_label }}
+            </span>
+            {% comment %} <div class="cart-count-bubble {% if cart == empty %}no-disp{% endif %}">
+              <span class="cart-count-bubble-text">{{ cart.item_count }}</span>
+            </div> {% endcomment %}
+          </span>
+        </div>
       </div>
     </div>
   </nav>
 
   <!-- Off-canvas menu -->
-  <div id="off-canvas-menu" class="off_canvas_menu_container_classes {{ section.settings.off_canvas_menu_container_classes }}">
+  <div
+    id="off-canvas-menu"
+    class="off_canvas_menu_container_classes {{ section.settings.off_canvas_menu_container_classes }}"
+  >
     <div class="off_canvas_menu_header_classes {{ section.settings.off_canvas_menu_header_classes }}">
       <button id="close-menu-button" class="{{ section.settings.close_menu_button_classes }}">
         {% render 'icon-close' %}
@@ -87,7 +100,8 @@
         </a>
       {% endfor %}
       {% for link in linklists[section.settings.right_menu].links %}
-        <a href="{{ link.url }}" 
+        <a
+          href="{{ link.url }}"
           class="{{ section.settings.off_canvas_menu_item_classes }}"
         >
           {{ link.title }}
@@ -97,64 +111,117 @@
       <!-- More Menus -->
       <div class="off-canvas-more-menu {{ section.settings.off_canvas_more_menu }}">
         {% for link in linklists[section.settings.more_menu].links %}
-        <a href="{{ link.url }}" class="{{ section.settings.off_canvas_more_menu_item }}">
-          {{ link.title }}
-        </a>
-      {% endfor %}
+          <a href="{{ link.url }}" class="{{ section.settings.off_canvas_more_menu_item }}">
+            {{ link.title }}
+          </a>
+        {% endfor %}
       </div>
 
       <!-- Social Menu -->
-        {% if section.settings.show_social_media and has_social_icons %}
+      {% if section.settings.show_social_media and has_social_icons %}
         <div class="off-canvas-menu-social {{ section.settings.off_canvas_menu_social }}">
           {%- assign svg_class = section.settings.off_canvas_menu_social_SVG -%}
           {% if settings.social_facebook_link != blank %}
-            <a href="{{ settings.social_facebook_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Facebook">
-              {% render 'icon-social-facebook' class: svg_class  %}
+            <a
+              href="{{ settings.social_facebook_link }}"
+              class="{{ section.settings.off_canvas_menu_social_item }}"
+              target="_blank"
+              rel="noopener"
+              aria-label="Facebook"
+            >
+              {% render 'icon-social-facebook', class: svg_class %}
             </a>
           {% endif %}
           {% if settings.social_instagram_link != blank %}
-            <a href="{{ settings.social_instagram_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Instagram">
-              {% render 'icon-social-instagram' class: svg_class %}
+            <a
+              href="{{ settings.social_instagram_link }}"
+              class="{{ section.settings.off_canvas_menu_social_item }}"
+              target="_blank"
+              rel="noopener"
+              aria-label="Instagram"
+            >
+              {% render 'icon-social-instagram', class: svg_class %}
             </a>
           {% endif %}
           {% if settings.social_youtube_link != blank %}
-            <a href="{{ settings.social_youtube_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="YouTube">
-              {% render 'icon-social-youtube' class: svg_class %}
+            <a
+              href="{{ settings.social_youtube_link }}"
+              class="{{ section.settings.off_canvas_menu_social_item }}"
+              target="_blank"
+              rel="noopener"
+              aria-label="YouTube"
+            >
+              {% render 'icon-social-youtube', class: svg_class %}
             </a>
           {% endif %}
           {% if settings.social_tiktok_link != blank %}
-            <a href="{{ settings.social_tiktok_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="TikTok">
-              {% render 'icon-social-tiktok' class: svg_class %}
+            <a
+              href="{{ settings.social_tiktok_link }}"
+              class="{{ section.settings.off_canvas_menu_social_item }}"
+              target="_blank"
+              rel="noopener"
+              aria-label="TikTok"
+            >
+              {% render 'icon-social-tiktok', class: svg_class %}
             </a>
           {% endif %}
           {% if settings.social_twitter_link != blank %}
-            <a href="{{ settings.social_twitter_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Twitter">
-              {% render 'icon-social-twitter' class: svg_class %}
+            <a
+              href="{{ settings.social_twitter_link }}"
+              class="{{ section.settings.off_canvas_menu_social_item }}"
+              target="_blank"
+              rel="noopener"
+              aria-label="Twitter"
+            >
+              {% render 'icon-social-twitter', class: svg_class %}
             </a>
           {% endif %}
           {% if settings.social_pinterest_link != blank %}
-            <a href="{{ settings.social_pinterest_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Pinterest">
-              {% render 'icon-social-pinterest' class: svg_class %}
+            <a
+              href="{{ settings.social_pinterest_link }}"
+              class="{{ section.settings.off_canvas_menu_social_item }}"
+              target="_blank"
+              rel="noopener"
+              aria-label="Pinterest"
+            >
+              {% render 'icon-social-pinterest', class: svg_class %}
             </a>
           {% endif %}
           {% if settings.social_snapchat_link != blank %}
-            <a href="{{ settings.social_snapchat_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Snapchat">
-              {% render 'icon-social-snapchat' class: svg_class %}
+            <a
+              href="{{ settings.social_snapchat_link }}"
+              class="{{ section.settings.off_canvas_menu_social_item }}"
+              target="_blank"
+              rel="noopener"
+              aria-label="Snapchat"
+            >
+              {% render 'icon-social-snapchat', class: svg_class %}
             </a>
           {% endif %}
           {% if settings.social_tumblr_link != blank %}
-            <a href="{{ settings.social_tumblr_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Tumblr">
-              {% render 'icon-social-tumblr' class: svg_class %}
+            <a
+              href="{{ settings.social_tumblr_link }}"
+              class="{{ section.settings.off_canvas_menu_social_item }}"
+              target="_blank"
+              rel="noopener"
+              aria-label="Tumblr"
+            >
+              {% render 'icon-social-tumblr', class: svg_class %}
             </a>
           {% endif %}
           {% if settings.social_vimeo_link != blank %}
-            <a href="{{ settings.social_vimeo_link }}" class="{{ section.settings.off_canvas_menu_social_item }}" target="_blank" rel="noopener" aria-label="Vimeo">
-              {% render 'icon-social-vimeo' class: svg_class %}
+            <a
+              href="{{ settings.social_vimeo_link }}"
+              class="{{ section.settings.off_canvas_menu_social_item }}"
+              target="_blank"
+              rel="noopener"
+              aria-label="Vimeo"
+            >
+              {% render 'icon-social-vimeo', class: svg_class %}
             </a>
           {% endif %}
         </div>
-        {% endif %}
-      
+      {% endif %}
     </div>
   </div>
 
