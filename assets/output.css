@@ -4240,6 +4240,10 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-top: 0px;
   }
 
+  .lg\:mt-\[1\.7vw\] {
+    margin-top: 1.7vw;
+  }
+
   .lg\:flex {
     display: flex;
   }
@@ -4266,6 +4270,10 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .lg\:h-\[1\.04vw\] {
     height: 1.04vw;
+  }
+
+  .lg\:h-\[1\.77vw\] {
+    height: 1.77vw;
   }
 
   .lg\:h-\[1\.7vw\] {
@@ -4319,6 +4327,10 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .lg\:w-\[1\.04vw\] {
     width: 1.04vw;
+  }
+
+  .lg\:w-\[1\.77vw\] {
+    width: 1.77vw;
   }
 
   .lg\:w-\[1\.7vw\] {
@@ -4521,6 +4533,16 @@ input[type="number"]::-webkit-outer-spin-button {
     padding-right: 2rem;
   }
 
+  .lg\:px-\[1\.25vw\] {
+    padding-left: 1.25vw;
+    padding-right: 1.25vw;
+  }
+
+  .lg\:px-\[1\.2vw\] {
+    padding-left: 1.2vw;
+    padding-right: 1.2vw;
+  }
+
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -4529,6 +4551,11 @@ input[type="number"]::-webkit-outer-spin-button {
   .lg\:py-20 {
     padding-top: 5rem;
     padding-bottom: 5rem;
+  }
+
+  .lg\:py-\[1\.7vw\] {
+    padding-top: 1.7vw;
+    padding-bottom: 1.7vw;
   }
 
   .lg\:py-\[26px\] {
@@ -4559,6 +4586,10 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .lg\:text-\[1\.25vw\] {
     font-size: 1.25vw;
+  }
+
+  .lg\:text-\[1\.45vw\] {
+    font-size: 1.45vw;
   }
 
   .lg\:text-\[2\.7vw\] {
