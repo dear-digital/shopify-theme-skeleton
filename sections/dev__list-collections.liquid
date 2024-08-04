@@ -14,13 +14,20 @@
                 href="{{ collection.url }}"
               >
                 <div class="collections-image-container__classes {{ section.settings.collections-image-container__classes }}">
-                  {% if collection.featured_image != blank %}
-                    {% assign collection_image = collection.featured_image %}
-                  {% else %}
-                    {% assign collection_image = collection.products.first.image %}
-                  {% endif %}
+                  {% liquid 
+                    assign collection_image = ''
+                    if collection.featured_image != blank
+                     assign collection_image = collection.featured_image
+                    elsif collection.products.first.image != blank
+                     assign collection_image = collection.products.first.image
+                    endif
+                  %}
                   <div class="collections-image__classes {{ section.settings.collections-image__classes }}">
-                    {{ collection_image | image_url: width: 300, height: 400 | image_tag }}
+                    {% if collection_image != blank %}
+                      {{ collection_image | image_url: width: 300, height: 400 | image_tag }}
+                    {% else %}  
+                      {{ 'collection-1' | placeholder_svg_tag }}
+                    {% endif %}
                   </div>
                 </div>
               </a>

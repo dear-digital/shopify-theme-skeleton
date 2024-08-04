@@ -6,6 +6,8 @@
     {% else %}
         {{ 'product-1' | placeholder_svg_tag: image_tag_styles_class }}
     {% endif %}
+
+  <div class="absolute inset-0 bg-black bg-opacity-{{ section.settings.itbo__container_overlay }}" style="--tw-bg-opacity: {{ section.settings.itbo__container_overlay | divided_by: 100.0 }}"></div>
   
   <div class="image-text-overlay-content {{ section.settings.image-text-overlay-content }}">
     <h2 class="image-text-overlay-title {{ section.settings.image-text-overlay-title }}">
@@ -37,6 +39,16 @@
       "type": "image_picker",
       "id": "image",
       "label": "Add a Image"
+    },      
+    {
+        "type": "range",
+        "id": "itbo__container_overlay",
+        "label": "Container Overlay",
+        "default": 0,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%"
     },
     {
       "type": "text",

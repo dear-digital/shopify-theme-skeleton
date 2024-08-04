@@ -21,18 +21,20 @@
                     {% endif %}
                 </div>
                 {% when 'product' %}
+                {% if block.settings.product != blank %}
                 <div class="product-card {{ block.settings.product-card }}">
-                  {% if block.settings.product %}
                     {% assign product_image_styles = block.settings.product__image-styles %}
-                    {{ block.settings.product | image_url: width: image_url_width | image_tag: width: image_tag_width, class: product_image_styles }}
+                    {% if block.settings.product.featured_image != blank %}
+                    {{ block.settings.product.featured_image | image_url: width: image_url_width | image_tag: width: image_tag_width, class: product_image_styles }}
+                    {% endif %}
                       <p class="product__title {{ block.settings.product__title }}">{{ block.settings.product.title }}</p>
                       <p class="product__description {{ block.settings.product__description }}">{{ block.settings.product.description }}</p>
                       <p class="product__price {{ block.settings.product__price }}">Price: {{ block.settings.product.price | money }}</p>
                       <p class="product__sku {{ block.settings.product__sku }}">SKU: {{ block.settings.product.sku }}</p>
                       <!-- Add more product details as needed -->
                       <a href="{{ block.settings.product.url }}" class="product__button {{ block.settings.product__button }}">Shop Now</a>
-                  {% endif %}
                 </div>
+                {% endif %} 
                 {% when 'collection' %}
                 <div class="collection-card {{ block.settings.collection-card }}">
                     {%- if block.settings.collection != blank -%}
@@ -40,12 +42,14 @@
                     {% else %}
                       {{ 'image' | placeholder_svg_tag }}
                     {% endif %}
+                    {%- if block.settings.collection != blank -%}
                     <div class="collection__title {{ block.settings.collection__title }}">{{ block.settings.collection.title }}</div>
                     <div class="collection__description {{ block.settings.collection__description }}">{{ block.settings.collection.description }}</div>
                     <!-- Display collection items or details as needed -->
                     <a href="{{ block.settings.collection.url }}" class="collection__button {{ block.settings.collection__button }}">
                       {{- block.settings.collection_text | default: block.settings.collection.title -}}
                     </a>
+                    {% endif %}
                 </div>
                 {% when 'video' %}
                 <div class="video-card {{ block.settings.video-card }}">

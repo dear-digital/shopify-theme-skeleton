@@ -1,7 +1,9 @@
 <div class="our-service {{ section.settings.tw-our-service }}">
+  {% if section.settings.our_service_title != blank %}
   <h3 class="our-service__title {{ section.settings.tw-our-service__title }}">
     {{ section.settings.our_service_title }}
   </h3>
+  {% endif %}
 </div>
 <div class="service {{ section.settings.tw-service }}">
   <div class="service__left-col {{ section.settings.tw-service__left-col }}">
@@ -26,6 +28,7 @@
           </div>
         </div>
       </div>
+      {% if section.settings.button_text != blank %}
       <div class="service__button {{ section.settings.tw-service__button }}">
         <a
           href="{{ section.settings.button_link }}"
@@ -34,6 +37,7 @@
           {{- section.settings.button_text -}}
         </a>
       </div>
+      {% endif %}
     </div>
   </div>
 </div>

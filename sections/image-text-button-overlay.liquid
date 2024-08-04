@@ -16,7 +16,7 @@
     {% endif %}
 
     {% comment %} Background Overlay {% endcomment %}
-    <div class="{{ section.settings.itbo__container_overlay }}"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-{{ section.settings.itbo__container_overlay }}" style="--tw-bg-opacity: {{ section.settings.itbo__container_overlay | divided_by: 100.0 }}"></div>
 
     {% comment %} Container Content {% endcomment %}
     <div class=" {{ section.settings.itbo__container_content }}"> 
@@ -35,6 +35,7 @@
             </div>
         </div>
 
+        {% if section.settings.itbo__container_button_label != blank %}
         <div class="{{ section.settings.itbo__container_button_div }}">
             <a 
                 href="{{ section.settings.itbo__container_button_link }}"
@@ -43,6 +44,7 @@
                         {{- section.settings.itbo__container_button_label | escape -}}
             </a>
         </div>
+        {% endif %}
     </div>
 </div>
 
@@ -54,6 +56,16 @@
             "type": "image_picker",
             "id": "itbo_background_image",
             "label": "Background Image"
+        },      
+        {
+            "type": "range",
+            "id": "itbo__container_overlay",
+            "label": "Container Overlay",
+            "default": 50,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%"
         },
         {
             "type": "inline_richtext",
@@ -99,12 +111,6 @@
             "id": "itbo__container_image_classes",
             "label": "Container Image Classes",
             "default": "absolute inset-0 w-full h-full object-cover"
-        },      
-        {
-            "type": "textarea",
-            "id": "itbo__container_overlay",
-            "label": "Container Overlay Classes",
-            "default": "absolute inset-0 bg-black bg-opacity-50"
         },        
         {
             "type": "textarea",

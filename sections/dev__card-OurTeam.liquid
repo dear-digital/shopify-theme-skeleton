@@ -16,15 +16,17 @@
       <div class="card-block-maindiv {{ block.settings.card__block_maindiv }} ">
         {% if block.settings.card_link != blank and block.settings.card_image != blank %}
           <a href="{{ block.settings.card_link }}" class="card-link {{ block.settings.card_link_style }}">
-            {%- assign image_width = section.settings.image_width -%}
-            {%- assign image_height = section.settings.image_height -%}
-            {%- assign card_image_styles = section.settings.card_image_styles -%}
-            {{-
+            {%- assign widths = '165, 360, 400' -%}
+              {%- capture sizes -%}
+              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+              (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+            {%- endcapture -%}
+            {{
               block.settings.card_image
-              | image_url: width: image_width, height: image_height
-              | image_tag: class: card_image_styles
-            -}}
-          </a>
+              | image_url: width: 400
+              | image_tag: sizes: sizes, widths: widths
+            }}
+            </a>
         {% endif %}
         <div class="{{ block.settings.card__block_style }}">
           {%- if block.settings.card__block_title != blank -%}
@@ -86,18 +88,6 @@
       "id": "section_subtitle",
       "label": "Section Subtitle",
       "default": "Have a look at our team!!"
-    },
-    {
-      "type": "number",
-      "id": "image_width",
-      "label": "Image Width",
-      "default": 400
-    },
-    {
-      "type": "number",
-      "id": "image_height",
-      "label": "Image Height",
-      "default": 200
     },
     {
       "type": "header",

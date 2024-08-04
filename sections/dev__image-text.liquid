@@ -1,5 +1,5 @@
 <div class="banner-template {{ section.settings.banner-template }}">
-  <div class="image-banner {{ section.settings.image-banner }}">
+  <div class="image-banner {{ section.settings.image-banner }} flex {% if section.settings.image_first %} flex-row-reverse{% endif %}">
     <div class="image-banner-content {{ section.settings.image-banner-content }}">
       <p class="image-banner-small-title {{ section.settings.image-banner-small-title }}">{{ section.settings.small_title }}</p>
       <h2 class="image-banner-title {{ section.settings.image-banner-title }}">
@@ -11,9 +11,17 @@
     </div>
     <div class="image-banner-image {{ section.settings.image-banner-image }}">
       {%- assign image_url_width = section.settings.image_url_width -%}
-      {%- assign image_tag_width = section.settings.image_tag_width -%}
         {% if section.settings.image %}
-          {{ section.settings.image | image_url: width: image_url_width | image_tag: width: image_tag_width }}
+            {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
+            {%- capture sizes -%}
+              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+              (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+            {%- endcapture -%}
+          {{
+            section.settings.image
+            | image_url: width: 1500
+            | image_tag: sizes: sizes, widths: widths
+          }}
         {% else %}
           {{ 'product-1' | placeholder_svg_tag }}
         {% endif %}
@@ -25,6 +33,12 @@
 {
   "name": "Image and Text Container",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "image_first",
+      "label": "Image First",
+      "default": false
+    },
     {
       "type": "text",
       "label": "Small Title",
@@ -53,18 +67,6 @@
       "label": "Image Alt Text",
       "id": "alt_text",
       "default": "Image Alt Text"
-    },
-    {
-      "type": "text",
-      "id": "image_url_width",
-      "label": "Image URL width",
-      "default": "500"
-    },
-    {
-      "type": "text",
-      "id": "image_tag_width",
-      "label": "Image Tag width",
-      "default": "500"
     },
     {
       "type": "header",

@@ -13,10 +13,8 @@
           <div class="{{ section.settings.book_call_button_block }}">
             <!-- Calendly link widget begin -->
 
-            {% # theme-check-disable %}
-            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-            {% # theme-check-enable %}
+            {{ 'calendly-widget.css' | asset_url | stylesheet_tag }}
+            <script src="{{ 'calendly-widget.js' | asset_url }}" defer="defer"></script>  
 
             <a
               href=""
