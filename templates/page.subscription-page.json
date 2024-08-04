@@ -57,51 +57,69 @@
         "right_column__button": "px-6 pt-4 pb-[14px] border-brand-black border text-mobile-button uppercase tracking-[0.025em] md:text-desktop-button md:tracking-[0.03em] font-medium h-[48px] hover:text-white hover:bg-brand-black transition ease-in 500 md:h-[56px] lg:w-fit"
       }
     },
-    "dev_why_choose_us_PLNqyE": {
-      "type": "dev__why-choose-us",
+    "two_column_layout_Dt9znC": {
+      "type": "two-column-layout",
       "blocks": {
-        "benefit_block_D4idxX": {
-          "type": "benefit-block",
+        "content_block_qtW9ai": {
+          "type": "content-block",
           "settings": {
-            "title": "Choose a plan",
-            "text": "Select the subscription plan that suits you best from our three bouquet designs: classic, seasonal, and deluxe. Each plan comes with a designer vase, free delivery, and a discount of up to 30%. Our seasonal and deluxe plans also include a luxurious scented candle to enhance the ambiance.",
-            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px] border-brand-black lg:border-l",
-            "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
-            "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
+            "overline": "",
+            "heading": "Choose a plan",
+            "paragraph": "Select the subscription plan that suits you best from our three bouquet designs: classic, seasonal, and deluxe. Each plan comes with a designer vase, free delivery, and a discount of up to 30%. Our seasonal and deluxe plans also include a luxurious scented candle to enhance the ambiance.",
+            "button_text": "",
+            "button_url": "",
+            "tw_content_block": "px-4 py-10 md:p-20 border-b border-x border-brand-black lg:border-t",
+            "tw_overline": "mb-6 lg:mb-[1.7vw] uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
+            "tw_heading": "mb-4 lg:mb-[1.12vw] font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]",
+            "tw_paragraph": "text-mobile-body md:text-desktop-body brightness-90 lg:text-[1.12vw]",
+            "tw_button_wrapper": "mt-16 lg:mt-[4.5vw]",
+            "tw_button_text": "uppercase text-center block md:inline-block px-6 py-4 border border-brand-black text-mobile-button md:text-desktop-button lg:text-[1.12vw]"
           }
         },
-        "benefit_block_eAkYWc": {
-          "type": "benefit-block",
+        "content_block_7PcQ6z": {
+          "type": "content-block",
           "settings": {
-            "title": "Frequency and Duration",
-            "text": "Choose delivery frequency: once a week, every two weeks, or once a month. Then, select your subscription duration from 3 to 12 months. Enjoy savings with a longer subscription. We understand that every customer has different needs, and we aim to provide flexible subscription options that cater to your specific preferences.",
-            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-b-[1px]  border-brand-black lg:border-l",
-            "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
-            "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
+            "overline": "",
+            "heading": "Frequency and Duration",
+            "paragraph": "Choose delivery frequency: once a week, every two weeks, or once a month. Then, select your subscription duration from 3 to 12 months. Enjoy savings with a longer subscription. We understand that every customer has different needs, and we aim to provide flexible subscription options that cater to your specific preferences.",
+            "button_text": "",
+            "button_url": "",
+            "tw_content_block": "px-4 py-10 md:p-20 border-b border-x border-brand-black",
+            "tw_overline": "mb-6 lg:mb-[1.7vw] uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
+            "tw_heading": "mb-4 lg:mb-[1.12vw] font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]",
+            "tw_paragraph": "text-mobile-body md:text-desktop-body brightness-90 lg:text-[1.12vw]",
+            "tw_button_wrapper": "mt-16 lg:mt-[4.5vw]",
+            "tw_button_text": "uppercase text-center block md:inline-block px-6 py-4 border border-brand-black text-mobile-button md:text-desktop-button lg:text-[1.12vw]"
           }
         },
-        "benefit_block_EanMTy": {
-          "type": "benefit-block",
+        "content_block_JnBKbP": {
+          "type": "content-block",
           "settings": {
-            "title": "Pay once",
-            "text": "After entering your contact and delivery information and paying for your subscription, you can sit back and relax, knowing that you have secured a regular supply of fresh, stunning flowers for yourself or your loved ones",
-            "tw-why-choose-us__benefit-block__content": "py-10 px-4 gap-4 flex flex-col md:p-20 md:gap-4 border-brand-black lg:border-l",
-            "tw-why-choose-us__benefit-block__title": "font-medium text-mobile-heading-3 md:text-desktop-heading-3",
-            "tw-why-choose-us__benefit-block__text": "font-regular mobile-body md:text-desktop-body"
+            "overline": "",
+            "heading": "Pay once",
+            "paragraph": "After entering your contact and delivery information and paying for your subscription, you can sit back and relax, knowing that you have secured a regular supply of fresh, stunning flowers for yourself or your loved ones",
+            "button_text": "",
+            "button_url": "",
+            "tw_content_block": "px-4 py-10 md:p-20 border-b border-x border-brand-black",
+            "tw_overline": "mb-6 lg:mb-[1.7vw] uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
+            "tw_heading": "mb-4 lg:mb-[1.12vw] font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]",
+            "tw_paragraph": "text-mobile-body md:text-desktop-body brightness-90 lg:text-[1.12vw]",
+            "tw_button_wrapper": "mt-16 lg:mt-[4.5vw]",
+            "tw_button_text": "uppercase text-center block md:inline-block px-6 py-4 border border-brand-black text-mobile-button md:text-desktop-button lg:text-[1.12vw]"
           }
         }
       },
       "block_order": [
-        "benefit_block_D4idxX",
-        "benefit_block_eAkYWc",
-        "benefit_block_EanMTy"
+        "content_block_qtW9ai",
+        "content_block_7PcQ6z",
+        "content_block_JnBKbP"
       ],
       "settings": {
         "main_heading": "How does it work?",
-        "tw-why-choose-us": "flex flex-col lg:flex-row border-[1px] border-brand-black",
-        "tw-section__left-col": "py-10 px-4 gap-4 lg:w-1\/2 md:p-20 lg:gap-4 border-b-[1px] border-brand-black lg:border-b-0",
-        "tw-section__main-heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg: sticky lg:top-[5.56vw]",
-        "tw-section__right-col": "lg:w-1\/2"
+        "tw_two_column_section": "flex flex-col lg:flex-row",
+        "tw_section_left_col": "px-4 py-10 md:p-20 lg:w-1\/2 border border-brand-black lg:border-t-0 lg:border-r-0",
+        "tw_section_main_heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw] lg:sticky lg:top-[5.56vw]",
+        "tw_section_right_col": "flex flex-col lg:w-1\/2"
       }
     },
     "subscription_plan_selection_mfrrRr": {
@@ -370,7 +388,7 @@
   },
   "order": [
     "subscription_main_section_iKXFGR",
-    "dev_why_choose_us_PLNqyE",
+    "two_column_layout_Dt9znC",
     "subscription_plan_selection_mfrrRr",
     "subscription_faq_section_3RjngG"
   ]
