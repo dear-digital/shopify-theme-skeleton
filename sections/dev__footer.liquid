@@ -12,14 +12,14 @@
   {% assign has_social_icons = false %}
 {% endif %}
 
-<div class="footer {{ section.settings.tw-footer__style }}">
+<div class="footer flex flex-col border-t-[1px] border-x-[1px] border-brand-black md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 {{ section.settings.tw-footer__style }}">
   {% for block in section.blocks %}
     {% if block.type == 'link_list' %}
-      <div class="footer__link-list {{ block.settings.tw-footer__link-list_style }}">
-        <h3 class="footer__title {{ block.settings.tw-footer__title }}">{{ block.settings.menu.title }}</h3>
-        <ul class="footer__menu {{ block.settings.tw-footer__menu }}">
+      <div class="footer__link-list py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] md:border-b-0 md:border-r-[1px] border-brand-black lg:border-b-[1px] md:p-10 md:gap-6 {{ block.settings.tw-footer__link-list_style }}">
+        <h3 class="footer__title font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5 lg:text-[1.45vw] {{ block.settings.tw-footer__title }}">{{ block.settings.menu.title }}</h3>
+        <ul class="footer__menu flex flex-col gap-2 {{ block.settings.tw-footer__menu }}">
           {% for link in block.settings.menu.links %}
-            <li class="footer__menu-item {{ block.settings.tw-footer__menu-item }}">
+            <li class="footer__menu-item font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw] {{ block.settings.tw-footer__menu-item }}">
               <a href="{{ link.url }}" class="footer__menu-link {{ block.settings.tw-footer__menu-link }}">
                 {{- link.title -}}
               </a>
@@ -28,64 +28,121 @@
         </ul>
       </div>
     {% elsif block.type == 'contact_us' %}
-      <div class="contact-us {{ block.settings.tw-footer__contact-us }}">
-        <h3 class="contact-us__title {{ block.settings.tw-footer__contact-us-title }}">
+      <div class="contact-us py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] lg:border-r-[1px] border-brand-black md:p-10 md:gap-6 {{ block.settings.tw-footer__contact-us }}">
+        <h3 class="contact-us__title font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5 lg:text-[1.45vw] {{ block.settings.tw-footer__contact-us-title }}">
           {{ block.settings['contact_us-heading'] }}
         </h3>
-        <p class="contact-us__address {{ block.settings.tw-footer__address }}">
-          <span class="contact-us__address-title {{ block.settings.tw-footer__address-title }}">
+        <p class="contact-us__address font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw] {{ block.settings.tw-footer__address }}">
+          <span class="contact-us__address-title font-regular text-mobile-caption text-brand-gray block lg:text-[.98vw] {{ block.settings.tw-footer__address-title }}">
             {{- block.settings.address_title -}}
           </span>
           {{- block.settings.address }}
         </p>
-        <a href="tel:{{ block.settings.phone }}" class="contact-us__phone {{ block.settings.tw-footer__phone }}"
-          ><span class="contact-us__phone-title {{ block.settings.tw-footer__phone-title }}">
+        <a href="tel:{{ block.settings.phone }}" class="contact-us__phone font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw] {{ block.settings.tw-footer__phone }}"
+          ><span class="contact-us__phone-title font-regular text-mobile-caption text-brand-gray block lg:text-[.98vw] {{ block.settings.tw-footer__phone-title }}">
             {{- block.settings.phone_title -}}
           </span>
           {{- block.settings.phone -}}
         </a>
-        <a href="mailto:{{ block.settings.email }}" class="contact-us__email {{ block.settings.tw-footer__email }}"
-          ><span class="contact-us__email-title {{ block.settings.tw-footer__email-title }}">
+        <a href="mailto:{{ block.settings.email }}" class="contact-us__email font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw] {{ block.settings.tw-footer__email }}"
+          ><span class="contact-us__email-title font-regular text-mobile-caption text-brand-gray block lg:text-[.98vw] {{ block.settings.tw-footer__email-title }}">
             {{- block.settings.email_title -}}
           </span>
           {{- block.settings.email -}}
         </a>
         {% if block.settings.show_social_media and has_social_icons %}
-          <h3 class="contact-us__social-media-title {{ block.settings.tw-footer__social-media-title }}">
+          <h3 class="contact-us__social-media-title font-medium text-mobile-heading-5 md:text-desktop-heading-5 text-brand-gray lg:text-[1.45vw] {{ block.settings.tw-footer__social-media-title }}">
             {{ block.settings['social-media-heading'] }}
           </h3>
-          <div class="contact-us__social-media {{ block.settings.tw-footer__social-media }}">
-            {%- render 'social-icons', class: 'footer__list-social' -%}
+          <div class="social-icons flex flex-row gap-4 {{ block.settings.tw-footer__social-media }}">
+            <ul class="list-social flex flex-wrap gap-8" role="list">
+              {%- if settings.social_facebook_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_facebook_link }}" class="link list-social__link">
+                    {%- render 'icon-facebook', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_instagram_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_instagram_link }}" class="link list-social__link">
+                    {%- render 'icon-instagram', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_youtube_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_youtube_link }}" class="link list-social__link">
+                    {%- render 'icon-youtube', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_twitter_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_twitter_link }}" class="link list-social__link">
+                    {%- render 'icon-twitter', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_snapchat_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_snapchat_link }}" class="link list-social__link">
+                    {%- render 'icon-snapchat', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_pinterest_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_pinterest_link }}" class="link list-social__link">
+                    {%- render 'icon-pinterest', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_tumblr_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_tumblr_link }}" class="link list-social__link">
+                    {%- render 'icon-tumblr', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_vimeo_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_vimeo_link }}" class="link list-social__link">
+                    {%- render 'icon-vimeo', class: block.settings['tw-list-social__item-icon'] -%}
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul>
           </div>
         {% endif %}
       </div>
     {% elsif block.type == 'text' %}
-      <div class="text {{ block.settings.tw-footer__text }}">
-        <h3 class="text__heading {{ block.settings.tw-footer__heading }}">{{ block.settings.heading }}</h3>
-        <div class="text__subtext {{ block.settings.tw-footer__subtext }}">{{ block.settings.subtext }}</div>
-        <div {{ block.shopify_attributes }} class="{{ block.settings.tw-footer__newsletter }}">
+      <div class="text py-10 px-4 text-mobile-body font-regular text-brand-black flex flex-col gap-4 border-b-[1px] md:border-r-[1px] border-brand-black md:p-10 md:gap-6 {{ block.settings.tw-footer__text }}">
+        <h3 class="text__heading font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5 lg:text-[1.45vw] {{ block.settings.tw-footer__heading }}">{{ block.settings.heading }}</h3>
+        <div class="text__subtext font-regular text-mobile-body text-brand-black md:text-desktop-body lg:text-[1.12vw] {{ block.settings.tw-footer__subtext }}">{{ block.settings.subtext }}</div>
+        <div {{ block.shopify_attributes }} class="flex flex-col gap-4 {{ block.settings.tw-footer__newsletter }}">
           {% form 'customer', class: 'newsletter-form' %}
             <input
               type="email"
               name="contact[email]"
               placeholder="{{ block.settings.input-placeholder }}"
-              class="newsletter-form__input {{ block.settings.tw-footer__newsletter-input }}"
+              class="newsletter-form__input font-regular text-mobile-body text-brand-black w-full p-4 border-[1px] border-brand-black lg:text-[1.12vw] lg:py-[1.7vw] lg:px-[1.2vw] {{ block.settings.tw-footer__newsletter-input }}"
               required
             >
             <input type="hidden" name="contact[tags]" value="newsletter">
-            <button type="submit" class="newsletter-form__submit {{ block.settings.tw-footer__button }}">
+            <button type="submit" class="newsletter-form__submit  font-medium text-mobile-links text-center bg-brand-black text-white py-4 px-6 block mt-2 w-full lg:text-[1.12vw] lg:py-[1.7vw] lg:px-[1.25vw] lg:mt-[1.25w] {{ block.settings.tw-footer__button }}">
               {{- block.settings.button_text -}}
             </button>
             {% if form.errors %}
               {% for error in form.errors %}
-                <p class="form-error {{ block.settings.tw-footer__form-errors }}">
+                <p class="form-error text-mobile-links text-brand-black p-2 flex gap-2 items-center w-full justify-center block font-medium {{ block.settings.tw-footer__form-errors }}">
                   {% render 'icon-error', class: 'w-[20px] h-[20px]' %}
                   {{ error }}
                 </p>
               {% endfor %}
             {% endif %}
             {% if form.posted_successfully? %}
-              <p class="form-success {{ block.settings.tw-footer__form-success }}">
+              <p class="form-success font-medium text-mobile-links text-brand-black p-2 flex gap-2 items-center w-full justify-center {{ block.settings.tw-footer__form-success }}">
                 {% render 'icon-success', class: 'w-[20px] h-[20px]' %}
                 {{ block.settings.success_message | escape }}
               </p>
@@ -155,7 +212,7 @@
           "type": "textarea",
           "id": "tw-footer__title",
           "label": "Style footer__title",
-          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5"
+          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5 lg:text-[1.45vw]"
         },
         {
           "type": "textarea",
@@ -167,7 +224,7 @@
           "type": "textarea",
           "id": "tw-footer__menu-item",
           "label": "Style footer__menu-item",
-          "default": "font-medium text-mobile-links md:text-desktop-links"
+          "default": "font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw]"
         },
         {
           "type": "textarea",
@@ -245,49 +302,49 @@
           "type": "textarea",
           "id": "tw-footer__contact-us-title",
           "label": "Style contact-us__title",
-          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5"
+          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5 lg:text-[1.45vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__address-title",
           "label": "Style contact-us__address-title",
-          "default": "font-regular text-mobile-caption text-brand-gray block"
+          "default": "font-regular text-mobile-caption text-brand-gray block lg:text-[.98vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__address",
           "label": "Style contact-us__address",
-          "default": "font-medium text-mobile-links"
+          "default": "font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__phone-title",
           "label": "Style contact-us__phone-title",
-          "default": "font-regular text-mobile-caption text-brand-gray block"
+          "default": "font-regular text-mobile-caption text-brand-gray block lg:text-[.98vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__phone",
           "label": "Style contact-us__phone",
-          "default": "font-medium text-mobile-links"
+          "default": "font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__email-title",
           "label": "Style contact-us__email-title",
-          "default": "font-regular text-mobile-caption text-brand-gray block"
+          "default": "font-regular text-mobile-caption text-brand-gray block lg:text-[.98vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__email",
           "label": "Style contact-us__email",
-          "default": "font-medium text-mobile-links"
+          "default": "font-medium text-mobile-links md:text-desktop-links lg:text-[1.12vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__social-media-title",
           "label": "Style contact-us__social-media-title",
-          "default": "font-medium text-mobile-heading-5 text-brand-gray"
+          "default": "font-medium text-mobile-heading-5 md:text-desktop-heading-5 text-brand-gray lg:text-[1.45vw]"
         },
         {
           "type": "textarea",
@@ -297,9 +354,9 @@
         },
         {
           "type": "textarea",
-          "id": "tw-footer__social-media-link",
-          "label": "Style contact-us__social-media-link",
-          "default": "font-medium text-mobile-links"
+          "id": "tw-list-social__item-icon",
+          "label": "Style tw-list-social__item-icon",
+          "default": "lg:w-[1.77vw] lg:h-[1.77vw]"
         }
       ]
     },
@@ -341,13 +398,13 @@
           "type": "textarea",
           "id": "tw-footer__heading",
           "label": "Style text__heading",
-          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5"
+          "default": "font-medium text-mobile-heading-5 text-brand-gray md:text-desktop-heading-5 lg:text-[1.45vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__subtext",
           "label": "Style text__subtext",
-          "default": "font-regular text-mobile-body text-brand-black md:text-desktop-body"
+          "default": "font-regular text-mobile-body text-brand-black md:text-desktop-body lg:text-[1.12vw]"
         },
         {
           "type": "textarea",
@@ -359,13 +416,13 @@
           "type": "textarea",
           "id": "tw-footer__newsletter-input",
           "label": "Style newsletter-input",
-          "default": "font-regular text-mobile-body text-brand-black w-full p-4 border-[1px] border-brand-black"
+          "default": "font-regular text-mobile-body text-brand-black w-full p-4 border-[1px] border-brand-black lg:text-[1.12vw] lg:py-[1.7vw] lg:px-[1.2vw]"
         },
         {
           "type": "textarea",
           "id": "tw-footer__button",
           "label": "Style button",
-          "default": "font-medium text-mobile-links text-center bg-brand-black text-white py-4 px-6 block mt-2 w-full"
+          "default": "font-medium text-mobile-links text-center bg-brand-black text-white py-4 px-6 block mt-2 w-full lg:text-[1.12vw] lg:py-[1.7vw] lg:px-[1.25vw] lg:mt-[1.7vw]"
         },
         {
           "type": "textarea",
