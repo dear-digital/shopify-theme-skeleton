@@ -1,9 +1,9 @@
-<div class="section_container_styles {{ section.settings.section_container_styles }}">
-  <div class="title_styles {{ section.settings.title_styles }}">{{ section.settings.title }}</div>
-  <div class="sub-title-container_styles {{ section.settings.sub-title-container_styles }}">
-    <p class="sub-title_styles {{ section.settings.sub-title_styles }}">{{ section.settings.subtext_title }}</p>
+<div class="section_container_styles w-full h-screen flex flex-col items-center justify-center {{ section.settings.section_container_styles }}">
+  <div class="title_styles text-5xl font-bold my-4 {{ section.settings.title_styles }}">{{ section.settings.title }}</div>
+  <div class="sub-title-container_styles my-4 {{ section.settings.sub-title-container_styles }}">
+    <p class="sub-title_styles text-base md:text-xl leading-normal {{ section.settings.sub-title_styles }}">{{ section.settings.subtext_title }}</p>
   </div>
-  <div class="link-container_styles {{ section.settings.link-container_styles }}">
+  <div class="link-container_styles my-4 {{ section.settings.link-container_styles }}">
     {% if section.settings.button_url == blank %}
       {% assign shop_url = shop.secure_url %}
     {% else %}
@@ -11,7 +11,7 @@
     {% endif %}
     <a
       href="{{ shop_url }}"
-      class="link_styles {{ section.settings.link_styles }}"
+      class="link_styles px-4 inline py-2 text-base font-medium shadow bg-green-600 hover:bg-green-800 text-white {{ section.settings.link_styles }}"
     >
       {{- section.settings.button_label -}}
     </a>
@@ -54,38 +54,32 @@
     {
       "type": "textarea",
       "id": "section_container_styles",
-      "label": "Section Container Styles",
-      "default": "w-full h-screen flex flex-col items-center justify-center"
+      "label": "Section Container Styles"
     },
     {
       "type": "textarea",
       "id": "title_styles",
-      "label": "Title Styles",
-      "default": "text-5xl font-bold my-4"
+      "label": "Title Styles"
     },
     {
       "type": "textarea",
       "id": "sub-title-container_styles",
-      "label": "Sub Title Container Styles",
-      "default": "my-4"
+      "label": "Sub Title Container Styles"
     },
     {
       "type": "textarea",
       "id": "sub-title_styles",
-      "label": "Sub Title Styles",
-      "default": "text-base md:text-xl leading-normal"
+      "label": "Sub Title Styles"
     },
     {
       "type": "textarea",
       "id": "link-container_styles",
-      "label": "Link Container Styles",
-      "default": "my-4"
+      "label": "Link Container Styles"
     },
     {
       "type": "textarea",
       "id": "link_styles",
-      "label": "Link Styles",
-      "default": "px-4 inline py-2 text-base font-medium shadow bg-green-600 hover:bg-green-800 text-white"
+      "label": "Link Styles"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {% assign product = section.settings.product %}
 
-<div class="main-container__classes {{ section.settings.main-container__classes }}">
-  <div class="sub-container__classes {{ section.settings.sub-container__classes }}">
-    <div class="product-image__classes {{ section.settings.product-image__classes }}">
+<div class="main-container__classes max-w-6xl mx-auto my-8 {{ section.settings.main-container__classes }}">
+  <div class="sub-container__classes grid grid-cols-1 md:grid-cols-2 gap-3 {{ section.settings.sub-container__classes }}">
+    <div class="product-image__classes grid justify-center p-4 {{ section.settings.product-image__classes }}">
       {% if product.featured_image %}
         {{ product.featured_image | image_url: width: '500' | image_tag: width: '500' }}
       {% else %}
@@ -11,7 +11,7 @@
     </div>
 
     {% if product != blank %}
-      <div class="product-information__classes {{ section.settings.product-information__classes }}">
+      <div class="product-information__classes top-5 p-2 {{ section.settings.product-information__classes }}">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <input
             type="hidden"
@@ -22,42 +22,42 @@
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'vendor' %}
-                <div class="vendor__classes {{ section.settings.vendor__classes }}">
-                  <span class="vendor-text__classes {{ section.settings.vendor-text__classes }}">
+                <div class="vendor__classes my-3 {{ section.settings.vendor__classes }}">
+                  <span class="vendor-text__classes text-xs text-gray-500 {{ section.settings.vendor-text__classes }}">
                     {{- product.vendor -}}
                   </span>
                 </div>
               {% when 'title' %}
-                <div class="title__classes {{ section.settings.title__classes }}">
-                  <h1 class="title-text__classes {{ section.settings.title-text__classes }}">{{ product.title }}</h1>
+                <div class="title__classes my-3 {{ section.settings.title__classes }}">
+                  <h1 class="title-text__classes text-3xl text-gray-900 {{ section.settings.title-text__classes }}">{{ product.title }}</h1>
                 </div>
               {% when 'price' %}
-                <div class="price__classes {{ section.settings.price__classes }}" id="price-{{ section.id }}">
-                  <span class="price-compare-text__classes {{ section.settings.price-compare-text__classes }}">
+                <div class="price__classes my-3 {{ section.settings.price__classes }}" id="price-{{ section.id }}">
+                  <span class="price-compare-text__classes text-base text-gray-500 line-through {{ section.settings.price-compare-text__classes }}">
                     {{- product.selected_or_first_available_variant.compare_at_price | money -}}
                   </span>
-                  <span class="price-text__classes {{ section.settings.price-text__classes }}">
+                  <span class="price-text__classes text-lg text-gray-900 {{ section.settings.price-text__classes }}">
                     {{- product.selected_or_first_available_variant.price | money -}}
                   </span>
 
                   {% if product.selected_or_first_available_variant.price
                       < product.selected_or_first_available_variant.compare_at_price
                   %}
-                    <span class="price-sales__classes {{ section.settings.price-sales__classes }}">Sale</span>
+                    <span class="price-sales__classes px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4 {{ section.settings.price-sales__classes }}">Sale</span>
                   {% endif %}
                 </div>
               {% when 'variant_selector' %}
-                <div class="variant__classes {{ section.settings.variant__classes }}">
+                <div class="variant__classes my-3 {{ section.settings.variant__classes }}">
                   {% unless product.has_only_default_variant %}
                     <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                       {% for option in product.options_with_values %}
                         <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
 
-                        <div class="variant-sub__classes {{ section.settings.variant-sub__classes }}">
+                        <div class="variant-sub__classes my-2 {{ section.settings.variant-sub__classes }}">
                           <select
                             name="options[{{ option.name | escape }}]"
                             id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                            class="variant-select__classes {{ section.settings.variant-select__classes }}"
+                            class="variant-select__classes w-full border py-3 px-3 {{ section.settings.variant-select__classes }}"
                           >
                             {% for value in option.values %}
                               <option
@@ -81,35 +81,35 @@
                 </div>
 
               {% when 'quantity' %}
-                <div class="quantity__classes {{ section.settings.quantity__classes }}">
+                <div class="quantity__classes my-3 {{ section.settings.quantity__classes }}">
                   <label for="Quantity-{{ section.id }}">Quantity</label>
 
-                  <div class="quantity-sub__classes {{ section.settings.quantity-sub__classes }}">
+                  <div class="quantity-sub__classes my-2 {{ section.settings.quantity-sub__classes }}">
                     <input
                       type="number"
                       name="quantity"
                       id="Quantity-{{ section.id }}"
                       value="1"
                       min="1"
-                      class="quantity-input__classes {{ section.settings.quantity-input__classes }}"
+                      class="quantity-input__classes w-full border px-3 py-3 {{ section.settings.quantity-input__classes }}"
                     >
                   </div>
                 </div>
               {% when 'description' %}
-                <div class="description__classes {{ section.settings.description__classes }}">
-                  <p class="description-text__classes {{ section.settings.description-text__classes }}">
+                <div class="description__classes my-3 {{ section.settings.description__classes }}">
+                  <p class="description-text__classes text-gray-700 {{ section.settings.description-text__classes }}">
                     {{ product.description }}
                   </p>
                 </div>
 
               {% when 'checkout_buttons' %}
-                <div class="checkout__classes {{ section.settings.checkout__classes }}">
+                <div class="checkout__classes my-3 {{ section.settings.checkout__classes }}">
                   <form action="/cart/add" method="post" id="product-form" novalidate="novalidate">
                     <input type="hidden" name="id" id="variant-id-{{ section.id }}" value="{{ product.variants.first.id }}">
                     <button
                       type="submit"
                       name="add"
-                      class="checkout-button__classes {{ section.settings.checkout-button__classes }}"
+                      class="checkout-button__classes w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-700 rounded-sm my-2 {{ section.settings.checkout-button__classes }}"
                       {% if product.available == false %}
                         disabled
                       {% endif %}
@@ -127,7 +127,7 @@
             {% endcase %}
           {% endfor %}
           <a
-            class="view-full-details__classes {{ section.settings.view-full-details__classes }}"
+            class="view-full-details__classes hover:underline {{ section.settings.view-full-details__classes }}"
             href="{{ product.url }}"
           >
             {{ section.settings['view-full-details-text'] }}
@@ -135,7 +135,7 @@
         {% endform %}
       </div>
     {% else %}
-      <div class="no-product__classes {{ section.settings.no-product__classes }}">
+      <div class="no-product__classes text-xl font-blod max-w-6xl mx-auto my-8 {{ section.settings.no-product__classes }}">
         {{ section.settings['no-product_text'] }}
       </div>
     {% endif %}
@@ -185,146 +185,122 @@
     {
       "type": "textarea",
       "label": "Main Container Class",
-      "id": "main-container__classes",
-      "default": "max-w-6xl mx-auto my-8"
+      "id": "main-container__classes"
     },
     {
       "type": "textarea",
       "label": "Sub Container Class",
-      "id": "sub-container__classes",
-      "default": "grid grid-cols-1 md:grid-cols-2 gap-3"
+      "id": "sub-container__classes"
     },
     {
       "type": "textarea",
       "label": "Product Image Class",
-      "id": "product-image__classes",
-      "default": "grid justify-center p-4"
+      "id": "product-image__classes"
     },
     {
       "type": "textarea",
       "label": "Product's Information Class",
-      "id": "product-information__classes",
-      "default": "top-5 p-2"
+      "id": "product-information__classes"
     },
     {
       "type": "textarea",
       "label": "Vendor Class",
-      "id": "vendor__classes",
-      "default": "my-3"
+      "id": "vendor__classes"
     },
     {
       "type": "textarea",
       "label": "Vendor Text Class",
-      "id": "vendor-text__classes",
-      "default": "text-xs text-gray-500"
+      "id": "vendor-text__classes"
     },
     {
       "type": "textarea",
       "label": "Title Class",
-      "id": "title__classes",
-      "default": "my-3"
+      "id": "title__classes"
     },
     {
       "type": "textarea",
       "label": "Title Text Class",
-      "id": "title-text__classes",
-      "default": "text-3xl text-gray-900"
+      "id": "title-text__classes"
     },
     {
       "type": "textarea",
       "label": "Price Class",
-      "id": "price__classes",
-      "default": "my-3"
+      "id": "price__classes"
     },
     {
       "type": "textarea",
       "label": "Price Compare At Text Class",
-      "id": "price-compare-text__classes",
-      "default": "text-base text-gray-500 line-through"
+      "id": "price-compare-text__classes"
     },
     {
       "type": "textarea",
       "label": "Price Text Class",
-      "id": "price-text__classes",
-      "default": "text-lg text-gray-900"
+      "id": "price-text__classes"
     },
     {
       "type": "textarea",
       "label": "Sales Button Class",
-      "id": "price-sales__classes",
-      "default": "px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4"
+      "id": "price-sales__classes"
     },
     {
       "type": "textarea",
       "label": "Variant Class",
-      "id": "variant__classes",
-      "default": "my-3"
+      "id": "variant__classes"
     },
     {
       "type": "textarea",
       "label": "Variant Sub Class",
-      "id": "variant-sub__classes",
-      "default": "my-2"
+      "id": "variant-sub__classes"
     },
     {
       "type": "textarea",
       "label": "Variant Select Class",
-      "id": "variant-select__classes",
-      "default": "w-full border py-3 px-3"
+      "id": "variant-select__classes"
     },
     {
       "type": "textarea",
       "label": "Quantity Class",
-      "id": "quantity__classes",
-      "default": "my-3"
+      "id": "quantity__classes"
     },
     {
       "type": "textarea",
       "label": "Quantity Sub Class",
-      "id": "quantity-sub__classes",
-      "default": "my-2"
+      "id": "quantity-sub__classes"
     },
     {
       "type": "textarea",
       "label": "Quantity Input Class",
-      "id": "quantity-input__classes",
-      "default": "w-full border px-3 py-3"
+      "id": "quantity-input__classes"
     },
     {
       "type": "textarea",
       "label": "Description Class",
-      "id": "description__classes",
-      "default": "my-3"
+      "id": "description__classes"
     },
     {
       "type": "textarea",
       "label": "Description Text Class",
-      "id": "description-text__classes",
-      "default": "text-gray-700"
+      "id": "description-text__classes"
     },
     {
       "type": "textarea",
       "label": "Checkout Class",
-      "id": "checkout__classes",
-      "default": "my-3"
+      "id": "checkout__classes"
     },
     {
       "type": "textarea",
       "label": "Checkout Button Class",
-      "id": "checkout-button__classes",
-      "default": "w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-700 rounded-sm my-2"
+      "id": "checkout-button__classes"
     },
     {
       "type": "textarea",
       "label": "No Product Class",
-      "id": "no-product__classes",
-      "default": "text-xl font-blod max-w-6xl mx-auto my-8"
+      "id": "no-product__classes"
     },
     {
       "type": "textarea",
       "label": "View Full Details Class",
-      "id": "view-full-details__classes",
-      "default": "hover:underline"
+      "id": "view-full-details__classes"
     }
   ],
   "blocks": [

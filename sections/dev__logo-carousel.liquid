@@ -1,9 +1,9 @@
 <!-- sections/dev__logo-carousel.liquid -->
 
-<div class="logo-carousel {{ section.settings.logo_carousel_styles }}">
-  <div class="logo-carousel__wrapper {{ section.settings.logo_carousel_wrapper_styles }}">
+<div class="logo-carousel p-6 relative m-auto md:w-3/4 overflow-hidden bg-white before:absolute before:left-0 before:top-0 before:z-[2] before:h-full before:w-[100px] before:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] before:content-[''] after:absolute after:right-0 after:top-0 after:z-[2] after:h-full after:w-[100px] after:-scale-x-100 after:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] after:content-[''] {{ section.settings.logo_carousel_styles }}">
+  <div class="logo-carousel__wrapper animate-infinite-slider flex gap-5 w-[calc(250px*10)] {{ section.settings.logo_carousel_wrapper_styles }}">
     {% for block in section.blocks %}
-      <div class="logo-carousel__item {{ section.settings.logo_carousel_item_styles }}">
+      <div class="logo-carousel__item slide flex w-[125px] items-center justify-center {{ section.settings.logo_carousel_item_styles }}">
         {% if block.settings.logo %}
           {{
             block.settings.logo
@@ -14,7 +14,7 @@
       </div>
     {% endfor %}
     {% for block in section.blocks %}
-      <div class="logo-carousel__item {{ section.settings.logo_carousel_item_styles }}">
+      <div class="logo-carousel__item slide flex w-[125px] items-center justify-center {{ section.settings.logo_carousel_item_styles }}">
         {% if block.settings.logo %} 
           {{
             block.settings.logo
@@ -40,20 +40,17 @@
     {
       "type": "textarea",
       "label": "Logo Carousel Container",
-      "id": "logo_carousel_styles",
-      "default": "p-6 relative m-auto md:w-3/4 overflow-hidden bg-white before:absolute before:left-0 before:top-0 before:z-[2] before:h-full before:w-[100px] before:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] before:content-[''] after:absolute after:right-0 after:top-0 after:z-[2] after:h-full after:w-[100px] after:-scale-x-100 after:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] after:content-['']"
+      "id": "logo_carousel_styles"
     },
     {
       "type": "textarea",
       "label": "Logo Carousel Wrapper",
-      "id": "logo_carousel_wrapper_styles",
-      "default": "animate-infinite-slider flex gap-5 w-[calc(250px*10)]"
+      "id": "logo_carousel_wrapper_styles"
     },
     {
       "type": "textarea",
       "label": "Logo Carousel Item",
-      "id": "logo_carousel_item_styles",
-      "default": "slide flex w-[125px] items-center justify-center"
+      "id": "logo_carousel_item_styles"
     },
     {
       "type": "textarea",
