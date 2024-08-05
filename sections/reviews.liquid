@@ -1,0 +1,285 @@
+<script src="{{ 'reviews-slider.js' | asset_url }}" defer></script>
+
+<div class="reviews-section {{ section.settings.tw_reviews_section }}">
+  {% if section.settings.show_section_logo %}
+    <div class="section-logo {{ section.settings.tw_section_logo }}">
+      {% if section.settings.show_icon %}
+        {% render 'icon-google', class: section.settings.tw_section_icon_class %}
+      {% endif %}
+      {% if section.settings.show_overline %}
+        <p class="section-overline {{ section.settings.tw_section_overline }}">
+          {{ section.settings.overline_text | default: 'Reviews' }}
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if section.settings.show_heading %}
+    <h2 class="section-heading {{ section.settings.tw_section_heading }}">
+      {{ section.settings.heading_text | default: 'Our Clients Say' }}
+    </h2>
+  {% endif %}
+
+  {% if section.blocks.size > 0 %}
+    <reviews-slider
+      class="reviews-slider {{ section.settings.tw_reviews_slider }}"
+      style="touch-action: pan-y;"
+      id="reviewsSlider"
+    >
+      <div class="swiper-wrapper {{ section.settings.tw_swiper_wrapper }}">
+        <button class="swiper-button-prev {{ section.settings.tw_swiper_button_prev }}" id="reviewsPrevButton">
+          {% render 'icon-left-arrow' %}
+        </button>
+        {% for block in section.blocks %}
+          <div class="review-slide {{ section.settings.tw_review_slide }}" data-index="{{ forloop.index0 }}">
+            <p class="review-text {{ section.settings.tw_review_text }}">“{{ block.settings.review_text }}”</p>
+            <p class="review-author {{ section.settings.tw_review_author }}">– {{ block.settings.author_name }}</p>
+          </div>
+        {% endfor %}
+        <button class="swiper-button-next {{ section.settings.tw_swiper_button_next }}" id="reviewsNextButton">
+          {% render 'icon-left-arrow' %}
+        </button>
+      </div>
+      <div class="swiper-pagination {{ section.settings.tw_swiper_pagination }}">
+        {% for block in section.blocks %}
+          <span
+            class="pagination-dot {{ section.settings.tw_pagination_dot }}"
+            data-index="{{ forloop.index0 }}"
+          ></span>
+        {% endfor %}
+      </div>
+    </reviews-slider>
+  {% else %}
+    <p class="reviews-placeholder {{ section.settings.tw_reviews_placeholder }}">
+      {{ section.settings.placeholder_text | default: 'No reviews available' }}
+    </p>
+  {% endif %}
+
+  {% if section.settings.show_button and section.settings.reviews_link %}
+    <a
+      href="{{ section.settings.reviews_link | default: '#' }}"
+      class="section-button {{ section.settings.tw_section_button }}"
+    >
+      {{ section.settings.button_text | default: 'Read Reviews' }}
+    </a>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tw_reviews_section",
+      "label": "Style: Reviews Section",
+      "default": "flex flex-col justify-center items-center text-center px-[46px] py-10 md:p-20"
+    },
+    {
+      "type": "header",
+      "content": "Section Logo"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_logo",
+      "label": "Show Section Logo",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tw_section_logo",
+      "label": "Style: Section Logo",
+      "default": "flex flex-col items-center justify-center gap-2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show Icon",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tw_section_icon_class",
+      "label": "Style: Section Icon"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overline",
+      "label": "Show Overline",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "overline_text",
+      "label": "Overline Text",
+      "default": "Reviews"
+    },
+    {
+      "type": "text",
+      "id": "tw_section_overline",
+      "label": "Style: Section Overline",
+      "default": "uppercase font-medium text-mobile-overline md:text-desktop-overline lg:text-[.98vw]"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show Heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Our Clients Say"
+    },
+    {
+      "type": "text",
+      "id": "tw_section_heading",
+      "label": "Style: Section Heading",
+      "default": "mt-6 lg:mt-[1.7vw] font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]"
+    },
+    { "type": "header", "content": "Reviews" },
+    {
+      "type": "text",
+      "id": "tw_reviews_slider",
+      "label": "Style: Reviews Slider",
+      "default": "mt-4 lg:mt-[1.12vw] flex flex-col w-full"
+    },
+    {
+      "type": "text",
+      "id": "tw_swiper_wrapper",
+      "label": "Style: Swiper Wrapper",
+      "default": "flex gap-6 w-full max-w-full items-center justify-center"
+    },
+    {
+      "type": "text",
+      "id": "tw_swiper_button_prev",
+      "label": "Style: Swiper Button Prev",
+      "default": "hidden lg:block"
+    },
+    {
+      "type": "text",
+      "id": "tw_review_slide",
+      "label": "Style: Review Slide",
+      "default": "flex-grow hidden"
+    },
+    {
+      "type": "text",
+      "id": "tw_review_text",
+      "label": "Style: Review Text",
+      "default": "italic text-mobile-heading-4 md:text-desktop-heading-4 lg:text-[2.4vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw_review_author",
+      "label": "Style: Review Author",
+      "default": "mt-4 lg:mt-[1.12vw] font-medium text-mobile-heading-6 md:text-desktop-heading-6 lg:text-[1.25vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw_swiper_button_next",
+      "label": "Style: Swiper Button Next",
+      "default": "hidden lg:block rotate-180"
+    },
+    {
+      "type": "text",
+      "id": "tw_swiper_pagination",
+      "label": "Style: Swiper Pagination",
+      "default": "mt-8 text-center"
+    },
+    {
+      "type": "text",
+      "id": "tw_pagination_dot",
+      "label": "Style: Pagination Dot",
+      "default": "pagination-dot inline-block w-1 h-1 mx-px cursor-pointer rounded-full"
+    },
+    {
+      "type": "header",
+      "content": "Reviews Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Placeholder Text",
+      "default": "No reviews available"
+    },
+    {
+      "type": "text",
+      "id": "tw_reviews_placeholder",
+      "label": "Style: Reviews Placeholder",
+      "default": "mt-4 lg:mt-[1.12vw] font-medium text-mobile-heading-6 md:text-desktop-heading-6 lg:text-[1.25vw]"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Read Reviews",
+      "info": "Button will only be visible if a URL is added in the 'Reviews Link' field."
+    },
+    {
+      "type": "url",
+      "id": "reviews_link",
+      "label": "Reviews Link"
+    },
+    {
+      "type": "text",
+      "id": "tw_section_button",
+      "label": "Style: Section Button",
+      "default": "mt-16 px-6 py-4 uppercase w-full md:w-auto border border-brand-black"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review Text"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "review_text": "Ordered flowers online and they were the best bouquet! Impressed everyone around. Highly recommend this flower shop!",
+            "author_name": "Ronald Richards"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "review_text": "Flower subscriptions revolutionized my Kiev hotel! Conveniently customize and receive fresh bouquets regularly. Highly recommended for hassle-free floral arrangements!",
+            "author_name": "Leonid Yurushev"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

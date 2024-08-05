@@ -1,22 +1,22 @@
 {
-    "accessibility": {
-        "skip_to_text": "Skip to main content",
-        "refresh_page": "Refresh page",
-        "link_messages": {
-            "new_window": "Opens in a new window"
-        },
-        "loading": "Loading..."
+  "accessibility": {
+    "skip_to_text": "Skip to main content",
+    "refresh_page": "Refresh page",
+    "link_messages": {
+      "new_window": "Opens in a new window"
     },
-    "sections": {
-        "header": {
-            "announcement": "Announcement"
-        },
-        "cart": {
-            "cart_error": "There was an error while updating your cart. Please try again.",
-            "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart.",
-            "empty": "Empty Cart",
-            "add-to-cart": "Add to Cart",
-            "sold-out": "Sold Out",
-          }
+    "loading": "Loading..."
+  },
+  "sections": {
+    "header": {
+      "announcement": "Announcement"
+    },
+    "cart": {
+      "cart_error": "There was an error while updating your cart. Please try again.",
+      "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart.",
+      "empty": "Empty Cart",
+      "add-to-cart": "Add to Cart",
+      "sold-out": "Sold Out"
     }
+  }
 }

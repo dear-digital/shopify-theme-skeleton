@@ -104,122 +104,9 @@
         "hero__subtitle": "text-mobile-hero-caption pb-6 md:pb-[54px] md:text-desktop-hero-caption lg:pb-0",
         "hero__content": "flex pt-4 border-t-[1px] border-brand-black md:pt-6 lg:align-center",
         "hero__image-container": "w-1\/2",
-        "tail-hero__image": "w-full pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]",
+        "tail-hero__image": "w-1\/2 pr-4 object-cover border-r-[1px] border-brand-black aspect-[0.95] md:pr-6 md:aspect-[1.1875]",
         "tail-hero__description": "w-1\/2 pl-4 content-end text-mobile-small-description md:pl-6 md:text-desktop-caption",
         "hero__right-col": "w-full lg:w-1\/2"
-      }
-    },
-    "two_column_layout_DaRMQm": {
-      "type": "two-column-layout",
-      "blocks": {
-        "content_block_ixQYVR": {
-          "type": "content-block",
-          "settings": {
-            "overline": "Our Story",
-            "heading": "Kyiv LuxeBouquets",
-            "paragraph": "We are a modern local floral studio, which specializes in the design and delivery of unique bouquets. We have the best florists who carefully select each look, our studio cooperates directly with farms for growing different flowers, so we always have fresh flowers, which are collected by our florists in exquisite bouquets.",
-            "button_text": "Learn More",
-            "button_url": "shopify:\/\/collections\/new-snowboards",
-            "tw_content_block": "px-4 py-10 md:p-20 border-b border-x border-brand-black lg:border-t",
-            "tw_overline": "mb-6 lg:mb-[1.7vw] uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
-            "tw_heading": "mb-4 lg:mb-[1.12vw] font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]",
-            "tw_paragraph": "text-mobile-body md:text-desktop-body brightness-90 lg:text-[1.12vw]",
-            "tw_button_wrapper": "mt-16 lg:mt-[4.5vw]",
-            "tw_button_text": "uppercase text-center block md:inline-block px-6 py-4 lg:py-[1.25vw] lg:px-[1.7vw] border border-brand-black text-mobile-button md:text-desktop-button lg:text-[1.12vw]"
-          }
-        }
-      },
-      "block_order": [
-        "content_block_ixQYVR"
-      ],
-      "settings": {
-        "main_heading": "About Us",
-        "tw_two_column_section": "flex flex-col lg:flex-row",
-        "tw_section_left_col": "px-4 py-10 md:p-20 lg:w-1\/2 border border-brand-black lg:border-r-0",
-        "tw_section_main_heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw] lg:sticky lg:top-[5.56vw]",
-        "tw_section_right_col": "flex flex-col lg:w-1\/2"
-      }
-    },
-    "two_column_layout_n788wc": {
-      "type": "two-column-layout",
-      "blocks": {
-        "content_block_8WrJiN": {
-          "type": "content-block",
-          "settings": {
-            "overline": "",
-            "heading": "Stylish bouquets by florists",
-            "paragraph": "At our floral studio, our professional florists craft the most elegant and stylish bouquets using only the freshest and highest quality materials available. We stay up-to-date with the latest floral design trends and offer unique arrangements that are sure to impress. Let us brighten up your day with our stunning bouquets and same-day delivery service.",
-            "button_text": "",
-            "button_url": "",
-            "tw_content_block": "px-4 py-10 md:p-20 border-b border-x border-brand-black",
-            "tw_overline": "mb-6 lg:mb-[1.7vw] uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
-            "tw_heading": "mb-4 lg:mb-[1.12vw] font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]",
-            "tw_paragraph": "text-mobile-body md:text-desktop-body brightness-90 lg:text-[1.12vw]",
-            "tw_button_wrapper": "mt-16 lg:mt-[4.5vw]",
-            "tw_button_text": "uppercase text-center block md:inline-block px-6 py-4 border border-brand-black text-mobile-button md:text-desktop-button lg:text-[1.12vw]"
-          }
-        },
-        "content_block_RMk3Vi": {
-          "type": "content-block",
-          "settings": {
-            "overline": "",
-            "heading": "On-time delivery",
-            "paragraph": "Never miss a moment with our on-time flower delivery service. Our couriers will deliver your bouquet personally, without boxes, to ensure it arrives in perfect condition. Trust us to deliver your thoughtful gift reliably.",
-            "button_text": "",
-            "button_url": "",
-            "tw_content_block": "px-4 py-10 md:p-20 border-b border-x border-brand-black",
-            "tw_overline": "mb-6 lg:mb-[1.7vw] uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
-            "tw_heading": "mb-4 lg:mb-[1.12vw] font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]",
-            "tw_paragraph": "text-mobile-body md:text-desktop-body brightness-90 lg:text-[1.12vw]",
-            "tw_button_wrapper": "mt-16 lg:mt-[4.5vw]",
-            "tw_button_text": "uppercase text-center block md:inline-block px-6 py-4 border border-brand-black text-mobile-button md:text-desktop-button lg:text-[1.12vw]"
-          }
-        },
-        "content_block_GXmiTg": {
-          "type": "content-block",
-          "settings": {
-            "overline": "",
-            "heading": "Safe payment",
-            "paragraph": "You can feel secure when placing an order with us, as we use industry-standard security measures to protect your payment information. Your transaction will be safe and hassle-free, so you can shop with confidence.",
-            "button_text": "",
-            "button_url": "",
-            "tw_content_block": "px-4 py-10 md:p-20 border-b border-x border-brand-black",
-            "tw_overline": "mb-6 lg:mb-[1.7vw] uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
-            "tw_heading": "mb-4 lg:mb-[1.12vw] font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]",
-            "tw_paragraph": "text-mobile-body md:text-desktop-body brightness-90 lg:text-[1.12vw]",
-            "tw_button_wrapper": "mt-16 lg:mt-[4.5vw]",
-            "tw_button_text": "uppercase text-center block md:inline-block px-6 py-4 border border-brand-black text-mobile-button md:text-desktop-button lg:text-[1.12vw]"
-          }
-        },
-        "content_block_hDLHKm": {
-          "type": "content-block",
-          "settings": {
-            "overline": "",
-            "heading": "Subscription by your needs",
-            "paragraph": "With our subscription service tailored to your specific needs, you can enjoy the convenience of having beautiful bouquets delivered straight to your door at regular intervals. Our flexible service is perfect for busy individuals or those who want to ensure they always have fresh flowers on hand. You'll save time and money with this hassle-free solution to your floral needs.",
-            "button_text": "",
-            "button_url": "",
-            "tw_content_block": "px-4 py-10 md:p-20 border-b border-x border-brand-black lg:border-t",
-            "tw_overline": "mb-6 lg:mb-[1.7vw] uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
-            "tw_heading": "mb-4 lg:mb-[1.12vw] font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]",
-            "tw_paragraph": "text-mobile-body md:text-desktop-body brightness-90 lg:text-[1.12vw]",
-            "tw_button_wrapper": "mt-16 lg:mt-[4.5vw]",
-            "tw_button_text": "uppercase text-center block md:inline-block px-6 py-4 border border-brand-black text-mobile-button md:text-desktop-button lg:text-[1.12vw]"
-          }
-        }
-      },
-      "block_order": [
-        "content_block_8WrJiN",
-        "content_block_RMk3Vi",
-        "content_block_GXmiTg",
-        "content_block_hDLHKm"
-      ],
-      "settings": {
-        "main_heading": "Why Choose Us ?",
-        "tw_two_column_section": "flex flex-col lg:flex-row",
-        "tw_section_left_col": "px-4 py-10 md:p-20 lg:w-1\/2 border border-brand-black lg:border-t-0 lg:border-r-0",
-        "tw_section_main_heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw] lg:sticky lg:top-[5.56vw]",
-        "tw_section_right_col": "flex flex-col lg:w-1\/2"
       }
     },
     "contact_us_3zCHDF": {
@@ -269,61 +156,61 @@
         "social_icon_svg": "w-6 h-6"
       }
     },
-    "service_zqVAwn": {
-      "type": "service",
+    "reviews_cxbEmj": {
+      "type": "reviews",
+      "blocks": {
+        "review_YJmjCE": {
+          "type": "review",
+          "settings": {
+            "review_text": "Ordered flowers online and they were the best bouquet! Impressed everyone around. Highly recommend this flower shop!",
+            "author_name": "Ronald Richards"
+          }
+        },
+        "review_eJfFHB": {
+          "type": "review",
+          "settings": {
+            "review_text": "Flower subscriptions revolutionized my Kiev hotel! Conveniently customize and receive fresh bouquets regularly. Highly recommended for hassle-free floral arrangements!",
+            "author_name": "Leonid Yurushev"
+          }
+        }
+      },
+      "block_order": [
+        "review_YJmjCE",
+        "review_eJfFHB"
+      ],
       "settings": {
-        "our_service_title": "Our Service",
-        "image": "shopify:\/\/shop_images\/438418561_799267005593792_2962723716381083815_n_42851eb5-a879-43a3-bd9b-d06d911a281a.jpg",
-        "title": "SERVICE",
-        "heading": "Flower Subscriptions",
-        "paragraph": "Experience the convenience and savings of regular flower deliveries with our flexible subscription service - up to 30% more profitable than one-time purchases.",
-        "button_link": "",
-        "button_text": "SUBSCRIBE NOW",
-        "tw_our_service": "py-10 px-4 md:p-20 md:text-center lg:py-20 lg:px-2.5 border-[1px] border-brand-black",
-        "tw_our_service__title": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]",
-        "tw_service": "lg:flex lg:justify-center lg:items-center border-b-[1px] border-x-[1px] border-brand-black",
-        "tw_service__left_col": "lg:w-1\/2",
-        "tw_service__image": "w-full object-cover object-center md:aspect-[1.536] lg:aspect-square border-b-[1px] lg:border-r-[1px] lg:border-b-0 border-brand-black",
-        "tw_service__right_col": "px-4 py-10 text-center md:p-20 lg:w-1\/2 lg:p-[5.56vw]",
-        "tw_service__content": "flex flex-col gap-16",
-        "tw_service__text_content": "flex flex-col gap-6",
-        "tw_service__title": "font-medium text-mobile-overline md:text-desktop-overline lg:text-[.98vw] lg:mb-[1.7vw]",
-        "tw_service__heading_paragraph": "flex flex-col gap-4 lg:mb-[4.5vw]",
-        "tw_service__heading": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw] lg:mb-[1.12vw]",
-        "tw_service__paragraph": "font-regular text-mobile-body md:text-mobile-subtitle md:font-medium lg:text-[1.12vw] tracking-[.03vw] text-brand-gray",
-        "tw_service__button": "py-4 px-6 border-[1px] border-brand-black md:py-0 md:px-0 md:border-0",
-        "tw_service__link_button": "md:py-4 md:px-6 md:border-[1px] border-brand-black font-medium text-mobile-button md:text-desktop-button lg:text-[1.12vw] lg:py-[1.25vw] lg:px-[1.7vw]"
-      }
-    },
-    "parallax_overlay_dmydRH": {
-      "type": "parallax-overlay",
-      "settings": {
-        "background_image": "shopify:\/\/shop_images\/Flower_Subscription.png",
-        "small_header_text": "Service",
-        "heading_text": "Wedding & Event Decor",
-        "paragraph_text": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.<\/p>",
-        "button_label": "Inquire Now",
-        "button_link": "",
-        "container_classes": "relative aspect-[2] flex items-center justify-center",
-        "background_image_classes": "absolute inset-0 w-full h-full object-cover",
-        "overlay_classes": "absolute inset-0 bg-black bg-opacity-50",
-        "content_classes": "relative z-10 flex flex-col gap-16 py-10 px-4 md:p-20 md:items-center lg:w-[66.66%]",
-        "text_content_classes": "flex flex-col gap-6 text-center",
-        "small_header_classes": "text-mobile-caption-small md:text-mobile-caption uppercase text-white font-medium lg:text-[.98vw] lg:mb-[1.7vw]",
-        "heading_paragraph_div_classes": "flex flex-col gap-4 lg:gap-[1.12vw] lg:mb-[3.5vw]",
-        "heading_classes": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2 lg:text-[3.8vw]",
-        "paragraph_classes": "text-mobile-body text-white md:text-desktop-hero-caption lg:text-[1.12vw] tracking-[.03vw]",
-        "button_div_classes": "flex items-start justify-center md:inline-block",
-        "button_classes": "text-center text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-white pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button lg:text-[1.12vw] lg:py-[1.25vw] lg:px-[1.7vw]"
+        "tw_reviews_section": "flex flex-col justify-center items-center text-center px-[46px] py-10 md:p-20",
+        "show_section_logo": true,
+        "tw_section_logo": "flex flex-col items-center justify-center gap-2",
+        "show_icon": true,
+        "tw_section_icon_class": "",
+        "show_overline": true,
+        "overline_text": "Reviews",
+        "tw_section_overline": "uppercase font-medium text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
+        "show_heading": true,
+        "heading_text": "Our Clients Say",
+        "tw_section_heading": "mt-6 lg:mt-[1.7vw] font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]",
+        "tw_reviews_slider": "mt-4 lg:mt-[1.12vw] flex flex-col w-full",
+        "tw_swiper_wrapper": "flex gap-6 w-full max-w-full items-center justify-center",
+        "tw_swiper_button_prev": "hidden lg:block",
+        "tw_review_slide": "flex-grow hidden",
+        "tw_review_text": "italic text-mobile-heading-4 md:text-desktop-heading-4 lg:text-[2.4vw]",
+        "tw_review_author": "mt-4 lg:mt-[1.12vw] font-medium text-mobile-heading-6 md:text-desktop-heading-6 lg:text-[1.25vw]",
+        "tw_swiper_button_next": "hidden lg:block rotate-180",
+        "tw_swiper_pagination": "mt-8 text-center",
+        "tw_pagination_dot": "pagination-dot inline-block w-1 h-1 mx-px cursor-pointer rounded-full",
+        "placeholder_text": "No reviews available",
+        "tw_reviews_placeholder": "mt-4 lg:mt-[1.12vw] font-medium text-mobile-heading-6 md:text-desktop-heading-6 lg:text-[1.25vw]",
+        "show_button": true,
+        "button_text": "Read Reviews",
+        "reviews_link": "",
+        "tw_section_button": "mt-16 px-6 py-4 uppercase w-full md:w-auto border border-brand-black"
       }
     }
   },
   "order": [
     "hero_69Q3Kw",
-    "two_column_layout_DaRMQm",
-    "two_column_layout_n788wc",
     "contact_us_3zCHDF",
-    "service_zqVAwn",
-    "parallax_overlay_dmydRH"
+    "reviews_cxbEmj"
   ]
 }
