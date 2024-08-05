@@ -1,0 +1,147 @@
+<div class="{{ section.settings.container_classes }}">
+  {% if section.settings.background_image != blank %}
+    <div
+      class="{{ section.settings.background_image_classes }}"
+      style="background-image: url('{{ section.settings.background_image | image_url: width: 3840, height: 3840, crop: 'center' }}'); background-attachment: fixed; background-size: cover; background-position: center;"
+      alt="{{ section.settings.background_image.alt | default: 'Background image for service section' }}"
+    ></div>
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: section.settings.background_image_classes }}
+  {% endif %}
+
+  <div class="{{ section.settings.overlay_classes }}"></div>
+
+  <div class="{{ section.settings.content_classes }}">
+    <div class="{{ section.settings.text_content_classes }}">
+      <h3 class="{{ section.settings.small_header_classes }}">{{ section.settings.small_header_text }}</h3>
+
+      <div class="{{ section.settings.heading_paragraph_div_classes }}">
+        <h2 class="{{ section.settings.heading_classes }}">{{ section.settings.heading_text }}</h2>
+        <div class="{{ section.settings.paragraph_classes }}">{{ section.settings.paragraph_text }}</div>
+      </div>
+    </div>
+
+    <div class="{{ section.settings.button_div_classes }}">
+      <a href="{{ section.settings.button_link }}" class="{{ section.settings.button_classes }}">
+        {{- section.settings.button_label | escape -}}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Parallax Overlay Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "small_header_text",
+      "label": "Section Small Header Text",
+      "default": "Service"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_text",
+      "label": "Section Header Text",
+      "default": "Wedding & Event Decor"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_text",
+      "label": "Section Paragraph Text",
+      "default": "<p>Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Inquire Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind styling classes"
+    },
+    {
+      "type": "textarea",
+      "id": "container_classes",
+      "label": "Container Classes",
+      "default": "relative aspect-[2] flex items-center justify-center"
+    },
+    {
+      "type": "textarea",
+      "id": "background_image_classes",
+      "label": "Background Image Classes",
+      "default": "absolute inset-0 w-full h-full object-cover"
+    },
+    {
+      "type": "textarea",
+      "id": "overlay_classes",
+      "label": "Overlay Classes",
+      "default": "absolute inset-0 bg-black bg-opacity-50"
+    },
+    {
+      "type": "textarea",
+      "id": "content_classes",
+      "label": "Content Classes",
+      "default": "relative z-10 flex flex-col gap-16 py-10 px-4 md:p-20 md:items-center lg:w-[66.66%]"
+    },
+    {
+      "type": "textarea",
+      "id": "text_content_classes",
+      "label": "Text Content Classes",
+      "default": "flex flex-col gap-6 text-center"
+    },
+    {
+      "type": "textarea",
+      "id": "small_header_classes",
+      "label": "Small Header Classes",
+      "default": "text-mobile-caption-small md:text-mobile-caption uppercase text-white font-medium lg:text-[.98vw] lg:mb-[1.7vw]"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_paragraph_div_classes",
+      "label": "Heading Paragraph Div Classes",
+      "default": "flex flex-col gap-4 lg:gap-[1.12vw] lg:mb-[3.5vw]"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_classes",
+      "label": "Heading Classes",
+      "default": "text-white text-mobile-heading-2 font-semibold md:text-desktop-heading-2 lg:text-[3.8vw]"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_classes",
+      "label": "Paragraph Classes",
+      "default": "text-mobile-body text-white md:text-desktop-hero-caption lg:text-[1.12vw] tracking-[.03vw]"
+    },
+    {
+      "type": "textarea",
+      "id": "button_div_classes",
+      "label": "Button Div Classes",
+      "default": "flex items-start justify-center md:inline-block"
+    },
+    {
+      "type": "textarea",
+      "id": "button_classes",
+      "label": "Button Classes",
+      "default": "text-center text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-white pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button lg:text-[1.12vw] lg:py-[1.25vw] lg:px-[1.7vw]"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Parallax Overlay Section"
+    }
+  ]
+}
+{% endschema %}

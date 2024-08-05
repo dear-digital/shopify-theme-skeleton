@@ -1,12 +1,14 @@
 <script src="{{ 'product-components.js' | asset_url }}" defer="defer"></script>
 
+{%- assign product_form_id = 'product-form-' | append: section.id -%}
+
 {% style %}
   .price-option input:checked + div div {
     display: block;
   }
 {% endstyle %}
 
-<div class="product {{ section.settings.tw-product }}">
+<div class="product {{ section.settings.tw-product }}" id="MainProduct-{{ section.id }}">
   <div class="product-image-wrapper {{ section.settings.tw-product-image-wrapper }}">
     {% if product.featured_image %}
       {{
@@ -23,7 +25,7 @@
       </p>
       <div class="product-info {{ section.settings.tw-product-info }}">
         <h3 class="product-name {{ section.settings.tw-product-name }}">
-          {{ product.title }} - {{ product.price | money }}
+          {{ product.title }} - {{ product.selected_or_first_available_variant.price | money }}
         </h3>
         {% if product.description %}
           <p class="product-description {{ section.settings.tw-product-description }}">
@@ -32,7 +34,7 @@
         {% endif %}
       </div>
       <div class="product-quantity {{ section.settings.tw-product-quantity }}">
-        <p class="quantity-title {{ section.settings.tw-quantity-title }}">Quantity</p>
+        <p class="quantity-title {{ section.settings.tw-quantity-title }}" for="Quantity-{{ section.id }}">Quantity</p>
         <quantity-controls
           data-controls-class="{{ section.settings.tw-quantity-controls }}"
           data-button-class="{{ section.settings.tw-quantity-button }}"
@@ -121,10 +123,60 @@
         </label>
       </div>
     </div>
-    <div
-      class="product-actions {{ section.settings.tw-product-actions }}"
-    >
-      <a href="{{ routes.cart_add_url }}" class="add-to-cart"> Add to Cart </a>
+    <div {{ block.shopify_attributes }} class=" {{ section.settings.checkout__classes }}">
+      {%- if product != blank -%}
+        <product-form class="product-form">
+          {%- form 'product',
+            product,
+            id: product_form_id,
+            class: 'form',
+            novalidate: 'novalidate',
+            data-type: 'add-to-cart-form'
+          -%}
+            <input
+              type="hidden"
+              name="id"
+              value="{{ product.selected_or_first_available_variant.id }}"
+              disabled
+              class="product-variant-id"
+            >
+            <cart-functions-wrapper>
+              <button
+                id="ProductSubmitButton-{{ section.id }}"
+                type="submit"
+                name="add"
+                class="add-to-cart checkout-button__classes product-actions {{ section.settings.tw-product-actions }}"
+                {% if product.selected_or_first_available_variant.available == false %}
+                  disabled
+                {% endif %}
+                data-cart-quantity="div[id^='MainProduct'] input[name='quantity']"
+                data-cart-id="input[name='id']"
+              >
+                <span class="add-to-cart">
+                  {%- if product.selected_or_first_available_variant.available == false -%}
+                    {{ 'sections.cart.sold-out' | t }}
+                  {%- else -%}
+                    {{ 'sections.cart.add-to-cart' | t }}
+                  {%- endif -%}
+                </span>
+              </button>
+            </cart-functions-wrapper>
+          {%- endform -%}
+        </product-form>
+      {%- else -%}
+        <div class="product-form">
+          <div class="product-form__buttons form">
+            <button
+              type="submit"
+              name="add"
+              class="product-form__submit button product-actions {{ section.settings.tw-product-actions }}"
+              disabled
+            >
+              {{ 'sections.cart.sold-out' | t }}
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </div>
@@ -186,7 +238,7 @@
     <button class="quantity-decrease quantity-button">
       {% render 'icon-minus' %}
     </button>
-    <input type="number" min="1" value="1" class="quantity-input">
+    <input type="number" min="1" value="1" class="quantity-input" name="quantity" id="Quantity-{{ section.id }}">
     <button class="quantity-increase quantity-button">
       {% render 'icon-plus' %}
     </button>

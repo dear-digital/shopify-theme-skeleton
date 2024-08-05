@@ -1,0 +1,135 @@
+<div class="two_column_section {{ section.settings.tw_two_column_section }}">
+  <div class="section-left_col {{ section.settings.tw_section_left_col }}">
+    {% if section.settings.main_heading %}
+      <h3 class="section-main_heading {{ section.settings.tw_section_main_heading }}">
+        {{ section.settings.main_heading }}
+      </h3>
+    {% endif %}
+  </div>
+  <div class="section-right_col {{ section.settings.tw_section_right_col }}">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'content-block' %}
+          <div class="section-content_block {{ block.settings.tw_content_block }}">
+            {% if block.settings.overline %}
+              <p class="{{ block.settings.tw_overline }}">{{ block.settings.overline }}</p>
+            {% endif %}
+            {% if block.settings.heading %}
+              <h3 class="{{ block.settings.tw_heading }}">{{ block.settings.heading }}</h3>
+            {% endif %}
+            {% if block.settings.paragraph %}
+              <p class="{{ block.settings.tw_paragraph }}">{{ block.settings.paragraph }}</p>
+            {% endif %}
+            {% if block.settings.button_text and block.settings.button_url %}
+              <div class="{{ block.settings.tw_button_wrapper }}">
+                <a href="{{ block.settings.button_url }}" class="{{ block.settings.tw_button_text }}">
+                  {{ block.settings.button_text }}
+                </a>
+              </div>
+            {% endif %}
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Two Column Layout",
+  "settings": [
+    { "type": "text", "id": "main_heading", "label": "Main Heading", "default": "About Us" },
+    { "type": "header", "content": "Tailwind CSS" },
+    {
+      "type": "text",
+      "id": "tw_two_column_section",
+      "label": "Style: Two Column Section",
+      "default": "flex flex-col lg:flex-row"
+    },
+    {
+      "type": "text",
+      "id": "tw_section_left_col",
+      "label": "Style: Section Left Column",
+      "default": "px-4 py-10 md:p-20 lg:w-1/2 border border-brand-black lg:border-t-0 lg:border-r-0"
+    },
+    {
+      "type": "text",
+      "id": "tw_section_main_heading",
+      "label": "Style: Section Main Heading",
+      "default": "font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw] lg:sticky lg:top-[5.56vw]"
+    },
+    {
+      "type": "text",
+      "id": "tw_section_right_col",
+      "label": "Style: Section Right Column",
+      "default": "flex flex-col lg:w-1/2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content-block",
+      "name": "Content Block",
+      "settings": [
+        { "type": "inline_richtext", "id": "overline", "label": "Overline", "default": "Our Story" },
+        { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Kyiv LuxeBouquets" },
+        {
+          "type": "inline_richtext",
+          "id": "paragraph",
+          "label": "Paragraph",
+          "default": "We are a modern local floral studio, which specializes in the design and delivery of unique bouquets. We have the best florists who carefully select each look, our studio cooperates directly with farms for growing different flowers, so we always have fresh flowers, which are collected by our florists in exquisite bouquets."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn More",
+          "info": "Visible only if a URL is provided."
+        },
+        { "type": "url", "id": "button_url", "label": "Button URL" },
+        { "type": "header", "content": "Tailwind CSS" },
+        {
+          "type": "text",
+          "id": "tw_content_block",
+          "label": "Style: Content Block",
+          "default": "px-4 py-10 md:p-20 border-b border-x border-brand-black lg:border-t"
+        },
+        {
+          "type": "text",
+          "id": "tw_overline",
+          "label": "Style: Overline",
+          "default": "mb-6 lg:mb-[1.7vw] uppercase text-mobile-overline md:text-desktop-overline lg:text-[.98vw]"
+        },
+        {
+          "type": "text",
+          "id": "tw_heading",
+          "label": "Style: Heading",
+          "default": "mb-4 lg:mb-[1.12vw] font-medium text-mobile-heading-3 md:text-desktop-heading-3 lg:text-[2.7vw]"
+        },
+        {
+          "type": "text",
+          "id": "tw_paragraph",
+          "label": "Style: Paragraph",
+          "default": "text-mobile-body md:text-desktop-body brightness-90 lg:text-[1.12vw]"
+        },
+        {
+          "type": "text",
+          "id": "tw_button_wrapper",
+          "label": "Style: Button Wrapper",
+          "default": "mt-16 lg:mt-[4.5vw]"
+        },
+        {
+          "type": "text",
+          "id": "tw_button_text",
+          "label": "Style: Button Text",
+          "default": "uppercase text-center block md:inline-block px-6 py-4 border border-brand-black text-mobile-button md:text-desktop-button lg:text-[1.12vw]"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two Column Layout",
+      "blocks": [{ "type": "content-block" }]
+    }
+  ]
+}
+{% endschema %}
