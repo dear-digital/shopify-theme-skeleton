@@ -56,8 +56,8 @@ class ReviewsSlider extends HTMLElement {
       slide.classList.toggle("hidden", i !== index);
     });
     this.paginationDots.forEach((dot, i) => {
-      dot.classList.toggle("bg-brand-light-gray", i !== index);
-      dot.classList.toggle("bg-brand-gray", i === index);
+      dot.classList.toggle("bg-gray-300", i !== index);
+      dot.classList.toggle("bg-gray-600", i === index);
     });
   }
 
