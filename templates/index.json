@@ -283,56 +283,55 @@
         "itbo__container_button_classes": "text-center text-white uppercase hover:bg-brand-black hover:text-white text-mobile-button font-medium border border-white hover:border-white pt-4 pb-[14px] px-4 md:px-6 tracking-[0.025em] w-full md:w-[175px] md:h-[56px] md:tracking-[0.03em] md:text-desktop-button"
       }
     },
-    "dev_reviews_gbwpRk": {
-      "type": "dev__reviews",
+    "reviews_qEdcLi": {
+      "type": "reviews",
       "blocks": {
-        "review_kFNRB6": {
+        "review_QKW4HD": {
           "type": "review",
           "settings": {
-            "review_text": "Great product! Highly recommended.",
-            "author_name": "John Doe"
+            "review_text": "Ordered flowers online and they were the best bouquet! Impressed everyone around. Highly recommend this flower shop!",
+            "author_name": "Ronald Richards"
           }
         },
-        "review_y43Eck": {
+        "review_VNXwe8": {
           "type": "review",
           "settings": {
-            "review_text": "Excellent service and fast delivery.",
-            "author_name": "Jane Smith"
-          }
-        },
-        "review_jghRXB": {
-          "type": "review",
-          "settings": {
-            "review_text": "The quality exceeded my expectations.",
-            "author_name": "Bob Johnson"
+            "review_text": "Flower subscriptions revolutionized my Kiev hotel! Conveniently customize and receive fresh bouquets regularly. Highly recommended for hassle-free floral arrangements!",
+            "author_name": "Leonid Yurushev"
           }
         }
       },
       "block_order": [
-        "review_kFNRB6",
-        "review_y43Eck",
-        "review_jghRXB"
+        "review_QKW4HD",
+        "review_VNXwe8"
       ],
       "settings": {
-        "heading": "Our Clients say",
+        "tw_reviews_section": "flex flex-col justify-center items-center text-center px-[46px] py-10 md:p-20",
+        "show_section_logo": true,
+        "tw_section_logo": "flex flex-col items-center justify-center gap-2",
+        "show_icon": true,
+        "tw_section_icon_class": "",
+        "show_overline": true,
+        "overline_text": "Reviews",
+        "tw_section_overline": "uppercase font-medium text-mobile-overline md:text-desktop-overline lg:text-[.98vw]",
+        "show_heading": true,
+        "heading_text": "Our Clients Say",
+        "tw_section_heading": "mt-6 lg:mt-[1.7vw] font-semibold text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]",
+        "tw_reviews_slider": "mt-4 lg:mt-[1.12vw] flex flex-col w-full",
+        "tw_swiper_wrapper": "flex gap-6 w-full max-w-full items-center justify-center",
+        "tw_swiper_button_prev": "hidden lg:block",
+        "tw_review_slide": "flex-grow hidden",
+        "tw_review_text": "italic text-mobile-heading-4 md:text-desktop-heading-5 lg:text-[2.4svw]",
+        "tw_review_author": "mt-4 lg:mt-[1.12vw] font-medium text-mobile-heading-6 md:text-desktop-heading-6 lg:text-[1.25vw]",
+        "tw_swiper_button_next": "hidden lg:block rotate-180",
+        "tw_swiper_pagination": "mt-8 text-center",
+        "tw_pagination_dot": "pagination-dot inline-block w-1 h-1 mx-px cursor-pointer rounded-full",
+        "placeholder_text": "No reviews available",
+        "tw_reviews_placeholder": "mt-4 lg:mt-[1.12vw] font-medium text-mobile-heading-6 md:text-desktop-heading-6 lg:text-[1.25vw]",
+        "show_button": true,
         "button_text": "Read Reviews",
-        "button_link": "",
-        "tw-reviews-section": "flex flex-col gap-16 px-4 py-10 items-center justify-center",
-        "tw-section-content": "flex flex-col items-center justify-center",
-        "tw-section-overline-heading": "flex flex-col gap-6",
-        "tw-section-overline": "flex flex-col gap-2 items-center justify-center",
-        "tw-overline-text": "font-medium text-mobile-overline md:text-desktop-overlines lg:text-[.98vw]",
-        "tw-section-heading": "font-semibold mb-4 text-mobile-heading-2 md:text-desktop-heading-2 lg:text-[3.8vw]",
-        "tw-section-slider": "mx-auto w-full",
-        "tw-reviews-slider": "flex items-center justify-center w-full",
-        "tw-arrow-left": "left-0 lg:left-[-60px] text-3xl z-10 hidden lg:block mr-4",
-        "tw-arrow-right": "right-0 lg:right-[-60px] text-3xl z-10 hidden lg:block rotate-180 ml-4",
-        "tw-slider-content": "text-center w-full lg:w-1\/2 flex-grow",
-        "tw-review-text": "review-text mb-4 text-mobile-heading-4 italic md:text-desktop-heading-4 opacity-70 lg:text-[2.6vw] font-extralight",
-        "tw-review-author": "review-author mt-4 mb-8 font-medium text-mobile-heading-6 md:text-desktop-heading-6 lg:text-[1.25vw]",
-        "tw-pagination-dots": "flex justify-center mt-4",
-        "tw-section-button": "section-button text-center w-full",
-        "tw-button": "button px-6 py-4 border-[1px] border-brand-black w-full inline-block md:inline md:w-auto lg:text-[1.12vw]"
+        "reviews_link": "",
+        "tw_section_button": "mt-16 px-6 py-4 uppercase w-full md:w-auto border border-brand-black"
       }
     }
   },
@@ -343,6 +342,6 @@
     "contact_us_3zCHDF",
     "dev_service_keHepD",
     "image_text_button_overlay_BnAWXJ",
-    "dev_reviews_gbwpRk"
+    "reviews_qEdcLi"
   ]
 }
